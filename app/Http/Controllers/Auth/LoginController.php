@@ -64,7 +64,7 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $iservUser = Socialite::driver('iserv')->user();
+        $iservUser = Socialite::driver('iserv')->stateless()->user();
 
         //dd($iservUser->token . ' - '. $iservUser->refreshToken . " - " . $iservUser->expiresIn);
 

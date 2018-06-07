@@ -4,6 +4,7 @@
 
 @section('content_header')
     <h1>Leihverfahren: Bankeinzug (Schritt 4)</h1>
+    <h4>{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} ({{ Auth::user()->klasse }})</h4>    
 @stop
 
 @section('content')

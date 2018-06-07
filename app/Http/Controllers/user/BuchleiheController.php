@@ -71,7 +71,7 @@ class BuchleiheController extends Controller
 
     public function zeigeVorabfragen()
     {
-        $jahrgang = Auth::user()->jahrgang + 1;
+        $jahrgang = Auth::user()->jahrgang; if( $jahrgang!=20 ) $jahrgang++;
         return view('user/buchleihe/vorabfragen', compact('jahrgang'));
     }    
 
@@ -93,7 +93,7 @@ class BuchleiheController extends Controller
 
     public function zeigeAbfragen()
     {
-        $jg = Auth::user()->jahrgang + 1;
+        $jg = Auth::user()->jahrgang; if( $jg!=20 ) $jg++;
 
         $abfragen = Abfrage::where('jahrgang', $jg)->whereNull('parent_id')->get();
 
@@ -130,7 +130,7 @@ class BuchleiheController extends Controller
             $abfragenRequest[$abfr->abfrage_id] = $abfr->abfrage_antwort_id;
         }
 
-        $jg = $user->jahrgang + 1;
+        $jg = $user->jahrgang; if( $jg!=20 ) $jg++;
         $buecherliste = Buecherliste::where('jahrgang', $jg)->first()->buchtitel;      
 
         foreach($abfragenRequest as $idRequest => $antwRequest)   

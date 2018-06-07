@@ -34,11 +34,11 @@
 
                 <div class="form-group">
                     <label for="buchleihe-ermaessigung">Ermäßigung auf Leihpreis</label>
-                    <select id="buchleihe-ermaessigung" name="ermaessigung">
+                    <select class="buchleihe-ermaessigung" name="ermaessigung">
                         <option></option>
-                        <option value="10" @if(old('ermaessigung')==10) selected @endif>keine Erm&auml;&szlig;igung</option>
-                        <option value="8" @if(old('ermaessigung')==8) selected @endif>20% Erm&auml;&szlig;igung (3 Kinder)</option>
-                        <option value="0" @if(old('ermaessigung')==0) selected @endif>100% Erm&auml;&szlig;igung (befreit)</option>
+                        <option value="10">keine Erm&auml;&szlig;igung</option>
+                        <option value="8">20% Erm&auml;&szlig;igung (3 Kinder)</option>
+                        <option value="0">100% Erm&auml;&szlig;igung (befreit)</option>
                     </select>
                 </div>
             </div>
@@ -54,10 +54,10 @@
 
                 <div class="form-group">
                     <label for="buchleihe-pauschale">Geschwisterkinder an der Schule</label>
-                    <select id="buchleihe-pauschale" name="pauschale">
+                    <select class="buchleihe-pauschale" name="pauschale">
                         <option></option>
-                        <option value="6" @if(old('pauschale')==6) selected @endif>Ich bin das j&uuml;ngste oder einzige Kind meiner Familie an der Ursulaschule</option>
-                        <option value="0" @if(old('pauschale')==0) selected @endif>Ich habe j&uuml;ngere Geschwisterkinder an der Schule</option>
+                        <option value="6">Ich bin das j&uuml;ngste oder einzige Kind meiner Familie an der Ursulaschule</option>
+                        <option value="0">Ich habe j&uuml;ngere Geschwisterkinder an der Schule</option>
                     </select>
                 </div>
             </div>
@@ -78,7 +78,7 @@
             <div class="box-body">
                  <div class="form-group">
                     <label for="buchleihe-jahrgang">Jahrgang</label>
-                    <select id="buchleihe-jahrgang" name="jahrgang">
+                    <select class="buchleihe-jahrgang" name="jahrgang">
                         <option @if ($jahrgang==4)  selected @endif value="4">04</option>
                         <option @if ($jahrgang==5)  selected @endif value="5">05</option>
                         <option @if ($jahrgang==6)  selected @endif value="6">06</option>
@@ -107,17 +107,17 @@
 @section('js')
 <script>
     $(document).ready(function() {
-        $("#buchleihe-ermaessigung").select2({
+        $('.buchleihe-ermaessigung').select2({
             placeholder: 'Bitte auswählen',
             minimumResultsForSearch: -1,
             width: '100%' // need to override the changed default
         });
-        $("#buchleihe-pauschale").select2({
+        $('.buchleihe-pauschale').select2({
             placeholder: 'Bitte auswählen',
             minimumResultsForSearch: -1,
             width: '100%' // need to override the changed default
         });
-         $("#buchleihe-jahrgang").select2({
+         $('.buchleihe-jahrgang').select2({
             minimumResultsForSearch: -1,
             width: 'style' // need to override the changed default
         });

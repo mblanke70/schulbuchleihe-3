@@ -15,7 +15,6 @@
     <div class="box-header">
         <h3 class="box-title">Leihbücher</h3>
     </div>
-    </div> 
     
     <div class="box-body">  
 

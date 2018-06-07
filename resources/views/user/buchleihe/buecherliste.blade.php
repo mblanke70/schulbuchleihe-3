@@ -56,8 +56,7 @@
                             <td>
                                 <input type="radio" value="" name="wahlen[{{ $bt->id }}]" style="display: none;" checked/>
                                 
-                                @if( $bt->pivot->ausleihbar == 1 
-                                    && $bt->pivot->verlaengerbar == 0)
+                                @if( $bt->pivot->ausleihbar == 1 )
                                     <input type="radio" value="1" name="wahlen[{{ $bt->id }}]" @if (old('wahlen.'.$bt->id) == 1) checked @endif />
                                 @endif
                             </td>
