@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Abfrage;
+use App\AbfrageWahlen;
 
 class AbfrageRequest extends FormRequest
 {
@@ -24,19 +25,21 @@ class AbfrageRequest extends FormRequest
      */
     public function rules()
     {
-        $abfrage = $this->request->get('abfrage'); 
+        $abfragenRequest = $this->request->get('abfrage'); 
 
-        foreach( $abfrage as $key => $val)
+        $jg = $this->user()->jahrgang + 1;
+        $abfragen = Abfrage::where('jahrgang', $jg)->get();
+
+        foreach($abfragen as $abfr)
         {
-            //$abfr = Abfrage::find($key);
-            //if( empty($abfr->parent_id) ||
-            //    (!empty($abfr->parent_id) && !empty($abfrage[$abfr->parent_id]) ) )
+            if( empty($abfr->parent_id) ||
+                (!empty($abfr->parent_id) && !empty($abfragenRequest[$abfr->parent_id]) ) )
             {
-                $rules['abfrage.'.$key] = 'required';
+                $rules['abfrage.'.$abfr->id] = 'required';
             }           
         }
 
-        //dd($rules);
+        //dd($abfragenRequest, $rules);
 
         return $rules;
     }

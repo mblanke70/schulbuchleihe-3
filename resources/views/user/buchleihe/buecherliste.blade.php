@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Bücherliste')
+@section('title', 'Leihverfahren')
 
 @section('content_header')
     <h1>Leihverfahren: Bücherauswahl (Schritt 3)</h1>
@@ -18,7 +18,7 @@
 </div>
 @endif
 
-<form action="{{ url('user/buchleihe/buecherwahlen') }}" method="POST" role="form">
+<form action="{{ url('user/buchleihe/buecherliste') }}" method="POST" role="form">
 
     {{ csrf_field() }}
             
@@ -54,22 +54,27 @@
                             <td>{{ $bt->preis }}</td>
                             <td>{{ $bt->leihgebuehr }}</td>
                             <td>
+                                <input type="radio" value="" name="wahlen[{{ $bt->id }}]" style="display: none;" checked/>
+                                
                                 @if( $bt->pivot->ausleihbar == 1 
                                     && $bt->pivot->verlaengerbar == 0)
-                                    <input type="radio" value="1" name="wahlen[{{ $bt->id }}]" />
+                                    <input type="radio" value="1" name="wahlen[{{ $bt->id }}]" @if (old('wahlen.'.$bt->id) == 1) checked @endif />
                                 @endif
                             </td>
                             <td>
                                 @if( $bt->pivot->verlaengerbar == 1)
-                                    <input type="radio" value="2" name="wahlen[{{ $bt->id }}]" />
+                                    <input type="radio" value="2" name="wahlen[{{ $bt->id }}]" @if (old('wahlen.'.$bt->id) == 2) checked @endif/>
                                 @endif
                             </td>
                             <td>
-                                @if( $bt->pivot->ausleihbar == 1)
-                                    <input type="radio" value="0" name="wahlen[{{ $bt->id }}]" />
-                                    <input type="radio" value="" name="wahlen[{{ $bt->id}}]" checked style="display: none"/>
-                                @else
-                                    <input type="radio" value="0" name="wahlen[{{ $bt->id }}]" checked />
+                                @if( $bt->preis > 0)
+
+                                    @if( $bt->pivot->ausleihbar == 1)
+                                        <input type="radio" value="3" name="wahlen[{{ $bt->id }}]" @if (old('wahlen.'.$bt->id) == 3) checked @endif/>
+                                    @else
+                                        <input type="radio" value="3" name="wahlen[{{ $bt->id }}]" checked />
+                                    @endif
+
                                 @endif
                             </td>
                         </tr>

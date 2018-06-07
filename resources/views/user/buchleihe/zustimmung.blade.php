@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Bücherliste')
+@section('title', 'Leihverfahren')
 
 @section('content_header')
     <h1>Leihverfahren: Bankeinzug (Schritt 4)</h1>
@@ -31,34 +31,48 @@
                 </div> 
                 <div class="box-body">
                      <p>
-                    Die Summe der Leihgebühren beträgt: {{ $summeLeihen }} &euro;
+                    Die Summe der Leihgebühren beträgt: 
+                    </p>
+                    <h4 style="text-align: center;">{{ number_format($summeLeihenReduziert, 2, ',', '') }} &euro;
 
                     @switch($ermaessigung)          
                         @case(0)
-                            <br /> - Ermäßigung (100%) = 0 &euro; 
-
+                            (Ermäßigung 100%) 
                             @break
                         
                         @case(8)
-                            <br /> - Ermäßigung (20%) = {{ $summeLeihenReduziert }} &euro; 
-
+                            (Ermäßigung 20%) 
                             @break
+
+                        @case(10)
+                            (keine Ermäßigung)
                     @endswitch
+                    </h4>
 
-                    <br /> + Kopiergeld (5 &euro;) = {{ $summeLeihenReduziert + 5 }} &euro;
-
-                    @if($pauschale>0)
-                        <br /> + MS-Office Paket (6 &euro;) =  {{ $summeLeihenReduziert + $pauschale + 5 }} &euro;
-                    @endif
+                    <p>
+                        Dazu kommen Kosten für:
+                        <ul>
+                            <li>Kopiergeld (5 &euro;)</li>
+                            <li>Beitrag für Eltern- und SV-Arbeit (1,50 &euro;)</li>
+        
+                            @if($pauschale>0)
+                                <li>Nutzungsgebühr für das MS-Office Paket (6 &euro;)</li>
+                                <li>Jahresbericht (4,50 &euro;)</li>
+                            @endif
+                        </ul>
                     </p>
 
-                    <p>Die Leihgebühren, das Kopiergeld sowie ggf. die jährlichen Kosten für das MS-Office-Paket werden in diesem Jahr per Bankeinzug von dem Konto eingezogen, von dem auch das jährliche Schulgeld für Ihr Kind eingezogen wird. Dafür benötigen wir Ihre Zustimmung. Erst mit dieser Zustimmung ist das Leihverfahren abgeschlossen.</p>
+                    <p>Insgesamt ergibt sich ein Betrag in Höhe von</p>
+                    <h4 style="text-align: center;">{{ number_format($summeGesamt, 2, ',', '') }} &euro;</h4>
+
+                
+                    <p>Dieser Gesamtbetrag wird in diesem Jahr per Bankeinzug von dem Konto eingezogen, von dem auch vierteljährlich das Schulgeld für Ihr Kind eingezogen wird. Dafür benötigen wir eine Einverständniserklärung, die nur einmalig gilt und in jedem Jahr erneuert werden muss. Wir belasten den Betrag dem Konto, von dem auch das Schulgeld eingezogen wird.</p>
                     <p>Nach Abschluss des Leihverfahrens bleiben die Listen der gewählten Leih- und Kaufbücher weiterhin hier einsehbar.</p>
 
-
                     <div class="form-group">
-                        <label for="buchleihe-zustimmung">Ich bin einverstanden, dass der Gesamtbetrag in Höhe von {{ $summeLeihenReduziert + $pauschale + 5 }}&nbsp;&euro; von dem Konto eingezogen wird, von dem auch das Schulgeld für mein Kind eingezogen wird.</label>
+                        <label for="buchleihe-zustimmung">Ich bin damit einverstanden, dass der Gesamtbetrag in Höhe von {{ number_format($summeGesamt, 2, ',', '') }}&nbsp;&euro; für das Schuljahr 2018/19 von dem Konto eingezogen wird, von dem auch das Schulgeld für mein Kind eingezogen wird.</label>
                         <input type="checkbox" id="buchleihe-zustimmung" name="zustimmung" />
+                        <input type="hidden" name="betrag" value="{{ $summeGesamt }}" />
                     </div>
                 </div>
             </div> 
@@ -105,23 +119,16 @@
 
                 </table> 
 
+                <h4>Die Summe der (nicht reduzierten) Leihpreise beträgt {{ number_format($summeLeihen, 2, ',', '') }} &euro;.</h4>
+
             </div>       
 
         </div> 
-    </div>
-
-</div>
-
-
-<div class="row">
-    <div class="col-md-5"></div>
-    <div class="col-md-7">
 
         <div class="box box-solid box-warning">    
 
             <div class="box-header with-border">
                 <h3 class="box-title">Kaufbücher</h3>
-                <p>Die hier aufgeführten Bücher kaufen Sie sich selbst. Es findet keine Sammelbestellung von Schulseite aus statt.</p>
             </div> 
             
             <div class="box-body">  
@@ -150,12 +157,23 @@
                     </tbody>
 
                 </table> 
-                <br />
-                <p>Die Summe der Kaufpreise beträgt {{ $summeKaufen }} &euro;.</p>
+                
+                <h4>Die Summe der Kaufpreise beträgt {{ number_format($summeKaufen, 2, ',', '') }} &euro;.</h4>
+                <p>Die hier aufgeführten Bücher kaufen Sie sich selbst. Es findet keine Sammelbestellung von Schulseite aus statt.</p>
             </div>  
 
         </div>
 
+    </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-7">
+
+     
     </div>
 
 </div>

@@ -54,13 +54,19 @@ Route::group([
     Route::get('/', function () { return redirect('user/buchleihe'); } );
 
     Route::get('buchleihe', 'BuchleiheController@index');
-    Route::get('buchleihe/vorabfragen', 'BuchleiheController@zeigeVorabfragen');
-    Route::post('buchleihe/abfragen', 'BuchleiheController@verarbeiteVorabfragen');
-    Route::get('buchleihe/abfragen', 'BuchleiheController@zeigeAbfragen');
-    Route::get('buchleihe/buecherliste',  'BuchleiheController@zeigeBuecherliste');
-    Route::get('buchleihe/buecherwahlen',  'BuchleiheController@zeigeBuecherwahlen');
-    Route::post('buchleihe/buecherwahlen', 'BuchleiheController@verarbeiteBuecherwahlen');
+
+    Route::get ('buchleihe/vorabfragen', 'BuchleiheController@zeigeVorabfragen');
+    Route::post('buchleihe/vorabfragen', 'BuchleiheController@verarbeiteVorabfragen');
+    
+    Route::get  ('buchleihe/abfragen', 'BuchleiheController@zeigeAbfragen');
+    Route::post ('buchleihe/abfragen', 'BuchleiheController@verarbeiteAbfragen');
+    
+    Route::get ('buchleihe/buecherliste', 'BuchleiheController@zeigeBuecherliste');
+    Route::post('buchleihe/buecherliste', 'BuchleiheController@verarbeiteBuecherliste');
+    
+    Route::get ('buchleihe/zustimmung', 'BuchleiheController@zeigeZustimmung');
     Route::post('buchleihe/zustimmung', 'BuchleiheController@verarbeiteZustimmung');
+
     Route::post('buchleihe/neuwahl', 'BuchleiheController@neuwahl');
 });
 

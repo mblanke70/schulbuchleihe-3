@@ -1,20 +1,20 @@
 @extends('adminlte::page')
 
-@section('title', 'Bücherliste')
+@section('title', 'Leihverfahren')
 
 @section('content_header')
-    <h1>Übersicht: Leihbücher und Kaufbücher</h1>
-    <h3>(gewählt am: {{ $zeit }})</h3>
+    <h1>Übersicht: Leih- und Kaufbücher</h1>
+    <h4>{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} ({{ Auth::user()->klasse }})</h4>    
+    <h4>(gewählt am: {{ $zeit }})</h4>
 @stop
 
 @section('content')
-
-
 
 <div class="box box-solid box-success">    
 
     <div class="box-header">
         <h3 class="box-title">Leihbücher</h3>
+    </div>
     </div> 
     
     <div class="box-body">  
@@ -44,9 +44,17 @@
 
         </table> 
 
-        <br />
-        <p>Die Summe der Leihpreise beträgt {{ $summeLeihen }} &euro;.</p>
-        <p>Die Summe der reduzierten Leihpreise beträgt {{ $summeLeihenReduziert }} &euro;.</p>
+        <h4>Die Summe der Leihpreise beträgt {{ number_format($summeLeihen, 2, ',', '') }} &euro;.
+        @if ($user->ermaessigung != 10)
+        Die Summe der ermäßigten Leihpreise beträgt {{ $summeLeihenReduziert }} &euro;.
+        @endif
+        </h4>
+
+        <h4>Zuzüglich der sonstigen Abgaben (Kopierkosten, Eltern- und SV-Arbeit
+        @if ($pauschale)
+            , Jahresbreicht, MS-Office-Paket
+        @endif
+        ) wird ein Gesamtbetrag in Höhe von {{ number_format($summeGesamt, 2, ',', '') }} &euro; abgebucht.</h4>
     </div>       
 
 </div> 
@@ -55,7 +63,6 @@
 
     <div class="box-header with-border">
         <h3 class="box-title">Kaufbücher</h3>
-        <p>Die hier aufgeführten Bücher kaufen Sie sich selbst. Es findet keine Sammelbestellung von Schulseite aus statt.</p>
     </div> 
     
     <div class="box-body">  
@@ -84,8 +91,9 @@
             </tbody>
 
         </table> 
-        <br />
-        <p>Die Summe der Kaufpreise beträgt {{ $summeKaufen }} &euro;.</p>
+        
+        <h4>Die Summe der Kaufpreise beträgt {{ number_format($summeKaufen, 2, ',', '') }} &euro;.</h4>
+        <p>Die hier aufgeführten Bücher kaufen Sie sich selbst. Es findet keine Sammelbestellung von Schulseite aus statt.</p>
     </div>  
 
 </div>

@@ -1,9 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Ausleihverfahren 2018')
+@section('title', 'Leihverfahren')
 
 @section('content_header')
     <h1>Leihverfahren: Abfragen zu Fach- und Kursbelegungen (Schritt 2)</h1>
+    <h4>{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} ({{ Auth::user()->klasse }})</h4>    
 @stop
 
 @section('content')
@@ -18,14 +19,14 @@
 </div>
 @endif
 
-<form action="{{ url('user/buchleihe/buecherliste') }}" method="GET" role="form">
+<form action="{{ url('user/buchleihe/abfragen') }}" method="POST" role="form">
 
     {{ csrf_field() }}
 
     <div class="box box-primary box-solid">
 
         <div class="box-header">
-            <h3 class="box-title">Abfragen Jahrgang {{ Auth::user()->jahrgang }}</h3>
+            <h3 class="box-title">Abfragen Jahrgang {{ $jg }}</h3>
         </div>
 
         <div class="box-body">    
@@ -41,21 +42,25 @@
                     @foreach ($abfr->antworten as $antw)
                             
                     <div class="col-md-2">
-            
                         <label for="antw-{{ $antw->id }}">{{ $antw->titel }}</label>
-
-                        <input type="radio" name ="abfrage[{{ $abfr->id}}]" value="" checked style="display: none;"/>
-
+                    </div>
+                    <div class="col-md-1">
                         @if ($abfr->child_id)
                             <!-- Abfrage für die eine Unter-Abfrage existiert -->
                             @if ($antw->wert)
-                                <input type="radio" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" value="{{ $antw->wert }}" onclick="show('abfr-{{ $abfr->child_id }}')"/>
+                                <input type="radio" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" value="{{ $antw->wert }}" 
+                                @if(old('abfrage.'.$abfr->id) == $antw->wert) checked @endif
+                                onclick="show('abfr-{{ $abfr->child_id }}')"/>
                             @else
-                                <input type="radio" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" value="{{ $antw->wert }}" onclick="hide('abfr-{{ $abfr->child_id }}')"/>
+                                <input type="radio" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" value="{{ $antw->wert }}" 
+                                @if(old('abfrage.'.$abfr->id) == $antw->wert) checked @endif
+                                onclick="hide('abfr-{{ $abfr->child_id }}')"/>
                             @endif
                         @else
                             <!-- Abfrage ohne Unter-Abfrage -->
-                            <input type="radio" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" value="{{ $antw->wert }}" />
+                            <input type="radio" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" 
+                            @if(old('abfrage.'.$abfr->id) == $antw->wert) checked @endif 
+                            value="{{ $antw->wert }}" />
                         @endif
             
                     </div>
@@ -74,10 +79,11 @@
                         
                     @foreach ($abfr->children()->first()->antworten as $antw)
 
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <label for="antw-{{ $antw->id }}">{{ $antw->titel }}</label>
-                        <input type="radio" name ="abfrage[{{ $abfr->child_id }}]" id="antw-{{ $antw->id }}"  value="{{ $antw->wert }}" />
-                        <input type="radio" name ="abfrage[{{ $abfr->child_id }}]" value="" checked style="display: none;"/>
+                    </div>
+                    <div class="col-md-1">
+                        <input type="radio" name ="abfrage[{{ $abfr->child_id }}]" id="antw-{{ $antw->id }}" value="{{ $antw->wert }}" @if(old('abfrage.'.$abfr->id) == $antw->wert) checked @endif />
                     </div>
                         
                     @endforeach
@@ -108,7 +114,7 @@
     }
     
     function hide(id){
-        $('#' + id).find('input:radio').each(function () { $(this).attr('checked', false); });
+        //$('#' + id).find('input:radio').each(function () { $(this).attr('checked', false); });
         $('#' + id).hide();
     }   
 </script>

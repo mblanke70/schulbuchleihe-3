@@ -24,7 +24,7 @@ class WahlRequest extends FormRequest
     public function rules()
     {
         $rules['wahlen.*'] = 'required';
-        
+        //dd($rules);     
         return $rules;
     }
 

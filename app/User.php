@@ -44,4 +44,15 @@ class User extends Authenticatable
     {
         return $this->jahrgang;
     }
+
+    public function buchwahlen()
+    {
+        return $this->hasMany('App\Buchwahl')->with('buchtitel')->get();
+    }
+
+    public function abfragewahlen()
+    {
+        return $this->hasMany('App\AbfrageWahl');
+    }
+
 }
