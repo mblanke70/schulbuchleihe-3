@@ -219,6 +219,11 @@ class BuchleiheController extends Controller
         $user->betrag = $request->betrag;
         $user->save();
 
-        return redirect('user/buchleihe');
+        return redirect('user/buchleihe/abschluss');
+    }
+
+    public function zeigeAbschluss()
+    {
+        return view('user/buchleihe/abschluss');
     }
 }

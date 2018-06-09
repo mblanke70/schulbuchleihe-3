@@ -3,7 +3,7 @@
 @section('title', 'Leihverfahren')
 
 @section('content_header')
-    <h1>Leihverfahren: Bankeinzug (Schritt 4)</h1>
+    <h1>Leihverfahren: Bankeinzug (Schritt 4/4)</h1>
     <h4>{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} ({{ Auth::user()->klasse }})</h4>    
 @stop
 
@@ -18,6 +18,10 @@
     </ul>
 </div>
 @endif
+
+<div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: 75%; background-color: #444;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+</div>
 
 <div class="row">
 
@@ -165,16 +169,6 @@
 
         </div>
 
-    </div>
-
-</div>
-
-
-<div class="row">
-    <div class="col-md-5"></div>
-    <div class="col-md-7">
-
-     
     </div>
 
 </div>

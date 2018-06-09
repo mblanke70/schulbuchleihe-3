@@ -3,7 +3,7 @@
 @section('title', 'Leihverfahren')
 
 @section('content_header')
-    <h1>Leihverfahren: Abfragen zu Fach- und Kursbelegungen (Schritt 2)</h1>
+    <h1>Leihverfahren: Abfragen zu Fach- und Kursbelegungen (Schritt 2/4)</h1>
     <h4>{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} ({{ Auth::user()->klasse }})</h4>    
 @stop
 
@@ -18,6 +18,10 @@
     </ul>
 </div>
 @endif
+
+<div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: 25%; background-color: #444;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+</div>
 
 <form action="{{ url('user/buchleihe/abfragen') }}" method="POST" role="form">
 

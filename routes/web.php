@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    return redirect('login/iserv');
-    //return view('home');
+    //return redirect('login/iserv');
+    return view('home');
 });
 
 Route::post('/logout', function () {
@@ -30,7 +30,7 @@ Route::group(
         'middleware' => ['admin', 'menu.admin']
     ], function()
 {
-    Route::get('/', function () { return view('admin/home/index'); } );
+    Route::get('/', 'HomeController@index' );
 
     Route::resource('schueler',  'UserController');
     Route::resource('buchtitel', 'BuchtitelController');
@@ -66,6 +66,8 @@ Route::group([
     
     Route::get ('buchleihe/zustimmung', 'BuchleiheController@zeigeZustimmung');
     Route::post('buchleihe/zustimmung', 'BuchleiheController@verarbeiteZustimmung');
+
+    Route::get('buchleihe/abschluss', 'BuchleiheController@zeigeAbschluss');
 
     Route::post('buchleihe/neuwahl', 'BuchleiheController@neuwahl');
 });
