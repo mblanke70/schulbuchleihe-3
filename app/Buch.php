@@ -20,4 +20,9 @@ class Buch extends Model
     {
     	return $this->belongsTo('App\Buchtitel', 'kennung', 'kennung');
     }
+
+    public function users()
+    {
+        return $this->hasMany('App\Users');   
+    }
 }

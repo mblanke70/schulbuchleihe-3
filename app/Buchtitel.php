@@ -23,7 +23,7 @@ class Buchtitel extends Model
 
     public function fach()
     {
-        return $this->belongsTo('App\Fach', 'fach');
+        return $this->belongsTo('App\Fach');
     }
 
     

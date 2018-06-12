@@ -14,7 +14,7 @@
         <h3 class="box-title">Neuer Buchtitel</h3>
     </div>
     
-    <form action="{{ url('buchtitel/') }}" method="POST" role="form">
+    <form action="{{ url('admin/buchtitel/') }}" method="POST" role="form">
 
         {{ csrf_field() }}
 
@@ -23,6 +23,16 @@
             <div class="form-group">
                 <label for="buchtitel-titel">Titel</label>
                 <input type="text" class="form-control" name="titel" id="buchtitel-titel" placeholder="Titel" />
+            </div>
+
+            <div class="form-group">
+                <label for="buchtitel-fach">Fach</label>
+                <select id="buchtitel-fach" class="buchtitel-fach" name="fach">
+                    <option></option>
+                    @foreach($faecher as $fach)
+                        <option value="{{ $fach->id }}">{{ $fach->name }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="form-group">
@@ -54,4 +64,16 @@
 
 </div>
 
+@stop
+
+@section('js')
+<script>
+    $(document).ready(function() {
+        $('.buchtitel-fach').select2({
+            placeholder: 'Bitte auswählen',
+            minimumResultsForSearch: -1,
+            width: '100%' // need to override the changed default
+        });
+    }); 
+</script>
 @stop

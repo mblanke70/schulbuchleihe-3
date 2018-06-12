@@ -18,7 +18,7 @@ class Klasse extends Model
      */
     public function jahrgang()
     {
-    	return $this->belongsTo('App\Jahrgang', 'jahrgangsstufe', 'jahrgangsstufe');
+    	return $this->belongsTo('App\Jahrgang');
     }
 
     /**

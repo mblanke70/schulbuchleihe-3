@@ -19,7 +19,7 @@ class UserMenu
         Event::listen('JeroenNoten\LaravelAdminLte\Events\BuildingMenu', function ($event)
 
         {
-            $event->menu->add('SCHULJAHR 17/18');       
+            $event->menu->add('LEIHVERFAHREN');       
             $event->menu->add([
                 'text' => 'Leihverfahren',
                 'url'  => 'user/buchleihe',

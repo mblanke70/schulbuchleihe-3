@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Buch;
 use App\Buchtitel;
+use App\Fach;
 
 class BuchtitelController extends Controller
 {   
@@ -28,7 +29,9 @@ class BuchtitelController extends Controller
      */
     public function create()
     {
-        return view('admin/buchtitel/create');
+        $faecher = Fach::all();
+
+        return view('admin/buchtitel/create', compact('faecher'));
     }
     /**
      * Store a newly created resource in storage.
@@ -41,6 +44,7 @@ class BuchtitelController extends Controller
         // Validate the request...
         $buchtitel = new Buchtitel;
         $buchtitel->titel    = $request->titel;
+        $buchtitel->fach     = $request->fach;
         $buchtitel->verlag   = $request->verlag;
         $buchtitel->preis    = $request->preis;
         $buchtitel->kennung  = $request->kennung;

@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     <label for="buchleihe-ermaessigung">Ermäßigung auf Leihpreis</label>
-                    <select class="buchleihe-ermaessigung" name="ermaessigung">
+                    <select id="buchleihe-ermaessigung" class="buchleihe-ermaessigung" name="ermaessigung">
                         <option></option>
                         <option value="10">keine Erm&auml;&szlig;igung</option>
                         <option value="8">20% Erm&auml;&szlig;igung (3 Kinder)</option>

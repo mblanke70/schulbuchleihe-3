@@ -32,12 +32,25 @@ Route::group(
 {
     Route::get('/', 'HomeController@index' );
 
-    Route::resource('schueler',  'UserController');
-    Route::resource('buchtitel', 'BuchtitelController');
-    Route::resource('buecher',   'BuchController');
-    Route::resource('klassen',   'KlasseController');
-    Route::resource('abfragen',  'AbfrageController');
+    Route::resource('schueler',      'UserController');
+    Route::resource('buchtitel',     'BuchtitelController');
+    Route::resource('buecher',       'BuchController');
+    Route::resource('klassen',       'KlasseController');
+    Route::resource('abfragen',      'AbfrageController');
     Route::resource('buecherlisten', 'BuecherlisteController');
+    
+    //Route::resource('ausleihe',      'AusleiheController');
+
+    Route::get('ausleihe', 'AusleiheController@index');
+    Route::get('ausleihe/{klasse}', 'AusleiheController@zeigeKlasse');
+    Route::get('ausleihe/{klasse}/{schueler}', 'AusleiheController@zeigeSchueler');
+    Route::post('ausleihe/{klasse}/{schueler}/auswahl', 'AusleiheController@add');
+    Route::delete('ausleihe/{klasse}/{schueler}/auswahl', 'AusleiheController@remove');    
+    Route::post('ausleihe/{klasse}/{schueler}', 'AusleiheController@ausleihen');
+    Route::delete('ausleihe/{klasse}/{schueler}', 'AusleiheController@loeschen');    
+
+    
+    Route::resource('rueckgabe',     'RueckgabeController');
     
     Route::post('abfragen/attach/{id}', 'AbfrageController@attach');
 

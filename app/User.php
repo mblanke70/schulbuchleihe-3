@@ -55,4 +55,9 @@ class User extends Authenticatable
         return $this->hasMany('App\AbfrageWahl');
     }
 
+    public function buecher()
+    {
+        return $this->belongsToMany('App\Buch');
+    }
+
 }

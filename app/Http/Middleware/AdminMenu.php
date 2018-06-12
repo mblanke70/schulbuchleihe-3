@@ -19,7 +19,7 @@ class AdminMenu
         Event::listen('JeroenNoten\LaravelAdminLte\Events\BuildingMenu', function ($event)
 
         {
-            $event->menu->add('INVENTAR');
+            $event->menu->add('BUCHBESTAND');
             $event->menu->add([
                 'text' => 'Buchtitel',
                 'url'  => 'admin/buchtitel',
@@ -30,7 +30,7 @@ class AdminMenu
                 'url'  => 'admin/buecher',
                 'icon' => 'book',
             ]);
-            $event->menu->add('SCHULJAHR 17/18');       
+            $event->menu->add('LEIHVERFAHREN');       
             $event->menu->add([
                 'text' => 'Klassen',
                 'url'  => 'admin/klassen',
@@ -52,10 +52,19 @@ class AdminMenu
                 'icon' => 'list',
             ]);
             $event->menu->add([
-                'text' => 'Schüler-Leihverfahren',
-                'url'  => 'user/buchleihe',
+                'text' => 'Schüler-Dashboard',
+                'url'  => 'user',
                 'icon' => 'list',
+
             ]);
+            $event->menu->add('AUSLEIHE & RÜCKGABE');       
+            $event->menu->add([
+                'text' => 'Ausleihe',
+                'url'  => 'admin/ausleihe',
+                'icon' => 'list',
+
+            ]);
+           
         });
 
         return $next($request);
