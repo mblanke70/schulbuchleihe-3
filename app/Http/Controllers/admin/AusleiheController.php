@@ -4,11 +4,14 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AusleiheRequest;
+use Validator;
 
 use App\User;
 use App\Klasse;
 use App\Buch;
 use App\Jahrgang;
+use App\Buecherliste;
 
 class AusleiheController extends Controller
 {
@@ -19,7 +22,7 @@ class AusleiheController extends Controller
      */
     public function index()
     {
-        $klassen = Klasse::all();
+        $klassen    = Klasse::all();
         $jahrgaenge = Jahrgang::all();
 
         session()->forget('auswahl');
@@ -40,23 +43,86 @@ class AusleiheController extends Controller
     public function zeigeSchueler($klasse_id, $user_id)
     {
         $klasse  = Klasse::find($klasse_id);
-        $user    = User::findOrFail($user_id);
-        $buecher = $user->buecher;
+        $user    = User::find($user_id);
+        
+        $buecher    = $user->buecher;
+        $buchwahlen = $user->buchwahlen()->where('wahl', '<', 3)->sortByDesc('wahl');
 
+        foreach($buecher as $b)
+        {
+            $ausgeliehen[$b->buchtitel->id] = $b->id;
+        }
+
+        foreach($buchwahlen as $bw)
+        {      
+            $bw['leihstatus'] = 0;
+            $bw['buch_id']    = 0;
+            
+            if(isset($ausgeliehen) && array_key_exists($bw->buchtitel_id, $ausgeliehen))
+            {     
+                $bw['leihstatus'] =  1;
+                $bw['buch_id']    =  $ausgeliehen[$bw->buchtitel_id];
+            }
+        }
+
+        /*
         $auswahl = session('auswahl');
-        //dd($auswahl);
         if(isset($auswahl))
         {
             $auswahlbuecher = Buch::whereIn('id', $auswahl)->get();
         }
+        */
 
-        return view('admin/ausleihe/schueler', compact('klasse', 'user', 'buecher', 'auswahlbuecher'));
+        return view('admin/ausleihe/schueler', compact('klasse', 'user', 'buecher', 'buchwahlen'));
     }
 
     public function ausleihen(Request $request, $klasse_id, $user_id)
     {
-        $user = User::find($user_id);
+        $validator = Validator::make($request->all(), [
+            'buch_id' => [
+                'required',
+                function($attribute, $value, $fail) use ($user_id) {
+                    $b = Buch::find($value);
+                    if($b==null) {
+                         return $fail('Es existiert kein Buch mit diesem Code.');
+                    }
+                    else {
+                        $bt   = $b->buchtitel->id;
+                        $user = User::find($user_id);
+                        $jg   = $user->jahrgang; if($jg!=20) $jg++;
 
+                        $leihbuecher = $user->buecher()->get();
+                        if($leihbuecher->contains('buchtitel.id', $bt)) {
+                            return $fail('Dieser Schüler hat das Buch bereits ausgeliehen.');
+                        }
+
+                        $buecherliste = Buecherliste::where('jahrgang', $jg)->first();
+                        if(!$buecherliste->buchtitel->contains('id', $bt)) {
+                            return $fail('Der diesem Buch zugeordnete Buchtitel steht nicht auf der Bücherliste des Jahrgangs '. $jg.'.');
+                        }
+
+                        $buchwahlen = $user->buchwahlen()->where('wahl', '=', 3);
+                        if($buchwahlen->contains('buchtitel_id', $bt)) {
+                            return $fail('Dieses Buch ist als Kaufbuch ausgewählt worden.');
+                        }                        
+                    }
+                },
+            ],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/ausleihe/'.$klasse_id.'/'.$user_id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+    
+        $user = User::find($user_id);
+        $buch = Buch::find($request->buch_id);
+        
+        $user->buecher()->attach($buch, ['ausgabe' => now() ]);
+
+        
+        /*
         $auswahl = session('auswahl');
         if($auswahl != null)
         {
@@ -68,6 +134,7 @@ class AusleiheController extends Controller
 
             session()->forget('auswahl');
         }
+        */
 
         return redirect('admin/ausleihe/'.$klasse_id.'/'.$user_id);
     }

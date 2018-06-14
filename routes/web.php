@@ -22,7 +22,6 @@ Route::post('/logout', function () {
 })->name('logout');
 
 
-
 Route::group(
     [  
         'prefix'     => 'admin', 
@@ -33,7 +32,10 @@ Route::group(
     Route::get('/', 'HomeController@index' );
 
     Route::resource('schueler',      'UserController');
+    
     Route::resource('buchtitel',     'BuchtitelController');
+    Route::get('buchtitel/createISBN/{isbn}', 'BuchtitelController@createFromISBN');
+
     Route::resource('buecher',       'BuchController');
     Route::resource('klassen',       'KlasseController');
     Route::resource('abfragen',      'AbfrageController');
@@ -44,8 +46,10 @@ Route::group(
     Route::get('ausleihe', 'AusleiheController@index');
     Route::get('ausleihe/{klasse}', 'AusleiheController@zeigeKlasse');
     Route::get('ausleihe/{klasse}/{schueler}', 'AusleiheController@zeigeSchueler');
-    Route::post('ausleihe/{klasse}/{schueler}/auswahl', 'AusleiheController@add');
-    Route::delete('ausleihe/{klasse}/{schueler}/auswahl', 'AusleiheController@remove');    
+    Route::delete('ausleihe/{klasse}/{schueler}', 'AusleiheController@remove');    
+
+    //Route::post('ausleihe/{klasse}/{schueler}/auswahl', 'AusleiheController@add');
+    //Route::delete('ausleihe/{klasse}/{schueler}/auswahl', 'AusleiheController@remove');    
     Route::post('ausleihe/{klasse}/{schueler}', 'AusleiheController@ausleihen');
     Route::delete('ausleihe/{klasse}/{schueler}', 'AusleiheController@loeschen');    
 

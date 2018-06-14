@@ -57,7 +57,6 @@ class User extends Authenticatable
 
     public function buecher()
     {
-        return $this->belongsToMany('App\Buch');
+        return $this->belongsToMany('App\Buch')->with('buchtitel');
     }
-
 }

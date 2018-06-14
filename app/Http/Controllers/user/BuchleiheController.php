@@ -147,7 +147,7 @@ class BuchleiheController extends Controller
                     {                               // Fach komplett rausfiltern
                         $fach         = $antw->wert;
                         $buecherliste = $buecherliste->filter(function ($bt) use ($fach) {
-                            return $bt->fach != $fach;
+                            return $bt->fach_id != $fach;
                         });
                     }
                     else                            // Unter-Abfrage nach BUCHGRUPPE

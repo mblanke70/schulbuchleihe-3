@@ -3,26 +3,26 @@
 @section('title', 'Ausleihe')
 
 @section('content_header')
-    <h1>Ausleihe</h1>
+    <h1>Ausleihe für {{ $user->nachname }}, {{ $user->vorname }} ({{ $klasse->bezeichnung }})</h1>
 @stop
 
 @section('content')
  
     <div class="row">
         
-        <div class="col-md-6">
-            
+        <div class="col-md-4">
+
             <div class="box box-solid box-danger">            
                 <div class="box-header with-border">                
                     <div class="box-title">
-                        Bücherausleihe für {{ $user->nachname }}, {{ $user->vorname }} ({{ $klasse->bezeichnung }})
+                        Buch ausleihen
                     </div>
                 </div>
 
                 <div>
                     <div class="box-body">
                         <div class="row">
-                            <form action="{{ url('admin/ausleihe/'.$klasse->id.'/'.$user->id.'/auswahl') }}" method="POST" >                
+                            <form action="{{ url('admin/ausleihe/'.$klasse->id.'/'.$user->id) }}" method="POST" >                
                                 {{ csrf_field() }}      
                                 <div class="col-md-6">
                                     <div class="form-group">   
@@ -43,6 +43,14 @@
 
             </div>
 
+
+            @if ($errors->any())
+            <div class="alert alert-danger">   
+               {{ $errors->first('buch_id') }}</li>
+            </div>
+            @endif
+
+            <!--
             <div class="box box-solid box-warning">   
                 <div class="box-header with-border">
                     <div class="box-title">
@@ -85,14 +93,16 @@
                     </form>
                 </div>
             </div>
+            -->
+
         </div>
-        
-        <div class="col-md-6">
+     
+        <div class="col-md-8">
+
             <div class="box box-solid box-success">   
                 <div class="box-header with-border">
-
                     <div class="box-title">
-                        Ausgeliehene Bücher
+                        Bücherliste
                     </div>
                 </div>
 
@@ -100,37 +110,49 @@
     
                     <div class="table-responsive">
 
-                        <table id="buecher" class="display" cellspacing="0" width="100%">
+                        <table id="leihen" class="display compact" cellspacing="0" width="100%">
 
                             <thead>
                                 <tr>
-                                    <th>Buch-ID</th>
+                                    <th>Leihstatus</th>
+                                    <th>Löschen</th>
                                     <th>Fach</th> 
                                     <th>Titel</th>
-                                    <th>Aktion</th>
+                                    <th>Wahl</th>
                                 </tr>
                             </thead>
 
                             <tbody>
 
-                                @foreach ($buecher as $b)
+                                @foreach ($buchwahlen as $b)
 
                                     <tr>
-                                        <td> {{ $b->id }} </td>
-                                        <td> {{ $b->buchtitel->fach->code }} </td>
-                                        <td> {{ $b->buchtitel->titel }} </td>
-                                        <td>  
-
-                                            <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $b->id }}').submit();">
+                                        <td>
+                                        @if ($b->leihstatus == 1)
+                                            <i class="fa fa-check-square fa-lg"></i>
+                                        @endif 
+                                        </td>
+                                        <td>
+                                        @if ($b->leihstatus == 1)
+                                            <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $b->buchtitel->id }}').submit();">
                                                 <i class="fa fa-fw fa-trash"></i>
                                             </a>
 
-                                            <form id="delete-form-{{ $b->id }}" action="{{ url('admin/ausleihe/'.$klasse->id.'/'.$user->id) }}" method="POST" style="display: none;">
+                                            <form id="delete-form-{{ $b->buchtitel->id }}" action="{{ url('admin/ausleihe/'.$klasse->id.'/'.$user->id) }}" method="POST" style="display: none;">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
-                                                <input type="hidden" name="buch_id" value="{{ $b->id }}" />
+                                                <input type="hidden" name="buch_id" value="{{ $b->buch_id }}" />
                                             </form>
-
+                                        @endif
+                                        </td>
+                                        <td>{{ $b->buchtitel->fach->code }}</td>
+                                        <td>{{ $b->buchtitel->titel }}</td>
+                                        <td>
+                                            @if($b->wahl==1)
+                                                Leihen
+                                            @else
+                                                Verlängern
+                                            @endif
                                         </td>
                                     </tr>
 
@@ -143,6 +165,7 @@
                     </div>
 
                 </div>            
+
             </div>
 
         </div>
@@ -162,10 +185,11 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#buecher').DataTable({
+            $('#buecher, #leihen, #verlaengern').DataTable({
                 searching: false, 
                 info: false, 
                 paging: false,
+                order: [[ 4, "desc" ]],
                 language: {
                     "emptyTable": "Keine Bücher ausgeliehen."
                 }

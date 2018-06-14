@@ -25,4 +25,6 @@ class Buch extends Model
     {
         return $this->hasMany('App\Users');   
     }
+
+    
 }
