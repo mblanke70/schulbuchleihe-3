@@ -48,7 +48,7 @@ class BuchtitelController extends Controller
         // Validate the request...
         $buchtitel = new Buchtitel;
         $buchtitel->titel    = $request->titel;
-        $buchtitel->fach     = $request->fach;
+        $buchtitel->fach_id  = $request->fach;
         $buchtitel->verlag   = $request->verlag;
         $buchtitel->preis    = $request->preis;
         $buchtitel->kennung  = $request->kennung;
