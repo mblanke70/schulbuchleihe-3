@@ -27,11 +27,11 @@
 
 	<div class="col-md-3 col-sm-6 col-xs-12">
 	    <div class="info-box">
-	       	<span class="info-box-icon bg-yellow"><i class="ion-ios-people-outline"></i></span>
+	       	<span class="info-box-icon bg-yellow"><i class="ion-ios-book-outline"></i></span>
 
 	        <div class="info-box-content">
 	            <span class="info-box-text">Anzahl Bücher</span>
-	            <span class="info-box-number">5,000</span>
+	            <span class="info-box-number">{{ $anz_buecher }}</span>
 	        </div>
 	        <!-- /.info-box-content -->
 	    </div>
@@ -71,7 +71,7 @@
 		<div class="box">
 
 			<div class="box-header with-border">
-				<h3 class="box-title">Gewählt</h3>
+				<h3 class="box-title">Zuletzt Gewählt</h3>
 				<div class="box-tools pull-right">
 			  		<!-- Buttons, labels, and many other things can be placed here! -->
 				</div>
