@@ -8,38 +8,41 @@
 
 @section('content')
 
-<div class="table-responsive">		
-	<table id="schueler" class="display table table-hover">
-		<thead>	
-			<th width="20%">ID</th>
-			<th width="30%">Nachname</th>
-			<th width="30%">Vorname</th>
-		</thead>
-		<tbody>
-			@foreach ($schueler as $s)
-				<tr>
-					<td width="20%">
+<div class="row">
 
-						<a href="{{ url('admin/ausleihe/'.$s->klassengruppe->id.'/'.$s->id) }}">
-						{{ $s->id }}</a></td>
-					<td width="30%"><a href="{{ url('admin/ausleihe/'.$s->klassengruppe->id.'/'.$s->id)  }}">
-						{{ $s->nachname }} </a></td>
-					<td width="30%"><a href="{{ url('admin/ausleihe/'.$s->klassengruppe->id.'/'.$s->id)  }}">
-						{{ $s->vorname }} </a></td>
-				</tr>
-			@endforeach
-		</tbody>
-	</table>
+	@for ($i = 0; $i < 3; $i++)
+	<div class="col-md-4">
+		<div class="table-responsive">		
+			<table class="display table table-hover">
+				<thead>	
+					<th width="50%">Nachname</th>
+					<th width="50%">Vorname</th>
+				</thead>
+				<tbody>
+					@foreach ($gruppen[$i] as $s)
+						<tr>
+							<td width="50%"><a href="{{ url('admin/ausleihe/'.$s->klassengruppe->id.'/'.$s->id)  }}">
+								{{ $s->nachname }} </a></td>
+							<td width="50%"><a href="{{ url('admin/ausleihe/'.$s->klassengruppe->id.'/'.$s->id)  }}">
+								{{ $s->vorname }} </a></td>
+						</tr>
+					@endforeach
+				</tbody>
+			</table>
+		</div>
+	</div>
+	@endfor
+	
 </div>
-
 @stop
 
 @section('js')
     <script>
         $(document).ready(function() {
-            var table = $('#schueler').DataTable( {
-                rowReorder: true,
-                stateSave: true
+            var table = $('.display').DataTable( {
+                searching: false, 
+                info: false, 
+                paging: false,
             } );
         } );
     </script>

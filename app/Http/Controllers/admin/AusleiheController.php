@@ -25,8 +25,6 @@ class AusleiheController extends Controller
         $klassen    = Klasse::all();
         $jahrgaenge = Jahrgang::all();
 
-        session()->forget('auswahl');
-        
         return view('admin/ausleihe/index', compact('klassen', 'jahrgaenge'));
     }
 
@@ -35,9 +33,9 @@ class AusleiheController extends Controller
         $klasse   = Klasse::find($id);
         $schueler = User::where('klasse', $klasse->bezeichnung)->get();#
 
-        session()->forget('auswahl');
-        
-        return view('admin/ausleihe/klasse', compact('klasse', 'schueler'));
+        $gruppen = $schueler->split(3);
+
+        return view('admin/ausleihe/klasse', compact('klasse', 'schueler', 'gruppen'));
     }
 
     public function zeigeSchueler($klasse_id, $user_id)
@@ -46,34 +44,21 @@ class AusleiheController extends Controller
         $user    = User::find($user_id);
         
         $buecher    = $user->buecher;
-        $buchwahlen = $user->buchwahlen()->where('wahl', '<', 3)->sortByDesc('wahl');
+        //$buchwahlen = $user->buchwahlen()->where('wahl', '<', 3)->sortByDesc('wahl');
+        //$buchwahlen = $user->buchwahlen()->sortBy('wahl');
+       
+        $jg = $user->jahrgang; if( $jg!=20 ) $jg++;
+        $buchtitel = Buecherliste::where('jahrgang', $jg)->first()->buchtitel;  
 
-        foreach($buecher as $b)
-        {
-            $ausgeliehen[$b->buchtitel->id] = $b->id;
+        foreach($buchtitel as $bt) {
+            $bw = $user->buchwahlen()->where('buchtitel_id', $bt->id)->first();
+            $bt['wahl'] = ($bw!=null) ? $bw->wahl : 4;
+            $bt['ausgeliehen'] = $buecher->contains('buchtitel_id', $bt->id) ? 1 : 0;
         }
 
-        foreach($buchwahlen as $bw)
-        {      
-            $bw['leihstatus'] = 0;
-            $bw['buch_id']    = 0;
-            
-            if(isset($ausgeliehen) && array_key_exists($bw->buchtitel_id, $ausgeliehen))
-            {     
-                $bw['leihstatus'] =  1;
-                $bw['buch_id']    =  $ausgeliehen[$bw->buchtitel_id];
-            }
-        }
+        //dd($buchtitel);
 
-        /*
-        $auswahl = session('auswahl');
-        if(isset($auswahl))
-        {
-            $auswahlbuecher = Buch::whereIn('id', $auswahl)->get();
-        }
-        */
-
-        return view('admin/ausleihe/schueler', compact('klasse', 'user', 'buecher', 'buchwahlen'));
+        return view('admin/ausleihe/schueler', compact('klasse', 'user', 'buecher', 'buchtitel'));
     }
 
     public function ausleihen(Request $request, $klasse_id, $user_id)
@@ -121,21 +106,6 @@ class AusleiheController extends Controller
         
         $user->buecher()->attach($buch, ['ausgabe' => now() ]);
 
-        
-        /*
-        $auswahl = session('auswahl');
-        if($auswahl != null)
-        {
-            foreach($auswahl as $buch_id)
-            {
-                $buch = Buch::find($buch_id);
-                $user->buecher()->attach($buch, ['ausgabe' => now() ]);
-            }
-
-            session()->forget('auswahl');
-        }
-        */
-
         return redirect('admin/ausleihe/'.$klasse_id.'/'.$user_id);
     }
    
@@ -144,11 +114,14 @@ class AusleiheController extends Controller
         $user = User::find($user_id);
         $buch = Buch::find($request->buch_id);
 
+        //dd($user, $buch);
+
         $user->buecher()->detach($buch);
         
         return redirect('admin/ausleihe/'.$klasse_id.'/'.$user_id);
     }
 
+/*
     public function add(Request $request, $klasse_id, $user_id)
     {
         $buch_id = $request->buch_id;
@@ -174,7 +147,7 @@ class AusleiheController extends Controller
         return redirect('admin/ausleihe/'.$klasse_id.'/'.$user_id);
     }    
 
-
+*/
     /**
      * Show the form for editing the specified resource.
      *
