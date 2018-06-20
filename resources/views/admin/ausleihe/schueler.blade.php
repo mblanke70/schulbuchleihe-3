@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
- 
+
     <div class="row">
         
         <div class="col-md-4">
@@ -38,12 +38,6 @@
                 </div>
             </div>
 
-            @if ($errors->any())
-            <div class="alert alert-danger">   
-               {{ $errors->first('buch_id') }}</li>
-            </div>
-            @endif
-
             <div class="box box-solid box-warning">   
                 <div class="box-header with-border">
                     <div class="box-title">
@@ -53,7 +47,7 @@
 
                 <div class="box-body">
                     <div class="table-responsive">
-                        <table class="display compact" cellspacing="0" width="100%">
+                        <table id="buecher" class="display compact" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th width="15%">Fach</th> 
@@ -97,6 +91,12 @@
 
                 <div class="box-body">
                     <div class="table-responsive">
+
+                    <form action="{{ url('admin/ausleihe/'.$klasse->id.'/'.$user->id) }}" method="POST" >
+
+                        {{ csrf_field() }}
+                        {{ method_field('PUT') }}
+
                         <table id="buecherliste" class="display compact" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
@@ -118,7 +118,7 @@
                                     <td>{{ $bt->fach->code }}</td>
                                     <td>{{ $bt->titel }}</td>
                                     <td>  
-                                        <select name="wahlen[{{ $bt->id }}]">
+                                        <select name="wahlen[{{$bt->id}}]">
 
                                             @if( $bt->pivot->ausleihbar == 1 )
                                                 <option value="1" @if($bt->wahl==1) selected @endif /> 
@@ -148,6 +148,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+
+                    </form>
+
                     </div>
                 </div>            
             </div>
@@ -162,20 +165,92 @@
 
         </form>
     </div>
+
+    <div id="modal-confirm" class="modal modal-warning fade">   
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Schließen">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Achtung!</h4>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                    @foreach($errors->get('buch_id') as $message)
+                        <li>{{ $message }}</li>
+                    @endforeach
+                    </ul>
+                    <p>Soll das Buch trotzdem ausgeliehen werden?</p>
+                </div>
+                <div class="modal-footer">
+                    <form action="{{ url('admin/ausleihe/'.$klasse->id.'/'.$user->id) }}" method="POST">
+                        {{ csrf_field() }}       
+                        <input type="hidden" name="confirmed" value="1" />
+                        <input type="hidden" name="buch_id" value="{{ old('buch_id') }}" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+                        <button type="submit" class="btn btn-warning"><i class="fa fa-times-circle"></i> Speichern</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-warning" class="modal modal-danger fade">   
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Schließen">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Achtung!</h4>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                    @foreach($errors->get('buch_id') as $message)
+                        <li>{{ $message }}</li>
+                    @endforeach
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Abbrechen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @stop
 
 @section('js')
     <script>
+
+        @if($errors->any())
+            @if($errors->first('type') == 'confirm')
+                $(function() { $('#modal-confirm').modal(); });
+            @elseif($errors->first('type') == 'warning')
+                $(function() { $('#modal-warning').modal(); });
+            @endif
+        @endif
+        
         $(document).ready(function() {
+            /*
+            $('#modal-warning').on('show.bs.modal', function(e) {
+                var url = $(e.relatedTarget).data('url');
+                $(e.currentTarget).find('form').attr('action', url);
+            });
+            */
+
+            $('form select').on('change', function(){
+                $(this).closest('form').submit();
+            });
+
             $('#buecher').DataTable({
                 "searching": false, 
                 "info": false, 
                 "paging": false,
                 "language": {
                     "emptyTable": "Keine Bücher ausgeliehen."
-                },
-               
-                    
+                },           
             });
 
             $('#buecherliste').DataTable({

@@ -31,7 +31,7 @@ class AusleiheRequest extends FormRequest
     public function messages()
     {
         return [
-            'buch_id.required' => 'Buch-ID wird benötigt.',
+            'buch_id.required' => 'Bitte einen Buch-Code eingeben.',
         ];
     }
 }

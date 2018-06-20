@@ -52,7 +52,7 @@ Route::group(
     //Route::delete('ausleihe/{klasse}/{schueler}/auswahl', 'AusleiheController@remove');    
     Route::post('ausleihe/{klasse}/{schueler}', 'AusleiheController@ausleihen');
     Route::delete('ausleihe/{klasse}/{schueler}', 'AusleiheController@loeschen');    
-
+    Route::put('ausleihe/{klasse}/{schueler}', 'AusleiheController@aktualisieren');
     
     Route::resource('rueckgabe',     'RueckgabeController');
     

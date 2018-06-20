@@ -13,6 +13,12 @@ use App\Buch;
 use App\Jahrgang;
 use App\Buecherliste;
 
+use App\Rules\BuchtitelNichtAusgeliehen;
+use App\Rules\BuchNichtAusgeliehen;
+use App\Rules\BuchcodeExistiert;
+use App\Rules\BuchtitelIstAufBuecherliste;
+
+
 class AusleiheController extends Controller
 {
     /**
@@ -52,7 +58,13 @@ class AusleiheController extends Controller
 
         foreach($buchtitel as $bt) {
             $bw = $user->buchwahlen()->where('buchtitel_id', $bt->id)->first();
-            $bt['wahl'] = ($bw!=null) ? $bw->wahl : 4;
+            if($bw!=null) {
+                $bt['wahl']    = $bw->wahl;
+                $bt['wahl_id'] = $bw->id;
+            } else {
+                $bt['wahl'] = 4;
+            }
+
             $bt['ausgeliehen'] = $buecher->contains('buchtitel_id', $bt->id) ? 1 : 0;
         }
 
@@ -63,47 +75,43 @@ class AusleiheController extends Controller
 
     public function ausleihen(Request $request, $klasse_id, $user_id)
     {
-        $validator = Validator::make($request->all(), [
-            'buch_id' => [
-                'required',
-                function($attribute, $value, $fail) use ($user_id) {
-                    $b = Buch::find($value);
-                    if($b==null) {
-                         return $fail('Es existiert kein Buch mit diesem Code.');
-                    }
-                    else {
-                        $bt   = $b->buchtitel->id;
-                        $user = User::find($user_id);
-                        $jg   = $user->jahrgang; if($jg!=20) $jg++;
-
-                        $leihbuecher = $user->buecher()->get();
-                        if($leihbuecher->contains('buchtitel.id', $bt)) {
-                            return $fail('Dieser Schüler hat das Buch bereits ausgeliehen.');
-                        }
-
-                        $buecherliste = Buecherliste::where('jahrgang', $jg)->first();
-                        if(!$buecherliste->buchtitel->contains('id', $bt)) {
-                            return $fail('Der diesem Buch zugeordnete Buchtitel steht nicht auf der Bücherliste des Jahrgangs '. $jg.'.');
-                        }
-
-                        $buchwahlen = $user->buchwahlen()->where('wahl', '=', 3);
-                        if($buchwahlen->contains('buchtitel_id', $bt)) {
-                            return $fail('Dieses Buch ist als Kaufbuch ausgewählt worden.');
-                        }                        
-                    }
-                },
-            ],
-        ]);
-
-        if ($validator->fails()) {
-            return redirect('admin/ausleihe/'.$klasse_id.'/'.$user_id)
-                ->withErrors($validator)
-                ->withInput();
-        }
-    
         $user = User::find($user_id);
         $buch = Buch::find($request->buch_id);
-        
+
+        $validator1 = Validator::make(
+            $request->all(), 
+            [
+                'buch_id' => [
+                    'required',
+                    new BuchcodeExistiert($buch),
+                    new BuchNichtAusgeliehen($user),
+                ],
+            ], 
+            ['required' => 'Bitte einen Buch-Code eingeben.']
+        );
+
+        if($validator1->fails()) {
+            return redirect('admin/ausleihe/'.$klasse_id.'/'.$user_id)
+                ->withErrors($validator1->errors()->add('type', 'warning'))
+                ->withInput();
+        }
+
+        $validator2 = Validator::make(
+            $request->all(), 
+            [
+                'buch_id' => [
+                    new BuchtitelNichtAusgeliehen($user),
+                    new BuchtitelIstAufBuecherliste($user, $buch),
+                ],
+            ] 
+        );
+
+        if($request->confirmed==null && $validator2->fails()) {
+            return redirect('admin/ausleihe/'.$klasse_id.'/'.$user_id)
+                ->withErrors($validator2->errors()->add('type', 'confirm'))
+                ->withInput();
+        } 
+
         $user->buecher()->attach($buch, ['ausgabe' => now() ]);
 
         return redirect('admin/ausleihe/'.$klasse_id.'/'.$user_id);
@@ -114,10 +122,37 @@ class AusleiheController extends Controller
         $user = User::find($user_id);
         $buch = Buch::find($request->buch_id);
 
-        //dd($user, $buch);
-
         $user->buecher()->detach($buch);
         
+        return redirect('admin/ausleihe/'.$klasse_id.'/'.$user_id);
+    }
+
+    public function aktualisieren(Request $request, $klasse_id, $user_id)
+    {
+        $buchwahlen = $request->wahlen;
+        
+        foreach($buchwahlen as $buchtitel_id => $wahl) 
+        {    
+            $bw = Buchwahl::where('user_id', $user_id)
+                          ->where('buchtitel_id', $buchtitel_id)
+                          ->first();
+            if($wahl!=4)
+            {
+                if($bw) {
+                    $bw['wahl'] = $wahl;
+                    $bw->save();
+                } else {
+                    $buchwahl = new Buchwahl;
+                    $buchwahl->user_id      = $user_id;
+                    $buchwahl->buchtitel_id = $buchtitel_id;
+                    $buchwahl->wahl         = $wahl;
+                    $buchwahl->save();
+                }
+            } else {
+                 if($bw) $bw->delete();
+            }
+        }
+
         return redirect('admin/ausleihe/'.$klasse_id.'/'.$user_id);
     }
 

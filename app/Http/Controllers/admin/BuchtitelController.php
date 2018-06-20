@@ -35,8 +35,6 @@ class BuchtitelController extends Controller
         return view('admin/buchtitel/create', compact('faecher'));
     }
 
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -142,6 +140,7 @@ class BuchtitelController extends Controller
     
         dd($title_n, $record->getTitle(), $title_a . " " . $title_n . " " . $title_c . " " . $isbn);
 
+        /*
         $xmldoc = new \DOMDocument();
         $xmldoc->load("https://services.dnb.de/sru/dnb?".
             "version=1.1&".
@@ -185,5 +184,6 @@ class BuchtitelController extends Controller
         $data["format"]    = $xmldoc->getElementsByTagName("format")->item(0)->nodeValue;
 
         dd($xmldoc);
+        */
     }
 }
