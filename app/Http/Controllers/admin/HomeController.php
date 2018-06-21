@@ -16,7 +16,7 @@ class HomeController extends Controller
         $anz_buecher = Buch::all()->count();
 
         $gewaehlt = $users->where('fertig', 1)->sortByDesc('updated_at');
-		$nichtGewaehlt = $users->where('fertig', 0)->where('admin', 0)->sortBy('klasse');
+		$nichtGewaehlt = $users->where('fertig', 0)->where('is_admin', 0)->sortBy('klasse');
 
         return view('admin/home/index', compact('anz_buecher', 'gewaehlt', 'nichtGewaehlt'));
     }
