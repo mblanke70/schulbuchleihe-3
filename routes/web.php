@@ -30,6 +30,8 @@ Route::group(
     ], function()
 {
     Route::get('/', 'HomeController@index' );
+    Route::get('getIndexData', 'HomeController@getIndexData');
+
 
     Route::resource('schueler',      'UserController');
     

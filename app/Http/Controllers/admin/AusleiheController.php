@@ -37,7 +37,7 @@ class AusleiheController extends Controller
     public function zeigeKlasse($id)
     {        
         $klasse   = Klasse::find($id);
-        $schueler = User::where('klasse', $klasse->bezeichnung)->get();#
+        $schueler = User::where('klasse', $klasse->bezeichnung)->orderBy('nachname')->get();#
 
         $gruppen = $schueler->split(3);
 

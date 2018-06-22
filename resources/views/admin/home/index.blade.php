@@ -135,16 +135,18 @@
 				
 				<div class="table-responsive">
 
-                    <table id="nichtGewaehlt" class="display compact" cellspacing="0" width="100%">
+                    <table id="nichtGewaehlt" class="compact" cellspacing="0" width="100%">
 
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Vorname</th>
                                 <th>Klasse</th> 
                             </tr>
                         </thead>
 
+<!--
                         <tbody>
 
                             @foreach ($nichtGewaehlt as $s)
@@ -158,7 +160,7 @@
                             @endforeach
                         
                         </tbody>
-
+-->
                     </table>
 
                 </div>
@@ -180,7 +182,18 @@
             });
 
             $('#nichtGewaehlt').DataTable( {
-                order: [[ 2, "asc" ]]
+                //order: [[ 2, "asc" ]],
+                processing: true,
+                serverSide: true,
+                ajax: "{{ url('admin/getIndexData') }}",
+                columns: [
+                    { data: 'id', name: 'id'},
+                    { data: 'nachname', name: 'nachname' },
+                    { data: 'vorname', name: 'vorname' },
+                    { data: 'klasse', name: 'klasse' }
+                ],
+                //dom: 'Bfrtip',
+                //buttons: ['print'],
             });
 
            
