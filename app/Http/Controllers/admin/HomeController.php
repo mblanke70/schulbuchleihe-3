@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Yajra\Datatables\Datatables;
+//use Yajra\Datatables\Datatables;
 
 use App\User;
 use App\Buch;
@@ -22,6 +22,7 @@ class HomeController extends Controller
         return view('admin/home/index', compact('anz_buecher', 'gewaehlt', 'nichtGewaehlt'));
     }
 
+/*
     public function getIndexData()
     {
     	$users = User::all();
@@ -35,4 +36,5 @@ class HomeController extends Controller
             })
         	->make();
     }
+*/
 }

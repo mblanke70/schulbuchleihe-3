@@ -146,7 +146,7 @@
                             </tr>
                         </thead>
 
-<!--
+
                         <tbody>
 
                             @foreach ($nichtGewaehlt as $s)
@@ -160,7 +160,6 @@
                             @endforeach
                         
                         </tbody>
--->
                     </table>
 
                 </div>
@@ -183,15 +182,15 @@
 
             $('#nichtGewaehlt').DataTable( {
                 //order: [[ 2, "asc" ]],
-                processing: true,
-                serverSide: true,
-                ajax: "{{ url('admin/getIndexData') }}",
-                columns: [
-                    { data: 'id', name: 'id'},
-                    { data: 'nachname', name: 'nachname' },
-                    { data: 'vorname', name: 'vorname' },
-                    { data: 'klasse', name: 'klasse' }
-                ],
+                //processing: true,
+                //serverSide: true,
+                //ajax: "{{ url('admin/getIndexData') }}",
+                //columns: [
+                //    { data: 'id', name: 'id'},
+                //    { data: 'nachname', name: 'nachname' },
+                //    { data: 'vorname', name: 'vorname' },
+                //    { data: 'klasse', name: 'klasse' }
+                //],
                 //dom: 'Bfrtip',
                 //buttons: ['print'],
             });

@@ -181,8 +181,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
 
-        Yajra\Datatables\DatatablesServiceProvider::class,
-        Yajra\DataTables\ButtonsServiceProvider::class,
+        //Yajra\Datatables\DatatablesServiceProvider::class,
+        //Yajra\DataTables\ButtonsServiceProvider::class,
 
     ],
 
@@ -233,7 +233,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+        //'Datatables' => Yajra\Datatables\Facades\Datatables::class,
     ],
 
 ];
