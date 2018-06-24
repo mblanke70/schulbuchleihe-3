@@ -8,9 +8,34 @@
 
 @section('content')
 
+
+
     <div class="row">
         
         <div class="col-md-4">
+
+            <div class="box box-solid">
+                <div class="box-body">
+                    <div class="btn-group" role="group">
+                        @if($prev!=null)
+                        <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$klasse->id.'/'.$prev->id) }}" role="button">
+                            <i class="fa fa-backward fa-lg"></i>
+                        </a>
+                        @endif
+                        
+                        <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$klasse->id) }}" role="button">
+                            <i class="fa fa-users fa-lg"></i>
+                        </a>
+
+                        @if($next!=null)
+                        <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$klasse->id.'/'.$next->id) }}" role="button"> 
+                            <i class="fa fa-forward fa-lg"></i> 
+                        </a>
+                        @endif    
+                    </div>
+                </div>
+            </div>
+
             <div class="box box-solid box-danger">            
                 <div class="box-header with-border">                
                     <div class="box-title">
@@ -155,15 +180,6 @@
                 </div>            
             </div>
         </div>
-    </div>
-
-    <div class="form-group">
-        <form action="{{ url('admin/ausleihe/'.$klasse->id) }}" method="GET" role="form">
-            <div>
-                <button type="submit" class="btn btn-default">Zur Klasse</button>
-            </div>
-
-        </form>
     </div>
 
     <div id="modal-confirm" class="modal modal-warning fade">   

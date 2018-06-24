@@ -12,6 +12,7 @@ use App\Klasse;
 use App\Buch;
 use App\Jahrgang;
 use App\Buecherliste;
+use App\Buchwahl;
 
 use App\Rules\BuchtitelNichtAusgeliehen;
 use App\Rules\BuchNichtAusgeliehen;
@@ -52,6 +53,9 @@ class AusleiheController extends Controller
         $buecher    = $user->buecher;
         //$buchwahlen = $user->buchwahlen()->where('wahl', '<', 3)->sortByDesc('wahl');
         //$buchwahlen = $user->buchwahlen()->sortBy('wahl');
+
+        $next = $klasse->next($user);
+        $prev = $klasse->prev($user);
        
         $jg = $user->jahrgang; if( $jg!=20 ) $jg++;
         $buchtitel = Buecherliste::where('jahrgang', $jg)->first()->buchtitel;  
@@ -68,9 +72,7 @@ class AusleiheController extends Controller
             $bt['ausgeliehen'] = $buecher->contains('buchtitel_id', $bt->id) ? 1 : 0;
         }
 
-        //dd($buchtitel);
-
-        return view('admin/ausleihe/schueler', compact('klasse', 'user', 'buecher', 'buchtitel'));
+        return view('admin/ausleihe/schueler', compact('klasse', 'user', 'buecher', 'buchtitel', 'next', 'prev'));
     }
 
     public function ausleihen(Request $request, $klasse_id, $user_id)
@@ -183,37 +185,4 @@ class AusleiheController extends Controller
     }    
 
 */
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

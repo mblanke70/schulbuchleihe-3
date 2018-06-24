@@ -6,26 +6,41 @@ use Illuminate\Database\Eloquent\Model;
 
 class Klasse extends Model
 {
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
     protected $table = 'klassen';
 
-    /**
-     * Get the classes of this age group.
-     */
     public function jahrgang()
     {
     	return $this->belongsTo('App\Jahrgang');
     }
 
-    /**
-     * Get the users of this class.
-     */
     public function schueler()
     {
         return $this->hasMany('App\User', 'klasse', 'bezeichnung');
+    }
+
+    public function next($user)
+    {
+        return $this->schueler()
+            ->where('nachname', '>=', $user->nachname)
+            ->where(function ($query) use ($user) {
+                $query->where  ('nachname', '>', $user->nachname)
+                      ->orWhere('vorname' , '>', $user->vorname );
+            })
+            ->orderBy('nachname', 'asc')
+            ->orderBy('vorname',  'asc')
+            ->first();
+    }
+
+    public function prev($user)
+    {
+        return $this->schueler()   
+            ->where('nachname', '<=', $user->nachname)
+            ->where(function ($query) use ($user) {
+                $query->where  ('nachname', '<', $user->nachname)
+                      ->orWhere('vorname' , '<', $user->vorname );
+            })
+            ->orderBy('nachname', 'desc')
+            ->orderBy('vorname' , 'desc')
+            ->first();
     }
 }
