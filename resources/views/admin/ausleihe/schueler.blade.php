@@ -12,7 +12,7 @@
 
     <div class="row">
         
-        <div class="col-md-4">
+        <div class="col-md-5">
 
             <div class="box box-solid">
                 <div class="box-body">
@@ -75,8 +75,9 @@
                         <table id="buecher" class="display compact" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th width="15%">Fach</th> 
-                                    <th width="70%">Titel</th>
+                                    <th width="7%">Fach</th> 
+                                    <th width="13%">ID</th> 
+                                    <th width="60%">Titel</th>
                                     <th width="10%"></th>
                                 </tr>
                             </thead>
@@ -84,6 +85,7 @@
                                 @foreach ($buecher as $b)
                                 <tr>
                                     <td width="15%">{{ $b->buchtitel->fach->code }}</td>
+                                    <td width="15%">{{ $b->id }}</td>
                                     <td width="70%">{{ $b->buchtitel->titel }}</td>
                                     <td width="10%">
                                         <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $b->id }}').submit();">
@@ -105,7 +107,7 @@
             </div>
         </div>
      
-        <div class="col-md-8">
+        <div class="col-md-7">
 
             <div class="box box-solid box-success">   
                 <div class="box-header with-border">
