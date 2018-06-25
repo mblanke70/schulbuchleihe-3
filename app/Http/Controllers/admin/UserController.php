@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
-use App\User;
 use App\Http\Controllers\Controller;
 
+use App\User;
+use App\Klasse;
 
 class UserController extends Controller
 {
@@ -28,7 +29,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $klassen = Klasse::all();
+
+        return view('admin/schueler/create', compact('klassen'));
     }
 
     /**
@@ -39,7 +42,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request...
+        
+        $schueler = new User;
+        $schueler->vorname   = $request->vorname;
+        $schueler->nachname  = $request->nachname;
+        $schueler->klasse    = $request->klasse;
+        $schueler->jahrgang  = substr($request->klasse, 0, 2);
+        $schueler->iserv_id  = $request->iserv_id;
+
+        $schueler->save();
+
+        return redirect()->route('schueler.index');
     }
 
     /**

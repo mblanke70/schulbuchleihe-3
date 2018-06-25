@@ -8,8 +8,6 @@
 
 @section('content')
 
-
-
     <div class="row">
         
         <div class="col-md-5">
@@ -17,15 +15,15 @@
             <div class="box box-solid">
                 <div class="box-body">
                     <div class="btn-group" role="group">
+                        <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$klasse->id) }}" role="button">
+                            <i class="fa fa-users fa-lg"></i>
+                        </a>
+
                         @if($prev!=null)
                         <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$klasse->id.'/'.$prev->id) }}" role="button">
                             <i class="fa fa-backward fa-lg"></i>
                         </a>
                         @endif
-                        
-                        <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$klasse->id) }}" role="button">
-                            <i class="fa fa-users fa-lg"></i>
-                        </a>
 
                         @if($next!=null)
                         <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$klasse->id.'/'.$next->id) }}" role="button"> 

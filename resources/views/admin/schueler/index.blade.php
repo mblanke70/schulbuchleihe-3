@@ -8,6 +8,10 @@
 
 @section('content')
 
+<div class="box-body">
+    <a class="btn btn-success" href="{{ url('admin/schueler/create') }}">Neuer Schüler</a>
+</div>
+
 <div class="box">
 
 	<div class="box-header with-border">

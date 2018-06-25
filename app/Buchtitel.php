@@ -26,5 +26,8 @@ class Buchtitel extends Model
         return $this->belongsTo('App\Fach');
     }
 
-    
+    public function ausgelieheneBuecher()
+    {
+        return $this->hasManyThrough('App\BuchUser', 'App\Buch');
+    }
 }

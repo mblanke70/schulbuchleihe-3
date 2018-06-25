@@ -33,17 +33,19 @@ Route::group(
     //Route::get('getIndexData', 'HomeController@getIndexData');
 
 
-    Route::resource('schueler',      'UserController');
+    Route::resource('schueler', 'UserController');
     
-    Route::resource('buchtitel',     'BuchtitelController');
+    Route::resource('buchtitel', 'BuchtitelController');
     Route::get('buchtitel/createISBN/{isbn}', 'BuchtitelController@createFromISBN');
 
-    Route::resource('buecher',       'BuchController');
-    Route::resource('klassen',       'KlasseController');
-    Route::resource('abfragen',      'AbfrageController');
+    Route::resource('buecher', 'BuchController');
+    Route::resource('klassen', 'KlasseController');
+    Route::resource('abfragen', 'AbfrageController');
     Route::resource('buecherlisten', 'BuecherlisteController');
     
     //Route::resource('ausleihe',      'AusleiheController');
+
+    Route::get('auswertung', 'AuswertungController@index');
 
     Route::get('ausleihe', 'AusleiheController@index');
     Route::get('ausleihe/{klasse}', 'AusleiheController@zeigeKlasse');

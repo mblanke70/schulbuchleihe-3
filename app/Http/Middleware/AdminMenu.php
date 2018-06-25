@@ -52,6 +52,11 @@ class AdminMenu
                 'icon' => 'list',
             ]);
             $event->menu->add([
+                'text' => 'Auswertung',
+                'url'  => 'admin/auswertung',
+                'icon' => 'list',
+            ]);
+            $event->menu->add([
                 'text' => 'Schüler-Dashboard',
                 'url'  => 'user',
                 'icon' => 'list',
