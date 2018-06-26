@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Buchwahl;
 
 class Buchtitel extends Model
 {
@@ -29,5 +30,11 @@ class Buchtitel extends Model
     public function ausgelieheneBuecher()
     {
         return $this->hasManyThrough('App\BuchUser', 'App\Buch');
+    }
+
+    public function bestellteBuecher()
+    {
+        return $this->hasMany('App\Buchwahl')
+            ->where('wahl', '<', 3) ;
     }
 }

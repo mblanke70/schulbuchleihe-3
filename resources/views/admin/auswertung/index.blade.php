@@ -17,14 +17,16 @@
 
             <tr>
                 <th>ID</th>
-                <th>Kennung</th>
+                <!-- <th>Kennung</th> -->
                 <th>ISBN</th>
                 <th>Titel</th>
-                <th>Verlag</th>
+                <!-- <th>Verlag</th> -->
                 <th>Bestand</th>
                 <th>Ausgeliehen</th>
-                <th>Preis</th>
-                <th>Leihgebühr</th>
+                <th>Bestellungen</th>
+                <!-- <th>Preis</th> -->
+                <th>Differenz</th>
+                <!-- <th>Leihgebühr</th> -->
             </tr>
 
         </thead>
@@ -33,14 +35,16 @@
 
             <tr>
                 <th>ID</th>
-                <th>Kennung</th>
+                <!-- <th>Kennung</th> -->
                 <th>ISBN</th>
                 <th>Titel</th>
-                <th>Verlag</th>
+                <!-- <th>Verlag</th> -->
                 <th>Bestand</th>
                 <th>Ausgeliehen</th>
-                <th>Preis</th>
-                <th>Leihgebühr</th>
+                <th>Bestellungen</th>
+                <!-- <th>Preis</th> -->
+                <th>Differenz</th>
+                <!-- <th>Leihgebühr</th> -->
             </tr>
 
         </tfoot>
@@ -51,12 +55,14 @@
             
                 <tr>
                     <td> {{ $t->id }} </td>
-                    <td> {{ $t->kennung }} </td>
+                    <!-- <td> {{ $t->kennung }} </td> -->
                     <td> {{ $t->isbn }} </td>
                     <td>
-                        <a href="{{ url('buchtitel/'.$t->id) }}"> {{ $t->titel }} </a>
+                        <!-- <a href="{{ url('admin/buchtitel/'.$t->id) }}"> -->
+                            {{ $t->titel }} 
+                        <!-- </a> -->
                     </td>
-                    <td> {{ $t->verlag }} </td>
+                    <!-- <td> {{ $t->verlag }} </td> -->
                     <td>
                         @if($t->buecher()) 
                             {{ $t->buecher()->count() }}
@@ -67,8 +73,18 @@
                             {{ $t->ausgelieheneBuecher()->count() }}
                         @endif
                     </td>
-                    <td> {{ $t->preis }} </td>
-                    <td> {{ $t->leihgebuehr }} </td>
+                    <td>
+                        @if($t->bestellteBuecher()) 
+                            {{ $t->bestellteBuecher()->count() }}
+                        @endif
+                    </td>
+                    <td>
+                        @if($t->buecher() && $t->bestellteBuecher()) 
+                            {{ $t->buecher()->count() - $t->bestellteBuecher()->count() }}
+                        @endif
+                    </td>
+                    <!-- <td> {{ $t->preis }} </td> -->
+                    <!--<td> {{ $t->leihgebuehr }} </td> -->
 
                 </tr>
 
