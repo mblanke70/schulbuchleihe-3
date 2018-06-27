@@ -35,6 +35,6 @@ class Buchtitel extends Model
     public function bestellteBuecher()
     {
         return $this->hasMany('App\Buchwahl')
-            ->where('wahl', '<', 3) ;
+            ->where('wahl', 1) ;
     }
 }

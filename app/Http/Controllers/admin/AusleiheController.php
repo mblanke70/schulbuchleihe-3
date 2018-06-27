@@ -32,6 +32,8 @@ class AusleiheController extends Controller
         $klassen    = Klasse::all();
         $jahrgaenge = Jahrgang::all();
 
+        $jahrgaenge = $jahrgaenge->sortBy('jahrgangsstufe'); 
+
         return view('admin/ausleihe/index', compact('klassen', 'jahrgaenge'));
     }
 

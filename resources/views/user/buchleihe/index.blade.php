@@ -97,11 +97,13 @@
 
 </div>
 
+<!--
 <form action="{{ url('user/buchleihe/neuwahl') }}" method="POST" role="form">
     {{ csrf_field() }}
     <div>
         <button type="submit" class="btn btn-danger">Neuwahl</button>
     </div>
 </form>
+-->
 
 @stop

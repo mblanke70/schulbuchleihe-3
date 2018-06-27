@@ -126,7 +126,7 @@
                 <tr>
                     <td scope="row">{{ $bt->id }}</td>
                     <td>{{ $bt->kennung }}</td>
-                    <td>{{ $bt->fach }}</td>
+                    <td>{{ $bt->fach->code }}</td>
                     <td>{{ $bt->titel }}</td>
                     <td>{{ $bt->isbn }}</td>
                     <td>{{ $bt->verlag }}</td>

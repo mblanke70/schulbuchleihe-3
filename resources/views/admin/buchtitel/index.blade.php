@@ -59,7 +59,7 @@
                     <td> {{ $t->kennung }} </td>
                     <td> {{ $t->isbn }} </td>
                     <td>
-                        <a href="{{ url('buchtitel/'.$t->id) }}"> {{ $t->titel }} </a>
+                        <a href="{{ url('admin/buchtitel/'.$t->id) }}"> {{ $t->titel }} </a>
                     </td>
                     <td> {{ $t->verlag }} </td>
                     <!--<td> {{ $t->bestand }} </td>-->
