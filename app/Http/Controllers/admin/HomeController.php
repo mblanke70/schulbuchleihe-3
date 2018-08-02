@@ -11,6 +11,7 @@ use App\Buch;
 
 class HomeController extends Controller
 {
+    
     public function index()
     {
         $users = User::all();
@@ -22,7 +23,6 @@ class HomeController extends Controller
         return view('admin/home/index', compact('anz_buecher', 'gewaehlt', 'nichtGewaehlt'));
     }
 
-/*
     public function getIndexData()
     {
     	$users = User::all();
@@ -36,5 +36,4 @@ class HomeController extends Controller
             })
         	->make();
     }
-*/
 }

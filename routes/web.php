@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\DataTables\UsersDataTable;
+
 
 Route::get('/', function () {
     //return redirect('login/iserv');
@@ -30,10 +32,11 @@ Route::group(
     ], function()
 {
     Route::get('/', 'HomeController@index' );
-    //Route::get('getIndexData', 'HomeController@getIndexData');
-
 
     Route::resource('schueler', 'UserController');
+    Route::get('getUserData', 'UserController@getUserData');
+    Route::get('versetzen', 'UserController@versetzen');
+    Route::post('versetzenSpeichern', 'UserController@versetzenSpeichern');
     
     Route::resource('buchtitel', 'BuchtitelController');
     Route::get('buchtitel/createISBN/{isbn}', 'BuchtitelController@createFromISBN');

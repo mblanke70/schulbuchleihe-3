@@ -181,9 +181,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
 
-        //Yajra\Datatables\DatatablesServiceProvider::class,
-        //Yajra\DataTables\ButtonsServiceProvider::class,
-
+        Yajra\Datatables\DatatablesServiceProvider::class,
+        Yajra\DataTables\ButtonsServiceProvider::class,
     ],
 
     /*

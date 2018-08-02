@@ -11,10 +11,10 @@
 <div class="box box-primary">
 
     <div class="box-header with-border">
-        <h3 class="box-title">Neuer Buchtitel</h3>
+        <h3 class="box-title">Neue Bücher</h3>
     </div>
    
-    <form action="{{ url('buecher/') }}" method="POST" role="form">
+    <form action="{{ url('admin/buecher/') }}" method="POST" role="form">
 
         {{ csrf_field() }}
 
@@ -32,13 +32,13 @@
             </div>
 
             <div class="form-group">
-                <label for="buecher-anschaffungsjahr">Anschaffungsjahr</label>
-                <input type="text" class="form-control" name="anschaffungsjahr" id="buecher-anschaffungsjahr" placeholder="Anschaffungsjahr" />
+                <label for="buecher-anzahl">Anzahl</label>
+                <input type="text" class="form-control" name="anzahl" id="buecher-anzahl" value="1" />
             </div>
     
             <div class="form-group">
-                <label for="buecher-leihgebuehr">Leihgebühr</label>
-                <input type="text" class="form-control" name="leihgebuehr" id="buecher-leihgebuehr" placeholder="Leihgebühr" />
+                <label for="buecher-leihgebuehr">Leihpreis</label>
+                <input type="text" class="form-control" name="leihgebuehr" id="buecher-leihgebuehr" placeholder="Leihpreis" />
             </div>
 
             <div class="form-group">

@@ -43,14 +43,21 @@ class BuchController extends Controller
      */
     public function store(Request $request)
     {
-        $buch = new Buch;
-        $buch->ausgeliehen      = 0;
-        $buch->anschaffungsjahr = $request->anschaffungsjahr;
-        $buch->leihgebuehr      = $request->leihgebuehr;
-        $buch->neupreis         = $request->neupreis;
+        $anz = $request->anzahl;
 
-        $buchtitel = Buchtitel::find($request->buchtitel_id);
-        $buchtitel->buecher()->save($buch);
+        for($i=0; $i<$anz; $i++)
+        {
+            $buch = new Buch;
+            $buch->buchtitel_id    = $request->buchtitel_id;
+            $buch->leihgebuehr     = $request->leihgebuehr;
+            $buch->neupreis        = $request->neupreis;
+            $buch->ausgeliehen     = 0;
+            $buch->vorbesitzerzahl = 0;
+            $buch->aufnahmedatum   = date('Y-m-d');
+
+            $buchtitel = Buchtitel::find($request->buchtitel_id);
+            $buchtitel->buecher()->save($buch);
+        }
         
         return redirect()->route('buecher.index');
     }

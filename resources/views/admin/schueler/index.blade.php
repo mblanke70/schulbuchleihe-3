@@ -9,7 +9,7 @@
 @section('content')
 
 <div class="box-body">
-    <a class="btn btn-success" href="{{ url('admin/schueler/create') }}">Neuer Schüler</a>
+	
 </div>
 
 <div class="box">
@@ -19,7 +19,10 @@
 		<div class="box-tools pull-right">
 	  		<!-- Buttons, labels, and many other things can be placed here! -->
 	  		<!-- Here is a label for example -->
-		  	<span class="label label-primary">Label</span>
+	  		<a href="{{ url('admin/schueler/create') }}" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-plus"></i> Create</a>
+
+	  		<a href="{{ url('admin/versetzen') }}" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-plus"></i> Versetzen</a>
+		  
 		</div>
 		<!-- /.box-tools -->
 	</div>
@@ -37,46 +40,12 @@
 	                <th>Vorname</th>
 	                <th>Klasse</th>
 	                <th>IServ-ID</th>
-	                <th>IServ-Email</th>
 	                <!--<th>WinSchool-ID</th>-->
 	                <!--<th>ist Admin?</th>-->
+	                <th>Aktion</th>
 	            </tr>
 
 	        </thead>
-
-	        <tfoot>
-
-	            <tr>
-	            	<th>ID</th>
-	                <th>Name</th>
-	                <th>Vorname</th>
-	                <th>Klasse</th>
-	                <th>IServ-ID</th>
-	                <th>IServ-Email</th>
-	                <!--<th>WinSchool-ID</th>-->
-	                <!--<th>ist Admin?</th>-->
-	            </tr>
-
-	        </tfoot>
-
-	        <tbody>
-
-	        	@foreach ($schueler as $s)
-	            
-	                <tr>
-	                    <td> {{ $s->id }} </td>
-	                    <td> {{ $s->nachname }} </td>
-	                    <td> {{ $s->vorname }} </td>
-						<td> {{ $s->klasse }} </td>
-	                    <td> {{ $s->iserv_id }} </td>
-	                    <td> {{ $s->email }} </td>
-	                    <!--<td> {{ $s->winschool_id }} </td>-->
-	                    <!--<td> {{ $s->isAdmin }} </td>-->
-	                </tr>
-
-	            @endforeach
-
-	        </tbody>
 
     	</table>
 
@@ -87,19 +56,27 @@
 		The footer of the box
 	</div>
 	<!-- box-footer -->
-
 </div>
 <!-- /.box -->
 
 @stop
 
 @section('js')
-    <script>
-        $(document).ready(function() {
-            var table = $('#schueler').DataTable( {
-                rowReorder: true,
-                stateSave: true
-            } );
-        } );
-    </script>
+<script>
+	$(function() {
+	    $('#schueler').DataTable({
+	        processing: true,
+	        serverSide: true,
+	        ajax: '{!! url('admin/getUserData') !!}',
+	        columns: [
+	            { data: 'id', name: 'id' },
+	            { data: 'nachname', name: 'nachname' },
+	            { data: 'vorname', name: 'vorname' },
+	            { data: 'klasse', name: 'klasse' },
+	            { data: 'iserv_id', name: 'iserv_id' },
+	            { data: 'action', name: 'action', orderable: false, searchable: false}
+	        ]
+	    });
+	});
+</script>
 @stop

@@ -40,7 +40,7 @@ class AusleiheController extends Controller
     public function zeigeKlasse($id)
     {        
         $klasse   = Klasse::find($id);
-        $schueler = User::where('klasse', $klasse->bezeichnung)->orderBy('nachname')->get();#
+        $schueler = User::where('klasse', $klasse->bezeichnung)->orderBy('nachname')->get();
 
         $gruppen = $schueler->split(3);
 
@@ -59,7 +59,7 @@ class AusleiheController extends Controller
         $next = $klasse->next($user);
         $prev = $klasse->prev($user);
        
-        $jg = $user->jahrgang; if( $jg!=20 ) $jg++;
+        $jg = $user->jahrgang; //if( $jg!=20 ) $jg++;
         $buchtitel = Buecherliste::where('jahrgang', $jg)->first()->buchtitel;  
 
         foreach($buchtitel as $bt) {

@@ -1,25 +1,68 @@
 <?php
-
 namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
 use App\User;
 use App\Klasse;
 
 class UserController extends Controller
 {
+    public function versetzen()
+    {
+        $klassen = Klasse::all();
+
+        return view('admin/schueler/versetzen', compact('klassen'));
+    }
+
+    public function versetzenSpeichern(Request $request)
+    {
+        $klasse       = $request->klasse;
+        $zielklasse   = $request->zielklasse;
+        $zieljahrgang = substr($zielklasse, 0, 2);
+
+        $schueler = User::where('klasse', $klasse)->get();
+
+        foreach($schueler as $user)
+        {
+            $user->klasse   = $zielklasse;
+            $user->jahrgang = $zieljahrgang;
+            $user->save();
+        }
+
+        return redirect()->route('schueler.index');
+    }
+
     /**
-     * Display a listing of the resource.
+     * Display index page and process dataTable ajax request.
      *
-     * @return \Illuminate\Http\Response
+     * @param \App\DataTables\UsersDataTable $dataTable
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
     public function index()
     {
-        $schueler = User::all();
-        
-        return view('admin/schueler/index', compact('schueler'));
+        return view('admin.schueler.index');
+    }
+
+    
+    public function getUserData()
+    {        
+        $users = User::select(['id', 'nachname', 'vorname', 'klasse', 'iserv_id']);
+
+        return Datatables::of($users)
+            ->addColumn('action', function ($user) {
+                return '
+                    <a href="'.url('admin/schueler/'.$user->id.'/edit').'" class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i> Edit
+                    </a> 
+
+                    <a href="#delete-'.$user->id.'" class="btn btn-xs btn-danger">
+                        <i class="glyphicon glyphicon-trash"></i> Delete
+                    </a>';
+            })
+            ->make(true);
     }
 
     /**
@@ -75,7 +118,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $klassen = Klasse::all();
+        $user = User::findOrFail($id);
+
+        return view('admin/schueler/edit', compact('user', 'klassen'));
     }
 
     /**
@@ -87,7 +133,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->nachname  = $request->nachname;
+        $user->vorname   = $request->vorname;
+        $user->klasse    = $request->klasse;
+        $user->iserv_id  = $request->iserv_id;
+
+        $user->save();
+
+        return redirect()->route('schueler.index');
     }
 
     /**

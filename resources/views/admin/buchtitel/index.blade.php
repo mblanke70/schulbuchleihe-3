@@ -99,15 +99,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $t->id }}').submit();">
-                            <i class="fa fa-fw fa-trash"></i>
-                        </a>
-                       
-                        <form id="delete-form-{{ $t->id }}" action="{{ url('admin/buchtitel/'.$t->id) }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                        </form>
                         
                         <a href="#" onclick="event.preventDefault(); document.getElementById('update-form-{{ $t->id }}').submit();">
                                 <i class="fa fa-fw fa-pencil"></i>
@@ -116,25 +107,6 @@
                         <form id="update-form-{{ $t->id }}" action="{{ url('admin/buchtitel/'.$t->id.'/edit') }}" method="GET" style="display: none;">
                             {{ csrf_field() }}                           
                         </form>
-                        
-                    <!--
-                    <form action="{{ url('buchtitel/'.$t->id) }}" method="POST">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-
-                        <button type="submit">
-                            <i class="fa fa-fw fa-trash"></i>
-                        </button>
-                    </form>
-                        
-                    <form action="{{ url('buchtitel/'.$t->id.'/edit') }}" method="GET">
-                        {{ csrf_field() }}
-                       
-                        <button type="submit">
-                            <i class="fa fa-fw fa-pencil"></i>
-                        </button>
-                    </form>
-                    -->
 
                     </td>
                 </tr>
@@ -152,12 +124,36 @@
 @stop
 
 @section('js')
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
+    
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+
     <script>
         $(document).ready(function() {
-            var table = $('#buchtitel').DataTable( {
+            $('#buchtitel').DataTable( {
                 rowReorder: true,
-                stateSave: true
+                stateSave: true,
+                dom: 'Bfrtip',   
+                buttons: [
+                    {
+                        extend: 'print',
+                        customize: function ( win ) {
+                            $(win.document.body)
+                                .css( 'font-size', '10pt' );
+         
+                            $(win.document.body).find( 'table' )
+                                .addClass( 'compact' )
+                                .css( 'font-size', 'inherit' );
+                        }, 
+                        exportOptions: {
+                            columns: [ 0, 1, 2, 3, 4, 5, 6 ]
+                        }
+                    }
+                ],
+                
             } );
-        } );
+        } )
     </script>
 @stop

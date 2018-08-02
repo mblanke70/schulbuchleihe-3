@@ -35,7 +35,7 @@
                         <td scope="row">{{ $bw->buchtitel->titel }}</td>
                         <td>{{ $bw->buchtitel->isbn }}</td>
                         <td>{{ $bw->buchtitel->verlag }}</td>
-                        <td>{{ $bw->buchtitel->leihgebuehr }} &euro;</td>
+                        <td>{{ number_format($bw->buchtitel->leihgebuehr, 2, ',', '') }} &euro;</td>
                     </tr>
                 @endforeach
 
@@ -83,7 +83,7 @@
                         <td scope="row">{{ $bw->buchtitel->titel }}</td>
                         <td>{{ $bw->buchtitel->isbn }}</td>
                         <td>{{ $bw->buchtitel->verlag }}</td>
-                        <td>{{ $bw->buchtitel->preis }} &euro;</td>
+                        <td>{{ number_format($bw->buchtitel->preis, 2, ',', '') }} &euro;</td>
                     </tr>
                 @endforeach
 
@@ -106,4 +106,40 @@
 </form>
 -->
 
+@stop
+
+@section('js')
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
+    
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#kaufen').DataTable( {
+                dom: 'Bfrtip',   
+                ordering: false,
+                paging: false,
+                info: false,
+                searching: false,
+                buttons: [
+                    {
+                        extend: 'print',
+                        text:      '<i class="fa fa-print"></i> Liste drucken',
+                        titleAttr: 'Drucken',
+                        customize: function ( win ) {
+                            $(win.document.body)
+                                .css( 'font-size', '10pt' );
+         
+                            $(win.document.body).find( 'table' )
+                                .addClass( 'compact' )
+                                .css( 'font-size', 'inherit' );
+                        }
+                    }
+                ],
+                
+            } );
+        } )
+    </script>
 @stop
