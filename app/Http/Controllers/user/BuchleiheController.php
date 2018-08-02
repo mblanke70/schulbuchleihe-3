@@ -66,7 +66,8 @@ class BuchleiheController extends Controller
             return view('user/buchleihe/index', compact('leihen', 'kaufen', 'summeKaufen', 'summeLeihen', 'summeLeihenReduziert', 'zeit', 'summeGesamt', 'user', 'pauschale'));
         }
         
-        return redirect('user/buchleihe/vorabfragen');
+        return view('user/buchleihe/index2');
+        //return redirect('user/buchleihe/vorabfragen');
     }
 
     public function zeigeVorabfragen()

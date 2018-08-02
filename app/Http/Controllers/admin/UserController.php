@@ -138,6 +138,7 @@ class UserController extends Controller
         $user->nachname  = $request->nachname;
         $user->vorname   = $request->vorname;
         $user->klasse    = $request->klasse;
+        $user->jahrgang  = substr($request->klasse, 0, 2);
         $user->iserv_id  = $request->iserv_id;
 
         $user->save();
