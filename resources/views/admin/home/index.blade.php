@@ -178,7 +178,6 @@
 
             $('#nichtGewaehlt').DataTable( {
                 order: [[ 2, "asc" ]]
-                processing: true,
             });      
         });
     </script>
