@@ -179,20 +179,7 @@
             $('#nichtGewaehlt').DataTable( {
                 order: [[ 2, "asc" ]]
                 processing: true,
-                //serverSide: true,
-                //ajax: "{{ url('admin/getIndexData') }}",
-                //columns: [
-                //    { data: 'nachname', name: 'nachname' },
-                //    { data: 'vorname', name: 'vorname' },
-                //    { data: 'klasse', name: 'klasse' }
-                //],
-                /*
-                dom: 'Bfrtip',
-                buttons: ['print'],
-                */
-            });
-
-           
+            });      
         });
     </script>
 @stop
