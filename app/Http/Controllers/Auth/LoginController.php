@@ -66,7 +66,7 @@ class LoginController extends Controller
     {
         $iservUser = Socialite::driver('iserv')->stateless()->user();
 
-        //dd($iservUser->token . ' - '. $iservUser->refreshToken . " - " . $iservUser->expiresIn);
+        dd($iservUser->token . ' - '. $iservUser->refreshToken . " - " . $iservUser->expiresIn);
 
         /*
          *  Gets the user in our database where the provider ID
