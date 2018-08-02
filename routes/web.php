@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\DataTables\UsersDataTable;
+//use App\DataTables\UsersDataTable;
 
 
 Route::get('/', function () {
