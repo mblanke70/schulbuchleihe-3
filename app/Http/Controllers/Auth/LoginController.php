@@ -76,7 +76,7 @@ class LoginController extends Controller
          */
         $user = User::where( 'email', '=', $iservUser->email )->first();
         
-        dd($user);
+        //dd($user);
 
         /*
          *  Checks to see if a user exists. If not we need to create the
