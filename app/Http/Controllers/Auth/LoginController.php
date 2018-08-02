@@ -108,6 +108,7 @@ class LoginController extends Controller
         Auth::login( $user );
  
         if ( $user->istAdmin() ) {
+            dd("admin login");
             return redirect()->intended('admin/');
         }
 
