@@ -19,7 +19,7 @@ class CreateBuecherTable extends Migration
             $table->boolean('ausgeliehen')->nullable();
             $table->integer('anschaffungsjahr');
             $table->decimal('neupreis', 4, 2);
-            $table->decimal('leihgebuehr', 4, 2);
+            $table->decimal('leihgebuehr', 4, 2)->nullable();
             $table->date('ausgabedatum')->nullable();
             $table->date('rueckgabedatum')->nullable();
             $table->date('aufnahmedatum')->nullable();

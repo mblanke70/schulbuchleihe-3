@@ -49,7 +49,7 @@ class BuchController extends Controller
         {
             $buch = new Buch;
             $buch->buchtitel_id    = $request->buchtitel_id;
-            $buch->leihgebuehr     = $request->leihgebuehr;
+            $buch->leihgebuehr     = 0;
             $buch->neupreis        = $request->neupreis;
             $buch->ausgeliehen     = 0;
             $buch->vorbesitzerzahl = 0;

@@ -52,7 +52,7 @@ class AusleiheController extends Controller
         $klasse  = Klasse::find($klasse_id);
         $user    = User::find($user_id);
         
-        $buecher    = $user->buecher;
+        $buecher = $user->buecher;
         //$buchwahlen = $user->buchwahlen()->where('wahl', '<', 3)->sortByDesc('wahl');
         //$buchwahlen = $user->buchwahlen()->sortBy('wahl');
 
@@ -158,6 +158,33 @@ class AusleiheController extends Controller
         }
 
         return redirect('admin/ausleihe/'.$klasse_id.'/'.$user_id);
+    }
+
+    public function zeigeErmaessigungen()
+    {
+        $schueler = User::where('ermaessigung', '<', 10)->orderBy('nachname')->get();
+
+        return view('admin/ausleihe/ermaessigungen', compact('schueler'));
+    }
+
+    public function bestaetigeErmaessigungen(Request $request, $user_id)
+    {
+        $user = User::find($user_id);
+
+        $user->bestaetigt = $request->bestaetigt ? 1 : 0;
+        $user->save();
+
+        return redirect('admin/ausleihe/ermaessigungen');
+    }
+
+    public function aendereErmaessigungen(Request $request, $user_id)
+    {
+        $user = User::find($user_id);
+
+        $user->ermaessigung = $request->ermaessigung;
+        $user->save();
+
+        return redirect('admin/ausleihe/ermaessigungen');
     }
 
 /*

@@ -69,6 +69,12 @@ class AdminMenu
                 'icon' => 'list',
 
             ]);
+            $event->menu->add([
+                'text' => 'Ermäßigungen',
+                'url'  => 'admin/ausleihe/ermaessigungen',
+                'icon' => 'list',
+
+            ]);
            
         });
 
