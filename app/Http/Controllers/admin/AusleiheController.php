@@ -171,17 +171,7 @@ class AusleiheController extends Controller
     {
         $user = User::find($user_id);
 
-        $user->bestaetigt = $request->bestaetigt ? 1 : 0;
-        $user->save();
-
-        return redirect('admin/ausleihe/ermaessigungen');
-    }
-
-    public function aendereErmaessigungen(Request $request, $user_id)
-    {
-        $user = User::find($user_id);
-
-        $user->ermaessigung = $request->ermaessigung;
+        $user->bestaetigt = $request->ermaessigung;
         $user->save();
 
         return redirect('admin/ausleihe/ermaessigungen');

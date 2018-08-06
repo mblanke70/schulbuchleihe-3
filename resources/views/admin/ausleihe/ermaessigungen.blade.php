@@ -44,26 +44,18 @@
 		                <td>{{ $s->nachname }}</td>
 		                <td>{{ $s->vorname }}</td>
 		                <td>{{ $s->klasse }}</td>
+		                <td>{{ (10 - $s->ermaessigung) * 10 }} %</td>
 		                <td>
-	                   		<span style="display:none">{{ $s->ermaessigung }}</span>
-
 		                	<form action="{{ url('admin/ausleihe/ermaessigungen/'.$s->id) }}" method="POST">
                         		{{ csrf_field() }}   
-                  		        {{ method_field('PUT') }}
 
 			                	<select class="buchleihe-ermaessigung" name="ermaessigung">
-	                        		<option value="10" @if($s->ermaessigung==10) selected @endif>keine</option>
-	                        		<option value="8" @if($s->ermaessigung==8) selected @endif>20%</option>
-	                        		<option value="0" @if($s->ermaessigung==0) selected @endif>100%</option>
+	                        		<option value="">unbestätigt</option>
+	                        		<option value="10" @if($s->bestaetigt==10) selected @endif>keine</option>
+	                        		<option value="8" @if($s->bestaetigt==8) selected @endif>20%</option>
+	                        		<option value="0" @if($s->bestaetigt===0) selected @endif>100%</option>
 	                    		</select>
 	                    	</form>
-		                </td>
-		                <td>
-		                	<span style="display:none">{{ $s->bestaetigt }}</span>
-		                	<form action="{{ url('admin/ausleihe/ermaessigungen/'.$s->id) }}" method="POST">
-                        		{{ csrf_field() }}   
-		                	 	<input class="form-check-input" type="checkbox" name="bestaetigt" @if($s->bestaetigt) checked @endif />
-		                	</form>
 		                </td>
 		            </tr>
 	        	@endforeach
@@ -88,10 +80,6 @@
             stateSave: true
 	    });
 	});
-
-	$('form input:checkbox').on('change', function(){
-        $(this).closest('form').submit();
-    });
 
     $('form select').on('change', function(){
         $(this).closest('form').submit();

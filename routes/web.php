@@ -53,7 +53,6 @@ Route::group(
     Route::get('ausleihe', 'AusleiheController@index');
     Route::get('ausleihe/ermaessigungen', 'AusleiheController@zeigeErmaessigungen');
     Route::post('ausleihe/ermaessigungen/{schueler}', 'AusleiheController@bestaetigeErmaessigungen');
-    Route::put('ausleihe/ermaessigungen/{schueler}', 'AusleiheController@aendereErmaessigungen');
     
     Route::get('ausleihe/{klasse}', 'AusleiheController@zeigeKlasse');
     Route::get('ausleihe/{klasse}/{schueler}', 'AusleiheController@zeigeSchueler');
