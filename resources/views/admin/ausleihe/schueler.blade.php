@@ -3,7 +3,14 @@
 @section('title', 'Ausleihe')
 
 @section('content_header')
-    <h1>Ausleihe für {{ $user->nachname }}, {{ $user->vorname }} ({{ $klasse->bezeichnung }})</h1>
+    <h1>Ausleihe für {{ $user->nachname }}, {{ $user->vorname }} ({{ $klasse->bezeichnung }}) 
+        @if($user->ermaessigung < 10)
+        | Ermäßigung: {{ (10-$user->ermaessigung)*10 }}% 
+            @if($user->bestaetigt)
+            / {{ (10-$user->bestaetigt)*10 }}%
+            @endif
+        @endif
+    </h1>
 @stop
 
 @section('content')
@@ -16,18 +23,18 @@
                 <div class="box-body">
                     <div class="btn-group" role="group">
                         <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$klasse->id) }}" role="button">
-                            <i class="fa fa-users fa-lg"></i>
+                            <i class="fa fa-chevron-circle-up fa-lg"></i>
                         </a>
 
                         @if($prev!=null)
                         <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$klasse->id.'/'.$prev->id) }}" role="button">
-                            <i class="fa fa-backward fa-lg"></i>
+                            <i class="fa fa-chevron-circle-left fa-lg"></i>
                         </a>
                         @endif
 
                         @if($next!=null)
                         <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$klasse->id.'/'.$next->id) }}" role="button"> 
-                            <i class="fa fa-forward fa-lg"></i> 
+                            <i class="fa fa-chevron-circle-right fa-lg"></i> 
                         </a>
                         @endif    
                     </div>

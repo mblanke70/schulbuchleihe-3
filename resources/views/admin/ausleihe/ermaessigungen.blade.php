@@ -46,6 +46,7 @@
 		                <td>{{ $s->klasse }}</td>
 		                <td>{{ (10 - $s->ermaessigung) * 10 }} %</td>
 		                <td>
+		                	<span style="display:none">{{ $s->bestaetigt }}</span>
 		                	<form action="{{ url('admin/ausleihe/ermaessigungen/'.$s->id) }}" method="POST">
                         		{{ csrf_field() }}   
 
@@ -77,7 +78,13 @@
 	$(function() {
 	    $('#schueler').DataTable({
 	      	rowReorder: true,
-            stateSave: true
+            stateSave: true,
+            createdRow: function( row, data, dataIndex){
+                if( data[4] > 0){
+                    $(row).addClass('redClass');
+                }
+            }
+
 	    });
 	});
 

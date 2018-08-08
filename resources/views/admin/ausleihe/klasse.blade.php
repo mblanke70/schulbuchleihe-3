@@ -3,7 +3,13 @@
 @section('title', 'Ausleihe')
 
 @section('content_header')
-    <h1>Ausleihe ({{ $klasse->bezeichnung }})</h1>
+    <h1>
+    	<a class="btn btn-primary" href="{{ url('admin/ausleihe') }}" role="button">
+        	<i class="fa fa-chevron-circle-up fa-lg"></i>
+    	</a>
+    	Ausleihe ({{ $klasse->bezeichnung }})
+    </h1>
+    
 @stop
 
 @section('content')

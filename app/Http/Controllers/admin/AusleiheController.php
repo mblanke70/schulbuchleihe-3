@@ -30,9 +30,12 @@ class AusleiheController extends Controller
     public function index()
     {
         $klassen    = Klasse::all();
-        $jahrgaenge = Jahrgang::all();
+        //$jahrgaenge = Jahrgang::all();
+        $jahrgaenge = Jahrgang::where('jahrgangsstufe', '>', 4)
+            ->orderBy('jahrgangsstufe')
+            ->get();
 
-        $jahrgaenge = $jahrgaenge->sortBy('jahrgangsstufe'); 
+        //$jahrgaenge = $jahrgaenge->sortBy('jahrgangsstufe'); 
 
         return view('admin/ausleihe/index', compact('klassen', 'jahrgaenge'));
     }

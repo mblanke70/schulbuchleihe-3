@@ -15,7 +15,7 @@ class BuchtitelIstAufBuecherliste implements Rule
     public function __construct($user, $buch)
     {
          $this->user = $user;
-         $this->jg   = $user->jahrgang; if($this->jg!=20) $this->jg++;
+         $this->jg   = $user->jahrgang; //if($this->jg!=20) $this->jg++;
          $this->buch = $buch;
     }
 
