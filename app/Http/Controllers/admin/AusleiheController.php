@@ -18,6 +18,7 @@ use App\Rules\BuchtitelNichtAusgeliehen;
 use App\Rules\BuchNichtAusgeliehen;
 use App\Rules\BuchcodeExistiert;
 use App\Rules\BuchtitelIstAufBuecherliste;
+use App\Rules\BuchtitelIstBestellt;
 
 
 class AusleiheController extends Controller
@@ -109,6 +110,7 @@ class AusleiheController extends Controller
                 'buch_id' => [
                     new BuchtitelNichtAusgeliehen($user),
                     new BuchtitelIstAufBuecherliste($user, $buch),
+                    new BuchtitelIstBestellt($user, $buch),                    
                 ],
             ] 
         );
