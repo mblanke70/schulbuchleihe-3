@@ -4,7 +4,7 @@
 
 @section('content_header')
     <h1>Ausleihe für {{ $user->nachname }}, {{ $user->vorname }} ({{ $klasse->bezeichnung }}) 
-        @if($user->ermaessigung < 10)
+        @if($user->ermaessigung && $user->ermaessigung < 10)
         | Ermäßigung: {{ (10-$user->ermaessigung)*10 }}% 
             @if($user->bestaetigt)
             / {{ (10-$user->bestaetigt)*10 }}%
