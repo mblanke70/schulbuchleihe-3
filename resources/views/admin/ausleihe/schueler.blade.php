@@ -95,7 +95,7 @@
                                     <th width="7%">Fach</th> 
                                     <th width="13%">ID</th> 
                                     <th width="60%">Titel</th>
-                                    <th width="">Leihgebühr</th>
+                                    <th width="10%">Leihgebühr</th>
                                     <th width="10%"></th>
                                 </tr>
                             </thead>
@@ -122,6 +122,11 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <div class="box-footer">
+                        Die Leihgebühr beträgt {{ number_format($summe, 2, ',', '') }} &euro;.
+                    </div>
+                    <!-- box-footer -->
                 </div>
             </div>
         </div>

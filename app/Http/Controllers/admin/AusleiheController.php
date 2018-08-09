@@ -57,6 +57,10 @@ class AusleiheController extends Controller
         $user    = User::find($user_id);
         
         $buecher = $user->buecher;
+        $summe = 0;
+        foreach($buecher as $b) {
+            $summe += $b->buchtitel->leihgebuehr;
+        }
         //$buchwahlen = $user->buchwahlen()->where('wahl', '<', 3)->sortByDesc('wahl');
         //$buchwahlen = $user->buchwahlen()->sortBy('wahl');
 
@@ -78,7 +82,7 @@ class AusleiheController extends Controller
             $bt['ausgeliehen'] = $buecher->contains('buchtitel_id', $bt->id) ? 1 : 0;
         }
 
-        return view('admin/ausleihe/schueler', compact('klasse', 'user', 'buecher', 'buchtitel', 'next', 'prev'));
+        return view('admin/ausleihe/schueler', compact('klasse', 'user', 'buecher', 'buchtitel', 'next', 'prev', 'summe'));
     }
 
     public function ausleihen(Request $request, $klasse_id, $user_id)
