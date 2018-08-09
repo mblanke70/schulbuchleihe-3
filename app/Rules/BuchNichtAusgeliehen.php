@@ -3,6 +3,7 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
+use App\BuchUser;
 
 class BuchNichtAusgeliehen implements Rule
 {
@@ -25,8 +26,10 @@ class BuchNichtAusgeliehen implements Rule
      */
     public function passes($attribute, $value)
     {        
-        $buecher = $this->user->buecher()->get(); 
-        return !$buecher->contains('id', $value);
+        //$buecher = $this->user->buecher()->get(); 
+        $ausgelieheneBuecher = BuchUser::whereNull('rueckgabe')->get();
+        //return !$buecher->contains('id', $value);
+        return !$ausgelieheneBuecher->contains('buch_id', $value);
     }
 
     /**
@@ -36,6 +39,7 @@ class BuchNichtAusgeliehen implements Rule
      */
     public function message()
     {
-         return 'Dieser Schüler hat dieses Buch bereits ausgeliehen.';
+         //return 'Dieser Schüler hat dieses Buch bereits ausgeliehen.';
+        return 'Das Buch ist bereits ausgeliehen.';
     }
 }

@@ -5,10 +5,7 @@
 @section('content_header')
     <h1>Ausleihe für {{ $user->nachname }}, {{ $user->vorname }} ({{ $klasse->bezeichnung }}) 
         @if($user->ermaessigung && $user->ermaessigung < 10)
-        | Ermäßigung: {{ (10-$user->ermaessigung)*10 }}% 
-            @if($user->bestaetigt)
-            / {{ (10-$user->bestaetigt)*10 }}%
-            @endif
+          {{ (10-$user->ermaessigung)*10 }}% 
         @endif
     </h1>
 @stop
@@ -73,9 +70,24 @@
                     <div class="box-title">
                         Ausgeliehene Bücher
                     </div>
+                    <div class="box-tools pull-right">
+                      
+                    </div>
                 </div>
 
                 <div class="box-body">
+                    Ermäßigungsstatus (bestätigt):
+                    <form class="form-inline" action="{{ url('admin/ausleihe/ermaessigungen/'.$klasse->id.'/'.$user->id) }}" method="POST">
+                        {{ csrf_field() }}   
+
+                        <select class="buchleihe-ermaessigung" name="ermaessigung">
+                            <option value="">unbestätigt</option>
+                            <option value="10" @if($user->bestaetigt==10) selected @endif>keine</option>
+                            <option value="8" @if($user->bestaetigt==8) selected @endif>20%</option>
+                            <option value="0" @if($user->bestaetigt===0) selected @endif>100%</option>
+                        </select>
+                    </form>
+
                     <div class="table-responsive">
                         <table id="buecher" class="display compact" cellspacing="0" width="100%">
                             <thead>
