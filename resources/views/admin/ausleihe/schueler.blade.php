@@ -125,6 +125,10 @@
 
                     <div class="box-footer">
                         Die Leihgebühr beträgt {{ number_format($summe, 2, ',', '') }} &euro;.
+                        <br />
+                        @if($user->bestaetigt===0 || $user->bestaetigt==8)
+                            Die ermäßigte Leihgebühr beträgt {{ number_format($summe*($user->bestaetigt/10), 2, ',', '') }} &euro;.
+                        @endif
                     </div>
                     <!-- box-footer -->
                 </div>
