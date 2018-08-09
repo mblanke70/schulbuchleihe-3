@@ -56,6 +56,7 @@ Route::group(
     Route::post('ausleihe/ermaessigungen/{schueler}', 'AusleiheController@bestaetigeErmaessigungen');
     Route::post('ausleihe/ermaessigungen/{klasse}/{schueler}', 'AusleiheController@bestaetigeErmaessigungen2');
 
+    Route::get('ausleihe/buecherliste/{klasse}/{schueler}', 'AusleiheController@zeigeBuecherliste');
     
     Route::get('ausleihe/{klasse}', 'AusleiheController@zeigeKlasse');
     Route::get('ausleihe/{klasse}/{schueler}', 'AusleiheController@zeigeSchueler');
@@ -101,7 +102,6 @@ Route::group([
 
     Route::post('buchleihe/neuwahl', 'BuchleiheController@neuwahl');
 });
-
 
 //Auth::routes();
 

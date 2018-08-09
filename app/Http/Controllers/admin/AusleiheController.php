@@ -169,6 +169,29 @@ class AusleiheController extends Controller
         return redirect('admin/ausleihe/'.$klasse_id.'/'.$user_id);
     }
 
+    public function zeigeBuecherliste($klasse_id, $user_id)
+    {
+        $klasse  = Klasse::find($klasse_id);
+        $user    = User::find($user_id);
+        $buecher = $user->buecher;
+
+        $jg = $user->jahrgang; 
+        $buchtitel = Buecherliste::where('jahrgang', $jg)->first()->buchtitel;  
+
+        foreach($buchtitel as $bt) {
+            $bw = $user->buchwahlen()->where('buchtitel_id', $bt->id)->first();
+            if($bw!=null) {
+                $bt['wahl'] = $bw->wahl;
+            } else {
+                $bt['wahl'] = 4;
+            }
+
+            $bt['ausgeliehen'] = $buecher->contains('buchtitel_id', $bt->id) ? 1 : 0;
+        }
+
+        return view('admin/ausleihe/buecherliste', compact('klasse', 'user', 'buchtitel'));
+    }
+
     public function zeigeErmaessigungen()
     {
         $schueler = User::where('ermaessigung', '<', 10)->orderBy('nachname')->get();

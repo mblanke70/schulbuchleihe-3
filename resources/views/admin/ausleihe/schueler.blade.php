@@ -1,9 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Ausleihe')
+@section('title')
+{{ $user->nachname }} , {{ $user->vorname }} ({{ $user->klasse }})
+@stop
 
 @section('content_header')
-    <h1>Ausleihe für {{ $user->nachname }}, {{ $user->vorname }} ({{ $klasse->bezeichnung }}) 
+    <h1>Ausleihe für {{ $user->nachname }}, {{ $user->vorname }}</a> ({{ $klasse->bezeichnung }}) 
         @if($user->ermaessigung && $user->ermaessigung < 10)
           {{ (10-$user->ermaessigung)*10 }}% 
         @endif
@@ -212,7 +214,7 @@
         </div>
     </div>
 
-    <div id="modal-confirm" class="modal modal-warning fade">   
+    <div id="modal-confirm" class="modal modal-warning fade" tabindex="-1">   
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -242,7 +244,7 @@
         </div>
     </div>
 
-    <div id="modal-warning" class="modal modal-danger fade">   
+    <div id="modal-warning" class="modal modal-danger fade" tabindex="-1">   
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -268,6 +270,7 @@
 @stop
 
 @section('js')
+
     <script>
 
         @if($errors->any())
@@ -303,7 +306,7 @@
                 "searching": false, 
                 "info": false, 
                 "paging": false,     
-                "order": [],       
+                "order": [],   
             });
 
             $('.wahl').select2({
@@ -312,6 +315,14 @@
             });
 
             $("#buch").focus();
+
+            $('#modal-warning').on('hidden.bs.modal', function (e) {
+                $("#buch").focus();
+            });
+
+            $('#modal-confirm').on('hidden.bs.modal', function (e) {
+                $("#buch").focus();
+            });
         } );
     </script>
 @stop
