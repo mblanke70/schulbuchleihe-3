@@ -95,16 +95,18 @@
                                     <th width="7%">Fach</th> 
                                     <th width="13%">ID</th> 
                                     <th width="60%">Titel</th>
+                                    <th width="">Leihgebühr</th>
                                     <th width="10%"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($buecher as $b)
                                 <tr>
-                                    <td width="15%">{{ $b->buchtitel->fach->code }}</td>
-                                    <td width="15%">{{ $b->id }}</td>
-                                    <td width="70%">{{ $b->buchtitel->titel }}</td>
-                                    <td width="10%">
+                                    <td>{{ $b->buchtitel->fach->code }}</td>
+                                    <td>{{ $b->id }}</td>
+                                    <td>{{ $b->buchtitel->titel }}</td>
+                                    <td>{{ $b->buchtitel->leihgebuehr }}</td>
+                                    <td>
                                         <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $b->id }}').submit();">
                                             <i class="fa fa-fw fa-trash"></i>
                                         </a>
