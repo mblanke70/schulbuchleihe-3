@@ -71,21 +71,12 @@
 	                	<tr><th>Titel</th><td>{{ $buch->buchtitel->titel }}</td></tr>
 	                	<tr><th>Fach</th><td>{{ $buch->buchtitel->fach->name }}</td></tr>
 
-					@if($user)
-	                    <tr><th>Nachname</th><td>{{ $user->nachname }}</td></tr>
-	                    <tr><th>Vorname</th><td>{{ $user->vorname }}</td></tr>
-	                    <tr><th>Klasse</th><td>{{ $user->klasse }}</td></tr>
-	                    <tr><th>Ausgabe</th><td>{{ $user->pivot->ausgabe }}</td></tr>
-            		@else
-    					<tr><td colspan="2">Das Buch ist nicht ausgeliehen</td></tr>
-            		@endif
-
 	                </table>
                 </div>            
             
             </div>
 
-            <div class="box box-solid box-success">   
+            <div class="box box-solid box-warning">   
 
                 <div class="box-header with-border">
                     <div class="box-title">
