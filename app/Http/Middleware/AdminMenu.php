@@ -17,7 +17,6 @@ class AdminMenu
     public function handle($request, Closure $next)
     {
         Event::listen('JeroenNoten\LaravelAdminLte\Events\BuildingMenu', function ($event)
-
         {
             $event->menu->add('BUCHBESTAND');
             $event->menu->add([
@@ -30,7 +29,7 @@ class AdminMenu
                 'url'  => 'admin/buecher',
                 'icon' => 'book',
             ]);
-            $event->menu->add('LEIHVERFAHREN');       
+            $event->menu->add('NUTZER');
             $event->menu->add([
                 'text' => 'Klassen',
                 'url'  => 'admin/klassen',
@@ -41,6 +40,41 @@ class AdminMenu
                 'url'  => 'admin/schueler',
                 'icon' => 'user',
             ]);
+           
+            //$event->menu->add('SCHÜLER-ANSICHT');
+
+            /*$event->menu->add([
+                'text' => 'Schüler-Dashboard',
+                'url'  => 'user',
+                'icon' => 'list',
+
+            ]);*/
+            $event->menu->add('AUSLEIHE & RÜCKGABE');       
+
+            $event->menu->add([
+                'text' => 'Ausleihe & Rückgabe',
+                'icon' => 'list',
+                'submenu' => [
+                    [
+                        'text' => 'Ausleihe',
+                        'url'  => 'admin/ausleihe',
+                        'icon' => 'list',
+                    ],
+                    [
+                        'text' => 'Ermäßigungen',
+                        'url'  => 'admin/ausleihe/ermaessigungen',
+                        'icon' => 'list',
+                    ],
+                    [
+                         'text' => 'Buchinfo',
+                         'url'  => 'admin/ausleihe/buchinfo',
+                        'icon' => 'list',
+                    ]
+                ]
+            ]);
+
+            $event->menu->add('LEIHVERFAHREN');       
+           
             $event->menu->add([
                 'text' => 'Bücherlisten',
                 'url'  => 'admin/buecherlisten',
@@ -56,26 +90,7 @@ class AdminMenu
                 'url'  => 'admin/auswertung',
                 'icon' => 'list',
             ]);
-            $event->menu->add([
-                'text' => 'Schüler-Dashboard',
-                'url'  => 'user',
-                'icon' => 'list',
 
-            ]);
-            $event->menu->add('AUSLEIHE & RÜCKGABE');       
-            $event->menu->add([
-                'text' => 'Ausleihe',
-                'url'  => 'admin/ausleihe',
-                'icon' => 'list',
-
-            ]);
-            $event->menu->add([
-                'text' => 'Ermäßigungen',
-                'url'  => 'admin/ausleihe/ermaessigungen',
-                'icon' => 'list',
-
-            ]);
-           
         });
 
         return $next($request);

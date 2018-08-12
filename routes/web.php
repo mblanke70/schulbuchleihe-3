@@ -50,6 +50,9 @@ Route::group(
 
     Route::get('auswertung', 'AuswertungController@index');
 
+    Route::get('ausleihe/buchinfo', 'AusleiheController@suchen');
+    Route::post('ausleihe/buchinfo', 'AusleiheController@zeigeBuchinfo');       
+
     Route::get('ausleihe', 'AusleiheController@index');
     Route::get('ausleihe/ermaessigungen', 'AusleiheController@zeigeErmaessigungen');
     

@@ -23,8 +23,6 @@ class Buch extends Model
 
     public function users()
     {
-        return $this->hasMany('App\Users');   
-    }
-
-    
+        return $this->belongsToMany('App\User')->withPivot('ausgabe', 'rueckgabe');;   
+    }    
 }

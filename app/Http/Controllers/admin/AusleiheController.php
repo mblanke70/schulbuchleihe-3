@@ -13,6 +13,7 @@ use App\Buch;
 use App\Jahrgang;
 use App\Buecherliste;
 use App\Buchwahl;
+use App\BuchUser;
 
 use App\Rules\BuchtitelNichtAusgeliehen;
 use App\Rules\BuchNichtAusgeliehen;
@@ -217,6 +218,31 @@ class AusleiheController extends Controller
         $user->save();
 
         return redirect('admin/ausleihe/'.$klasse_id.'/'.$user_id);
+    }
+
+
+    public function suchen()
+    {
+        $buch = null;
+        return view('admin/ausleihe/buchinfo', compact('buch'));
+    }
+
+    public function zeigeBuchinfo(Request $request)
+    {
+        request()->validate([
+            'buch_id' => 'required | exists:buecher,id'
+        ], [
+            'buch_id.required' => 'Es wurde keine Buch-ID angegeben.',
+            'buch_id.exists'   => 'Die angegebene Buch-ID existiert nicht.', 
+        ]);
+
+        $buch = Buch::find($request->buch_id);
+
+        $user = $buch->users()
+            ->whereNull('rueckgabe')
+            ->first();
+        
+        return view('admin/ausleihe/buchinfo', compact('buch', 'user'));
     }
 
 /*
