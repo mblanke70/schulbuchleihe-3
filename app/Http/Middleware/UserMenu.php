@@ -19,10 +19,19 @@ class UserMenu
         Event::listen('JeroenNoten\LaravelAdminLte\Events\BuildingMenu', function ($event)
 
         {
+            /*
             $event->menu->add('LEIHVERFAHREN');       
             $event->menu->add([
                 'text' => 'Leihverfahren',
                 'url'  => 'user/buchleihe',
+                'icon' => 'book',
+            ]);
+            */
+            
+            $event->menu->add('MEINE BÜCHER');       
+            $event->menu->add([
+                'text' => 'Meine Bücher',
+                'url'  => 'user/buecher',
                 'icon' => 'book',
             ]);
         });

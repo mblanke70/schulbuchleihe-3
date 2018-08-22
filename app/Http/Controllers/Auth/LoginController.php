@@ -82,13 +82,20 @@ class LoginController extends Controller
          *  Checks to see if a user exists. If not we need to create the
          *  user in the database before logging them in.
          */
-        if( $user == null ) {
+        
+        if( $user == null )
+        {
+            session()->flush();
+            return view('noaccount', compact('iservUser'));
+        }
+
+        /*
             $newUser = new User();
 
             $newUser->name     = $iservUser->getName();
             $newUser->vorname  = $iservUser["given_name"];
             $newUser->nachname = $iservUser["family_name"];
-            $newUser->email    = $iservUser->getEmail();
+            $newUser->email    = $iservUser["email"];
 
             foreach($iservUser["groups"] as $key => $val) {
                 if( substr($val["name"], 0, 6) == "Klasse" ) {
@@ -100,8 +107,9 @@ class LoginController extends Controller
 
             $newUser->save();
             $user = $newUser;
-        }
+        */
 
+ 
         /*
          *  Log in the user
          */

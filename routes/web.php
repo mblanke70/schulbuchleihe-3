@@ -12,9 +12,27 @@
 */
 //use App\DataTables\UsersDataTable;
 
+Route::get('/test', function() {
+    $snappy = App::make('snappy.pdf');
+
+    $html = '<h1>Bill</h1><p>You owe me money, dude.</p>';
+    
+    //To file
+    //$snappy->generateFromHtml($html, '/tmp/bill-123.pdf');
+    //$snappy->generate('http://www.github.com', '/tmp/github.pdf');
+
+    //Or output:
+    return new Response(
+        $snappy->getOutputFromHtml($html),
+        200,
+        array(
+            'Content-Type'          => 'application/pdf',
+            'Content-Disposition'   => 'attachment; filename="file.pdf"'
+        )
+    );
+});
 
 Route::get('/', function () {
-    //return redirect('login/iserv');
     return view('home');
 });
 
@@ -22,6 +40,10 @@ Route::post('/logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
+
+Route::get('/keinAccount', function () {
+    return view('noaccount');
+});
 
 
 Route::group(
@@ -85,7 +107,7 @@ Route::group([
         'middleware' => ['user', 'menu.user']
     ], function () 
 {
-    Route::get('/', function () { return redirect('user/buchleihe'); } );
+    Route::get('/', function () { return redirect('user/buecher'); } );
 
     Route::get('buchleihe', 'BuchleiheController@index');
 
@@ -104,6 +126,8 @@ Route::group([
     Route::get('buchleihe/abschluss', 'BuchleiheController@zeigeAbschluss');
 
     Route::post('buchleihe/neuwahl', 'BuchleiheController@neuwahl');
+
+    Route::get('buecher', 'HomeController@zeigeBuecher');
 });
 
 //Auth::routes();
