@@ -90,6 +90,11 @@ class AdminMenu
                 'url'  => 'admin/auswertung',
                 'icon' => 'list',
             ]);
+            $event->menu->add([
+                'text' => 'Bankeinzug',
+                'url'  => 'admin/auswertung/bankeinzug',
+                'icon' => 'list',
+            ]);
 
         });
 

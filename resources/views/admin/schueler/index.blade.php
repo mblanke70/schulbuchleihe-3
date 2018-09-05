@@ -8,10 +8,6 @@
 
 @section('content')
 
-<div class="box-body">
-	
-</div>
-
 <div class="box">
 
 	<div class="box-header with-border">

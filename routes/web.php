@@ -71,6 +71,7 @@ Route::group(
     //Route::resource('ausleihe',      'AusleiheController');
 
     Route::get('auswertung', 'AuswertungController@index');
+    Route::get('auswertung/bankeinzug', 'AuswertungController@zeigeBankeinzug');
 
     Route::get('ausleihe/buchinfo', 'AusleiheController@suchen');
     Route::post('ausleihe/buchinfo', 'AusleiheController@zeigeBuchinfo');       
