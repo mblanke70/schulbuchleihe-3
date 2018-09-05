@@ -42,7 +42,10 @@ class HomeController extends Controller
         $klasse   = $user->klassengruppe;
         $buecher  = $user->buecher;
 
-        $summe    = $buecher->sum('leihgebuehr');
+        $summe = 0;
+        foreach($buecher as $b) {
+            $summe += $b->buchtitel->leihgebuehr;
+        }
         
         $summeErm = $summe;
         if($user->bestaetigt===0) $summeErm = 0;
