@@ -12,16 +12,40 @@
 */
 //use App\DataTables\UsersDataTable;
 
-Route::get('/test', function() {
+Route::get('/pdf', function() {
     $snappy = App::make('snappy.pdf');
 
-    $html = '<h1>Bill</h1><p>You owe me money, dude.</p>';
+    $html = '<h1>Bill</h1><p><img src="data:image/png;base64,' . DNS1D::getBarcodePNG("4", "C39+") . '" alt="barcode"/></p><p>You owe me money, dude.</p>';
     
     //To file
     //$snappy->generateFromHtml($html, '/tmp/bill-123.pdf');
     //$snappy->generate('http://www.github.com', '/tmp/github.pdf');
 
     //Or output:
+
+    //return PDF::loadHTML($html)->inline('test.pdf');
+    
+    
+    $user = Auth::user();
+    
+    $pdf = PDF::loadView('pdf.label', compact('user'))
+        ->setOption('page-width' , '105.0')
+        ->setOption('page-height', '48.0')
+        ->setOption('margin-bottom', '4mm')
+        ->setOption('margin-top', '4mm')
+        ->setOption('margin-right', '4mm')
+        ->setOption('margin-left', '4mm');
+    
+    return $pdf->inline();
+    
+/*
+    return response()->file(
+        $snappy->getOutputFromHtml($html), 
+        array(
+            'Content-Type'          => 'application/pdf',
+            'Content-Disposition'   => 'attachment; filename="file.pdf"'
+        ));
+/*
     return new Response(
         $snappy->getOutputFromHtml($html),
         200,
@@ -30,6 +54,15 @@ Route::get('/test', function() {
             'Content-Disposition'   => 'attachment; filename="file.pdf"'
         )
     );
+    */
+    return;
+
+    
+});
+
+Route::get('/label', function () {
+    $user = Auth::user();
+    return view('pdf.label', compact('user'));
 });
 
 Route::get('/', function () {
@@ -69,6 +102,8 @@ Route::group(
     Route::resource('buecherlisten', 'BuecherlisteController');
     
     //Route::resource('ausleihe',      'AusleiheController');
+
+    Route::get('buecher/label/{id}', 'BuchController@printLabel');
 
     Route::get('auswertung', 'AuswertungController@index');
     Route::get('auswertung/bankeinzug', 'AuswertungController@zeigeBankeinzug');

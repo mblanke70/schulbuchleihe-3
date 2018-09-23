@@ -166,6 +166,7 @@ return [
         
         \SocialiteProviders\Manager\ServiceProvider::class,
         \SocialiteProviders\Generators\GeneratorsServiceProvider::class,
+        \Milon\Barcode\BarcodeServiceProvider::class,
         
         /*
          * Package Service Providers...
@@ -236,7 +237,9 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
-        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
     ],
 
 ];

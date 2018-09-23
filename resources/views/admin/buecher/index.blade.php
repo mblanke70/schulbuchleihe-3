@@ -24,6 +24,7 @@
                 <th>Aufnahmedatum</th> 
                 <th>Leihgebuehr</th>
                 <th>Neupreis</th>
+                <th>Label</th>
             </tr>
         </thead>
 
@@ -35,6 +36,7 @@
                 <th>Aufnahmedatum</th> 
                 <th>Leihgebuehr</th>
                 <th>Neupreis</th>
+                <th>Label</th>
             </tr>
         </tfoot>
 
@@ -47,6 +49,11 @@
                     <td> {{ $buch->aufnahmedatum }} </td>
                     <td> {{ $buch->leihgebuehr }} </td>
                     <td> {{ $buch->neupreis }} </td>
+                    <td> 
+                        <a href="{{ url('admin/buecher/label/'.$buch->id) }}"> 
+                            <i class="fa fa-fw fa-eye"></i>
+                        </a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

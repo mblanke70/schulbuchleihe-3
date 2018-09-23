@@ -106,4 +106,21 @@ class BuchController extends Controller
     {
         //
     }
+
+    public function printLabel($id)
+    {
+        $buch = Buch::findOrFail($id);
+
+        //dd($buch);
+
+        $pdf = \PDF::loadView('admin.buecher.pdf.label', compact('buch'))
+            ->setOption('page-width'   , '105.0')
+            ->setOption('page-height'  , '48.0')
+            ->setOption('margin-bottom', '4mm')
+            ->setOption('margin-top'   , '4mm')
+            ->setOption('margin-right' , '4mm')
+            ->setOption('margin-left'  , '4mm');
+    
+        return $pdf->inline();
+    }
 }
