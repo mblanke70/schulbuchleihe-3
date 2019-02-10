@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
 @section('title')
-{{ $user->nachname }} , {{ $user->vorname }} ({{ $user->klasse }})
+{{ $ausleiher->nachname }} , {{ $ausleiher->vorname }} ({{ $ausleiher->klasse }})
 @stop
 
 @section('content_header')
-    <h1>Bücherliste: {{ $user->nachname }} , {{ $user->vorname }} ({{ $user->klasse }})</h1>
+    <h1>Bücherliste: {{ $ausleiher->nachname }} , {{ $ausleiher->vorname }} ({{ $ausleiher->klasse }})</h1>
 @stop
 
 @section('content')

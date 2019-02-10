@@ -49,11 +49,8 @@ class BuchController extends Controller
         {
             $buch = new Buch;
             $buch->buchtitel_id    = $request->buchtitel_id;
-            $buch->leihgebuehr     = 0;
             $buch->neupreis        = $request->neupreis;
-            $buch->ausgeliehen     = 0;
-            $buch->vorbesitzerzahl = 0;
-            $buch->aufnahmedatum   = date('Y-m-d');
+            $buch->aufnahme        = date('Y-m-d');
 
             $buchtitel = Buchtitel::find($request->buchtitel_id);
             $buchtitel->buecher()->save($buch);
@@ -104,7 +101,13 @@ class BuchController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $buch = Buch::findOrFail($id);
+        // aus Buchtitel-Beziehung löschen???
+        // sonst noch was damit machen? Ins Archiv verschieben?
+        // prüfen, ob ausgeliehen?
+        // $buch->delete();
+        
+        return redirect()->route('buecher.index');
     }
 
     public function printLabel($id)

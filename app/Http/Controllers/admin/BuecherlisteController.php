@@ -19,6 +19,8 @@ class BuecherlisteController extends Controller
     public function index()
     {
         $buecherlisten = Buecherliste::all();
+
+        $bl = $buecherlisten->first();
         
         return view('admin/buecherlisten/index', compact('buecherlisten'));
     }

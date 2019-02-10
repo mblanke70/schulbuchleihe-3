@@ -1,0 +1,43 @@
+ADMIN-BACKEND
+=============
+
++ BUCHBESTAND [Admins]
+ - Buchtitel
+     (Aufnahme neuer Buchtitel inkl. der Option, Titlinfos per DNB-Abfrage zu holen)
+ - Bücher
+     (Einpflegen neuer Bücher mit Zuordnung zu einem Buchtitel, Druck von Etiketten, Aussortieren von Büchern)
+ - Inventur
+
++ NUTZER (aktive und passive) [Admins]
+  - Konten administrieren (insbesondere löschen, ändern, Berechtigungsstufe setzen)
+    (ein passives Nutzerkonto entsteht, wenn ein IServ-Nutzer die Buchausleihe erstmals besucht. Ein Nutzer wird dann aktiv, wenn er sich für ein Leihverfahren anmeldet, Verknüpfung zu existierenden Konten über eindeutiges IServ-Konto, aktive und passive Konten als m:n-Beziehung zwischen Nutzern und Leihverfahren)
+
+    Filter nach Teilnahme an einem Leihverfahren
+
+  - Klassen (nicht zwingend nötig, dass dieser Punkt administrierbar ist)
+    (alle Klassen erstellen und ihrem Jahrgang zuordnen: 05A-D/5, 06A-D/6, 07A-E/7, ... 11/11, 20/20, 12/12)
+
+  - Rollen
+
++ AUSLEIHE & RÜCKGABE [Admins und Helfer]
+  (geht immer nur für das aktive Leihverfahren)
+ - Ausleihe
+   (regelt die Ausleihe von Büchern an Schüler)
+ - Rückgabe
+   (regelt die Rückgabe von Büchern, enthält Option zum Verlängern)
+
++ LEIHVERFAHREN [Admins]
+ - Leihverfahren
+   (es gibt immer ein aktives, aktuelles Leihverfahren und (zum Zeitpunkt der Freischaltung der Anmeldung des neuen Leihverfahrens) ein darauf folgendes nächstes Leihverfahren damit Bücher verlängert werden können: wenn sich ein Schüler für die Schulbuchleihe im nächsten Jahr anmeldet und einen Buchtitel benötigt, den er im aktuellen Jahr bereits ausgeliehen hat, so kann dieser Schüler die Verlängern-Option auswählen)
+
+   Neu erstellen: Schuljahr, von, bis, Klassen auswählen, die an dem Verfahren teilnehmen
+
+   -> Bücherlisten
+     (enthalten Leihpreise, jedem Jahrgang ist eine Bücherliste zugeordnet)
+   -> Abfragen
+     (Religion, Fremdsprachen, Fachbelegung, ...)
+
++ AUSWERTUNG [Admins]
+  (stellt verschiedene Sichten auf die Daten eines Leihverfahrens zu Verfügung)
+ - Export für Bankeinzug
+   (erstellt einen Export für SFirm, die Banking-Software der Sparkasse)

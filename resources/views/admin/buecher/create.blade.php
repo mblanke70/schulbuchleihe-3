@@ -35,11 +35,6 @@
                 <label for="buecher-anzahl">Anzahl</label>
                 <input type="text" class="form-control" name="anzahl" id="buecher-anzahl" value="1" />
             </div>
-    
-            <div class="form-group">
-                <label for="buecher-leihgebuehr">Leihpreis</label>
-                <input type="text" class="form-control" name="leihgebuehr" id="buecher-leihgebuehr" placeholder="Leihpreis" />
-            </div>
 
             <div class="form-group">
                 <label for="buecher-neupreis">Neupreis</label>

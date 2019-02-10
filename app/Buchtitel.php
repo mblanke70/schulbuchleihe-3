@@ -3,38 +3,32 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Buchwahl;
 
 class Buchtitel extends Model
 {
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
     protected $table = 'buchtitel';
 
 	/**
-     * Get the books for this booktitle.
+     * Liefert die Bücher zu diesem Buchtitel.
      */
     public function buecher()
     {
-    	return $this->hasMany('App\Buch', 'kennung', 'kennung');
+    	return $this->hasMany('App\Buch');
     }
 
+    /**
+     * Liefert das Fach zu diesem Buchtitel.
+     */
     public function fach()
     {
         return $this->belongsTo('App\Fach');
     }
 
-    public function ausgelieheneBuecher()
+    /**
+     * Liefert die Bestellungen zu diesem Buchtitel.
+     */
+    public function bestellungen()
     {
-        return $this->hasManyThrough('App\BuchUser', 'App\Buch');
-    }
-
-    public function bestellteBuecher()
-    {
-        return $this->hasMany('App\Buchwahl')
-            ->where('wahl', 1) ;
+        return $this->hasMany('App\Buchwahl')->where('wahl', 1) ;
     }
 }

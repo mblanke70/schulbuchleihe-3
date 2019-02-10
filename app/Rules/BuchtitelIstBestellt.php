@@ -12,11 +12,11 @@ class BuchtitelIstBestellt implements Rule
      *
      * @return void
      */
-    public function __construct($user, $buch)
+    public function __construct($ausleiher, $buch)
     {
-         $this->user = $user;
-         $this->jg   = $user->jahrgang; //if($this->jg!=20) $this->jg++;
-         $this->buch = $buch;
+         $this->ausleiher = $ausleiher;
+         $this->jg        = $ausleiher->jahrgang;
+         $this->buch      = $buch;
     }
 
     /**
@@ -32,7 +32,7 @@ class BuchtitelIstBestellt implements Rule
         {
             $bt_id = $this->buch->buchtitel->id;
 
-            return $this->user->buchwahlen()
+            return $this->ausleiher->buchwahlen()
                 ->where('wahl', 1)
                 ->contains('buchtitel_id', $bt_id);
         }
@@ -45,6 +45,6 @@ class BuchtitelIstBestellt implements Rule
      */
     public function message()
     {
-        return 'Der zugehörige Buchtitel ist nicht für eine Ausleihe bestellt worden.';
+        return 'Der zugehörige Buchtitel ist nicht für die Ausleihe bestellt worden.';
     }
 }

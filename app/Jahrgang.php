@@ -6,19 +6,37 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jahrgang extends Model
 {
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
     protected $table = 'jahrgaenge';
 
     /**
-     * Get the books for this booktitle.
+     * Liefert die Klassen des Jahrgangs.
      */
     public function klassen()
     {
-    	return $this->hasMany('App\Klasse', 'jahrgangsstufe', 'jahrgangsstufe');
+    	return $this->hasMany('App\Klasse');
     }
 
+    /*
+     * Liefert das Schuljahr, dem dieser Jahrgang zugeordnet ist.
+     */
+    public function schuljahr()
+    {
+        return $this->belongsTo('App\Schuljahr');
+    }
+
+    /*
+     * Liefert alle Ausleiher des Jahrgangs.
+     */
+    public function ausleiher()
+    {
+        return $this->hasManyThrough('App\Ausleiher', 'App\Klasse');   
+    }
+
+    /**
+     * Liefert die Bücherliste, die zu diesem Jahrgang gehört.
+     */
+    public function buecherliste()
+    {
+        return $this->hasOne('App\Buecherliste');   
+    }
 }

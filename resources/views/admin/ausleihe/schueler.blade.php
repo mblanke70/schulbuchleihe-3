@@ -1,13 +1,15 @@
 @extends('adminlte::page')
 
 @section('title')
-{{ $user->nachname }} , {{ $user->vorname }} ({{ $user->klasse }})
+{{ $ausleiher->user->nachname }} , {{ $ausleiher->user->vorname }} ( {{ $ausleiher->klasse->bezeichnung }})
 @stop
 
 @section('content_header')
-    <h1>Ausleihe für {{ $user->nachname }}, {{ $user->vorname }}</a> ({{ $klasse->bezeichnung }}) 
-        @if($user->ermaessigung && $user->ermaessigung < 10)
-          {{ (10-$user->ermaessigung)*10 }}% 
+    <h1>Ausleihe für {{ $ausleiher->user->nachname }}, {{ $ausleiher->user->vorname }}</a> ({{ $ausleiher->klasse->bezeichnung }}) 
+        @if($ausleiher->erm_bestaetigt == 1)
+          20%
+        @elseif($ausleiher->erm_bestaetigt == 2)
+          100%
         @endif
     </h1>
 @stop
@@ -21,18 +23,18 @@
             <div class="box box-solid">
                 <div class="box-body">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$klasse->id) }}" role="button">
+                        <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$ausleiher->klasse_id) }}" role="button">
                             <i class="fa fa-chevron-circle-up fa-lg"></i>
                         </a>
 
                         @if($prev!=null)
-                        <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$klasse->id.'/'.$prev->id) }}" role="button">
+                        <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$ausleiher->klasse_id.'/'.$prev->id) }}" role="button">
                             <i class="fa fa-chevron-circle-left fa-lg"></i>
                         </a>
                         @endif
 
                         @if($next!=null)
-                        <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$klasse->id.'/'.$next->id) }}" role="button"> 
+                        <a class="btn btn-primary" href="{{ url('admin/ausleihe/'.$ausleiher->klasse_id.'/'.$next->id) }}" role="button"> 
                             <i class="fa fa-chevron-circle-right fa-lg"></i> 
                         </a>
                         @endif    
@@ -49,7 +51,7 @@
                 <div>
                     <div class="box-body">
                         <div class="row">
-                            <form action="{{ url('admin/ausleihe/'.$klasse->id.'/'.$user->id) }}" method="POST" >                
+                            <form action="{{ url('admin/ausleihe/'.$ausleiher->klasse_id.'/'.$ausleiher->id) }}" method="POST" >                
                                 {{ csrf_field() }}      
                                 <div class="col-md-6">
                                     <div class="form-group">   
@@ -79,14 +81,14 @@
 
                 <div class="box-body">
                     Ermäßigungsstatus (bestätigt):
-                    <form class="form-inline" action="{{ url('admin/ausleihe/ermaessigungen/'.$klasse->id.'/'.$user->id) }}" method="POST">
+                    <form class="form-inline" action="{{ url('admin/ausleihe/ermaessigungen/'.$ausleiher->klasse_id.'/'.$ausleiher->id) }}" method="POST">
                         {{ csrf_field() }}   
 
                         <select class="buchleihe-ermaessigung" name="ermaessigung">
                             <option value="">unbestätigt</option>
-                            <option value="10" @if($user->bestaetigt==10) selected @endif>keine</option>
-                            <option value="8" @if($user->bestaetigt==8) selected @endif>20%</option>
-                            <option value="0" @if($user->bestaetigt===0) selected @endif>100%</option>
+                            <option value="0" @if($ausleiher->erm_bestaetigt==0) selected @endif>keine</option>
+                            <option value="1" @if($ausleiher->erm_bestaetigt==1) selected @endif>20%</option>
+                            <option value="2" @if($ausleiher->erm_bestaetigt==2) selected @endif>100%</option>
                         </select>
                     </form>
 
@@ -113,7 +115,7 @@
                                             <i class="fa fa-fw fa-trash"></i>
                                         </a>
 
-                                        <form id="delete-form-{{ $b->id }}" action="{{ url('admin/ausleihe/'.$klasse->id.'/'.$user->id) }}" method="POST" style="display: none;">
+                                        <form id="delete-form-{{ $b->id }}" action="{{ url('admin/ausleihe/'.$ausleiher->klasse_id.'/'.$ausleiher->id) }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                             <input type="hidden" name="buch_id" value="{{ $b->id }}" />
@@ -128,8 +130,8 @@
                     <div class="box-footer">
                         Die Leihgebühr beträgt {{ number_format($summe, 2, ',', '') }} &euro;.
                         <br />
-                        @if($user->bestaetigt===0 || $user->bestaetigt==8)
-                            Die ermäßigte Leihgebühr beträgt {{ number_format($summe*($user->bestaetigt/10), 2, ',', '') }} &euro;.
+                        @if($ausleiher->erm_bestaetigt>0)
+                            Die ermäßigte Leihgebühr beträgt {{ number_format($summe, 2, ',', '') }} &euro; FALSCH.
                         @endif
                     </div>
                     <!-- box-footer -->
@@ -149,7 +151,7 @@
                 <div class="box-body">
                     <div class="table-responsive">
 
-                    <form action="{{ url('admin/ausleihe/'.$klasse->id.'/'.$user->id) }}" method="POST" >
+                    <form action="{{ url('admin/ausleihe/'.$ausleiher->klasse_id.'/'.$ausleiher->id) }}" method="POST" >
 
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
@@ -232,7 +234,7 @@
                     <p>Soll das Buch trotzdem ausgeliehen werden?</p>
                 </div>
                 <div class="modal-footer">
-                    <form action="{{ url('admin/ausleihe/'.$klasse->id.'/'.$user->id) }}" method="POST">
+                    <form action="{{ url('admin/ausleihe/'.$ausleiher->klasse_id.'/'.$ausleiher->id) }}" method="POST">
                         {{ csrf_field() }}       
                         <input type="hidden" name="confirmed" value="1" />
                         <input type="hidden" name="buch_id" value="{{ old('buch_id') }}" />

@@ -7,9 +7,8 @@
     	<a class="btn btn-primary" href="{{ url('admin/ausleihe') }}" role="button">
         	<i class="fa fa-chevron-circle-up fa-lg"></i>
     	</a>
-    	Ausleihe ({{ $klasse->bezeichnung }})
+    	Ausleihe ({{ $gruppen[0][0]->bezeichnung }} )
     </h1>
-    
 @stop
 
 @section('content')
@@ -26,14 +25,14 @@
 					<th width="10%"></th>
 				</thead>
 				<tbody>
-					@foreach ($gruppen[$i] as $s)
+					@foreach ($gruppen[$i] as $a)
 						<tr>
-							<td width="50%"><a href="{{ url('admin/ausleihe/'.$s->klassengruppe->id.'/'.$s->id)  }}">
-								{{ $s->nachname }} </a></td>
-							<td width="50%"><a href="{{ url('admin/ausleihe/'.$s->klassengruppe->id.'/'.$s->id)  }}">
-								{{ $s->vorname }} </a></td>
+							<td width="50%"><a href="{{ url('admin/ausleihe/'.$a->klasse_id.'/'.$a->ausleiher_id)  }}">
+								{{ $a->nachname }} </a></td>
+							<td width="50%"><a href="{{ url('admin/ausleihe/'.$a->klasse_id.'/'.$a->ausleiher_id)  }}">
+								{{ $a->vorname }} </a></td>
 							<td>
-								<a href="{{ url('admin/ausleihe/buecherliste/'.$s->klassengruppe->id.'/'.$s->id)  }}">
+								<a href="{{ url('admin/ausleihe/buecherliste/'.$a->klasse_id.'/'.$a->ausleiher_id)  }}">
 									<i class="fa fa-print fa-lg"></i>
 								</a>
 							</td>

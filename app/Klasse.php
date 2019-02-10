@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Klasse extends Model
 {
@@ -13,34 +14,18 @@ class Klasse extends Model
     	return $this->belongsTo('App\Jahrgang');
     }
 
-    public function schueler()
+    public function ausleiher()
     {
-        return $this->hasMany('App\User', 'klasse', 'bezeichnung');
-    }
+        // mit QueryBuilder wegen der Sortierung nach Vor- und Nachnamen (in users)
 
-    public function next($user)
-    {
-        return $this->schueler()
-            ->where('nachname', '>=', $user->nachname)
-            ->where(function ($query) use ($user) {
-                $query->where  ('nachname', '>', $user->nachname)
-                      ->orWhere('vorname' , '>', $user->vorname );
-            })
+        return DB::table('ausleiher')
+            ->where('klasse_id', '=', $this->id)
+            ->join('users', 'ausleiher.user_id', '=', 'users.id')
+            ->join('klassen', 'ausleiher.klasse_id', '=', 'klassen.id')
             ->orderBy('nachname', 'asc')
-            ->orderBy('vorname',  'asc')
-            ->first();
-    }
+            ->orderBy('vorname', 'asc')
+            ->select('ausleiher.id as ausleiher_id', 'ausleiher.*', 'users.*', 'klassen.*');
 
-    public function prev($user)
-    {
-        return $this->schueler()   
-            ->where('nachname', '<=', $user->nachname)
-            ->where(function ($query) use ($user) {
-                $query->where  ('nachname', '<', $user->nachname)
-                      ->orWhere('vorname' , '<', $user->vorname );
-            })
-            ->orderBy('nachname', 'desc')
-            ->orderBy('vorname' , 'desc')
-            ->first();
+        //return $this->hasMany('App\Ausleiher')->with('user');  
     }
 }

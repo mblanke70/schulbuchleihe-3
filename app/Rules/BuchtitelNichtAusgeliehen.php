@@ -12,9 +12,10 @@ class BuchtitelNichtAusgeliehen implements Rule
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($ausleiher, $buch)
     {
-         $this->user = $user;
+         $this->ausleiher = $ausleiher;
+         $this->buch      = $buch;
     }
 
     /**
@@ -25,12 +26,10 @@ class BuchtitelNichtAusgeliehen implements Rule
      * @return bool
      */
     public function passes($attribute, $value)
-    {
-        $buch = Buch::find($value);
-        
-        if($buch!=null) {
-            $bt_id = $buch->buchtitel->id;
-            $buecher = $this->user->buecher()->get();
+    {        
+        if($this->buch!=null) {
+            $bt_id   = $this->buch->buchtitel->id;
+            $buecher = $this->ausleiher->buecher()->get();
             return !$buecher->contains('buchtitel.id', $bt_id);
         }
     }
@@ -42,6 +41,6 @@ class BuchtitelNichtAusgeliehen implements Rule
      */
     public function message()
     {
-         return 'Dieser Schüler hat diesen Buchtitel bereits ausgeliehen.';
+         return 'Dieser Schüler hat den Buchtitel bereits ausgeliehen.';
     }
 }

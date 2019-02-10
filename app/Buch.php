@@ -7,22 +7,40 @@ use Illuminate\Database\Eloquent\Model;
 class Buch extends Model
 {
     /**
-     * The table associated with the model.
+     * Die Tabelle, die mit diesem Model verknüpft ist.
      *
      * @var string
      */
     protected $table = 'buecher';
 
+
+    public function besitzer()
+    {
+        return $this->morphTo();
+    }
+    
 	/**
-     * Get the booktitle of this book.
+     * Liefert den Buchtitel des Buches.
      */
     public function buchtitel()
     {
-    	return $this->belongsTo('App\Buchtitel', 'kennung', 'kennung');
+    	return $this->belongsTo('App\Buchtitel');
     }
 
-    public function users()
+    /*
+     * Liefert den Ausleiher des Buches (falls vorhanden).
+     */
+    public function ausleiher()
     {
-        return $this->belongsToMany('App\User')->withPivot('ausgabe', 'rueckgabe');   
+        return $this->belongsTo('App\Ausleiher');
     }    
+
+    /*
+     * Liefert alle Einträge aus der Buchhistorie
+     */
+    public function historie()
+    {
+        return $this->hasMany('App\BuchHistorie');
+    }
+
 }

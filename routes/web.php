@@ -10,7 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//use App\DataTables\UsersDataTable;
+
+
 
 Route::get('/pdf', function() {
     $snappy = App::make('snappy.pdf');
@@ -28,7 +29,7 @@ Route::get('/pdf', function() {
     
     $user = Auth::user();
     
-    $pdf = PDF::loadView('pdf.label', compact('user'))
+    $pdf = PDF::loadView('admin.buecher.pdf.label', compact('user'))
         ->setOption('page-width' , '105.0')
         ->setOption('page-height', '48.0')
         ->setOption('margin-bottom', '4mm')
@@ -62,7 +63,7 @@ Route::get('/pdf', function() {
 
 Route::get('/label', function () {
     $user = Auth::user();
-    return view('pdf.label', compact('user'));
+    return view('admin.buecher.pdf.label', compact('user'));
 });
 
 Route::get('/', function () {
@@ -108,14 +109,20 @@ Route::group(
     Route::get('auswertung', 'AuswertungController@index');
     Route::get('auswertung/bankeinzug', 'AuswertungController@zeigeBankeinzug');
 
-    Route::get('ausleihe/buchinfo', 'AusleiheController@suchen');
-    Route::post('ausleihe/buchinfo', 'AusleiheController@zeigeBuchinfo');       
+    Route::get ('rueckgabe', 'RueckgabeController@index');
+    Route::post('rueckgabe', 'RueckgabeController@zuruecknehmen');   
+
+    Route::get('buchinfo', function () { 
+        return view('admin/ausleihe/buchinfo');
+    });
+   
+    Route::post('buchinfo', 'AusleiheController@zeigeBuchinfo');       
 
     Route::get('ausleihe', 'AusleiheController@index');
     Route::get('ausleihe/ermaessigungen', 'AusleiheController@zeigeErmaessigungen');
     
     Route::post('ausleihe/ermaessigungen/{schueler}', 'AusleiheController@bestaetigeErmaessigungen');
-    Route::post('ausleihe/ermaessigungen/{klasse}/{schueler}', 'AusleiheController@bestaetigeErmaessigungen2');
+    //Route::post('ausleihe/ermaessigungen/{klasse}/{schueler}', 'AusleiheController@bestaetigeErmaessigungen2');
 
     Route::get('ausleihe/buecherliste/{klasse}/{schueler}', 'AusleiheController@zeigeBuecherliste');
     
@@ -128,9 +135,7 @@ Route::group(
     Route::post('ausleihe/{klasse}/{schueler}', 'AusleiheController@ausleihen');
     Route::delete('ausleihe/{klasse}/{schueler}', 'AusleiheController@loeschen');    
     Route::put('ausleihe/{klasse}/{schueler}', 'AusleiheController@aktualisieren');
-    
-    Route::resource('rueckgabe',     'RueckgabeController');
-    
+        
     Route::post('abfragen/attach/{id}', 'AbfrageController@attach');
 
     Route::delete('buecherlisten/detach/{buecherliste}/{buchtitel}', 'BuecherlisteController@detach');
@@ -164,6 +169,7 @@ Route::group([
     Route::post('buchleihe/neuwahl', 'BuchleiheController@neuwahl');
 
     Route::get('buecher', 'HomeController@zeigeBuecher');
+    Route::get('buecherliste', 'HomeController@zeigeBuecherliste');
 });
 
 //Auth::routes();

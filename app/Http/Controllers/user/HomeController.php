@@ -8,68 +8,64 @@ use Auth;
 
 use App\Klasse;
 use App\User;
+use App\Ausleiher;
 use App\Buecherliste;
 
 class HomeController extends Controller
 {
-    public function zeigeBuecherliste($klasse_id, $user_id)
+    public function zeigeBuecherliste()
     {
-        $klasse  = Klasse::find($klasse_id);
-        $user    = User::find($user_id);
-        $buecher = $user->buecher;
+        $user      = User::find(1353);      //Auth::user();
+        $ausleiher = $user->ausleiher()
+            ->with('user', 'klasse.jahrgang')
+            ->first(); // nur ein Ausleiher wird geholt!!!
 
-        $jg = $user->jahrgang; 
-        $buchtitel = Buecherliste::where('jahrgang', $jg)->first()->buchtitel;  
+        $buchtitel     = $ausleiher->klasse->jahrgang->buecherliste->buchtitel;
+        $buecher       = $ausleiher->buecher;
+        $buecherwahlen = $ausleiher->buecherwahlen->keyBy('buchtitel_id');
 
         foreach($buchtitel as $bt) {
-            $bw = $user->buchwahlen()->where('buchtitel_id', $bt->id)->first();
+           // bestellt?
+            $bw = $buecherwahlen->get($bt->id);
             if($bw!=null) {
                 $bt['wahl']    = $bw->wahl;
                 $bt['wahl_id'] = $bw->id;
             } else {
-                $bt['wahl'] = 4;
+                $bt['wahl'] = 4;    // == nicht bestellt (abgewählt)
             }
 
+            // ausgeliehen?
             $bt['ausgeliehen'] = $buecher->contains('buchtitel_id', $bt->id) ? 1 : 0;
         }
 
-        return view('user/buecherliste/index', compact('klasse', 'user', 'buchtitel'));
+        return view('user/buecherliste/index', compact('ausleiher', 'buchtitel'));
     }
 
     public function zeigeBuecher()
     {
-        $user     = Auth::user();
-        $klasse   = $user->klassengruppe;
-        $buecher  = $user->buecher;
+        $user      = Auth::user();
+        $ausleiher = $user->ausleiher()->first(); // nur ein Ausleiher wird geholt!!!
 
-        $summe = 0;
-        foreach($buecher as $b) {
-            $summe += $b->buchtitel->leihgebuehr;
-        }
-        
-        $summeErm = $summe;
-        if($user->bestaetigt===0) $summeErm = 0;
-        if($user->bestaetigt==8)  $summeErm = $summe * 0.8;
+        if($ausleiher!=null) {
+            $buecher  = $ausleiher->buecher;
 
-        $zusatzkosten = 6.5;
-        if($user->pauschale>0) $zusatzkosten += 10.5;
-
-        /*
-        $buchtitel = Buecherliste::where('jahrgang', $jg)->first()->buchtitel;  
-
-        foreach($buchtitel as $bt) {
-            $bw = $user->buchwahlen()->where('buchtitel_id', $bt->id)->first();
-            if($bw!=null) {
-                $bt['wahl']    = $bw->wahl;
-                $bt['wahl_id'] = $bw->id;
-            } else {
-                $bt['wahl'] = 4;
+            $summe = 0;
+            foreach($buecher as $b) {
+                $summe += $b->buchtitel->leihgebuehr;
             }
+            
+            $summeErm = $summe;
+            if($ausleiher->erm_bestaetigt==2) $summeErm = 0;
+            if($ausleiher->erm_bestaetigt==1) $summeErm = $summe * 0.8;
 
-            $bt['ausgeliehen'] = $buecher->contains('buchtitel_id', $bt->id) ? 1 : 0;
+            $zusatzkosten = 6.5;
+            if($user->pauschale>0) $zusatzkosten += 10.5;
+
+            return view('user/buecher/index', 
+                compact('ausleiher', 'buecher', 'summe', 'summeErm', 'zusatzkosten'));
         }
-        */
-
-        return view('user/buecher/index', compact('klasse', 'user', 'buecher', 'summe', 'summeErm', 'zusatzkosten'));
+        else {
+            return dd("kein Ausleiher");
+        }
     }
 }

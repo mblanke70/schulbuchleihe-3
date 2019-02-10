@@ -66,18 +66,10 @@ class LoginController extends Controller
     {
         $iservUser = Socialite::driver('iserv')->stateless()->user();
 
-        //dd($iservUser->token . ' - '. $iservUser->refreshToken . " - " . $iservUser->expiresIn);
-
         //dd($iservUser);
 
-        /*
-         *  Gets the user in our database where the provider ID
-         *  returned matches a user we have stored.
-         */
-        $user = User::where( 'email', '=', $iservUser->email )->first();
+        $user = User::where( 'email', $iservUser->email )->first();
         
-        //dd($user);
-
         /*
          *  Checks to see if a user exists. If not we need to create the
          *  user in the database before logging them in.
@@ -85,17 +77,13 @@ class LoginController extends Controller
         
         if( $user == null )
         {
-            session()->flush();
-            return view('noaccount', compact('iservUser'));
-        }
-
-        /*
             $newUser = new User();
 
             $newUser->name     = $iservUser->getName();
             $newUser->vorname  = $iservUser["given_name"];
             $newUser->nachname = $iservUser["family_name"];
             $newUser->email    = $iservUser["email"];
+            $newUser->username = $iservUser["preferred_username"];
 
             foreach($iservUser["groups"] as $key => $val) {
                 if( substr($val["name"], 0, 6) == "Klasse" ) {
@@ -107,16 +95,11 @@ class LoginController extends Controller
 
             $newUser->save();
             $user = $newUser;
-        */
+        }
 
- 
-        /*
-         *  Log in the user
-         */
+
         Auth::login( $user );
 
-        //dd(Auth::user());
- 
         if ( $user->istAdmin() ) {
             return redirect()->intended('admin/');
         }

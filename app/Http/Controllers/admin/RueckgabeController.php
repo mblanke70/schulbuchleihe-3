@@ -5,81 +5,48 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Buch;
+use App\BuchHistorie;
+
 class RueckgabeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('admin/rueckgabe/index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+    /*
+     * Rückgabe eines Buches
      */
-    public function create()
+    public function zuruecknehmen(Request $request)
     {
-        //
-    }
+        request()->validate([
+            'buch_id' => 'required | exists:buecher,id'
+        ], [
+            'buch_id.required' => 'Es wurde keine Buch-ID angegeben.',
+            'buch_id.exists'   => 'Die angegebene Buch-ID existiert nicht.', 
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $buch      = Buch::find($request->buch_id);
+        $ausleiher = $buch->ausleiher;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        if($ausleiher) {
+            $eintrag = new BuchHistorie();
+            $eintrag->buch_id   = $buch->id;
+            $eintrag->vorname   = $ausleiher->user->vorname;
+            $eintrag->nachname  = $ausleiher->user->nachname;
+            $eintrag->klasse    = $ausleiher->klasse->bezeichnung;
+            $eintrag->ausgabe   = $buch->ausgabe;
+            $eintrag->rueckgabe = now();
+            $eintrag->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+            /*
+            $buch->ausleiher_id = null;
+            $buch->ausgabe      = null;
+            $buch->save();
+            */
+        }
+            
+        return redirect('admin/rueckgabe');
     }
 }

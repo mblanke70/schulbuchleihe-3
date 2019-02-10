@@ -31,7 +31,7 @@
 		        <div>
 		            <div class="box-body">
 		                <div class="row">
-		                    <form action="{{ url('admin/ausleihe/buchinfo') }}" method="POST" >                
+		                    <form action="{{ url('admin/buchinfo') }}" method="POST" >                
 		                        {{ csrf_field() }}      
 		                        <div class="col-md-6">
 		                            <div class="form-group">   
@@ -51,7 +51,7 @@
 
 		</div>
 
-		@if($buch)
+		@isset($buch)
 		<div class="col-md-7">
 
 			<div class="box box-solid box-success">   
@@ -87,11 +87,11 @@
                 <div class="box-body">                    
 					<table class="display compact" cellspacing="0" width="100%">
 	              
-					@if($user)
-	                    <tr><th>Nachname</th><td>{{ $user->nachname }}</td></tr>
-	                    <tr><th>Vorname</th><td>{{ $user->vorname }}</td></tr>
-	                    <tr><th>Klasse</th><td>{{ $user->klasse }}</td></tr>
-	                    <tr><th>Ausgabe</th><td>{{ $user->pivot->ausgabe }}</td></tr>
+					@if($ausleiher)
+	                    <tr><th>Nachname</th><td>{{ $ausleiher->user->nachname }}</td></tr>
+	                    <tr><th>Vorname</th><td>{{ $ausleiher->user->vorname }}</td></tr>
+	                    <tr><th>Klasse</th><td>{{ $ausleiher->klasse->bezeichnung }}</td></tr>
+	                    <tr><th>Ausgabe</th><td>{{ $buch->ausgabe }}</td></tr>
             		@else
     					<tr><td colspan="2">Das Buch ist nicht ausgeliehen</td></tr>
             		@endif
@@ -102,8 +102,8 @@
             </div>
 
 		</div>
-    	@endif
-
+    	@endisset
+    	
 	</div>		
 
 @stop

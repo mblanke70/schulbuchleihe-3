@@ -5,58 +5,22 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Schuljahr;
+
 class User extends Authenticatable
 {
-    use Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'nachname', 'vorname', 'iserv_id', 'email', 'jahrgang', 'klasse',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'is_admin', 'password', 'remember_token',
-    ];
-
-    /**
-     * Get the class of this user.
-     */
-    public function klassengruppe()
-    {
-        return $this->belongsTo('App\Klasse', 'klasse', 'bezeichnung');
-    }
-
     public function istAdmin()
     {
         return $this->is_admin == 1;
     }
 
-    public function jahrgang()
+    public function ausleiher()
     {
-        return $this->jahrgang;
+        return $this->hasMany('App\Ausleiher')->with(['user', 'klasse']);
     }
 
-    public function buchwahlen()
+    public function lehrer()
     {
-        return $this->hasMany('App\Buchwahl')->with('buchtitel')->get();
-    }
-
-    public function abfragewahlen()
-    {
-        return $this->hasMany('App\AbfrageWahl');
-    }
-
-    public function buecher()
-    {
-        return $this->belongsToMany('App\Buch')->with('buchtitel')->withPivot('ausgabe');
+        return $this->hasOne('App\Lehrer');
     }
 }

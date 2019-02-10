@@ -12,10 +12,10 @@ class BuchtitelIstAufBuecherliste implements Rule
      *
      * @return void
      */
-    public function __construct($user, $buch)
+    public function __construct($ausleiher, $buch)
     {
-         $this->user = $user;
-         $this->jg   = $user->jahrgang; //if($this->jg!=20) $this->jg++;
+         $this->ausleiher = $ausleiher;
+         $this->jg   = $ausleiher->jahrgang;
          $this->buch = $buch;
     }
 
@@ -28,7 +28,7 @@ class BuchtitelIstAufBuecherliste implements Rule
      */
     public function passes($attribute, $value)
     {
-        if($this->buch!=null) 
+        if($this->buch!=null)
         {
             $bt_id = $this->buch->buchtitel->id;
             $buecherliste = Buecherliste::where('jahrgang', $this->jg)->first();

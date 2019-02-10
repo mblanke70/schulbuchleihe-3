@@ -34,8 +34,8 @@
 	                <tr>
 	                    <td> {{ $bl->id }} </td>
 	                    <td> {{ $bl->name }} </td>
-	                    <td> {{ $bl->jahrgang }} </td>
-	                    <td> {{ $bl->schuljahr }} </td>
+	                    <td> {{ $bl->jahrgang->jahrgangsstufe }} </td>
+	                    <td> {{ $bl->jahrgang->schuljahr->schuljahr }} </td>
 	                    <td>
  							<a href="{{ url('admin/buecherlisten/'.$bl->id) }}"> 
  								<i class="fa fa-fw fa-eye"></i>

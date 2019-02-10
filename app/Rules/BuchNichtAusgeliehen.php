@@ -12,9 +12,9 @@ class BuchNichtAusgeliehen implements Rule
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($buch)
     {
-        $this->user = $user;
+        $this->buch = $buch;
     }
 
     /**
@@ -26,10 +26,16 @@ class BuchNichtAusgeliehen implements Rule
      */
     public function passes($attribute, $value)
     {        
-        //$buecher = $this->user->buecher()->get(); 
-        $ausgelieheneBuecher = BuchUser::whereNull('rueckgabe')->get();
-        //return !$buecher->contains('id', $value);
-        return !$ausgelieheneBuecher->contains('buch_id', $value);
+        // hole alle Bücher, die (wenigstens) einen Ausleiher haben 
+        // und die noch nicht zurückgegeben worden sind 
+
+        //$ausgelieheneBuecher = App\Buch::whereHas('ausleiher', function($query) { $query->whereNull('rueckgabe'); })->get();
+
+        return $this->buch->ausleiher_id == null;
+
+        //$ausgelieheneBuecher = BuchUser::whereNull('rueckgabe')->get();
+        
+        //return !$ausgelieheneBuecher->contains('buch_id', $value);
     }
 
     /**

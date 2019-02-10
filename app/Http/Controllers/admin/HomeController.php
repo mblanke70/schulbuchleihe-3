@@ -8,12 +8,51 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use App\Buch;
+use App\Ausleiher;
+use App\Buchwahl;
+//use App\BuchUser;
+//use App\AusleiherBuch;
+
 
 class HomeController extends Controller
 {
     
     public function index()
     {
+        /*
+        $ausleiher = Ausleiher::all();
+        foreach($ausleiher as $a)
+        {
+            if($a->erm==null)
+            {
+                $u = User::where('id', $a->user_id)->first();
+                if($u!=null) {
+                    $a->erm = $u->ermaessigung;
+                    $a->save();
+                }
+            }
+        }
+
+        dd("done");
+        */
+  
+    /*
+        $leihen = AusleiherBuch::all();
+        foreach($leihen as $l)
+        {
+            $b = Buch::where('id', $l->buch_id)->first();
+            if($b!=null && $b->ausleiher_id==null) {
+                $b->ausleiher_id = $l->ausleiher_id;
+                $b->ausgabe      = $l->ausgabe;
+
+                //dd($b);
+
+                $b->save();
+            }
+        }
+
+        dd("done");
+     */   
         $users = User::all();
         $anz_buecher = Buch::all()->count();
 

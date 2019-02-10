@@ -22,7 +22,7 @@
 	        <div>
 	        	<div class="box-body">
 	        		<ul>
-	        		@foreach ($klassen->where('jahrgang_id', $jg->id) as $k)
+	        		@foreach ($jg->klassen as $k)
 						<li><a href="{{ url('admin/ausleihe/'.$k->id) }}"> {{ $k->bezeichnung }} </a></li>
 					@endforeach
 					</ul>

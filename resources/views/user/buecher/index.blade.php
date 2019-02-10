@@ -47,10 +47,10 @@
                         <td>{{ number_format($summe, 2, ',', '') }} &euro;</td>
                     </tr>
                 
-                @if($user->bestaetigt===0 || $user->bestaetigt==8)
+                @if($ausleiher->bestaetigt > 0)
                     <tr>
                         <td colspan="5" style="text-align: right;">
-                            Summe ermäßigt (- {{ (10 - $user->bestaetigt) * 10 }}%):
+                            Summe ermäßigt (-  ... %):
                         </td>
                         <td>{{ number_format($summeErm, 2, ',', '') }} &euro;</td>
                     </tr>
@@ -78,7 +78,7 @@
             <tbody>
                 <p>
                     Die 
-                        @if($user->bestaetigt===0 || $user->bestaetigt==8)
+                        @if($ausleiher->bestaetigt > 0)
                             ermäßigte
                         @endif
                     Leihgebühr beträgt: {{ number_format($summeErm, 2, ',', '') }} €.
@@ -91,9 +91,9 @@
                     </ul>
                 </p>
 
-                @if($user->pauschale>0)
+                @if($ausleiher->pauschale > 0)
                 <p>
-                    {{ $user->vorname }} ist das jüngste Geschwisterkind an der Ursulaschule, deshalb entstehen zusätzlich folgende Kosten:
+                    {{ $ausleiher->user->vorname }} ist das jüngste Geschwisterkind an der Ursulaschule, deshalb entstehen zusätzlich folgende Kosten:
                     <ul>
                         <li>Nutzungsgebühr für das MS-Office Paket (6,00 &euro;)</li>
                         <li>Jahresbericht (4,50 &euro;)</li>

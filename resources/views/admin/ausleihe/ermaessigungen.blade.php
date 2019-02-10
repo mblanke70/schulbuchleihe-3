@@ -38,23 +38,33 @@
 
 	        <tbody>
 
-	        	@foreach($schueler as $s)
+	        	@foreach($ausleiher as $a)
  					<tr>			
-	 					<td>{{ $s->id }}</td>
-		                <td>{{ $s->nachname }}</td>
-		                <td>{{ $s->vorname }}</td>
-		                <td>{{ $s->klasse }}</td>
-		                <td>{{ (10 - $s->ermaessigung) * 10 }} %</td>
+	 					<td>{{ $a->id }}</td>
+		                <td>{{ $a->nachname }}</td>
+		                <td>{{ $a->vorname }}</td>
+		                <td>{{ $a->bezeichnung }}</td>
 		                <td>
-		                	<span style="display:none">{{ $s->bestaetigt }}</span>
-		                	<form action="{{ url('admin/ausleihe/ermaessigungen/'.$s->id) }}" method="POST">
+		                		@if($a->erm==1) 
+		                			20%
+		                		@elseif($a->erm==2) 
+		                			100%
+		                		@elseif($a->erm===0)
+		                			keine
+		                		@else
+		                			nicht angegeben	
+		                		@endif
+		                </td>
+		                <td>
+		                	<span style="display:none">{{ $a->erm_bestaetigt }}</span>
+		                	<form action="{{ url('admin/ausleihe/ermaessigungen/'.$a->id) }}" method="POST">
                         		{{ csrf_field() }}   
 
 			                	<select class="buchleihe-ermaessigung" name="ermaessigung">
 	                        		<option value="">unbestätigt</option>
-	                        		<option value="10" @if($s->bestaetigt==10) selected @endif>keine</option>
-	                        		<option value="8" @if($s->bestaetigt==8) selected @endif>20%</option>
-	                        		<option value="0" @if($s->bestaetigt===0) selected @endif>100%</option>
+	                        		<option value="0" @if($a->erm_bestaetigt==0) selected @endif>keine</option>
+	                        		<option value="1" @if($a->erm_bestaetigt==1) selected @endif>20%</option>
+	                        		<option value="2" @if($a->erm_bestaetigt==2) selected @endif>100%</option>
 	                    		</select>
 	                    	</form>
 		                </td>

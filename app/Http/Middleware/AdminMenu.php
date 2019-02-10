@@ -29,6 +29,8 @@ class AdminMenu
                 'url'  => 'admin/buecher',
                 'icon' => 'book',
             ]);
+
+            /*
             $event->menu->add('NUTZER');
             $event->menu->add([
                 'text' => 'Klassen',
@@ -40,7 +42,8 @@ class AdminMenu
                 'url'  => 'admin/schueler',
                 'icon' => 'user',
             ]);
-           
+            */
+
             //$event->menu->add('SCHÜLER-ANSICHT');
 
             /*$event->menu->add([
@@ -52,29 +55,42 @@ class AdminMenu
             $event->menu->add('AUSLEIHE & RÜCKGABE');       
 
             $event->menu->add([
-                'text' => 'Ausleihe & Rückgabe',
+                'text' => 'Ausleihe',
+                'url'  => 'admin/ausleihe',
                 'icon' => 'list',
-                'submenu' => [
-                    [
-                        'text' => 'Ausleihe',
-                        'url'  => 'admin/ausleihe',
-                        'icon' => 'list',
-                    ],
-                    [
-                        'text' => 'Ermäßigungen',
-                        'url'  => 'admin/ausleihe/ermaessigungen',
-                        'icon' => 'list',
-                    ],
-                    [
-                         'text' => 'Buchinfo',
-                         'url'  => 'admin/ausleihe/buchinfo',
-                        'icon' => 'list',
-                    ]
-                ]
             ]);
+            $event->menu->add([
+                'text' => 'Rückgabe',
+                'url'  => 'admin/rueckgabe',
+                'icon' => 'list',
+            ]);
+            $event->menu->add([
+                'text' => 'Buchinfo',
+                'url'  => 'admin/buchinfo',
+                'icon' => 'list',
+            ]);
+            /*
+            $event->menu->add([
+                'text' => 'Ermäßigungen',
+                'url'  => 'admin/ausleihe/ermaessigungen',
+                'icon' => 'list',
+            ]);
+            */
 
             $event->menu->add('LEIHVERFAHREN');       
            
+            $event->menu->add([
+                'text' => 'Jahrgänge & Klassen',
+                'url'  => 'admin',
+                'icon' => 'list',
+            ]);
+
+            $event->menu->add([
+                'text' => 'Ausleiher',
+                'url'  => 'admin',
+                'icon' => 'list',
+            ]);            
+
             $event->menu->add([
                 'text' => 'Bücherlisten',
                 'url'  => 'admin/buecherlisten',
@@ -85,6 +101,7 @@ class AdminMenu
                 'url'  => 'admin/abfragen',
                 'icon' => 'list',
             ]);
+            /*
             $event->menu->add([
                 'text' => 'Auswertung',
                 'url'  => 'admin/auswertung',
@@ -95,6 +112,7 @@ class AdminMenu
                 'url'  => 'admin/auswertung/bankeinzug',
                 'icon' => 'list',
             ]);
+            */
 
         });
 
