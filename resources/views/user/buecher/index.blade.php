@@ -3,7 +3,7 @@
 @section('title', 'Meine Bücher')
 
 @section('content_header')
-    <h1>Meine Bücher</h1>
+    <h1>Meine Leihbücher</h1>
     <h4>{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} ({{ Auth::user()->klasse }})</h4>
 @stop
 
@@ -12,7 +12,7 @@
 <div class="box box-solid box-success">    
 
     <div class="box-header">
-        <h3 class="box-title">Ausgeliehene Bücher</h3>
+        <h3 class="box-title">Leihbücher</h3>
     </div>
     
     <div class="box-body">  
