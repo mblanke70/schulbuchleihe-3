@@ -10,40 +10,38 @@
 
 <div class="row">
 	<div class="col-md-6">
+
 		<div class="box">
 			<div class="box-header with-border">
-				<h3 class="box-title">Klassen</h3>
+				<h3 class="box-title">Jahrgänge</h3>
 				<div class="box-tools pull-right">
-					<a class="btn btn-block btn-success" href="{{ url('admin/klassen/create') }}">Neue Klasse</a>   				
+				  	<span class="label label-primary">{{ $schuljahr->schuljahr }}</span>
 				</div>
 				<!-- /.box-tools -->
 			</div>
 			<!-- /.box-header -->
 			<div class="box-body">
-				<table id="klassen" class="display" cellspacing="0" width="100%">
+				<table id="jahrgaenge" class="display" cellspacing="0" width="100%">
 			        <thead>
 			            <tr>
 			                <th>ID</th>
-			                <th>Pos</th>
-			                <th>Bezeichnung</th>
-			                <th>Jahrgang</th>
+			                <th>Jahrgangsstufe</th>
+			                <th>Schuljahr</th>
 			            </tr>
 			        </thead>
 			        <tfoot>
 			            <tr>
 			            	<th>ID</th>
-			                <th>Pos</th>
-			                <th>Bezeichnung</th>
-			                <th>Jahrgang</th>
+			                <th>Jahrgangsstufe</th>
+			                <th>Schuljahr</th>
 			            </tr>
 			        </tfoot>
 			        <tbody>
-			        	@foreach ($klassen as $k)
+			        	@foreach ($jahrgaenge as $j)
 			                <tr>
-			                    <td> {{ $k->id }} </td>
-			                    <td> {{ $k->pos }} </td>
-			                    <td> {{ $k->bezeichnung }} </td>
-			                    <td> {{ $k->jahrgang->jahrgangsstufe }} </td>
+			                    <td> {{ $j->id }} </td>
+			                    <td> {{ $j->jahrgangsstufe }} </td>
+			                    <td> {{ $j->schuljahr->schuljahr }} </td>
 			                </tr>
 			            @endforeach
 			        </tbody>
@@ -56,42 +54,43 @@
 			<!-- box-footer -->
 		</div>
 		<!-- /.box -->
+		
 	</div>
 
 	<div class="col-md-6">
-			<div class="box">
+
+		<div class="box">
 			<div class="box-header with-border">
-				<h3 class="box-title">Jahrgänge</h3>
+				<h3 class="box-title">Klassen</h3>
 				<div class="box-tools pull-right">
-			  		<!-- Buttons, labels, and many other things can be placed here! -->
-			  		<!-- Here is a label for example -->
-				  	<!--<span class="label label-primary">Label</span>-->
+				  	<span class="label label-primary">{{ $schuljahr->schuljahr }}</span>
+					<!--<a class="btn btn-block btn-success" href="{{ url('admin/klassen/create') }}">Neue Klasse</a>--> 				
 				</div>
 				<!-- /.box-tools -->
 			</div>
 			<!-- /.box-header -->
 			<div class="box-body">
-				<table id="jahrgaenge" class="display" cellspacing="0" width="100%">
+				<table id="klassen" class="display" cellspacing="0" width="100%">
 			        <thead>
 			            <tr>
 			                <th>ID</th>
-			                <th>Pos</th>
-			                <th>Jahrgangsstufe</th>
+			                <th>Bezeichnung</th>
+			                <th>Jahrgang</th>
 			            </tr>
 			        </thead>
 			        <tfoot>
 			            <tr>
 			            	<th>ID</th>
-			                <th>Pos</th>
-			                <th>Jahrgangsstufe</th>
+			                <th>Bezeichnung</th>
+			                <th>Jahrgang</th>
 			            </tr>
 			        </tfoot>
 			        <tbody>
-			        	@foreach ($jahrgaenge as $j)
+			        	@foreach ($klassen as $k)
 			                <tr>
-			                    <td> {{ $j->id }} </td>
-			                    <td> {{ $j->pos }} </td>
-			                    <td> {{ $j->jahrgangsstufe }} </td>
+			                    <td> {{ $k->id }} </td>
+			                    <td> {{ $k->bezeichnung }} </td>
+			                    <td> {{ $k->jahrgang->jahrgangsstufe }} </td>
 			                </tr>
 			            @endforeach
 			        </tbody>

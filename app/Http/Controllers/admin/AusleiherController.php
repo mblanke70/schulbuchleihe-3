@@ -4,26 +4,44 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
-use App\Klasse;
-use App\Jahrgang;
+use App\Ausleiher;
 use App\Schuljahr;
 
-class KlasseController extends Controller
+class AusleiherController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display index page and process dataTable ajax request.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $schuljahr  = Schuljahr::where('aktiv', '1')->first();
-        $jahrgaenge = $schuljahr->jahrgaenge;
-        $klassen    = $schuljahr->klassen;
 
-        return view('admin/klassen/index', compact('klassen', 'jahrgaenge', 'schuljahr'));
+        return view('admin/ausleiher/index', compact('schuljahr'));
     }
+
+    public function getAusleiherData()
+    {        
+        // nur Ausleiher aus Klassen, die in Jahrgängen sind, die zum aktuellen Schuljahr gehören
+        $ausleiher = Ausleiher::with('user', 'klasse')->get() ; 
+
+        return Datatables::of($ausleiher)
+            ->addColumn('action', function ($ausleiher) {
+                return '
+                    <a href="'.url('admin/ausleiher/'.$ausleiher->id.'/edit').'" class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i> Edit
+                    </a> 
+
+                    <a href="#delete-'.$ausleiher->id.'" class="btn btn-xs btn-danger">
+                        <i class="glyphicon glyphicon-trash"></i> Delete
+                    </a>';
+            })
+            ->make(true);
+    }
+
 
     /**
      * Show the form for creating a new resource.

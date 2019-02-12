@@ -5,24 +5,16 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Klasse;
-use App\Jahrgang;
 use App\Schuljahr;
 
-class KlasseController extends Controller
+class SchuljahrController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $schuljahr  = Schuljahr::where('aktiv', '1')->first();
-        $jahrgaenge = $schuljahr->jahrgaenge;
-        $klassen    = $schuljahr->klassen;
+        $schuljahre = Schuljahr::all();
 
-        return view('admin/klassen/index', compact('klassen', 'jahrgaenge', 'schuljahr'));
+        return view('admin/schuljahre/index', compact('schuljahre'));
     }
 
     /**

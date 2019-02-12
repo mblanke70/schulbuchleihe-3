@@ -91,6 +91,7 @@ Route::group(
 
     Route::resource('schueler', 'UserController');
     Route::get('getUserData', 'UserController@getUserData');
+    
     Route::get('versetzen', 'UserController@versetzen');
     Route::post('versetzenSpeichern', 'UserController@versetzenSpeichern');
     
@@ -99,6 +100,12 @@ Route::group(
 
     Route::resource('buecher', 'BuchController');
     Route::resource('klassen', 'KlasseController');
+    Route::resource('schuljahre', 'SchuljahrController');
+
+    Route::resource('ausleiher', 'AusleiherController');
+    Route::get('getAusleiherData', 'AusleiherController@getAusleiherData');
+    //Route::get('ausleiher/getUserData', 'AusleiherController@getUserData');
+
     Route::resource('abfragen', 'AbfrageController');
     Route::resource('buecherlisten', 'BuecherlisteController');
     

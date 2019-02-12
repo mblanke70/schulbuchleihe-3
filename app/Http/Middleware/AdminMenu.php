@@ -78,16 +78,22 @@ class AdminMenu
             */
 
             $event->menu->add('LEIHVERFAHREN');       
-           
+            
             $event->menu->add([
-                'text' => 'Jahrgänge & Klassen',
-                'url'  => 'admin',
+                'text' => 'Schuljahre',
+                'url'  => 'admin/schuljahre',
+                'icon' => 'list',
+            ]);
+
+            $event->menu->add([
+                'text' => 'Klassen & Jahrgänge',
+                'url'  => 'admin/klassen',
                 'icon' => 'list',
             ]);
 
             $event->menu->add([
                 'text' => 'Ausleiher',
-                'url'  => 'admin',
+                'url'  => 'admin/ausleiher',
                 'icon' => 'list',
             ]);            
 

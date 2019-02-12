@@ -17,4 +17,9 @@ class Schuljahr extends Model
     {
     	return $this->hasMany('App\Jahrgang'); 
     }
+
+	public function klassen()
+    {
+    	return $this->hasManyThrough('App\Klasse', 'App\Jahrgang'); 
+    }    
 }
