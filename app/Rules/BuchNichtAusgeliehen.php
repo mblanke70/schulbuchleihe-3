@@ -30,8 +30,10 @@ class BuchNichtAusgeliehen implements Rule
         // und die noch nicht zurückgegeben worden sind 
 
         //$ausgelieheneBuecher = App\Buch::whereHas('ausleiher', function($query) { $query->whereNull('rueckgabe'); })->get();
-
-        return $this->buch->ausleiher_id == null;
+        if($this->buch!=null)
+            return $this->buch->ausleiher_id == null;
+        else 
+            return true;
 
         //$ausgelieheneBuecher = BuchUser::whereNull('rueckgabe')->get();
         

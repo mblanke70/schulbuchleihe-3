@@ -4,11 +4,14 @@ namespace App\Nova;
 
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Gravatar;
-use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\Currency;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\MorphTo;
 
-class User extends Resource
+class Buch extends Resource
 {
     /**
      * Get the displayble label of the resource.
@@ -17,22 +20,29 @@ class User extends Resource
      */
     public static function label()
     {
-        return 'User';
+        return 'Bücher';
     }
+
+    /**
+    * The logical group associated with the resource.
+    *
+    * @var string
+    */
+    public static $group = 'Bestand';
 
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\\User';
+    public static $model = 'App\Buch';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'email';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -40,8 +50,15 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'id',
     ];
+
+    /**
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
+    public static $with = ['buchtitel'];
 
     /**
      * Get the fields displayed by the resource.
@@ -53,23 +70,16 @@ class User extends Resource
     {
         return [
             ID::make()->sortable(),
-
-            //Gravatar::make(),
-
-            Text::make('Name')
-                ->sortable()
+            BelongsTo::make('Titel', 'buchtitel', 'App\Nova\Buchtitel')->nullable(),
+            MorphTo::make('Ausleiher')->types([
+                Schueler::class,
+                Lehrer::class,
+            ]),
+            Text::make('Preis', 'neupreis')
                 ->rules('required', 'max:255'),
 
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
-
-            Password::make('Password')
-                ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:6')
-                ->updateRules('nullable', 'string', 'min:6'),
+            //Text::make('Aufnahme', 'aufnahme')->sortable(),
+            Date::make('Aufnahme', 'created_at'),
         ];
     }
 
@@ -114,6 +124,6 @@ class User extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [new Actions\PrintBarcodeLabel];
     }
 }

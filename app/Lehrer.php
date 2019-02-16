@@ -10,7 +10,7 @@ class Lehrer extends Model
 
 	public function buecher()
     {
-        return $this->morphMany('App\Buch', 'besitzer')->with('buchtitel');
+        return $this->morphMany('App\Buch', 'ausleiher')->with('buchtitel');
     }
 
     public function user()

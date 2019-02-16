@@ -114,8 +114,6 @@ class BuchController extends Controller
     {
         $buch = Buch::findOrFail($id);
 
-        //dd($buch);
-
         $pdf = \PDF::loadView('admin.buecher.pdf.label', compact('buch'))
             ->setOption('page-width'   , '105.0')
             ->setOption('page-height'  , '48.0')

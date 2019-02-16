@@ -27,9 +27,9 @@ class Jahrgang extends Model
     /*
      * Liefert alle Ausleiher des Jahrgangs.
      */
-    public function ausleiher()
+    public function schueler()
     {
-        return $this->hasManyThrough('App\Ausleiher', 'App\Klasse');   
+        return $this->hasManyThrough('App\Schueler', 'App\Klasse');   
     }
 
     /**

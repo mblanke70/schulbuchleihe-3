@@ -19,6 +19,7 @@ use App\BuchUser;
 use App\Schuljahr;
 use App\BuchHistorie;
 use App\Ausleiher;
+use App\Schueler;
 
 use App\Rules\BuchtitelNichtAusgeliehen;
 use App\Rules\BuchNichtAusgeliehen;
@@ -52,7 +53,7 @@ class AusleiheController extends Controller
     {  
         $klasse = Klasse::findOrFail($id);
 
-        $ausleiher = $klasse->ausleiher()->get();
+        $ausleiher = $klasse->schueler()->get();
         $gruppen   = $ausleiher->split(3);    
         
         return view('admin/ausleihe/klasse', compact('ausleiher', 'gruppen'));
@@ -62,21 +63,21 @@ class AusleiheController extends Controller
     /**
      *  Zeige eine Liste der ausgeliehenen und eine Liste der bestellten Bücher. 
      */
-    public function zeigeSchueler($klasse_id, $ausleiher_id)
+    public function zeigeSchueler($klasse_id, $schueler_id)
     {   
-        $ausleiher = Ausleiher::where('id', $ausleiher_id)
+        $schueler = Schueler::where('id', $schueler_id)
             ->with('user', 'klasse.jahrgang')       // eager loading
             ->first();
 
-        $next   = $ausleiher->next();
-        $prev   = $ausleiher->prev();
+        $next   = $schueler->next();
+        $prev   = $schueler->prev();
        
         // Hole alle Buchtitel, die auf der Bücherliste des Jahrgangs des Ausleihers stehen       
-        $buchtitel     = $ausleiher->klasse->jahrgang->buecherliste->buchtitel;
+        $buchtitel     = $schueler->klasse->jahrgang->buecherliste->buchtitel;
         // Hole alle Bücher, die der Ausleiher derzeit ausgeliehen hat
-        $buecher       = $ausleiher->buecher;
+        $buecher       = $schueler->buecher;
         // Hole alle Buchbestellungen, die der Ausleiher abgegeben hat
-        $buecherwahlen = $ausleiher->buecherwahlen->keyBy('buchtitel_id');
+        $buecherwahlen = $schueler->buecherwahlen->keyBy('buchtitel_id');
 
         // Durchlaufe die Bücherliste und ergänze zu jedem Buchtitel
         //   - die zugehörige Bestellung
@@ -103,16 +104,16 @@ class AusleiheController extends Controller
         }
 
         return view('admin/ausleihe/schueler', 
-            compact('ausleiher', 'buecher', 'buchtitel', 'next', 'prev', 'summe'));
+            compact('schueler', 'buecher', 'buchtitel', 'next', 'prev', 'summe'));
     }
 
     /**
      * Leihe ein Buch an einen Ausleiher aus.
      */
-    public function ausleihen(Request $request, $klasse_id, $ausleiher_id)
+    public function ausleihen(Request $request, $klasse_id, $schueler_id)
     {
-        $ausleiher = Ausleiher::find($ausleiher_id);
-        $buch      = Buch::find($request->buch_id);
+        $schueler = Schueler::find($schueler_id);
+        $buch     = Buch::find($request->buch_id);
       
         // Ausleihen nicht möglich, Abbruch mit Fehlermeldung...
         $validator1 = Validator::make(
@@ -131,7 +132,7 @@ class AusleiheController extends Controller
         );
 
         if($validator1->fails()) {
-            return redirect('admin/ausleihe/'.$klasse_id.'/'.$ausleiher_id)
+            return redirect('admin/ausleihe/'.$klasse_id.'/'.$schueler_id)
                 ->withErrors($validator1->errors()->add('type', 'warning'))
                 ->withInput();
         }
@@ -141,27 +142,32 @@ class AusleiheController extends Controller
             $request->all(), 
             [
                 'buch_id' => [
-                    new BuchtitelNichtAusgeliehen($ausleiher, $buch),
-                    new BuchtitelIstAufBuecherliste($ausleiher, $buch),
-                    new BuchtitelIstBestellt($ausleiher, $buch),                    
+                    new BuchtitelNichtAusgeliehen($schueler, $buch),
+                    new BuchtitelIstAufBuecherliste($schueler, $buch),
+                    new BuchtitelIstBestellt($schueler, $buch),                    
                 ],
             ] 
         );
 
         if($request->confirmed==null && $validator2->fails()) {
-            return redirect('admin/ausleihe/'.$klasse_id.'/'.$ausleiher_id)
+            return redirect('admin/ausleihe/'.$klasse_id.'/'.$schueler_id)
                 ->withErrors($validator2->errors()->add('type', 'confirm'))
                 ->withInput();
         } 
 
         // Buch wird ausgeliehen
-        $buch->ausleiher_id = $ausleiher->id;
-        $buch->ausgabe      = now();
-        $buch->save();  
+        $buch->ausleiher()->save($schueler, ['ausgabe' => now()]);
 
+        /*
+        $buch->ausleiher_id   = $schueler->id;
+        $buch->ausleiher_type = "App\Schueler"
+        $buch->ausgabe        = now();
+        $buch->save();  
+        */
+        
         //$ausleiher->buecher()->attach($buch, ['ausgabe' => now()]);
 
-        return redirect('admin/ausleihe/'.$klasse_id.'/'.$ausleiher_id);
+        return redirect('admin/ausleihe/'.$klasse_id.'/'.$schueler_id);
     }
    
     
@@ -170,27 +176,27 @@ class AusleiheController extends Controller
      * Nimm die Ausleihe eines Buches zurück  
      * (ohne einen Eintrag in die Buchhistorie zu machen)
      */
-    public function loeschen(Request $request, $klasse_id, $ausleiher_id)
+    public function loeschen(Request $request, $klasse_id, $schueler_id)
     {
         //$ausleiher = Ausleiher::find($ausleiher_id);
         $buch = Buch::find($request->buch_id);
 
-        $buch->ausleiher_id = null;
-        $buch->ausgabe      = null;
+        $buch->schueler_id = null;
+        $buch->ausgabe     = null;
         $buch->save();
 
         //$user->buecher()->detach($buch);
         
-        return redirect('admin/ausleihe/'.$klasse_id.'/'.$ausleiher_id);
+        return redirect('admin/ausleihe/'.$klasse_id.'/'.$schueler_id);
     }
 
-    public function aktualisieren(Request $request, $klasse_id, $ausleiher_id)
+    public function aktualisieren(Request $request, $klasse_id, $schueler_id)
     {
         $buchwahlen = $request->wahlen;
         
         foreach($buchwahlen as $buchtitel_id => $wahl) 
         {    
-            $bw = Buchwahl::where('ausleiher_id', $ausleiher_id)
+            $bw = Buchwahl::where('ausleiher_id', $schueler_id)
                           ->where('buchtitel_id', $buchtitel_id)
                           ->first();
             if($wahl!=4)
@@ -210,21 +216,21 @@ class AusleiheController extends Controller
             }
         }
 
-        return redirect('admin/ausleihe/'.$klasse_id.'/'.$ausleiher_id);
+        return redirect('admin/ausleihe/'.$klasse_id.'/'.$schueler_id);
     }
 
-    public function zeigeBuecherliste($klasse_id, $ausleiher_id)
+    public function zeigeBuecherliste($klasse_id, $schueler_id)
     {
-        $ausleiher = Ausleiher::where('id', $ausleiher_id)
+        $schueler = Schueler::where('id', $schueler_id)
             ->with('user', 'klasse.jahrgang')       // eager loading
             ->first();
 
         // Hole alle Buchtitel, die auf der Bücherliste des Jahrgangs des Ausleihers stehen       
-        $buchtitel     = $ausleiher->klasse->jahrgang->buecherliste->buchtitel;
+        $buchtitel     = $schueler->klasse->jahrgang->buecherliste->buchtitel;
         // Hole alle Bücher, die der Ausleiher derzeit ausgeliehen hat
-        $buecher       = $ausleiher->buecher;
+        $buecher       = $schueler->buecher;
 
-        $buecherwahlen = $ausleiher->buecherwahlen->keyBy('buchtitel_id');
+        $buecherwahlen = $schueler->buecherwahlen->keyBy('buchtitel_id');
 
         foreach($buchtitel as $bt) {
            // bestellt?
@@ -245,9 +251,9 @@ class AusleiheController extends Controller
 
     public function zeigeErmaessigungen()
     {
-        $ausleiher = DB::table('ausleiher')
-            ->join('users',   'ausleiher.user_id',   '=', 'users.id')
-            ->join('klassen', 'ausleiher.klasse_id', '=', 'klassen.id')
+        $schueler = DB::table('schueler')
+            ->join('users',   'schueler.user_id',   '=', 'users.id')
+            ->join('klassen', 'schueler.klasse_id', '=', 'klassen.id')
             //->where('erm', '>', 0)
             ->orderBy('nachname')
             ->orderBy('vorname')
@@ -256,24 +262,24 @@ class AusleiheController extends Controller
         return view('admin/ausleihe/ermaessigungen', compact('ausleiher'));
     }
 
-    public function bestaetigeErmaessigungen(Request $request, $ausleiher_id)
+    public function bestaetigeErmaessigungen(Request $request, $schueler_id)
     {
-        $ausleiher = Ausleiher::find($ausleiher_id);
+        $schueler = Schueler::find($schueler_id);
 
-        $ausleiher->erm_bestaetigt = $request->ermaessigung;
-        $ausleiher->save();
+        $schueler->erm_bestaetigt = $request->ermaessigung;
+        $schueler->save();
 
         return redirect('admin/ausleihe/ermaessigungen');
     }
 
-    public function bestaetigeErmaessigungen2(Request $request, $klasse_id, $ausleiher_id)
+    public function bestaetigeErmaessigungen2(Request $request, $klasse_id, $schueler_id)
     {
-        $ausleiher = Ausleiher::find($ausleiher_id);
+        $schueler = Schueler::find($schueler);
 
-        $ausleiher->bestaetigt = $request->ermaessigung;
-        $ausleiher->save();
+        $schueler->bestaetigt = $request->ermaessigung;
+        $schueler->save();
 
-        return redirect('admin/ausleihe/'.$klasse_id.'/'.$ausleiher_id);
+        return redirect('admin/ausleihe/'.$klasse_id.'/'.$schueler_id);
     }
 
     /*
@@ -291,7 +297,6 @@ class AusleiheController extends Controller
         $buch = Buch::find($request->buch_id);
 
         $ausleiher = $buch->ausleiher()->first();
-            //->whereNull('rueckgabe')
         
         return view('admin/ausleihe/buchinfo', compact('buch', 'ausleiher'));
     }

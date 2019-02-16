@@ -13,8 +13,8 @@ class Buchwahl extends Model
     	return $this->belongsTo('App\Buchtitel');
     }
 
-	public function ausleiher()
+	public function schueler()
     {
-    	return $this->belongsTo('App\Ausleiher');
+    	return $this->belongsTo('App\Schueler');
     }    
 }

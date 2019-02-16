@@ -5,19 +5,19 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Ausleiher extends Model
+class Schueler extends Model
 {
-    protected $table = 'ausleiher';
+    protected $table = 'schueler';
 
-    public function _buecher()
+    public function buecher()
     {
-        return $this->morphMany('App\Buch', 'besitzer')->with('buchtitel');
+        return $this->morphMany('App\Buch', 'ausleiher')->with('buchtitel');
     }
 
 	/**
      * Liefert alle Bücher, die der Ausleiher derzeit ausgeliehen hat.
      */
-    public function buecher()
+    public function _buecher()
     {
         return $this->hasMany('App\Buch')->with('buchtitel');
         //return $this->belongsToMany('App\Buch')->with('buchtitel');
@@ -53,9 +53,9 @@ class Ausleiher extends Model
     public function next()
     {
         // QueryBuilder wegen der Sortierung nach Vor- und Nachnamen (in users)
-        return DB::table('ausleiher')
+        return DB::table('schueler')
             ->where('klasse_id', '=', $this->klasse_id)
-            ->join('users', 'ausleiher.user_id', '=', 'users.id')
+            ->join('users', 'schueler.user_id', '=', 'users.id')
             ->where('nachname', '>=', $this->user->nachname)
             ->where(function ($query) {
                 $query->where  ('nachname', '>', $this->user->nachname)
@@ -63,7 +63,7 @@ class Ausleiher extends Model
             })
             ->orderBy('nachname', 'asc')
             ->orderBy('vorname', 'asc')
-            ->select('ausleiher.id')
+            ->select('schueler.id')
             ->first();
     }
 
@@ -73,9 +73,9 @@ class Ausleiher extends Model
     public function prev()
     {
         // QueryBuilder wegen der Sortierung nach Vor- und Nachnamen (in users)
-        return DB::table('ausleiher')
+        return DB::table('schueler')
             ->where('klasse_id', '=', $this->klasse_id)
-            ->join('users', 'ausleiher.user_id', '=', 'users.id')
+            ->join('users', 'schueler.user_id', '=', 'users.id')
             ->where('nachname', '<=', $this->user->nachname)
             ->where(function ($query) {
                 $query->where  ('nachname', '<', $this->user->nachname)
@@ -83,7 +83,7 @@ class Ausleiher extends Model
             })
             ->orderBy('nachname', 'desc')
             ->orderBy('vorname', 'desc')
-            ->select('ausleiher.id')
+            ->select('schueler.id')
             ->first();
     }    
 

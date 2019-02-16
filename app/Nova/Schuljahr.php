@@ -4,11 +4,9 @@ namespace App\Nova;
 
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Gravatar;
-use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
-class User extends Resource
+class Schuljahr extends Resource
 {
     /**
      * Get the displayble label of the resource.
@@ -17,22 +15,29 @@ class User extends Resource
      */
     public static function label()
     {
-        return 'User';
+        return 'Schuljahre';
     }
+
+    /**
+    * The logical group associated with the resource.
+    *
+    * @var string
+    */
+    public static $group = 'Leihverfahren';
 
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\\User';
+    public static $model = 'App\Schuljahr';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'email';
+    public static $title = 'schuljahr';
 
     /**
      * The columns that should be searched.
@@ -40,7 +45,7 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'id',
     ];
 
     /**
@@ -53,23 +58,6 @@ class User extends Resource
     {
         return [
             ID::make()->sortable(),
-
-            //Gravatar::make(),
-
-            Text::make('Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
-
-            Password::make('Password')
-                ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:6')
-                ->updateRules('nullable', 'string', 'min:6'),
         ];
     }
 

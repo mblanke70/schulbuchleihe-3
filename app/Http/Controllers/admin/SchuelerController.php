@@ -7,9 +7,10 @@ use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 
 use App\Ausleiher;
+use App\Schueler;
 use App\Schuljahr;
 
-class AusleiherController extends Controller
+class SchuelerController extends Controller
 {
     /**
      * Display index page and process dataTable ajax request.
@@ -26,16 +27,16 @@ class AusleiherController extends Controller
     public function getAusleiherData()
     {        
         // nur Ausleiher aus Klassen, die in Jahrgängen sind, die zum aktuellen Schuljahr gehören
-        $ausleiher = Ausleiher::with('user', 'klasse')->get() ; 
+        $schueler = Schueler::with('user', 'klasse')->get() ; 
 
-        return Datatables::of($ausleiher)
+        return Datatables::of($schueler)
             ->addColumn('action', function ($ausleiher) {
                 return '
-                    <a href="'.url('admin/ausleiher/'.$ausleiher->id.'/edit').'" class="btn btn-xs btn-primary">
+                    <a href="'.url('admin/ausleiher/'.$schueler->id.'/edit').'" class="btn btn-xs btn-primary">
                         <i class="glyphicon glyphicon-edit"></i> Edit
                     </a> 
 
-                    <a href="#delete-'.$ausleiher->id.'" class="btn btn-xs btn-danger">
+                    <a href="#delete-'.$schueler->id.'" class="btn btn-xs btn-danger">
                         <i class="glyphicon glyphicon-trash"></i> Delete
                     </a>';
             })

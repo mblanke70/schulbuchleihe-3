@@ -13,12 +13,6 @@ class Buch extends Model
      */
     protected $table = 'buecher';
 
-
-    public function besitzer()
-    {
-        return $this->morphTo();
-    }
-    
 	/**
      * Liefert den Buchtitel des Buches.
      */
@@ -28,11 +22,11 @@ class Buch extends Model
     }
 
     /*
-     * Liefert den Ausleiher des Buches (falls vorhanden).
+     * Liefert den Ausleiher des Buches, einen Schüler oder Lehrer (falls vorhanden).
      */
     public function ausleiher()
     {
-        return $this->belongsTo('App\Ausleiher');
+        return $this->morphTo();
     }    
 
     /*
@@ -42,5 +36,4 @@ class Buch extends Model
     {
         return $this->hasMany('App\BuchHistorie');
     }
-
 }

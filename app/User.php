@@ -14,9 +14,9 @@ class User extends Authenticatable
         return $this->is_admin == 1;
     }
 
-    public function ausleiher()
+    public function schueler()
     {
-        return $this->hasMany('App\Ausleiher')->with(['user', 'klasse']);
+        return $this->hasMany('App\Schueler')->with(['user', 'klasse']);
     }
 
     public function lehrer()

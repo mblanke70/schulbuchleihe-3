@@ -102,8 +102,8 @@ Route::group(
     Route::resource('klassen', 'KlasseController');
     Route::resource('schuljahre', 'SchuljahrController');
 
-    Route::resource('ausleiher', 'AusleiherController');
-    Route::get('getAusleiherData', 'AusleiherController@getAusleiherData');
+    Route::resource('schueler', 'SchuelerController');
+    Route::get('getSchuelerData', 'SchuelerController@getSchuelerData');
     //Route::get('ausleiher/getUserData', 'AusleiherController@getUserData');
 
     Route::resource('abfragen', 'AbfrageController');
