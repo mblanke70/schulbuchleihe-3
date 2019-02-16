@@ -1,5 +1,6 @@
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>`
 	<title>Label #{{$buch->id}}</title>
 	<style type="text/css">
 		*  {padding: 0; margin: 0; font-family: Arial, sans-serif;}
