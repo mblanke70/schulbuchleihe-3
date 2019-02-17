@@ -25,6 +25,14 @@ class Buchtitel extends Model
     }
 
     /**
+     * Liefert die Bücherlisten, auf denen dieser Buchtitel steht.
+     */
+    public function buecherliste()
+    {
+        return $this->belongsToMany('App\Buecherliste');
+    }    
+
+    /**
      * Liefert die Bestellungen zu diesem Buchtitel.
      */
     public function bestellungen()

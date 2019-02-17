@@ -39,4 +39,12 @@ class Jahrgang extends Model
     {
         return $this->hasOne('App\Buecherliste');   
     }
+
+    /**
+     * Liefert die Bücherliste, die zu diesem Jahrgang gehört.
+     */
+    public function abfragen()
+    {
+        return $this->hasMany('App\Abfrage');   
+    }
 }

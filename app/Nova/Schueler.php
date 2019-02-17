@@ -18,6 +18,7 @@ class Schueler extends Resource
     */
     public static $group = 'Leihverfahren';
 
+
     /**
      * Get the displayble label of the resource.
      *
@@ -51,7 +52,7 @@ class Schueler extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'name'
     ];
 
     /**
@@ -71,8 +72,8 @@ class Schueler extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Vorname', 'user.vorname'),
-            Text::make('Nachname', 'user.nachname'),
+            Text::make('Vorname', 'vorname')->sortable(),
+            Text::make('Nachname', 'nachname')->sortable(),
             BelongsTo::make('Klasse', 'klasse')->nullable(),
             Text::make('# geliehen', function () {
                 return $this->buecher()->count();
@@ -102,6 +103,7 @@ class Schueler extends Resource
     {
         return [
             new Filters\SchuelerKlasse,
+            new Filters\SchuelerSchuljahr
         ];
     }
 
@@ -124,6 +126,6 @@ class Schueler extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [new Actions\BuchAusleihen];
     }
 }

@@ -24,9 +24,9 @@ Route::get('/pdf', function() {
 
     //Or output:
 
-    //return PDF::loadHTML($html)->inline('test.pdf');
+    return PDF::loadHTML($html)->inline('test.pdf');
     
-    
+    /*
     $user = Auth::user();
     
     $pdf = PDF::loadView('admin.buecher.pdf.label', compact('user'))
@@ -36,8 +36,8 @@ Route::get('/pdf', function() {
         ->setOption('margin-top', '4mm')
         ->setOption('margin-right', '4mm')
         ->setOption('margin-left', '4mm');
-    
-    return $pdf->inline();
+    */
+    //return $pdf->inline();
     
 /*
     return response()->file(

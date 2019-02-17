@@ -65,8 +65,8 @@ class Lehrer extends Resource
         return [
             ID::make()->sortable(),
             BelongsTo::make('User', 'user')->nullable(),
-            Text::make('Vorname', 'user.vorname'),
-            Text::make('Nachname', 'user.nachname'),
+            Text::make('Vorname', 'vorname'),
+            Text::make('Nachname', 'nachname'),
             HasMany::make('Buch', 'buecher'),
         ];
     }
@@ -112,6 +112,6 @@ class Lehrer extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [new Actions\BuchAusleihen];
     }
 }

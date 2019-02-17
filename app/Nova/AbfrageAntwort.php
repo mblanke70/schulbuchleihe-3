@@ -6,11 +6,9 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\HasMany;
 
-class Buecherliste extends Resource
+class AbfrageAntwort extends Resource
 {
     /**
      * Get the displayble label of the resource.
@@ -19,29 +17,29 @@ class Buecherliste extends Resource
      */
     public static function label()
     {
-        return 'Bücherlisten';
+        return 'AbfrageAntworten';
     }
 
     /**
-    * The logical group associated with the resource.
-    *
-    * @var string
-    */
-    public static $group = 'Leihverfahren';
+     * Indicates if the resource should be displayed in the sidebar.
+     *
+     * @var bool
+     */
+    public static $displayInNavigation = false;
 
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Buecherliste';
+    public static $model = 'App\AbfrageAntwort';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -49,15 +47,8 @@ class Buecherliste extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name'
+        'id', 'titel'
     ];
-
-    /**
-     * The relationships that should be eager loaded on index queries.
-     *
-     * @var array
-     */
-    public static $with = ['jahrgang'];
 
     /**
      * Get the fields displayed by the resource.
@@ -69,15 +60,7 @@ class Buecherliste extends Resource
     {
         return [
             ID::make()->sortable(),
-
-            Text::make('Name', 'name')->rules('required')->sortable(),
-            
-            BelongsTo::make('Jahrgang (Schuljahr)', 'jahrgang', 'App\Nova\Jahrgang')
-                ->rules('required'),
-            
-            //Text::make('Schuljahr', 'jahrgang.schuljahr_id'),
-
-            BelongsToMany::make('Buchtitel', 'buchtitel'),
+            Text::make('Name', 'titel')->rules('required')->sortable(),
         ];
     }
 

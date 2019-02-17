@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\HasMany;
 
 class Jahrgang extends Resource
 {
@@ -35,11 +36,21 @@ class Jahrgang extends Resource
     public static $model = 'App\Jahrgang';
 
     /**
-     * The single value that should be used to represent the resource when being displayed.
+     * Get the value that should be displayed to represent the resource.
      *
-     * @var string
+     * @return string
      */
-    public static $title = 'jahrgangsstufe';
+    public function title()
+    {
+        return $this->jahrgangsstufe . ' - ' . $this->schuljahr->schuljahr;
+    }
+
+    /**
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
+    public static $with = ['schuljahr'];
 
     /**
      * The columns that should be searched.
@@ -47,7 +58,7 @@ class Jahrgang extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'jahrgangsstufe'
     ];
 
     /**
@@ -61,7 +72,9 @@ class Jahrgang extends Resource
         return [
             ID::make()->sortable(),
             Text::make('jahrgangsstufe')->sortable(),
+            //Text::make('schuljahr')->sortable(),
             BelongsTo::make('Schuljahr', 'schuljahr')->nullable(),
+            HasMany::make('Abfrage', 'abfragen')
         ];
     }
 
@@ -82,9 +95,11 @@ class Jahrgang extends Resource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function filters(Request $request)
+    public function filters(Request $request) 
     {
-        return [];
+        return [
+            new Filters\JahrgangSchuljahr,
+        ];
     }
 
     /**

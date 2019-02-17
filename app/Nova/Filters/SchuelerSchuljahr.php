@@ -4,24 +4,27 @@ namespace App\Nova\Filters;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Filters\Filter;
-use App\Klasse;
 use App\Schuljahr;
 
-class SchuelerKlasse extends Filter
+class SchuelerSchuljahr extends Filter
 {
-    /**
-     * The displayable name of the filter.
-     *
-     * @var string
-     */
-    public $name = 'Klasse';
-
     /**
      * The filter's component.
      *
      * @var string
      */
     public $component = 'select-filter';
+
+    /**
+     * Set the default options for the filter.
+     *
+     * @return array
+     */
+    public function default()
+    {
+        $schuljahr  = Schuljahr::where('aktiv', '1')->first();
+        return ['id' => $schuljahr->id];
+    }
 
     /**
      * Apply the filter to the given query.
@@ -33,7 +36,11 @@ class SchuelerKlasse extends Filter
      */
     public function apply(Request $request, $query, $value)
     {
-        return $query->where('klasse_id', $value);
+        return $query->whereHas('klasse', function($query) use ($value) {
+            $query->whereHas('jahrgang', function($query) use ($value) {
+                $query->where('schuljahr_id', $value);
+            });
+        });
     }
 
     /**
@@ -44,6 +51,6 @@ class SchuelerKlasse extends Filter
      */
     public function options(Request $request)
     {
-        return Klasse::pluck('id', 'bezeichnung');
+        return Schuljahr::pluck('id', 'schuljahr');
     }
 }

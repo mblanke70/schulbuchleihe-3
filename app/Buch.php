@@ -13,6 +13,22 @@ class Buch extends Model
      */
     protected $table = 'buecher';
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'ausleiher_ausgabe'
+    ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [];
+
 	/**
      * Liefert den Buchtitel des Buches.
      */

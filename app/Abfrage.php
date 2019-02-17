@@ -6,15 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Abfrage extends Model
 {
-
     protected $table = 'abfragen';
 
-    /**
-     * Get the books for this booktitle.
-     */
     public function antworten()
     {
     	return $this->hasMany('App\AbfrageAntwort')->orderBy('titel');
+    }
+
+    public function jahrgang()
+    {
+        return $this->belongsTo('App\Jahrgang');   
     }
 
     public function children()

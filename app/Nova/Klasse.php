@@ -35,11 +35,14 @@ class Klasse extends Resource
     public static $model = 'App\Klasse';
 
     /**
-     * The single value that should be used to represent the resource when being displayed.
+     * Get the value that should be displayed to represent the resource.
      *
-     * @var string
+     * @return string
      */
-    public static $title = 'bezeichnung';
+    public function title()
+    {
+        return $this->bezeichnung . ' - ' . $this->jahrgang->schuljahr->schuljahr;
+    }
 
     /**
      * The columns that should be searched.
@@ -49,6 +52,13 @@ class Klasse extends Resource
     public static $search = [
         'id',
     ];
+
+    /**
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
+    public static $with = ['jahrgang', 'jahrgang.schuljahr'];
 
     /**
      * Get the fields displayed by the resource.
@@ -62,6 +72,7 @@ class Klasse extends Resource
             ID::make()->sortable(),
             Text::make('bezeichnung')->sortable(),
             BelongsTo::make('Jahrgang', 'jahrgang')->nullable(),
+            Text::make('Schuljahr', 'jahrgang.schuljahr.schuljahr')->hideWhenCreating()
         ];
     }
 
@@ -84,7 +95,12 @@ class Klasse extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        
+        return [
+            new Filters\KlassenSchuljahr,
+        ];
+        
+        //return [];
     }
 
     /**

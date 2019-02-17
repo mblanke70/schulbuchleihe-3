@@ -6,7 +6,9 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\HasMany;
-
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Currency;
 
 class Buchtitel extends Resource
 {
@@ -47,7 +49,7 @@ class Buchtitel extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'titel'
     ];
 
     /**
@@ -60,13 +62,31 @@ class Buchtitel extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Kennung', 'kennung')->sortable(),
-            Text::make('Titel', 'titel')->sortable(),
-            Text::make('Verlag', 'verlag')->sortable(),
-            Text::make('Leihgebühr')->sortable(),
+            
+            Text::make('Kennung', 'kennung')
+                ->rules('required')
+                ->sortable(),
+            
+            Text::make('Titel', 'titel')
+                ->rules('required'),
+            
+            Text::make('Verlag', 'verlag')
+                ->hideFromIndex()->rules('required'),
+            
+            Text::make('Leihgebühr', 'leihgebuehr'),
+            //Currency::make('Leihgebühr', 'leihgebuehr'),
+            
             //Text::make('preis')->sortable(),
             //Text::make('ISBN', 'isbn')->sortable(),  
+            
             HasMany::make('Buch', 'buecher'),
+
+            BelongsToMany::make('Buecherliste')
+                ->fields(function () {
+                    return [
+                        Boolean::make('ausleihbar'),
+                    ];
+                })
         ];
     }
 
