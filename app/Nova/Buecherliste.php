@@ -72,11 +72,9 @@ class Buecherliste extends Resource
 
             Text::make('Name', 'name')->rules('required')->sortable(),
             
-            BelongsTo::make('Jahrgang (Schuljahr)', 'jahrgang', 'App\Nova\Jahrgang')
+            BelongsTo::make('Jahrgang - Schuljahr', 'jahrgang', 'App\Nova\Jahrgang')
                 ->rules('required'),
             
-            //Text::make('Schuljahr', 'jahrgang.schuljahr_id'),
-
             BelongsToMany::make('Buchtitel', 'buchtitel'),
         ];
     }

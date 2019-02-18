@@ -11,6 +11,7 @@ use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Number;
 
 class Buch extends Resource
 {
@@ -71,15 +72,20 @@ class Buch extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Titel', 'buchtitel', 'App\Nova\Buchtitel')->nullable(),
+
+            BelongsTo::make('Titel', 'buchtitel', 'App\Nova\Buchtitel'),
+            
             MorphTo::make('Ausleiher')->types([
                 Schueler::class,
                 Lehrer::class,
-            ]),
-            Text::make('Preis', 'neupreis')
-                ->rules('required', 'max:255'),
-
-            Date::make('Aufnahme', 'aufnahme'),
+            ])->hideWhenCreating(),
+            
+            Number::make('Kaufpreis', 'neupreis')
+                ->min(1)->max(1000)->step(0.01)->rules('required'),
+          
+            Date::make('Aufnahme', 'aufnahme')
+                ->hideWhenCreating(),
+            
             HasMany::make('BuchHistorie', 'historie')
         ];
     }

@@ -9,6 +9,8 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Currency;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Number;
 
 class Buchtitel extends Resource
 {
@@ -72,12 +74,19 @@ class Buchtitel extends Resource
             
             Text::make('Verlag', 'verlag')
                 ->hideFromIndex()->rules('required'),
+
+            Text::make('ISBN', 'isbn')
+                ->hideFromIndex()->rules('required'),
+
+            Number::make('Preis', 'preis')
+                ->min(1)->max(1000)->step(0.01),
             
-            Text::make('Leihgebühr', 'leihgebuehr'),
-            //Currency::make('Leihgebühr', 'leihgebuehr'),
+            Number::make('Leihpreis', 'leihgebuehr')
+                ->min(1)->max(1000)->step(0.01),
+
             
-            //Text::make('preis')->sortable(),
-            //Text::make('ISBN', 'isbn')->sortable(),  
+            BelongsTo::make('Fach', 'fach')
+                ->hideFromIndex()->rules('required'),
             
             HasMany::make('Buch', 'buecher'),
 
