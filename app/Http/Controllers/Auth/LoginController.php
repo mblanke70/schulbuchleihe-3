@@ -101,7 +101,7 @@ class LoginController extends Controller
 
         if ( $user->istAdmin() ) 
         {
-            return redirect()->intended('admin/');
+            return redirect()->intended('nova/');
         }
 
         return redirect()->intended('user/');
