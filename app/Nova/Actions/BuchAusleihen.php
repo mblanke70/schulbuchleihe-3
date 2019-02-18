@@ -10,9 +10,10 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Laravel\Nova\Fields\Text;
-use App\Rules\BuchtitelNichtAusgeliehen;
-use App\Rules\BuchNichtAusgeliehen;
-use App\Rules\BuchcodeExistiert;
+
+//use App\Rules\BuchtitelNichtAusgeliehen;
+//use App\Rules\BuchNichtAusgeliehen;
+//use App\Rules\BuchcodeExistiert;
 
 use App\Buch;
 use Carbon\Carbon;
@@ -39,11 +40,11 @@ class BuchAusleihen extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
         $ausleiher = $models->first();
-        $buch     = Buch::find($fields->buch_id);
-        $now      = Carbon::now()->toDateTimeString();
+        $buch      = Buch::find($fields->buch_id);
+        $now       = Carbon::now()->toDateTimeString();
 
         $ausleiher->buecher()->save($buch);
-
+        
         $buch->ausleiher_ausgabe = Carbon::now();
         $buch->save();
     }

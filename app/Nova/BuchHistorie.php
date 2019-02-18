@@ -6,13 +6,9 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Currency;
-use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\MorphTo;
-use Laravel\Nova\Fields\HasMany;
 
-class Buch extends Resource
+
+class BuchHistorie extends Resource
 {
     /**
      * Get the displayble label of the resource.
@@ -21,22 +17,22 @@ class Buch extends Resource
      */
     public static function label()
     {
-        return 'Bücher';
+        return 'Buch-Historie';
     }
-
-    /**
-    * The logical group associated with the resource.
-    *
-    * @var string
-    */
-    public static $group = 'Bestand';
 
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Buch';
+    public static $model = 'App\BuchHistorie';
+
+    /**
+     * Indicates if the resource should be displayed in the sidebar.
+     *
+     * @var bool
+     */
+    public static $displayInNavigation = false;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -55,13 +51,6 @@ class Buch extends Resource
     ];
 
     /**
-     * The relationships that should be eager loaded on index queries.
-     *
-     * @var array
-     */
-    public static $with = ['buchtitel'];
-
-    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -71,16 +60,11 @@ class Buch extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Titel', 'buchtitel', 'App\Nova\Buchtitel')->nullable(),
-            MorphTo::make('Ausleiher')->types([
-                Schueler::class,
-                Lehrer::class,
-            ]),
-            Text::make('Preis', 'neupreis')
-                ->rules('required', 'max:255'),
-
-            Date::make('Aufnahme', 'aufnahme'),
-            HasMany::make('BuchHistorie', 'historie')
+            Text::make('Titel', 'titel'),
+            Text::make('Nachname', 'nachname'),
+            Text::make('Vorname', 'vorname'),
+            Text::make('Klasse', 'klasse'),
+            Text::make('Schuljahr', 'schuljahr'),
         ];
     }
 
@@ -125,6 +109,6 @@ class Buch extends Resource
      */
     public function actions(Request $request)
     {
-        return [new Actions\PrintBarcodeLabel];
+        return [];
     }
 }

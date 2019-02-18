@@ -43,7 +43,7 @@ class Schueler extends Resource
      */
     public function title()
     {
-        return $this->user->name;
+        return $this->vorname . ' ' . $this->nachname;
     }
 
     /**
@@ -52,7 +52,7 @@ class Schueler extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name'
+        'id', 'vorname', 'nachname'
     ];
 
     /**
@@ -126,6 +126,9 @@ class Schueler extends Resource
      */
     public function actions(Request $request)
     {
-        return [new Actions\BuchAusleihen];
+        return [
+            new Actions\BuchAusleihen,
+            new Actions\BuchZurueck
+        ];
     }
 }

@@ -66,8 +66,6 @@ class LoginController extends Controller
     {
         $iservUser = Socialite::driver('iserv')->stateless()->user();
 
-        //dd($iservUser);
-
         $user = User::where( 'email', $iservUser->email )->first();
         
         /*
@@ -83,8 +81,8 @@ class LoginController extends Controller
             $newUser->vorname  = $iservUser["given_name"];
             $newUser->nachname = $iservUser["family_name"];
             $newUser->email    = $iservUser["email"];
-            $newUser->username = $iservUser["preferred_username"];
-
+         
+            /*
             foreach($iservUser["groups"] as $key => $val) {
                 if( substr($val["name"], 0, 6) == "Klasse" ) {
                     $newUser->klasse   = substr($val["name"], 7);
@@ -92,6 +90,7 @@ class LoginController extends Controller
                     break;
                 }
             }
+            */
 
             $newUser->save();
             $user = $newUser;
@@ -100,7 +99,8 @@ class LoginController extends Controller
 
         Auth::login( $user );
 
-        if ( $user->istAdmin() ) {
+        if ( $user->istAdmin() ) 
+        {
             return redirect()->intended('admin/');
         }
 

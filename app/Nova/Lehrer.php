@@ -112,6 +112,9 @@ class Lehrer extends Resource
      */
     public function actions(Request $request)
     {
-        return [new Actions\BuchAusleihen];
+        return [
+            new Actions\BuchAusleihen,
+            new Actions\BuchZurueck
+        ];
     }
 }

@@ -19,7 +19,7 @@ class Buch extends Model
      * @var array
      */
     protected $dates = [
-        'ausleiher_ausgabe'
+        'ausleiher_ausgabe', 'aufnahme'
     ];
 
     /**
