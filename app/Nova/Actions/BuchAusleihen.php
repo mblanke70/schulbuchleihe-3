@@ -22,7 +22,16 @@ class BuchAusleihen extends Action
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
-    
+    /**
+     * Get the displayable name of the action.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return ('Buch ausleihen');
+    }
+
     /**
      * Indicates if this action is only available on the resource detail view.
      *

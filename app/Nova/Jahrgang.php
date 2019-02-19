@@ -22,6 +22,17 @@ class Jahrgang extends Resource
     }
 
     /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return 'Jahrgang';
+    }
+
+
+    /**
     * The logical group associated with the resource.
     *
     * @var string
@@ -74,6 +85,7 @@ class Jahrgang extends Resource
             Text::make('jahrgangsstufe')->sortable(),
             //Text::make('schuljahr')->sortable(),
             BelongsTo::make('Schuljahr', 'schuljahr')->nullable(),
+            HasMany::make('Klasse', 'klassen'),
             HasMany::make('Abfrage', 'abfragen')
         ];
     }
@@ -122,5 +134,15 @@ class Jahrgang extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    /**
+     * Get the URI key for the resource.
+     *
+     * @return string
+     */
+    public static function uriKey()
+    {
+        return 'jahrgänge';
     }
 }

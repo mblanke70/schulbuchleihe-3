@@ -17,7 +17,7 @@ class BuchHistorie extends Resource
      */
     public static function label()
     {
-        return 'Buch-Historie';
+        return 'Buchhistorie';
     }
 
     /**
@@ -110,5 +110,15 @@ class BuchHistorie extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    /**
+     * Get the URI key for the resource.
+     *
+     * @return string
+     */
+    public static function uriKey()
+    {
+        return 'buchhistorien';
     }
 }

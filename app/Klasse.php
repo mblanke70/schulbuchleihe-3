@@ -14,9 +14,15 @@ class Klasse extends Model
     	return $this->belongsTo('App\Jahrgang');
     }
 
+    public function schuljahr()
+    {
+        return $this->jahrgang()->schuljahr();
+    }
+
     public function schueler()
     {
         // mit QueryBuilder wegen der Sortierung nach Vor- und Nachnamen (in users)
+        /*
         return DB::table('schueler')
             ->where('klasse_id', '=', $this->id)
             ->join('users', 'schueler.user_id', '=', 'users.id')
@@ -24,7 +30,9 @@ class Klasse extends Model
             ->orderBy('nachname', 'asc')
             ->orderBy('vorname', 'asc')
             ->select('schueler.id as ausleiher_id', 'schueler.*', 'users.*', 'klassen.*');
-        
-        //return $this->hasMany('App\Schueler')->with('user');  
+        */
+        return $this->hasMany('App\Schueler')
+            ->orderBy('nachname', 'asc')
+            ->orderBy('vorname', 'asc');  
     }
 }

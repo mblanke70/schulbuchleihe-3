@@ -26,6 +26,17 @@ class Buch extends Resource
     }
 
     /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return 'Buch';
+    }
+
+
+    /**
     * The logical group associated with the resource.
     *
     * @var string
@@ -132,5 +143,15 @@ class Buch extends Resource
     public function actions(Request $request)
     {
         return [new Actions\PrintBarcodeLabel];
+    }
+
+    /**
+     * Get the URI key for the resource.
+     *
+     * @return string
+     */
+    public static function uriKey()
+    {
+        return 'buecher';
     }
 }

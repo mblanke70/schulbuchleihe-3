@@ -25,6 +25,27 @@ class Fach extends Resource
     public static $title = 'name';
 
     /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function label()
+    {
+        return 'Fächer';
+    }
+
+    /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return 'Fach';
+    }
+
+
+    /**
      * Indicates if the resource should be displayed in the sidebar.
      *
      * @var bool
@@ -97,5 +118,15 @@ class Fach extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    /**
+     * Get the URI key for the resource.
+     *
+     * @return string
+     */
+    public static function uriKey()
+    {
+        return 'fächer';
     }
 }

@@ -6,6 +6,9 @@ use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use App\Nova\Metrics\SchuelerCount;
+use App\Nova\Metrics\AusleihenCount;
+use App\Nova\Metrics\BuecherCount;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -56,7 +59,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Help,
+            new SchuelerCount,
+            new AusleihenCount,
+            new BuecherCount
         ];
     }
 

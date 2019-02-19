@@ -131,4 +131,14 @@ class Schueler extends Resource
             new Actions\BuchZurueck
         ];
     }
+
+    /**
+     * Get the URI key for the resource.
+     *
+     * @return string
+     */
+    public static function uriKey()
+    {
+        return 'schueler';
+    }
 }

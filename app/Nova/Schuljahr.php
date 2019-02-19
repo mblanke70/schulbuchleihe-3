@@ -23,6 +23,17 @@ class Schuljahr extends Resource
     }
 
     /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return 'Schuljahr';
+    }
+
+
+    /**
     * The logical group associated with the resource.
     *
     * @var string
@@ -66,6 +77,7 @@ class Schuljahr extends Resource
             Boolean::make('aktiv', 'aktiv')->rules('required'),
             Date::make('Beginn', 'von')->rules('required'),
             Date::make('Ende', 'bis')->rules('required'),
+            HasMany::make('Jahrgang', 'jahrgaenge')
         ];
     }
 
@@ -111,5 +123,15 @@ class Schuljahr extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    /**
+     * Get the URI key for the resource.
+     *
+     * @return string
+     */
+    public static function uriKey()
+    {
+        return 'schuljahre';
     }
 }

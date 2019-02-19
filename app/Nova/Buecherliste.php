@@ -23,6 +23,17 @@ class Buecherliste extends Resource
     }
 
     /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return 'Bücherliste';
+    }
+
+
+    /**
     * The logical group associated with the resource.
     *
     * @var string
@@ -121,5 +132,15 @@ class Buecherliste extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    /**
+     * Get the URI key for the resource.
+     *
+     * @return string
+     */
+    public static function uriKey()
+    {
+        return 'bücherlisten';
     }
 }

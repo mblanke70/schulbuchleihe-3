@@ -142,4 +142,14 @@ class Buchtitel extends Resource
     {
         return [];
     }
+
+    /**
+     * Get the URI key for the resource.
+     *
+     * @return string
+     */
+    public static function uriKey()
+    {
+        return 'buchtitel';
+    }
 }

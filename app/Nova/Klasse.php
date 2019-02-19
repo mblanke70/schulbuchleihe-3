@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasMany;
 
 class Klasse extends Resource
 {
@@ -19,6 +20,17 @@ class Klasse extends Resource
     {
         return 'Klassen';
     }
+
+    /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return 'Klasse';
+    }
+
 
     /**
     * The logical group associated with the resource.
@@ -70,9 +82,15 @@ class Klasse extends Resource
     {
         return [
             ID::make()->sortable(),
+            
             Text::make('bezeichnung')->sortable(),
-            BelongsTo::make('Jahrgang', 'jahrgang')->nullable(),
-            Text::make('Schuljahr', 'jahrgang.schuljahr.schuljahr')->hideWhenCreating()
+            
+            BelongsTo::make('Jahrgang', 'jahrgang'),
+            
+            Text::make('Schuljahr', 'jahrgang.schuljahr.schuljahr')
+                ->hideWhenCreating()->hideWhenUpdating(),
+            
+            HasMany::make('Schueler', 'schueler'),
         ];
     }
 
@@ -123,5 +141,15 @@ class Klasse extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    /**
+     * Get the URI key for the resource.
+     *
+     * @return string
+     */
+    public static function uriKey()
+    {
+        return 'klassen';
     }
 }
