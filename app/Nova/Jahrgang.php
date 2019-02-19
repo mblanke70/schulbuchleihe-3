@@ -53,7 +53,7 @@ class Jahrgang extends Resource
      */
     public function title()
     {
-        return $this->jahrgangsstufe . ' - ' . $this->schuljahr->schuljahr;
+        return $this->jahrgangsstufe;
     }
 
     /**

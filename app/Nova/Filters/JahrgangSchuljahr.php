@@ -16,6 +16,13 @@ class JahrgangSchuljahr extends Filter
     public $component = 'select-filter';
 
     /**
+     * The displayable name of the filter.
+     *
+     * @var string
+     */
+    public $name = 'Schuljahr';
+
+    /**
      * Set the default options for the filter.
      *
      * @return array

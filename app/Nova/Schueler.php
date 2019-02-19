@@ -79,7 +79,7 @@ class Schueler extends Resource
             
             BelongsTo::make('Klasse', 'klasse')->rules('required')->nullable(),
             
-            BelongsTo::make('User', 'user')->hideFromIndex()->nullable(),
+            BelongsTo::make('User', 'user')->hideFromIndex()->nullable()->searchable(),
             
             Text::make('# geliehen', function () {
                 return $this->buecher()->count();
