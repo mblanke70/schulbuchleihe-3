@@ -43,11 +43,11 @@ class HomeController extends Controller
 
     public function zeigeBuecher()
     {
-        $user      = Auth::user();
-        $ausleiher = $user->ausleiher()->first(); // nur ein Ausleiher wird geholt!!!
+        $user     = User::find(1353);//Auth::user();
+        $schueler = $user->schueler()->first(); // nur ein Ausleiher wird geholt!!!
 
-        if($ausleiher!=null) {
-            $buecher  = $ausleiher->buecher;
+        if($schueler!=null) {
+            $buecher = $schueler->buecher;
 
             $summe = 0;
             foreach($buecher as $b) {
@@ -55,14 +55,14 @@ class HomeController extends Controller
             }
             
             $summeErm = $summe;
-            if($ausleiher->erm_bestaetigt==2) $summeErm = 0;
-            if($ausleiher->erm_bestaetigt==1) $summeErm = $summe * 0.8;
+            if($schueler->erm_bestaetigt==2) $summeErm = 0;
+            if($schueler->erm_bestaetigt==1) $summeErm = $summe * 0.8;
 
             $zusatzkosten = 6.5;
-            if($user->pauschale>0) $zusatzkosten += 10.5;
+            if($schueler->pauschale>0) $zusatzkosten += 10.5;
 
             return view('user/buecher/index', 
-                compact('ausleiher', 'buecher', 'summe', 'summeErm', 'zusatzkosten'));
+                compact('schueler', 'buecher', 'summe', 'summeErm', 'zusatzkosten'));
         }
         else {
             return dd("kein Ausleiher");

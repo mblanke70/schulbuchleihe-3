@@ -4,7 +4,7 @@
 
 @section('content_header')
     <h1>Meine Leihbücher</h1>
-    <h4>{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} ({{ Auth::user()->klasse }})</h4>
+    <h4>{{ $schueler->vorname }} {{ $schueler->nachname }} ({{ $schueler->klasse->bezeichnung }})</h4>
 @stop
 
 @section('content')
@@ -37,7 +37,7 @@
                         <td>{{ $buch->buchtitel->titel }}</td>
                         <td>{{ $buch->buchtitel->isbn }}</td>
                         <td>{{ $buch->buchtitel->verlag }}</td>
-                        <td>{{ $buch->pivot->ausgabe }}</td>
+                        <td>{{ $buch->ausleiher_ausgabe }}</td>
                         <td>{{ number_format($buch->buchtitel->leihgebuehr, 2, ',', '') }} &euro;</td>
                     </tr>
                 @endforeach
@@ -47,7 +47,7 @@
                         <td>{{ number_format($summe, 2, ',', '') }} &euro;</td>
                     </tr>
                 
-                @if($ausleiher->bestaetigt > 0)
+                @if($schueler->bestaetigt > 0)
                     <tr>
                         <td colspan="5" style="text-align: right;">
                             Summe ermäßigt (-  ... %):
@@ -78,7 +78,7 @@
             <tbody>
                 <p>
                     Die 
-                        @if($ausleiher->bestaetigt > 0)
+                        @if($schueler->bestaetigt > 0)
                             ermäßigte
                         @endif
                     Leihgebühr beträgt: {{ number_format($summeErm, 2, ',', '') }} €.
@@ -91,9 +91,9 @@
                     </ul>
                 </p>
 
-                @if($ausleiher->pauschale > 0)
+                @if($schueler->pauschale > 0)
                 <p>
-                    {{ $ausleiher->user->vorname }} ist das jüngste Geschwisterkind an der Ursulaschule, deshalb entstehen zusätzlich folgende Kosten:
+                    {{ $schueler->vorname }} ist das jüngste Geschwisterkind an der Ursulaschule, deshalb entstehen zusätzlich folgende Kosten:
                     <ul>
                         <li>Nutzungsgebühr für das MS-Office Paket (6,00 &euro;)</li>
                         <li>Jahresbericht (4,50 &euro;)</li>
