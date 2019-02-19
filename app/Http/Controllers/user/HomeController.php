@@ -15,14 +15,14 @@ class HomeController extends Controller
 {
     public function zeigeBuecherliste()
     {
-        $user      = User::find(1353);      //Auth::user();
-        $ausleiher = $user->ausleiher()
+        $user     = Auth::user();
+        $schueler = $user->schueler()
             ->with('user', 'klasse.jahrgang')
             ->first(); // nur ein Ausleiher wird geholt!!!
 
-        $buchtitel     = $ausleiher->klasse->jahrgang->buecherliste->buchtitel;
-        $buecher       = $ausleiher->buecher;
-        $buecherwahlen = $ausleiher->buecherwahlen->keyBy('buchtitel_id');
+        $buchtitel     = $schueler->klasse->jahrgang->buecherliste->buchtitel;
+        $buecher       = $schueler->buecher;
+        $buecherwahlen = $schueler->buecherwahlen->keyBy('buchtitel_id');
 
         foreach($buchtitel as $bt) {
            // bestellt?
@@ -38,12 +38,12 @@ class HomeController extends Controller
             $bt['ausgeliehen'] = $buecher->contains('buchtitel_id', $bt->id) ? 1 : 0;
         }
 
-        return view('user/buecherliste/index', compact('ausleiher', 'buchtitel'));
+        return view('user/buecherliste/index', compact('schueler', 'buchtitel'));
     }
 
     public function zeigeBuecher()
     {
-        $user     = User::find(1353);//Auth::user();
+        $user     = Auth::user();
         $schueler = $user->schueler()->first(); // nur ein Ausleiher wird geholt!!!
 
         if($schueler!=null) {
