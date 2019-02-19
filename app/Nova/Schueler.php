@@ -72,12 +72,19 @@ class Schueler extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Vorname', 'vorname')->sortable(),
-            Text::make('Nachname', 'nachname')->sortable(),
-            BelongsTo::make('Klasse', 'klasse')->nullable(),
+
+            Text::make('Vorname', 'vorname')->rules('required')->sortable(),
+            
+            Text::make('Nachname', 'nachname')->rules('required')->sortable(),
+            
+            BelongsTo::make('Klasse', 'klasse')->rules('required')->nullable(),
+            
+            BelongsTo::make('User', 'user')->hideFromIndex()->nullable(),
+            
             Text::make('# geliehen', function () {
                 return $this->buecher()->count();
-            }),
+            })->onlyOnIndex(),
+            
             HasMany::make('Buch', 'buecher')
         ];
     }

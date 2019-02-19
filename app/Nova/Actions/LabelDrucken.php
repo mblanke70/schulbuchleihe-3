@@ -12,8 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 use App\File;
 
-
-class PrintBarcodeLabel extends Action
+class LabelDrucken extends Action
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 

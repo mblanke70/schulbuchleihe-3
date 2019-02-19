@@ -142,7 +142,7 @@ class Buch extends Resource
      */
     public function actions(Request $request)
     {
-        return [new Actions\PrintBarcodeLabel];
+        return [new Actions\LabelDrucken];
     }
 
     /**
