@@ -53,7 +53,7 @@ class Klasse extends Resource
      */
     public function title()
     {
-        return $this->bezeichnung . ' - ' . $this->jahrgang->schuljahr->schuljahr;
+        return $this->bezeichnung . ' (' . $this->jahrgang->schuljahr->schuljahr . ')';
     }
 
     /**

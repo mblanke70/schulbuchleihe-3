@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Laravel\Nova\Actions\Actionable;
 
 class Klasse extends Model
 {
+    use Actionable;
+
     protected $table = 'klassen';
 
     public function jahrgang()

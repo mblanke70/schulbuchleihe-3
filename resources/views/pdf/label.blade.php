@@ -1,3 +1,5 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
 <style type="text/css" media="screen,print">
 
 	* {
@@ -31,7 +33,7 @@
 		</div>
 		<div style="">
 			<p style="font-weight: bold; font-size:16px;">
-				{{ htmlentities($buch->buchtitel->titel) }}
+				{{ html_entity_decode($buch->buchtitel->titel) }}
 			</p>
 		</div>
 		<div style="">

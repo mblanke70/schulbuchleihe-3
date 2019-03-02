@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Nova\Actions\Actionable;
 
 class Schuljahr extends Model
 {
+    use Actionable;
+
     protected $table = 'schuljahre';
 
     /**
@@ -31,4 +34,11 @@ class Schuljahr extends Model
     {
     	return $this->hasManyThrough('App\Klasse', 'App\Jahrgang'); 
     }    
+
+    public function buchtitel()
+    {
+        return $this->belongsToMany('App\Buchtitel')
+            ->using('App\BuchtitelSchuljahr')
+            ->withPivot('leihpreis');
+    }
 }

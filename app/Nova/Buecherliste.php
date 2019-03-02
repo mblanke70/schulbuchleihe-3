@@ -70,6 +70,13 @@ class Buecherliste extends Resource
      */
     public static $with = ['jahrgang'];
 
+
+    public static function relatableBuchtitelSchuljahrs(NovaRequest $request, $query)
+    {
+        $bl = $request->findResourceOrFail();
+        return $query->where('schuljahr_id', $bl->jahrgang->schuljahr->id);
+    }
+    
     /**
      * Get the fields displayed by the resource.
      *
@@ -86,7 +93,7 @@ class Buecherliste extends Resource
             BelongsTo::make('Jahrgang - Schuljahr', 'jahrgang', 'App\Nova\Jahrgang')
                 ->rules('required'),
             
-            BelongsToMany::make('Buchtitel', 'buchtitel'),
+            BelongsToMany::make('BuchtitelSchuljahr', 'buchtitel'),
         ];
     }
 
@@ -109,7 +116,9 @@ class Buecherliste extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Filters\BuecherlisteSchuljahr,
+        ];
     }
 
     /**

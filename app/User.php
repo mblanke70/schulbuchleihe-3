@@ -4,11 +4,14 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Nova\Actions\Actionable;
 
 use App\Schuljahr;
 
 class User extends Authenticatable
 {
+    use Actionable;
+
     public function istAdmin()
     {
         return $this->is_admin == 1;

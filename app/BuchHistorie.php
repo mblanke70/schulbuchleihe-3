@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BuchHistorie extends Model
+class Buchhistorie extends Model
 {
     protected $table = 'buch_historien';
 

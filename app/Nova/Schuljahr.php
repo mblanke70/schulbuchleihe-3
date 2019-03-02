@@ -6,9 +6,11 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Number;
 
 class Schuljahr extends Resource
 {
@@ -77,7 +79,18 @@ class Schuljahr extends Resource
             Boolean::make('aktiv', 'aktiv')->rules('required'),
             Date::make('Beginn', 'von')->rules('required'),
             Date::make('Ende', 'bis')->rules('required'),
-            HasMany::make('Jahrgang', 'jahrgaenge')
+            HasMany::make('Jahrgang', 'jahrgaenge'),
+            BelongsToMany::make('Buchtitel', 'buchtitel')
+                ->rules('required')
+                ->fields(function () {
+                    return [
+                        Number::make('Leihpreis', 'leihpreis')
+                            ->min(1)
+                            ->max(10)
+                            ->step(0.01)
+                            ->rules('required'),
+                    ];
+                })
         ];
     }
 

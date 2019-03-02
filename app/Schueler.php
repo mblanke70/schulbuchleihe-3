@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Laravel\Nova\Actions\Actionable;
 
 class Schueler extends Model
 {
+    use Actionable;
+
     protected $table = 'schueler';
 
     public function buecher()

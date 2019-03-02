@@ -79,12 +79,11 @@ class Buchtitel extends Resource
                 ->hideFromIndex()->rules('required'),
 
             Number::make('Preis', 'preis')
-                ->min(1)->max(1000)->step(0.01),
+                ->hideFromIndex()->min(1)->max(1000)->step(0.01),
             
             Number::make('Leihpreis', 'leihgebuehr')
                 ->min(1)->max(1000)->step(0.01),
 
-            
             BelongsTo::make('Fach', 'fach')
                 ->hideFromIndex()->rules('required'),
             

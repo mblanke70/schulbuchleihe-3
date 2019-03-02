@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Nova\Actions\Actionable;
 
 class Buchtitel extends Model
 {
+    use Actionable;
+
     protected $table = 'buchtitel';
 
 	/**
