@@ -17,17 +17,8 @@ class Schueler extends Model
         return $this->morphMany('App\Buch', 'ausleiher')->with('buchtitel');
     }
 
-	/**
-     * Liefert alle Bücher, die der Ausleiher derzeit ausgeliehen hat.
-     */
-    public function _buecher()
-    {
-        return $this->hasMany('App\Buch')->with('buchtitel');
-        //return $this->belongsToMany('App\Buch')->with('buchtitel');
-    }
-
     /**
-     * Liefert die Bücherwahlen des Ausleihers.
+     * Liefert die Bücherwahlen des Schülers.
      */   
     public function buecherwahlen()
     {
@@ -35,7 +26,7 @@ class Schueler extends Model
     }
 
 	/**
-     * Liefert die Klasse des Ausleihers.
+     * Liefert die Klasse des Schülers.
      */
     public function klasse()
     {
@@ -43,7 +34,7 @@ class Schueler extends Model
     }
 
     /**
-     * Liefert den mit dem Ausleiher verknüpften User.
+     * Liefert den mit dem Schüler verknüpften User.
      */
     public function user()
     {
@@ -55,17 +46,14 @@ class Schueler extends Model
      */
     public function next()
     {
-        // QueryBuilder wegen der Sortierung nach Vor- und Nachnamen (in users)
-        return DB::table('schueler')
-            ->where('klasse_id', '=', $this->klasse_id)
-            ->join('users', 'schueler.user_id', '=', 'users.id')
-            ->where('nachname', '>=', $this->user->nachname)
+        return $this->klasse->schueler()
+            ->where('nachname', '>=', $this->nachname)
             ->where(function ($query) {
-                $query->where  ('nachname', '>', $this->user->nachname)
-                      ->orWhere('vorname' , '>', $this->user->vorname );
+                $query->where  ('nachname', '>', $this->nachname)    
+                      ->orWhere('vorname' , '>', $this->vorname);    
             })
             ->orderBy('nachname', 'asc')
-            ->orderBy('vorname', 'asc')
+            ->orderBy('vorname' , 'asc')
             ->select('schueler.id')
             ->first();
     }
@@ -75,39 +63,15 @@ class Schueler extends Model
      */
     public function prev()
     {
-        // QueryBuilder wegen der Sortierung nach Vor- und Nachnamen (in users)
-        return DB::table('schueler')
-            ->where('klasse_id', '=', $this->klasse_id)
-            ->join('users', 'schueler.user_id', '=', 'users.id')
-            ->where('nachname', '<=', $this->user->nachname)
+        return $this->klasse->schueler()
+            ->where('nachname', '<=', $this->nachname)
             ->where(function ($query) {
-                $query->where  ('nachname', '<', $this->user->nachname)
-                      ->orWhere('vorname' , '<', $this->user->vorname );
+                $query->where  ('nachname', '<', $this->nachname)    
+                      ->orWhere('vorname' , '<', $this->vorname);    
             })
             ->orderBy('nachname', 'desc')
-            ->orderBy('vorname', 'desc')
+            ->orderBy('vorname' , 'desc')
             ->select('schueler.id')
             ->first();
     }    
-
-    /*
-    public function next()
-    {
-        return $this->klasse->ausleiher()
-            ->whereHas('user', function($query) {
-                $query->where('nachname', '>=', $this->user->nachname);
-            })
-            ->where(function ($query) {
-                $query->whereHas('user', function($subquery) {
-                    $subquery->where('nachname', '>', $this->user->nachname);    
-                })
-                ->orWhereHas('user', function($subquery) {
-                    $subquery->where('vorname', '>', $this->user->vorname);    
-                });
-            })
-            ->orderBy('nachname', 'asc')
-            ->orderBy('vorname', 'asc')
-            ->first();
-    }
-    */
 }

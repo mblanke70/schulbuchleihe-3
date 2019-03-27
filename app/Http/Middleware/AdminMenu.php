@@ -18,6 +18,7 @@ class AdminMenu
     {
         Event::listen('JeroenNoten\LaravelAdminLte\Events\BuildingMenu', function ($event)
         {
+            /*
             $event->menu->add('BUCHBESTAND');
             $event->menu->add([
                 'text' => 'Buchtitel',
@@ -29,6 +30,7 @@ class AdminMenu
                 'url'  => 'admin/buecher',
                 'icon' => 'book',
             ]);
+            */
 
             /*
             $event->menu->add('NUTZER');
@@ -77,6 +79,7 @@ class AdminMenu
             ]);
             */
 
+            /*
             $event->menu->add('LEIHVERFAHREN');       
             
             $event->menu->add([
@@ -107,6 +110,8 @@ class AdminMenu
                 'url'  => 'admin/abfragen',
                 'icon' => 'list',
             ]);
+            */
+            
             /*
             $event->menu->add([
                 'text' => 'Auswertung',

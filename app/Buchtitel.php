@@ -30,10 +30,12 @@ class Buchtitel extends Model
     /**
      * Liefert die Bücherlisten, auf denen dieser Buchtitel steht.
      */
+    /*
     public function buecherliste()
     {
         return $this->belongsToMany('App\Buecherliste');
-    }    
+    } 
+    */   
 
     /**
      * Liefert die Bestellungen zu diesem Buchtitel.
@@ -41,5 +43,11 @@ class Buchtitel extends Model
     public function bestellungen()
     {
         return $this->hasMany('App\Buchwahl')->where('wahl', 1) ;
+    }
+
+    public function schuljahre()
+    {
+         return $this->belongsToMany('App\Schuljahr')
+            ->withPivot('leihpreis');
     }
 }

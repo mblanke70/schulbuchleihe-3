@@ -49,14 +49,14 @@ class AusleiheController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function zeigeKlasse($id)
+    public function zeigeKlasse($klasse_id)
     {  
-        $klasse = Klasse::findOrFail($id);
+        $klasse = Klasse::findOrFail($klasse_id);
 
         $ausleiher = $klasse->schueler()->get();
         $gruppen   = $ausleiher->split(3);    
         
-        return view('admin/ausleihe/klasse', compact('ausleiher', 'gruppen'));
+        return view('admin/ausleihe/klasse', compact('klasse', 'ausleiher', 'gruppen'));
     }
 
 
@@ -65,19 +65,19 @@ class AusleiheController extends Controller
      */
     public function zeigeSchueler($klasse_id, $schueler_id)
     {   
-        $schueler = Schueler::where('id', $schueler_id)
-            ->with('user', 'klasse.jahrgang')       // eager loading
-            ->first();
+        $schueler = Schueler::findOrFail($schueler_id);
 
         $next   = $schueler->next();
         $prev   = $schueler->prev();
-       
-        // Hole alle Buchtitel, die auf der Bücherliste des Jahrgangs des Ausleihers stehen       
+
+        // Hole alle Buchtitel, die auf der Bücherliste des Jahrgangs des Schülers stehen       
         $buchtitel     = $schueler->klasse->jahrgang->buecherliste->buchtitel;
-        // Hole alle Bücher, die der Ausleiher derzeit ausgeliehen hat
+        // Hole alle Bücher, die der Schüler derzeit ausgeliehen hat
         $buecher       = $schueler->buecher;
-        // Hole alle Buchbestellungen, die der Ausleiher abgegeben hat
+        // Hole alle Buchbestellungen, die der Schüler abgegeben hat
         $buecherwahlen = $schueler->buecherwahlen->keyBy('buchtitel_id');
+
+        //dd($buchtitel);
 
         // Durchlaufe die Bücherliste und ergänze zu jedem Buchtitel
         //   - die zugehörige Bestellung
@@ -85,7 +85,7 @@ class AusleiheController extends Controller
         foreach($buchtitel as $bt) {
             
             // bestellt?
-            $bw = $buecherwahlen->get($bt->id);
+            $bw = $buecherwahlen->get($bt->buchtitel_id);
             if($bw!=null) {
                 $bt['wahl']    = $bw->wahl;
                 $bt['wahl_id'] = $bw->id;
@@ -94,17 +94,32 @@ class AusleiheController extends Controller
             }
 
             // ausgeliehen?
-            $bt['ausgeliehen'] = $buecher->contains('buchtitel_id', $bt->id) ? 1 : 0;
+            $bt['ausgeliehen'] = $buecher->contains('buchtitel_id', $bt->buchtitel_id) ? 1 : 0;
         }
+
+        //dd($buchtitel);
 
         // Berechne Summe der Leihgebühren
         $summe = 0;
-        foreach($buecher as $b) {
-            $summe += $b->buchtitel->leihgebuehr;
+        foreach($buecher as $buch) {
+            $bt = $buchtitel->where('buchtitel_id', $buch->buchtitel_id)->first();
+
+            $leihpreis = $bt->leihpreis;
+            if($leihpreis != null)
+            {
+                $buch['leihpreis'] = $leihpreis;
+                $summe += $leihpreis;
+            }
+        }
+
+        $summeErm = $summe;
+        switch($schueler->erm_bestaetigt) {
+            case 1: $summeErm *= 0.8; break;
+            case 2: $summeErm  = 0  ; break;
         }
 
         return view('admin/ausleihe/schueler', 
-            compact('schueler', 'buecher', 'buchtitel', 'next', 'prev', 'summe'));
+            compact('schueler', 'buecher', 'buchtitel', 'next', 'prev', 'summe', 'summeErm'));
     }
 
     /**
@@ -221,9 +236,7 @@ class AusleiheController extends Controller
 
     public function zeigeBuecherliste($klasse_id, $schueler_id)
     {
-        $schueler = Schueler::where('id', $schueler_id)
-            ->with('user', 'klasse.jahrgang')       // eager loading
-            ->first();
+        $schueler = Schueler::findOrFail($schueler_id);
 
         // Hole alle Buchtitel, die auf der Bücherliste des Jahrgangs des Ausleihers stehen       
         $buchtitel     = $schueler->klasse->jahrgang->buecherliste->buchtitel;
@@ -234,7 +247,7 @@ class AusleiheController extends Controller
 
         foreach($buchtitel as $bt) {
            // bestellt?
-            $bw = $buecherwahlen->get($bt->id);
+            $bw = $buecherwahlen->get($bt->buchtitel_id);
             if($bw!=null) {
                 $bt['wahl']    = $bw->wahl;
                 $bt['wahl_id'] = $bw->id;
@@ -243,10 +256,10 @@ class AusleiheController extends Controller
             }
 
             // ausgeliehen?
-            $bt['ausgeliehen'] = $buecher->contains('buchtitel_id', $bt->id) ? 1 : 0;
+            $bt['ausgeliehen'] = $buecher->contains('buchtitel_id', $bt->buchtitel_id) ? 1 : 0;
         }
 
-        return view('admin/ausleihe/buecherliste', compact('ausleiher', 'buchtitel'));
+        return view('admin/ausleihe/buecherliste', compact('schueler', 'buchtitel'));
     }
 
     public function zeigeErmaessigungen()

@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
 @section('title')
-{{ $ausleiher->nachname }} , {{ $ausleiher->vorname }} ({{ $ausleiher->klasse }})
+{{ $schueler->nachname }} , {{ $schueler->vorname }} ({{ $schueler->klasse }})
 @stop
 
 @section('content_header')
-    <h1>Bücherliste: {{ $ausleiher->nachname }} , {{ $ausleiher->vorname }} ({{ $ausleiher->klasse }})</h1>
+    <h1>Bücherliste: {{ $schueler->nachname }} , {{ $schueler->vorname }} ({{ $schueler->klasse->bezeichnung }})</h1>
 @stop
 
 @section('content')
@@ -36,8 +36,8 @@
                             <td>
                             @if ($bt->ausgeliehen) ja @endif 
                             </td>
-                            <td>{{ $bt->fach->code }}</td>
-                            <td>{{ $bt->titel }}</td>
+                            <td>{{ $bt->buchtitel->fach->code }}</td>
+                            <td>{{ $bt->buchtitel->titel }}</td>
                             <td>  
                                 @if($bt->wahl==1)  
                                     leihen

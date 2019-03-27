@@ -25,7 +25,8 @@ class Buecherliste extends Model
             'App\BuchtitelSchuljahr', 
             'buchtitel_schuljahr_buecherliste', 
             'buecherliste_id', 
-            'buchtitel_schuljahr_id');
+            'buchtitel_schuljahr_id')
+            ->with('buchtitel');
     } 
 
     public function jahrgang()

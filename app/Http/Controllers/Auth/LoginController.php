@@ -75,27 +75,25 @@ class LoginController extends Controller
         
         if( $user == null )
         {
-            $newUser = new User();
-
-            $newUser->name     = $iservUser->getName();
-            $newUser->vorname  = $iservUser["given_name"];
-            $newUser->nachname = $iservUser["family_name"];
-            $newUser->email    = $iservUser["email"];
-         
-            /*
-            foreach($iservUser["groups"] as $key => $val) {
-                if( substr($val["name"], 0, 6) == "Klasse" ) {
-                    $newUser->klasse   = substr($val["name"], 7);
-                    $newUser->jahrgang = substr($val["name"], 7, 2);
-                    break;
-                }
-            }
-            */
-
-            $newUser->save();
-            $user = $newUser;
+            $user = new User();
+            $user->email = $iservUser["email"];
         }
 
+        $user->name     = $iservUser->getName();
+        $user->vorname  = $iservUser["given_name"];
+        $user->nachname = $iservUser["family_name"];
+         
+        foreach($iservUser["groups"] as $key => $val) 
+        {
+            if( substr($val["name"], 0, 6) == "Klasse" ) 
+            {
+                $user->klasse   = substr($val["name"], 7);
+                $user->jahrgang = substr($val["name"], 7, 2);
+                break;
+            }
+        }
+
+        $user->save();
 
         Auth::login( $user );
 

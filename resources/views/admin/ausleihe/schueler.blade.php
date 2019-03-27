@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
 @section('title')
-{{ $schueler->user->nachname }} , {{ $schueler->user->vorname }} ( {{ $schueler->klasse->bezeichnung }})
+{{ $schueler->nachname }} , {{ $schueler->vorname }} ( {{ $schueler->klasse->bezeichnung }})
 @stop
 
 @section('content_header')
-    <h1>Ausleihe für {{ $schueler->user->nachname }}, {{ $schueler->user->vorname }}</a> ({{ $schueler->klasse->bezeichnung }}) 
+    <h1>Ausleihe für {{ $schueler->nachname }}, {{ $schueler->vorname }}</a> ({{ $schueler->klasse->bezeichnung }}) 
         @if($schueler->erm_bestaetigt == 1)
           20%
         @elseif($schueler->erm_bestaetigt == 2)
@@ -109,7 +109,7 @@
                                     <td>{{ $b->buchtitel->fach->code }}</td>
                                     <td>{{ $b->id }}</td>
                                     <td>{{ $b->buchtitel->titel }}</td>
-                                    <td>{{ $b->buchtitel->leihgebuehr }}</td>
+                                    <td>{{ $b->leihpreis }}</td>
                                     <td>
                                         <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $b->id }}').submit();">
                                             <i class="fa fa-fw fa-trash"></i>
@@ -131,7 +131,7 @@
                         Die Leihgebühr beträgt {{ number_format($summe, 2, ',', '') }} &euro;.
                         <br />
                         @if($schueler->erm_bestaetigt>0)
-                            Die ermäßigte Leihgebühr beträgt {{ number_format($summe, 2, ',', '') }} &euro; FALSCH.
+                            Die ermäßigte Leihgebühr beträgt {{ number_format($summeErm, 2, ',', '') }} &euro;.
                         @endif
                     </div>
                     <!-- box-footer -->
@@ -174,44 +174,45 @@
                                         <i class="fa fa-check-square fa-lg"></i>
                                     @endif 
                                     </td>
-                                    <td>{{ $bt->fach->code }}</td>
-                                    <td>{{ $bt->titel }}</td>
+                                    <td>{{ $bt->buchtitel->fach->code }}</td>
+                                    <td>{{ $bt->buchtitel->titel }}</td>
                                     <td>  
-                                        <select name="wahlen[{{$bt->id}}]">
+                                        <select name="wahlen[{{$bt->buchtitel_id}}]">
 
-                                            @if( $bt->pivot->ausleihbar == 1 )
-                                                <option value="1" @if($bt->wahl==1) selected @endif /> 
-                                                    leihen
-                                                </option>
-                                            @endif
+                                            {{-- @if( $bt->ausleihbar == 1 ) --}}
+                                                <option value="1" 
+                                                    @if($bt->wahl==1) selected @endif 
+                                                />leihen</option>
+                                            {{-- @endif --}}
 
-                                            @if( $bt->pivot->verlaengerbar == 1)
-                                                <option value="2" @if($bt->wahl==2) selected @endif />
-                                                    verlängern
-                                                </option>
-                                            @endif
+                                            {{-- @if( $bt->verlaengerbar == 1) --}}
+                                                <option value="2" 
+                                                    @if($bt->wahl==2) selected @endif 
+                                                />verlängern</option>
+                                            {{-- @endif --}}
 
-                                            @if( $bt->preis > 0)
-                                                <option value="3" @if($bt->wahl==3) selected @endif />
-                                                    kaufen
-                                                </option>
-                                            @endif
+                                            {{-- @if( $bt->preis > 0) --}}
+                                                <option value="3" 
+                                                    @if($bt->wahl==3) selected @endif 
+                                                />kaufen</option>
+                                            {{-- @endif --}}
 
-                                            <option value="4" @if($bt->wahl==4) selected @endif />
-                                                abgewählt
-                                            </option>
+                                            <option value="4" 
+                                                @if($bt->wahl==4) selected @endif 
+                                            />abgewählt</option>
 
                                         </select>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
+
                         </table>
 
                     </form>
 
                     </div>
-                </div>            
+                </div>    
             </div>
         </div>
     </div>
