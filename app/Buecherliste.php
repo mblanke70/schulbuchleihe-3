@@ -11,14 +11,6 @@ class Buecherliste extends Model
 
     protected $table = 'buecherlisten';
 
-    /*
-    public function buchtitel()
-    {
-        return $this->belongsToMany('App\Buchtitel')
-            ->withPivot('ausleihbar', 'verlaengerbar', 'buchgruppe');
-    } 
-    */
-
     public function buchtitel()
     {
         return $this->belongsToMany(
