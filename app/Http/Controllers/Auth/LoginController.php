@@ -64,8 +64,8 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $iservUser = Socialite::driver('iserv')->stateless()->user();
-        
+        $iservUser = Socialite::driver('iserv')->user();
+
         $user = User::where( 'email', $iservUser->email )->first();
         
         /*
