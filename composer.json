@@ -17,7 +17,7 @@
         "milon/barcode": "^5.3",
         "scriptotek/marc": "^1.0",
         "socialiteproviders/generators": "^4.1",
-        "socialiteproviders/manager": "^3.3",
+        "socialiteproviders/manager": "3.3.4",
         "yajra/laravel-datatables": "^1.0",
         "yajra/laravel-datatables-buttons": "^3.0",
         "yajra/laravel-datatables-oracle": "~8.0",

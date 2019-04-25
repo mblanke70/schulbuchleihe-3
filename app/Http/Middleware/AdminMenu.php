@@ -71,6 +71,14 @@ class AdminMenu
                 'url'  => 'admin/buchinfo',
                 'icon' => 'list',
             ]);
+
+            $event->menu->add('BESTANDSPFLEGE');       
+
+            $event->menu->add([
+                'text' => 'Inventur',
+                'url'  => 'admin/inventur',
+                'icon' => 'list',
+            ]);
             /*
             $event->menu->add([
                 'text' => 'Ermäßigungen',

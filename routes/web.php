@@ -93,6 +93,10 @@ Route::group(
     Route::get('buchinfo', function () { return view('admin/ausleihe/buchinfo'); });
     Route::post('buchinfo', 'AusleiheController@zeigeBuchinfo');       
 
+    /* INVENTUR */
+    Route::get('inventur', function () { return view('admin/buecher/inventur'); });
+    Route::post('inventur', 'BuchController@inventarisieren'); 
+
     /* AUSLEIHE */
     Route::get('ausleihe', 'AusleiheController@index');
     Route::get('ausleihe/ermaessigungen', 'AusleiheController@zeigeErmaessigungen');
