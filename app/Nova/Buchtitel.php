@@ -81,20 +81,22 @@ class Buchtitel extends Resource
             Number::make('Preis', 'preis')
                 ->hideFromIndex()->min(1)->max(1000)->step(0.01),
             
-            Number::make('Leihpreis', 'leihgebuehr')
-                ->min(1)->max(1000)->step(0.01),
+            //Number::make('Leihpreis', 'leihgebuehr')
+                //->min(1)->max(1000)->step(0.01),
 
             BelongsTo::make('Fach', 'fach')
                 ->hideFromIndex()->rules('required'),
             
             HasMany::make('Buch', 'buecher'),
 
+            /*
             BelongsToMany::make('Buecherliste')
                 ->fields(function () {
                     return [
                         Boolean::make('ausleihbar'),
                     ];
                 })
+            */
         ];
     }
 
