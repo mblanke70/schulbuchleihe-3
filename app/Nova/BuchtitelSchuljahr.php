@@ -78,8 +78,10 @@ class BuchtitelSchuljahr extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Titel', 'buchtitel.titel')->sortable(),
-            Text::make('Schuljahr', 'schuljahr.schuljahr')->sortable(),
+            //Text::make('Titel', 'buchtitel.titel')->sortable(),
+            BelongsTo::make('Buchtitel', 'buchtitel')->sortable(),
+            //Text::make('Schuljahr', 'schuljahr.schuljahr')->sortable(),
+            BelongsTo::make('Schuljahr', 'schuljahr')->sortable(),
             Text::make('Leihpreis', 'leihpreis')->sortable(),
             Text::make('Kaufpreis', 'kaufpreis')->sortable(),
             BelongsToMany::make('Buecherliste', 'buecherlisten'),
