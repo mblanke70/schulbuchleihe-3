@@ -76,10 +76,10 @@ class Buchtitel extends Resource
                 ->hideFromIndex()->rules('required'),
 
             Text::make('ISBN', 'isbn')
-                ->hideFromIndex()->rules('required'),
+                ->rules('required'),
 
-            Number::make('Preis', 'preis')
-                ->hideFromIndex()->min(1)->max(1000)->step(0.01),
+            //Number::make('Preis', 'preis')
+            //    ->hideFromIndex()->min(1)->max(1000)->step(0.01),
             
             //Number::make('Leihpreis', 'leihgebuehr')
                 //->min(1)->max(1000)->step(0.01),
