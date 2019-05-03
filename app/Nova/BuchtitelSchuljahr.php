@@ -45,6 +45,13 @@ class BuchtitelSchuljahr extends Resource
         return 'BuchtitelImSchuljahr';
     }
 
+        /**
+    * The logical group associated with the resource.
+    *
+    * @var string
+    */
+    public static $group = 'Leihverfahren';
+
     /**
      * The columns that should be searched.
      *
