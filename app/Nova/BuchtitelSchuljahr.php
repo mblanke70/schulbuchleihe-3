@@ -34,6 +34,17 @@ class BuchtitelSchuljahr extends Resource
     {
         return $this->buchtitel->titel . ' (' . $this->schuljahr->schuljahr . ')';
     }
+
+    /**
+     * Get the displayble label of the resource.
+     *
+     * @return string
+     */
+    public static function label()
+    {
+        return 'BuchtitelImSchuljahr';
+    }
+
     /**
      * The columns that should be searched.
      *
@@ -63,6 +74,7 @@ class BuchtitelSchuljahr extends Resource
             Text::make('Titel', 'buchtitel.titel')->sortable(),
             Text::make('Schuljahr', 'schuljahr.schuljahr')->sortable(),
             Text::make('Leihpreis', 'leihpreis')->sortable(),
+            Text::make('Kaufpreis', 'kaufpreis')->sortable(),
             BelongsToMany::make('Buecherliste', 'buecherlisten'),
         ];
     }
