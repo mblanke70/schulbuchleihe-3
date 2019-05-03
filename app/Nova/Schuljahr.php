@@ -80,6 +80,7 @@ class Schuljahr extends Resource
             Date::make('Beginn', 'von')->rules('required'),
             Date::make('Ende', 'bis')->rules('required'),
             HasMany::make('Jahrgang', 'jahrgaenge'),
+            /*
             BelongsToMany::make('Buchtitel', 'buchtitel')
                 ->rules('required')
                 ->fields(function () {
@@ -94,6 +95,7 @@ class Schuljahr extends Resource
                             ->step(0.01)
                     ];
                 })
+            */
         ];
     }
 

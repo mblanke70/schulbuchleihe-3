@@ -12,6 +12,8 @@ use Laravel\Nova\Fields\HasMany;
 
 class Buecherliste extends Resource
 {
+    public static $displayInNavigation = false;
+    
     /**
      * Get the displayble label of the resource.
      *

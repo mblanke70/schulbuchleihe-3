@@ -8,6 +8,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsToMany;
 
 class Jahrgang extends Resource
 {
@@ -86,7 +87,8 @@ class Jahrgang extends Resource
             //Text::make('schuljahr')->sortable(),
             BelongsTo::make('Schuljahr', 'schuljahr')->nullable(),
             HasMany::make('Klasse', 'klassen'),
-            HasMany::make('Abfrage', 'abfragen')
+            HasMany::make('Abfrage', 'abfragen'),
+            BelongsToMany::make('BuchtitelSchuljahr', 'buchtitel'),
         ];
     }
 

@@ -38,10 +38,12 @@ class Jahrgang extends Model
     /**
      * Liefert die Bücherliste, die zu diesem Jahrgang gehört.
      */
+    /*
     public function buecherliste()
     {
         return $this->hasOne('App\Buecherliste');   
     }
+    */
 
     /**
      * Liefert die Bücherliste, die zu diesem Jahrgang gehört.
@@ -49,5 +51,15 @@ class Jahrgang extends Model
     public function abfragen()
     {
         return $this->hasMany('App\Abfrage');   
+    }
+
+    public function buchtitel()
+    {
+        return $this->belongsToMany(
+            'App\BuchtitelSchuljahr',
+            'buchtitel_schuljahr_jahrgang', 
+            'jahrgang_id', 
+            'buchtitel_schuljahr_id'
+        );
     }
 }

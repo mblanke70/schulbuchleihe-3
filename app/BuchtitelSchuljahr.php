@@ -8,6 +8,7 @@ class BuchtitelSchuljahr extends Pivot
 {
     protected $table = 'buchtitel_schuljahr';
 
+    /*
     public function buecherlisten()
     {
         return $this->belongsToMany(
@@ -15,6 +16,16 @@ class BuchtitelSchuljahr extends Pivot
         	'buchtitel_schuljahr_buecherliste', 
         	'buchtitel_schuljahr_id', 
         	'buecherliste_id');
+    }
+    */
+
+    public function jahrgaenge()
+    {
+        return $this->belongsToMany(
+            'App\Jahrgang' ,
+            'buchtitel_schuljahr_jahrgang', 
+            'buchtitel_schuljahr_id', 
+            'jahrgang_id');
     }
 
 	public function buchtitel()
