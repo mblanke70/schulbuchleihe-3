@@ -42,7 +42,7 @@ class BuchtitelSchuljahr extends Resource
      */
     public static function label()
     {
-        return 'BuchtitelImSchuljahr';
+        return 'Buchtitel:Schuljahr';
     }
 
         /**
