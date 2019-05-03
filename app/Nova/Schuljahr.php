@@ -88,7 +88,10 @@ class Schuljahr extends Resource
                             ->min(1)
                             ->max(10)
                             ->step(0.01)
-                            ->rules('required'),
+                        Number::make('Kaufpreis', 'kaufpreis')
+                            ->min(1)
+                            ->max(10)
+                            ->step(0.01)
                     ];
                 })
         ];
