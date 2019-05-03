@@ -87,7 +87,7 @@ class Schuljahr extends Resource
                         Number::make('Leihpreis', 'leihpreis')
                             ->min(1)
                             ->max(10)
-                            ->step(0.01)
+                            ->step(0.01),
                         Number::make('Kaufpreis', 'kaufpreis')
                             ->min(1)
                             ->max(10)
