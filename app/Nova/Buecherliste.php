@@ -13,7 +13,7 @@ use Laravel\Nova\Fields\HasMany;
 class Buecherliste extends Resource
 {
     public static $displayInNavigation = false;
-    
+
     /**
      * Get the displayble label of the resource.
      *
@@ -73,7 +73,7 @@ class Buecherliste extends Resource
     public static $with = ['jahrgang'];
 
 
-    public static function relatableBuchtitelSchuljahrs(NovaRequest $request, $query)
+    public static function relatableBuchtitelSchuljahr(NovaRequest $request, $query)
     {
         $bl = $request->findResourceOrFail();
         return $query->where('schuljahr_id', $bl->jahrgang->schuljahr->id);

@@ -36,6 +36,12 @@ class BuchtitelSchuljahr extends Resource
         return $this->buchtitel->titel . ' (' . $this->schuljahr->schuljahr . ')';
     }
 
+    public static function relatableQuery(NovaRequest $request, $query)
+    {
+        $jg = $request->findResourceOrFail();
+        return $query->where('schuljahr_id', $jg->schuljahr->id);
+    }
+
     /**
      * Get the displayble label of the resource.
      *
