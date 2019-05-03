@@ -23,7 +23,7 @@ class BuchtitelSchuljahr extends Resource
      *
      * @var bool
      */
-    public static $displayInNavigation = false;
+    //public static $displayInNavigation = false;
 
     /**
      * Get the value that should be displayed to represent the resource.
