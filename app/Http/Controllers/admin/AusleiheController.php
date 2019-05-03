@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AusleiheRequest;
 use Validator;
-use Session;
 
 use Illuminate\Support\Facades\DB;
 
@@ -41,8 +40,6 @@ class AusleiheController extends Controller
         $jahrgaenge = Jahrgang::whereHas('schuljahr', function($query) {
                             $query->where('aktiv', '1'); 
                         })->get();
-
-        dd(Session::all());
 
         return view('admin/ausleihe/index', compact('jahrgaenge'));
     }
