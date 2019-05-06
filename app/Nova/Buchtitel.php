@@ -66,17 +66,18 @@ class Buchtitel extends Resource
             ID::make()->sortable(),
             
             Text::make('Kennung', 'kennung')
-                ->rules('required')
                 ->sortable(),
             
             Text::make('Titel', 'titel')
-                ->rules('required'),
+                ->rules('required')
+                ->sortable(),
             
             Text::make('Verlag', 'verlag')
-                ->hideFromIndex()->rules('required'),
+                ->rules('required'),
 
             Text::make('ISBN', 'isbn')
-                ->rules('required'),
+                ->rules('required')
+                ->sortable(),
 
             //Number::make('Preis', 'preis')
             //    ->hideFromIndex()->min(1)->max(1000)->step(0.01),

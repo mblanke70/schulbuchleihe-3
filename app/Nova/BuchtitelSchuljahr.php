@@ -52,11 +52,11 @@ class BuchtitelSchuljahr extends Resource
         return 'Buchtitel:Schuljahr';
     }
 
-        /**
-    * The logical group associated with the resource.
-    *
-    * @var string
-    */
+    /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
     public static $group = 'Leihverfahren';
 
     /**
@@ -115,7 +115,9 @@ class BuchtitelSchuljahr extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Filters\BuchtitelSchuljahr,
+        ];
     }
 
     /**

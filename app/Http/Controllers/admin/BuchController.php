@@ -138,7 +138,7 @@ class BuchController extends Controller
 
         $buch->inventur = now();
         $buch->save();
-        
+
         return view('admin/buecher/inventur', compact('buch'));
     }
 }

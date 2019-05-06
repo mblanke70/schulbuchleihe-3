@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo;
 
 class AbfrageAntwort extends Resource
 {
@@ -61,6 +62,8 @@ class AbfrageAntwort extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Name', 'titel')->rules('required')->sortable(),
+            BelongsTo::make('Abfrage', 'abfrage')->rules('required'),
+            BelongsTo::make('Fach', 'fach')->rules('required')->nullable(),              
         ];
     }
 

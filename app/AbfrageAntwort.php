@@ -20,4 +20,21 @@ class AbfrageAntwort extends Model
     {
     	return $this->belongsTo('App\Abfrage');
     }
+
+    /**
+     * Liefert das Fach, auf das sich diese Antwort bezieht.
+     */
+    public function fach()
+    {
+        return $this->belongsTo('App\Fach');
+    }
+
+    /**
+     * Liefert die Buchtitel, die bei dieser Antwort von der Bücherliste GESTRICHEN werden können.
+     */
+    public function buchtitel()
+    {
+        return $this->hasMany('App\BuchtitelSchuljahr');
+    }
+
 }

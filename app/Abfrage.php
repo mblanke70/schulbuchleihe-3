@@ -21,13 +21,13 @@ class Abfrage extends Model
         return $this->belongsTo('App\Jahrgang');   
     }
 
-    public function children()
+    public function child()
     {
-        return $this->hasMany('App\Abfrage', 'parent_id');
+        return $this->belongsTo('App\Abfrage', 'child_id', 'id');
     }
 
     public function parent()
     {
-        return $this->hasOne('App\Abfrage', 'child_id');
+        return $this->belongsTo('App\Abfrage', 'id', 'child_id');
     }
 }

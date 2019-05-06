@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo; 
+use Laravel\Nova\Fields\HasOne; 
+
 
 
 class Abfrage extends Resource
@@ -22,11 +25,11 @@ class Abfrage extends Resource
     }
 
     /**
-     * Indicates if the resource should be displayed in the sidebar.
+     * The logical group associated with the resource.
      *
-     * @var bool
+     * @var string
      */
-    public static $displayInNavigation = false;
+    public static $group = 'Leihverfahren';
 
     /**
      * The model the resource corresponds to.
@@ -35,12 +38,16 @@ class Abfrage extends Resource
      */
     public static $model = 'App\Abfrage';
 
+
     /**
-     * The single value that should be used to represent the resource when being displayed.
+     * Get the value that should be displayed to represent the resource.
      *
-     * @var string
+     * @return string
      */
-    public static $title = 'titel';
+    public function title()
+    {
+        return $this->id;
+    }
 
     /**
      * The columns that should be searched.
@@ -50,6 +57,13 @@ class Abfrage extends Resource
     public static $search = [
         'id',
     ];
+
+    /**
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
+    public static $with = ['jahrgang'];
 
     /**
      * Get the fields displayed by the resource.
@@ -62,8 +76,8 @@ class Abfrage extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Name', 'titel')->rules('required')->sortable(),
-            Text::make('Child-ID', 'child_id')->rules('required')->sortable(),
-            Text::make('Parent-ID', 'parent_id')->rules('required')->sortable(),
+            BelongsTo::make('Jahrgang', 'jahrgang', 'App\Nova\Jahrgang'),
+            BelongsTo::make('Unterabfrage', 'child', 'App\Nova\Abfrage'),
             HasMany::make('Antworten', 'antworten', 'App\Nova\AbfrageAntwort')
         ];
     }
