@@ -97,7 +97,7 @@ class LoginController extends Controller
 
         Auth::login( $user );
 
-        //dd(Session::all());
+        dd(Session::all());
 
         if ( $user->istAdmin() ) 
         {
