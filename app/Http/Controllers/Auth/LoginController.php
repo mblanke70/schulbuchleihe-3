@@ -8,6 +8,7 @@ use App\User;
 
 use Auth;   
 use Socialite;
+use Session;
 
 class LoginController extends Controller
 {
