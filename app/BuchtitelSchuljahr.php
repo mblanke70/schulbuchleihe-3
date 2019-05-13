@@ -37,4 +37,9 @@ class BuchtitelSchuljahr extends Pivot
     {
     	return $this->belongsTo('App\Schuljahr');
     }
+
+    public function antwort()
+    {
+        return $this->belongsTo('App\AbfrageAntwort');
+    }       
 }

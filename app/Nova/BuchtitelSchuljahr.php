@@ -65,7 +65,7 @@ class BuchtitelSchuljahr extends Resource
      * @var array
      */
     public static $search = [
-        'id'
+        'id', 'buchtitel.titel'
     ];
 
      /**
@@ -91,6 +91,7 @@ class BuchtitelSchuljahr extends Resource
             BelongsTo::make('Schuljahr', 'schuljahr')->sortable(),
             Text::make('Leihpreis', 'leihpreis')->sortable(),
             Text::make('Kaufpreis', 'kaufpreis')->sortable(),
+            BelongsTo::make('AbfrageAntwort', 'antwort')->sortable(),
             //BelongsToMany::make('Buecherliste', 'buecherlisten'),
             BelongsToMany::make('Jahrgang', 'jahrgaenge'),
         ];

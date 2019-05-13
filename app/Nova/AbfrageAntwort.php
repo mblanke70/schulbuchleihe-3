@@ -18,15 +18,22 @@ class AbfrageAntwort extends Resource
      */
     public static function label()
     {
-        return 'AbfrageAntworten';
+        return 'Abfrage:Antworten';
     }
+
+    /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'Leihverfahren';
 
     /**
      * Indicates if the resource should be displayed in the sidebar.
      *
      * @var bool
      */
-    public static $displayInNavigation = false;
+    public static $displayInNavigation = true;
 
     /**
      * The model the resource corresponds to.
@@ -63,7 +70,8 @@ class AbfrageAntwort extends Resource
             ID::make()->sortable(),
             Text::make('Name', 'titel')->rules('required')->sortable(),
             BelongsTo::make('Abfrage', 'abfrage')->rules('required'),
-            BelongsTo::make('Fach', 'fach')->rules('required')->nullable(),              
+            BelongsTo::make('Fach', 'fach')->nullable(),              
+            HasMany::make('BuchtitelSchuljahr', 'buchtitel'),
         ];
     }
 

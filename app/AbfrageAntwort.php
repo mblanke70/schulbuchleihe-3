@@ -30,11 +30,11 @@ class AbfrageAntwort extends Model
     }
 
     /**
-     * Liefert die Buchtitel, die bei dieser Antwort von der Bücherliste GESTRICHEN werden können.
+     * Liefert die Buchtitel, die zu dieser Antwort gehören (auf der Bücherliste bleiben müssen).
+     * Die Buchtitel, die zu der Antwort-Alternative gehören, werden gestrichen.
      */
     public function buchtitel()
     {
         return $this->hasMany('App\BuchtitelSchuljahr');
     }
-
 }

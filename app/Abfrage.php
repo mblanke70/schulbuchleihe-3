@@ -28,6 +28,6 @@ class Abfrage extends Model
 
     public function parent()
     {
-        return $this->belongsTo('App\Abfrage', 'id', 'child_id');
+        return $this->belongsTo('App\Abfrage', 'parent_id', 'id');
     }
 }

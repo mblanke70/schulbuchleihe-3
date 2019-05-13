@@ -5,10 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
-use App\Buch;
-use App\Schueler;
-use App\Observers\BuchObserver;
-use App\Observers\SchuelerObserver;
+use App\Abfrage;
+use App\Observers\AbfrageObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,8 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
          Schema::defaultStringLength(191);
 
-         Schueler::observe(SchuelerObserver::class);
-         Buch::observe(BuchObserver::class);
+         Abfrage::observe(AbfrageObserver::class);
     }
 
     /**

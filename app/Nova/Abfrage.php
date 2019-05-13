@@ -9,8 +9,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo; 
 use Laravel\Nova\Fields\HasOne; 
-
-
+use Laravel\Nova\Fields\Boolean; 
 
 class Abfrage extends Resource
 {
@@ -46,7 +45,7 @@ class Abfrage extends Resource
      */
     public function title()
     {
-        return $this->id;
+        return $this->id . " (" . $this->titel . ")";
     }
 
     /**
@@ -75,9 +74,18 @@ class Abfrage extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Name', 'titel')->rules('required')->sortable(),
-            BelongsTo::make('Jahrgang', 'jahrgang', 'App\Nova\Jahrgang'),
-            BelongsTo::make('Unterabfrage', 'child', 'App\Nova\Abfrage'),
+            Text::make('Name', 'titel')
+                ->rules('required')
+                ->sortable(),
+            BelongsTo::make('Jahrgang', 'jahrgang', 'App\Nova\Jahrgang')
+                ->rules('required')
+                ->sortable(),
+            BelongsTo::make('Oberabfrage', 'parent', 'App\Nova\Abfrage')
+                ->nullable(),
+            BelongsTo::make('Unterabfrage', 'child', 'App\Nova\Abfrage')
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
+                ->nullable(),
             HasMany::make('Antworten', 'antworten', 'App\Nova\AbfrageAntwort')
         ];
     }
@@ -101,7 +109,9 @@ class Abfrage extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Filters\AbfrageSchuljahr,
+        ];
     }
 
     /**
