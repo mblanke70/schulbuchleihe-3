@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Validator;
+use App\Sportkurs;
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -20,6 +23,16 @@ class AppServiceProvider extends ServiceProvider
          Schema::defaultStringLength(191);
 
          Abfrage::observe(AbfrageObserver::class);
+
+         Validator::extend('sum', function ($attribute, $value, $parameters) {
+            $sum = 0;
+            foreach($value as $id)
+            {
+                $sum += Sportkurs::find($id)->bewegungsfeld;
+            }
+
+            return $sum == 2;
+         });
     }
 
     /**

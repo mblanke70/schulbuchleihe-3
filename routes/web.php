@@ -147,5 +147,9 @@ Route::group([
     /* HOME */
     Route::get('buecher', 'HomeController@zeigeBuecher');
     Route::get('buecherliste', 'HomeController@zeigeBuecherliste');
+
+    Route::get ('sportwahlen', 'SportwahlenController@index');
+    Route::get ('sportwahlen/wahlbogen', 'SportwahlenController@zeigeWahlbogen');
+    Route::post('sportwahlen/wahlbogen', 'SportwahlenController@speichereWahlbogen');
 });
 
