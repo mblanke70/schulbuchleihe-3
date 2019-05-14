@@ -78,9 +78,9 @@ class Buchtitel extends Resource
             Text::make('Verlag', 'verlag')
                 ->rules('required'),
 
-            //Text::make('ISBN', 'isbn')
-            //    ->rules('required')
-            //    ->sortable(),
+            Text::make('ISBN', 'isbn')
+                ->rules('required')
+                ->sortable(),
 
             //Number::make('Preis', 'preis')
             //    ->hideFromIndex()->min(1)->max(1000)->step(0.01),
