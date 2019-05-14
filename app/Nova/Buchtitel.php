@@ -39,11 +39,14 @@ class Buchtitel extends Resource
     public static $model = 'App\Buchtitel';
 
     /**
-     * The single value that should be used to represent the resource when being displayed.
+     * Get the value that should be displayed to represent the resource.
      *
-     * @var string
+     * @return string
      */
-    public static $title = 'titel';
+    public function title()
+    {
+        return $this->titel . ' (' . $this->isbn . ')';
+    }
 
     /**
      * The columns that should be searched.
