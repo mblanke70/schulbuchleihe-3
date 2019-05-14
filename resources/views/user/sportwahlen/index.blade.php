@@ -30,7 +30,7 @@
         <li>Bewegungsfeld B: <strong>{{ $sportwahl->subB }}</strong> </li>
     </ul>
 
-    <p>Eine Neuwahl ist bis zum 12.5.2019, 20 Uhr, möglich.</p>
+    <p>Eine Neuwahl ist bis zum 24.5.2019, 20 Uhr, möglich.</p>
 
     <a href="{{ url('user/sportwahlen/wahlbogen') }}"><button type="button" class="btn btn-primary">Neuwahl</button></a>
 
