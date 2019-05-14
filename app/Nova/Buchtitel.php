@@ -71,6 +71,8 @@ class Buchtitel extends Resource
             Text::make('Kennung', 'kennung')
                 ->sortable(),
             
+            BelongsTo::make('Fach', 'fach'),
+
             Text::make('Titel', 'titel')
                 ->rules('required')
                 ->sortable(),

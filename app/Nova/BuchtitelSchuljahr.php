@@ -86,15 +86,14 @@ class BuchtitelSchuljahr extends Resource
         return [
             ID::make()->sortable(),
             //Text::make('Titel', 'buchtitel.titel')->sortable(),
-            BelongsTo::make('Buchtitel', 'buchtitel')->sortable(),
+            BelongsTo::make('Buchtitel', 'buchtitel'),
             //Text::make('Schuljahr', 'schuljahr.schuljahr')->sortable(),
-            BelongsTo::make('Schuljahr', 'schuljahr')->sortable(),
-            //Text::make('ISBN', 'buchtitel.isbn')->sortable(),
+            BelongsTo::make('Schuljahr', 'schuljahr'),
+            Text::make('Fach', 'buchtitel.fach.name'),
             Text::make('Leihpreis', 'leihpreis')->sortable(),
             Text::make('Kaufpreis', 'kaufpreis')->sortable(),
             BelongsTo::make('AbfrageAntwort', 'antwort')
-                ->nullable()
-                ->sortable(),
+                ->nullable(),
             //BelongsToMany::make('Buecherliste', 'buecherlisten'),
             BelongsToMany::make('Jahrgang', 'jahrgaenge'),
         ];
@@ -121,6 +120,7 @@ class BuchtitelSchuljahr extends Resource
     {
         return [
             new Filters\BuchtitelSchuljahr,
+            new Filters\BuchtitelSchuljahrFach,
         ];
     }
 

@@ -54,8 +54,8 @@
                         in_array( $semester[$sem][$bf][$pos]->id , old('wahl'))) 
                         checked 
                     @endif
-                        >
-                        <label class="form-check-label col-form-label-sm" for="{{ 'k'.$sem.$bf.$pos}}">
+                        ><br />
+                        <label class="form-check-label col-form-label" for="{{ 'k'.$sem.$bf.$pos}}">
                             <strong>
                                 <a target="_blank" href="{{ url('pdf/'. $semester[$sem][$bf][$pos]->pdf) }}">{{ $semester[$sem][$bf][$pos]->titel }} </a>
                             </strong>

@@ -30,7 +30,7 @@ class BuchtitelSchuljahr extends Pivot
 
 	public function buchtitel()
     {
-        return $this->belongsTo('App\Buchtitel');
+        return $this->belongsTo('App\Buchtitel')->with('fach');
     }
 
     public function schuljahr()
