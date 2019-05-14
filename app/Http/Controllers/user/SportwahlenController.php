@@ -29,7 +29,7 @@ class SportwahlenController extends Controller
 
 	    if( $sportwahl == null )
 	    {
-	    	return redirect('sportwahlen/wahlbogen');
+	    	return redirect('user/sportwahlen/wahlbogen');
 	    }
 	    else
 	    {
