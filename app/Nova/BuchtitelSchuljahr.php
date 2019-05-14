@@ -92,7 +92,9 @@ class BuchtitelSchuljahr extends Resource
             Text::make('ISBN', 'buchtitel.isbn')->sortable(),
             Text::make('Leihpreis', 'leihpreis')->sortable(),
             Text::make('Kaufpreis', 'kaufpreis')->sortable(),
-            BelongsTo::make('AbfrageAntwort', 'antwort')->sortable(),
+            BelongsTo::make('AbfrageAntwort', 'antwort')
+                ->nullable()
+                ->sortable(),
             //BelongsToMany::make('Buecherliste', 'buecherlisten'),
             BelongsToMany::make('Jahrgang', 'jahrgaenge'),
         ];
