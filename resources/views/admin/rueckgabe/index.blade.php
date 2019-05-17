@@ -49,8 +49,84 @@
 		        </div>
 		    </div>
 
+		    @isset($buch)
+		    <div class="box box-solid box-danger">            
+		        <div class="box-header with-border">                
+		            <div class="box-title">
+		                Buch zurückgegeben
+		            </div>
+		        </div>
+		        <div>
+		            <div class="box-body">
+		       
+
+		            </div>
+		        </div>
+		    </div>
+		    @endisset
+
 		</div>
+
+		@isset($buecher)
+
+		<div class="col-md-7">
+
+			<div class="box box-solid box-warning">            
+		        <div class="box-header with-border">                
+		            <div class="box-title">
+		                Ausgeliehene Bücher
+		            </div>
+		        </div>
+		        <div>
+		            <div class="box-body">
+		                
+		                <div class="table-responsive">
+	                        <table id="buecher" class="display compact" cellspacing="0" width="100%">
+	                            <thead>
+	                                <tr>
+	                                    <th width="7%">Fach</th> 
+	                                    <th width="13%">ID</th> 
+	                                    <th width="60%">Titel</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                                @foreach ($buecher as $b)
+	                                <tr>
+	                                    <td>{{ $b->buchtitel->fach->code }}</td>
+	                                    <td>{{ $b->id }}</td>
+	                                    <td>{{ $b->buchtitel->titel }}</td>
+	                                </tr>
+	                                @endforeach
+	                            </tbody>
+	                        </table>
+	                    </div>
+
+		            </div>
+		        </div>
+		    </div>
+
+		</div>
+
+		@endisset
     	
 	</div>		
+
+@stop
+
+@section('js')
+
+    <script>
+        $(document).ready(function() {
+            $('#buecher').DataTable({
+                "searching": false, 
+                "info": false, 
+                "paging": false,
+                "language": {
+                    "emptyTable": "Keine Bücher ausgeliehen."
+                },           
+            });
+
+        } );
+    </script>
 
 @stop

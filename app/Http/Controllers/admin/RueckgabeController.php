@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Buch;
 use App\BuchHistorie;
+use Carbon\Carbon;
 
 class RueckgabeController extends Controller
 {
@@ -30,23 +31,35 @@ class RueckgabeController extends Controller
         $buch      = Buch::find($request->buch_id);
         $ausleiher = $buch->ausleiher;
 
-        if($ausleiher) {
-            $eintrag = new BuchHistorie();
+        if ( $ausleiher ) {
+
+            // Eintrag in Buchhistorie
+            $eintrag = new BuchHistorie;
             $eintrag->buch_id   = $buch->id;
-            $eintrag->vorname   = $ausleiher->user->vorname;
-            $eintrag->nachname  = $ausleiher->user->nachname;
-            $eintrag->klasse    = $ausleiher->klasse->bezeichnung;
-            $eintrag->ausgabe   = $buch->ausgabe;
-            $eintrag->rueckgabe = now();
+            $eintrag->titel     = $buch->buchtitel->titel;
+            $eintrag->nachname  = $ausleiher->nachname;
+            $eintrag->vorname   = $ausleiher->vorname;
+            $eintrag->email     = $ausleiher->user->email;
+            
+            if($buch->ausleiher_type == 'App\Schueler')
+            {
+                $eintrag->klasse    = $ausleiher->klasse->bezeichnung;
+                $eintrag->schuljahr = $ausleiher->klasse->jahrgang->schuljahr->schuljahr;
+            }
+            
+            $eintrag->ausgabe   = $buch->ausleiher_ausgabe;
+            $eintrag->rueckgabe = Carbon::now();
             $eintrag->save();
 
-            /*
-            $buch->ausleiher_id = null;
-            $buch->ausgabe      = null;
+            // Leihe beenden
+            $buch->ausleiher_id      = null;
+            $buch->ausleiher_type    = null;
+            $buch->ausleiher_ausgabe = null;
             $buch->save();
-            */
+
+            $buecher = $ausleiher->buecher()->get();
         }
-            
-        return redirect('admin/rueckgabe');
+
+        return view('admin/rueckgabe/index', compact('buecher', 'ausleiher', 'buch'));
     }
 }

@@ -307,9 +307,8 @@ class AusleiheController extends Controller
             'buch_id.exists'   => 'Die angegebene Buch-ID existiert nicht.', 
         ]);
 
-        $buch = Buch::find($request->buch_id);
-
-        $ausleiher = $buch->ausleiher()->first();
+        $buch      = Buch::find($request->buch_id);
+        $ausleiher = $buch->ausleiher;
         
         return view('admin/ausleihe/buchinfo', compact('buch', 'ausleiher'));
     }

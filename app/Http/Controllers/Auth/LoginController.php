@@ -84,6 +84,7 @@ class LoginController extends Controller
         $user->vorname  = $iservUser["given_name"];
         $user->nachname = $iservUser["family_name"];
          
+        /*
         foreach($iservUser["groups"] as $key => $val) 
         {
             if( substr($val["name"], 0, 6) == "Klasse" ) 
@@ -93,6 +94,7 @@ class LoginController extends Controller
                 break;
             }
         }
+        */
 
         $user->save();
 

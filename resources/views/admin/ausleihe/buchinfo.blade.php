@@ -88,8 +88,8 @@
 					<table class="display compact" cellspacing="0" width="100%">
 	              
 					@if($ausleiher)
-	                    <tr><th>Nachname</th><td>{{ $ausleiher->user->nachname }}</td></tr>
-	                    <tr><th>Vorname</th><td>{{ $ausleiher->user->vorname }}</td></tr>
+	                    <tr><th>Nachname</th><td>{{ $ausleiher->nachname }}</td></tr>
+	                    <tr><th>Vorname</th><td>{{ $ausleiher->vorname }}</td></tr>
 	                    <tr><th>Klasse</th><td>{{ $ausleiher->klasse->bezeichnung }}</td></tr>
 	                    <tr><th>Ausgabe</th><td>{{ $buch->ausgabe }}</td></tr>
             		@else
