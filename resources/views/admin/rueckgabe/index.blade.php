@@ -50,19 +50,31 @@
 		    </div>
 
 		    @isset($buch)
+		    	@isset($ausleiher)
 		    <div class="box box-solid box-danger">            
 		        <div class="box-header with-border">                
 		            <div class="box-title">
-		                Buch zurückgegeben
+		                Buch
 		            </div>
 		        </div>
 		        <div>
 		            <div class="box-body">
-		       
-
+		            	<p>
+		       				<strong>Titel</strong>: {{ $buch->buchtitel->titel }}
+		       			</p>
+		       			<p>
+		       				<strong>ID</strong>: {{ $buch->id }}
+		       			</p>
+		       			<p>
+		       				<strong>Fach</strong>: {{ $buch->buchtitel->fach->code }}
+		       			</p>
+		       			<p>
+		       				<strong>Ausleiher</strong>: {{ $ausleiher->vorname . ' ' . $ausleiher->nachname }}
+		       			</p>
 		            </div>
 		        </div>
 		    </div>
+		    	@endisset
 		    @endisset
 
 		</div>
@@ -74,7 +86,7 @@
 			<div class="box box-solid box-warning">            
 		        <div class="box-header with-border">                
 		            <div class="box-title">
-		                Ausgeliehene Bücher
+		                Ausgeliehene Bücher: {{ $ausleiher->vorname .' '. $ausleiher->nachname }}
 		            </div>
 		        </div>
 		        <div>
@@ -117,6 +129,7 @@
 
     <script>
         $(document).ready(function() {
+
             $('#buecher').DataTable({
                 "searching": false, 
                 "info": false, 
@@ -125,6 +138,8 @@
                     "emptyTable": "Keine Bücher ausgeliehen."
                 },           
             });
+
+            $("#buch").focus();
 
         } );
     </script>

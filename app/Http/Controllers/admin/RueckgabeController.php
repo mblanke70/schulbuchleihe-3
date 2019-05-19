@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 use App\Buch;
 use App\BuchHistorie;
 use Carbon\Carbon;
+use Validator;
+use App\Rules\BuchAusgeliehen;
+use App\Rules\BuchcodeExistiert;
+
 
 class RueckgabeController extends Controller
 {
@@ -21,14 +25,29 @@ class RueckgabeController extends Controller
      */
     public function zuruecknehmen(Request $request)
     {
-        request()->validate([
-            'buch_id' => 'required | exists:buecher,id'
-        ], [
-            'buch_id.required' => 'Es wurde keine Buch-ID angegeben.',
-            'buch_id.exists'   => 'Die angegebene Buch-ID existiert nicht.', 
-        ]);
+        $buch = Buch::find($request->buch_id);
 
-        $buch      = Buch::find($request->buch_id);
+        // Rückgabe nicht möglich, Abbruch mit Fehlermeldung...
+        $validator = Validator::make(
+            $request->all(), 
+            [
+                'buch_id' => [
+                    'required',
+                    new BuchcodeExistiert($buch),
+                    new BuchAusgeliehen($buch),
+                ],
+            ], [
+                'buch_id.required' => 'Bitte einen Buch-Code eingeben.',
+                'buch_id.exists'   => 'Die angegebene Buch-ID existiert nicht.'
+            ]
+        );
+
+        if($validator->fails()) {
+            return redirect('admin/rueckgabe/')
+                ->withErrors($validator->errors())
+                ->withInput();
+        }
+
         $ausleiher = $buch->ausleiher;
 
         if ( $ausleiher ) {
