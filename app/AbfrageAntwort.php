@@ -18,7 +18,7 @@ class AbfrageAntwort extends Model
      */
     public function abfrage()
     {
-    	return $this->belongsTo('App\Abfrage');
+    	return $this->belongsTo('App\Abfrage', 'id', 'antwort_id');
     }
 
     /**
