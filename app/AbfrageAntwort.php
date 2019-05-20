@@ -35,6 +35,6 @@ class AbfrageAntwort extends Model
      */
     public function buchtitel()
     {
-        return $this->hasMany('App\BuchtitelSchuljahr');
+        return $this->hasMany('App\BuchtitelSchuljahr', 'antwort_id');
     }
 }
