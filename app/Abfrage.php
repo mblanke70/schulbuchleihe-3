@@ -13,7 +13,7 @@ class Abfrage extends Model
 
     public function antworten()
     {
-    	return $this->hasMany('App\AbfrageAntwort', 'antwort_id')->orderBy('titel');
+    	return $this->hasMany('App\AbfrageAntwort')->orderBy('titel');
     }
 
     public function jahrgang()
