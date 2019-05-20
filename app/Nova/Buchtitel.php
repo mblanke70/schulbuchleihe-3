@@ -71,8 +71,6 @@ class Buchtitel extends Resource
             Text::make('Kennung', 'kennung')
                 ->sortable(),
             
-            BelongsTo::make('Fach', 'fach'),
-
             Text::make('Titel', 'titel')
                 ->rules('required')
                 ->sortable(),
@@ -91,7 +89,7 @@ class Buchtitel extends Resource
                 //->min(1)->max(1000)->step(0.01),
 
             BelongsTo::make('Fach', 'fach')
-                ->hideFromIndex()->rules('required'),
+                ->rules('required'),
             
             HasMany::make('Buch', 'buecher'),
 

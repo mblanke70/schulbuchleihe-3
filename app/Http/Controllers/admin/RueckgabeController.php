@@ -38,7 +38,6 @@ class RueckgabeController extends Controller
                 ],
             ], [
                 'buch_id.required' => 'Bitte einen Buch-Code eingeben.',
-                'buch_id.exists'   => 'Die angegebene Buch-ID existiert nicht.'
             ]
         );
 
