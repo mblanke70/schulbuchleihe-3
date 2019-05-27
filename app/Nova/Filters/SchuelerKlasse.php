@@ -44,6 +44,12 @@ class SchuelerKlasse extends Filter
      */
     public function options(Request $request)
     {
-        return Klasse::pluck('id', 'bezeichnung');
+        $klassen = Klasse::all();
+        $options = array();
+        foreach($klassen as $klasse) {
+            $options[$klasse->bezeichnung . " (" . $klasse->jahrgang->schuljahr->schuljahr . ")"] = $klasse->id;
+        }
+
+        return $options;
     }
 }

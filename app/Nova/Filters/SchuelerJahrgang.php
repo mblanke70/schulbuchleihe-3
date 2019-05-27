@@ -57,6 +57,12 @@ class SchuelerJahrgang extends Filter
      */
     public function options(Request $request)
     {
-        return Jahrgang::pluck('id', 'jahrgangsstufe');
+        $jgs = Jahrgang::all();
+        $opt = array();
+        foreach($jgs as $jg) {
+            $opt[$jg->jahrgangsstufe . " (" . $jg->schuljahr->schuljahr. ")"] = $jg->id;
+        }
+
+        return $opt;
     }
 }
