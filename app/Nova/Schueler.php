@@ -110,6 +110,7 @@ class Schueler extends Resource
     {
         return [
             new Filters\SchuelerKlasse,
+            new Filters\SchuelerJahrgang,
             new Filters\SchuelerSchuljahr
         ];
     }

@@ -33,7 +33,7 @@ class AbfrageAntwort extends Resource
      *
      * @var bool
      */
-    public static $displayInNavigation = true;
+    public static $displayInNavigation = false;
 
     /**
      * The model the resource corresponds to.

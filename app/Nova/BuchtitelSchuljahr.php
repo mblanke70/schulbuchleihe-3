@@ -19,6 +19,8 @@ class BuchtitelSchuljahr extends Resource
     public static $model = 'App\BuchtitelSchuljahr';
 
 
+    public static $perPageViaRelationship = 10;
+
     /**
      * Indicates if the resource should be displayed in the sidebar.
      *
