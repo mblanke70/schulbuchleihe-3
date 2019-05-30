@@ -38,10 +38,10 @@ class BuchtitelSchuljahr extends Resource
         return $this->buchtitel->titel . ' (' . $this->schuljahr->schuljahr . ')';
     }
 
-    public static function relatableQuery(NovaRequest $request, $query)
+    public static function relatableJahrgangs(NovaRequest $request, $query)
     {
         $jg = $request->findResourceOrFail();
-        return $query->where('schuljahr_id', $jg->schuljahr->id);
+        return $query->where('schuljahr_id', $jg->schuljahr->id);    
     }
 
     /**
@@ -98,9 +98,9 @@ class BuchtitelSchuljahr extends Resource
             Text::make('Leihpreis', 'leihpreis')->sortable(),
             Text::make('Kaufpreis', 'kaufpreis')->sortable(),
             
-            BelongsTo::make('AbfrageAntwort', 'antwort')
-                ->onlyOnDetail()
-                ->nullable(),
+            BelongsToMany::make('AbfrageAntwort', 'antworten')
+                ->onlyOnDetail(),
+
             //BelongsToMany::make('Buecherliste', 'buecherlisten'),
             BelongsToMany::make('Jahrgang', 'jahrgaenge'),
         ];

@@ -8,6 +8,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 
 class AbfrageAntwort extends Resource
 {
@@ -58,6 +59,12 @@ class AbfrageAntwort extends Resource
         'id', 'titel'
     ];
 
+    public static function relatableBuchtitelSchuljahrs(NovaRequest $request, $query)
+    {
+        $antwort = $request->findResourceOrFail();
+        return $query->where('schuljahr_id', $antwort->abfrage->jahrgang->schuljahr->id);    
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -71,7 +78,7 @@ class AbfrageAntwort extends Resource
             Text::make('Name', 'titel')->rules('required')->sortable(),
             BelongsTo::make('Abfrage', 'abfrage')->rules('required'),
             BelongsTo::make('Fach', 'fach')->nullable(),              
-            HasMany::make('BuchtitelSchuljahr', 'buchtitel'),
+            BelongsToMany::make('BuchtitelSchuljahr', 'buchtitel'),
         ];
     }
 

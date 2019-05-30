@@ -111,6 +111,7 @@ class Abfrage extends Resource
     {
         return [
             new Filters\AbfrageSchuljahr,
+            new Filters\AbfrageJahrgang,
         ];
     }
 

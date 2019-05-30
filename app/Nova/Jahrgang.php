@@ -73,6 +73,12 @@ class Jahrgang extends Resource
         'id', 'jahrgangsstufe'
     ];
 
+    public static function relatableBuchtitelSchuljahrs(NovaRequest $request, $query)
+    {
+        $btsj = $request->findResourceOrFail();
+        return $query->where('schuljahr_id', $btsj->schuljahr->id);    
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
