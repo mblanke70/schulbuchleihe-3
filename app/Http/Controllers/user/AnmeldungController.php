@@ -79,7 +79,7 @@ class AnmeldungController extends Controller
         
             foreach($antworten as $antw)            // und durchlaufen
             {
-                if ( $antw->fach_id !== $antwRequest )// && !empty($antw->fach_id) ) 
+                if ( $antw->id != $antwRequest )// && !empty($antw->fach_id) ) 
                 {           // entspricht akt. Antwort NICHT der gegebenen Antwort
                     if( empty($abfr->parent_id) )   // Ober-Abfrage nach FACH
                     {                               // Fach komplett rausfiltern
@@ -90,10 +90,7 @@ class AnmeldungController extends Controller
                     }
                     else                            // Unter-Abfrage nach BUCHGRUPPE
                     {
-                        if( !empty($abfragenRequest[$abfr->parent_id]) )
-                        {
-                            $buecherliste = $buecherliste->diff($antw->buchtitel);
-                        }                        
+                        $buecherliste = $buecherliste->diff($antw->buchtitel);
                     }
                 }
             }

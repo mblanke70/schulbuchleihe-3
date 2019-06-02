@@ -36,11 +36,11 @@
 	                @if ($abfr->child_id)
 	                    <!-- Abfrage für die eine Unter-Abfrage existiert -->
 	                    @if ($antw->fach_id)
-	                        <input type="radio" class="custom-control-input" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" value="{{ $antw->fach_id }}" 
+	                        <input type="radio" class="custom-control-input" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" value="{{ $antw->id }}" 
 	                        @if(old('abfrage.'.$abfr->id) == $antw->fach_id) checked @endif
 	                        onclick="show('abfr-{{ $abfr->child_id }}')"/>
 	                    @else
-	                        <input type="radio" class="custom-control-input" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" value="{{ $antw->fach_id }}" 
+	                        <input type="radio" class="custom-control-input" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" value="{{ $antw->id }}" 
 	                        @if(old('abfrage.'.$abfr->id) == $antw->fach_id) checked @endif
 	                        onclick="hide('abfr-{{ $abfr->child_id }}')"/>
 	                    @endif
@@ -48,7 +48,7 @@
 	                    <!-- Abfrage ohne Unter-Abfrage -->
 	                    <input type="radio" class="custom-control-input" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" 
 	                    @if(old('abfrage.'.$abfr->id) == $antw->fach_id) checked @endif 
-	                    value="{{ $antw->fach_id }}" />
+	                    value="{{ $antw->id }}" />
 	                @endif
 	    			<label class="custom-control-label" for="antw-{{ $antw->id }}">{{ $antw->titel }}</label>
     			</div>
