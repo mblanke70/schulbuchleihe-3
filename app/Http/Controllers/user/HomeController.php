@@ -10,28 +10,44 @@ use App\Klasse;
 use App\User;
 use App\Ausleiher;
 use App\Buecherliste;
+use App\Jahrgang;
 
 class HomeController extends Controller
 {
-    public function zeigeBuecherliste()
+    public function index() 
     {
-        $user     = Auth::user();
-        $schueler = $user->schueler()
-            ->with('user', 'klasse.jahrgang')
-            ->first(); // nur ein Ausleiher wird geholt!!!
+        $user = Auth::user();
 
-        $buchtitel     = $schueler->klasse->jahrgang->buecherliste->buchtitel;
+        $jg = $user->jahrgang;
+        if($jg!=20) $jg++;
+
+        $jahrgang = Jahrgang::where(['jahrgangsstufe' => $jg, 'schuljahr_id'=> 3])->first();
+        $buecherliste = $jahrgang->buchtitel;
+
+        $jahrgaenge = Jahrgang::where('schuljahr_id', 3)->get();
+
+        return view('user/index', compact('jahrgang', 'buecherliste', 'jahrgaenge'));
+    }
+
+    public function zeigeSchuljahr($sj)
+    {
+        $user = Auth::user();
+
+        $schueler = $user->schuelerInSchuljahr($sj)->get();
+        $jahrgang = $schueler->klasse->jahrgang;
+
         $buecher       = $schueler->buecher;
+        $buchtitel     = $jahrgang->buchtitel;
         $buecherwahlen = $schueler->buecherwahlen->keyBy('buchtitel_id');
 
         foreach($buchtitel as $bt) {
-           // bestellt?
+            // bestellt?
             $bw = $buecherwahlen->get($bt->id);
             if($bw!=null) {
                 $bt['wahl']    = $bw->wahl;
                 $bt['wahl_id'] = $bw->id;
             } else {
-                $bt['wahl'] = 4;    // == nicht bestellt (abgewählt)
+                $bt['wahl'] = 4;   // == nicht bestellt (abgewählt)
             }
 
             // ausgeliehen?

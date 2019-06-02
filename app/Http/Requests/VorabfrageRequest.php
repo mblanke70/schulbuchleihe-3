@@ -25,7 +25,7 @@ class VorabfrageRequest extends FormRequest
     {
         return [
             'ermaessigung' => 'required',
-            'pauschale'    => 'required',
+            'jahrgang'     => 'required',
         ];
     }
 
@@ -33,7 +33,7 @@ class VorabfrageRequest extends FormRequest
     {
         return [
             'ermaessigung.required' => 'Ermäßigung nicht ausgewählt.',
-            'pauschale.required'    => 'Frage nach älterem Geschwisterkind nicht beantwortet.',
+            'jahrgang.required'    => 'Jahrgang nicht ausgewählt.',
         ];
     }
 }

@@ -23,9 +23,18 @@ class WahlRequest extends FormRequest
      */
     public function rules()
     {
+        foreach($this->request->get('wahlen') as $key => $val)
+        {
+            $rules['wahlen.'.$key] = 'required';
+        }
+
+        return $rules;
+        
+        /*
         $rules['wahlen.*'] = 'required';
         //dd($rules);     
         return $rules;
+        */
     }
 
     public function messages()

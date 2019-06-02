@@ -25,6 +25,11 @@ class Schuljahr extends Model
         return $this->aktiv == 1;
     }
 
+    public function vorjahr()
+    {
+        return $this->hasOne('App\Schuljahr', 'id', 'prev');
+    }
+
     public function jahrgaenge()
     {
     	return $this->hasMany('App\Jahrgang'); 

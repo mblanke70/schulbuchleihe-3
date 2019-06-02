@@ -123,7 +123,23 @@ Route::group([
         'middleware' => ['user', 'menu.user']
     ], function () 
 {
-    Route::get('/', function () { return redirect('user/buecher'); } );
+    Route::get('/', 'HomeController@index');
+
+    Route::get('/{id}', 'HomeController@zeigeSchuljahr');
+
+    Route::get('anmeldung/schritt1', 'AnmeldungController@zeigeVorabfragen');
+    Route::post('anmeldung/schritt1', 'AnmeldungController@verarbeiteVorabfragen');
+
+    Route::get('anmeldung/schritt2', 'AnmeldungController@zeigeAbfragen');
+    Route::post('anmeldung/schritt2', 'AnmeldungController@verarbeiteAbfragen');
+
+    Route::get('anmeldung/schritt3', 'AnmeldungController@zeigeBuecherliste');
+    Route::post('anmeldung/schritt3', 'AnmeldungController@verarbeiteBuecherliste');
+
+    Route::get('anmeldung/schritt4', 'AnmeldungController@zeigeZustimmung');
+    Route::post('anmeldung/schritt4', 'AnmeldungController@verarbeiteZustimmung');
+
+    Route::get('anmeldung/schritt5', 'AnmeldungController@zeigeAbschluss');
 
     /* ANMELDEVERFAHREN */
     Route::get('buchleihe', 'BuchleiheController@index');

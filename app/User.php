@@ -22,6 +22,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Schueler')->with(['user', 'klasse']);
     }
 
+    public function schuelerInSchuljahr($sj)
+    {
+        return $this->hasMany('App\Schueler')
+            ->whereHas('klasse', function($query) use ($sj) {
+                $query->whereHas('jahrgang', function($query) use ($sj) {
+                    $query->where('schuljahr_id', $sj);
+                });
+            });
+    }
+
     public function lehrer()
     {
         return $this->hasOne('App\Lehrer');
