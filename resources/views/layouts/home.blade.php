@@ -49,15 +49,17 @@
           <li class="nav-item">
             <a class="nav-link active" href="{{ url('user/buecherlisten') }}">
               <span data-feather="home"></span>
-              Bücherlisten<span class="sr-only">(aktuell)</span>
+              Bücherlisten
             </a>
           </li>
+          <!--
           <li class="nav-item">
             <a class="nav-link" href="{{ url('user/anmeldung/schritt1') }}">
               <span data-feather="file"></span>
               Anmeldung zum Leihverfahren
             </a>
           </li>
+          -->
           <li class="nav-item">
             <a class="nav-link" href="{{ url('user/buecher/3') }}">
               <span data-feather="file"></span>
