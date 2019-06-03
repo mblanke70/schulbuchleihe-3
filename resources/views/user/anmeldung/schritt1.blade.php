@@ -30,8 +30,7 @@
 	  			</div>
         	
                 <select id="ermaessigung" class="custom-select" name="ermaessigung">
-                    <option></option>
-                    <option value="0">keine Erm&auml;&szlig;igung</option>
+                    <option value="0" selected>keine Erm&auml;&szlig;igung</option>
                     <option value="1">20% Erm&auml;&szlig;igung (3 Kinder)</option>
                     <option value="2">100% Erm&auml;&szlig;igung (befreit)</option>
                 </select>

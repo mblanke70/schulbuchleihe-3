@@ -84,17 +84,15 @@ class LoginController extends Controller
         $user->vorname  = $iservUser["given_name"];
         $user->nachname = $iservUser["family_name"];
          
-        /*
         foreach($iservUser["groups"] as $key => $val) 
         {
-            if( substr($val["name"], 0, 6) == "Klasse" ) 
+            if( strlen($val["name"])<=10 && substr($val["name"], 0, 6) == "Klasse" ) 
             {
                 $user->klasse   = substr($val["name"], 7);
                 $user->jahrgang = substr($val["name"], 7, 2);
                 break;
             }
         }
-        */
 
         $user->save();
 
@@ -107,7 +105,7 @@ class LoginController extends Controller
             return redirect()->intended('nova/');
         }
 
-        return redirect()->intended('user/sportwahlen/');
+        return redirect()->intended('user/');
     }
 
     public function logout()

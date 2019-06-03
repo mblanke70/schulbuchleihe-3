@@ -3,6 +3,7 @@ namespace App\Http\Controllers\user;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 use Validator;
 use Auth;   
@@ -20,19 +21,52 @@ use App\BuchtitelSchuljahr;
 use App\Schueler;
 use App\Buchwahl;
 use App\Klasse;
+use App\BuchHistorie;
 
 class AnmeldungController extends Controller
 {
     public function zeigeVorabfragen()
     {
         $user = Auth::user();
+        $schueler = $user->schuelerInSchuljahr(3)->first();
+        
+        if(!empty($schueler)) 
+        {
+            $ermaessigung = $schueler->erm;
 
-        $jahrgang = $user->jahrgang;
-        if($jahrgang != 20) $jahrgang++;
+            $wahlen = Buchwahl::where('schueler_id', $schueler->id)->get();
 
-        $jahrgaenge = Jahrgang::where('schuljahr_id', 3)->get();
+            $kaufen = $wahlen->filter(function ($bw) { return $bw->wahl == 3; });
+            $kaufliste = BuchtitelSchuljahr::findMany($kaufen->pluck('buchtitel_id'));
 
-        return view('user/anmeldung/schritt1', compact('jahrgang', 'jahrgaenge'));
+            $verlaengern = $wahlen->filter(function ($bw) { return $bw->wahl == 2; });
+            $verlaengernliste = BuchtitelSchuljahr::findMany($verlaengern->pluck('buchtitel_id'));
+            
+            $leihen = $wahlen->filter(function ($bw) { return $bw->wahl == 1; });
+            $leihliste = BuchtitelSchuljahr::findMany($leihen->pluck('buchtitel_id'));
+        
+            $summeKaufen = $kaufliste->sum('kaufpreis');
+            $summeLeihen = $leihliste->sum('leihpreis') + $verlaengernliste->sum('leihpreis');
+        
+            $summeLeihenReduziert = $summeLeihen;
+            switch($ermaessigung) {
+                case 1 :  $summeLeihenReduziert = $summeLeihenReduziert * 0.8; break;
+                case 2 :  $summeLeihenReduziert = 0; break;
+            }
+
+            $gewaehlt = $wahlen[0]->created_at;
+
+            return view('user/anmeldung/uebersicht', compact('leihliste', 'kaufliste', 'verlaengernliste', 'summeKaufen', 'summeLeihen', 'summeLeihenReduziert', 'ermaessigung', 'gewaehlt'));
+        } 
+        else 
+        {
+            $jahrgang = $user->jahrgang;
+            if($jahrgang != 20) $jahrgang++;
+
+            $jahrgaenge = Jahrgang::where('schuljahr_id', 3)->get();
+
+            return view('user/anmeldung/schritt1', compact('jahrgang', 'jahrgaenge'));
+        }
     }
 
     public function verarbeiteVorabfragen(VorabfrageRequest $request)
@@ -117,14 +151,18 @@ class AnmeldungController extends Controller
 
         $kaufen = array_filter($wahlen, function ($val) { return $val == 3; });
         $kaufliste = BuchtitelSchuljahr::findMany(array_keys($kaufen));
-        $summeKaufen = $kaufliste->sum('kaufpreis');
-
-        $leihen = array_filter($wahlen, function ($val) { return $val < 3; });
+        
+        $leihen = array_filter($wahlen, function ($val) { return $val <= 2; });
         $leihliste = BuchtitelSchuljahr::findMany(array_keys($leihen));
-        $summeLeihen  = $leihliste->sum('leihpreis');
-
+        
+        //$verlaengern = array_filter($wahlen, function ($val) { return $val == 2; });
+        //$verlaengernliste = BuchtitelSchuljahr::findMany(array_keys($verlaengern));
+        
+        $summeKaufen = $kaufliste->sum('kaufpreis');
+        $summeLeihen = $leihliste->sum('leihpreis'); 
+        // + $verlaengernliste->sum('leihpreis');
         $ermaessigung = session('ermaessigung');
-
+        
         $summeLeihenReduziert = $summeLeihen;
         switch($ermaessigung) {
             case 1 :  $summeLeihenReduziert = $summeLeihenReduziert * 0.8; break;
@@ -165,8 +203,15 @@ class AnmeldungController extends Controller
         $schueler->klasse_id = $klassen[0]->id;
         $schueler->save();
 
+        $alterSchueler = $user
+            ->schuelerInSchuljahr($jahrgang->schuljahr->vorjahr->id)->first();
+        if(!empty($alterSchueler)) {
+            $leihbuecher = $alterSchueler->buecher;
+        }
+
         Buchwahl::where('schueler_id', $schueler->id)->delete();    
         $wahlen = session('wahlen');     
+
         foreach($wahlen as $btsj_id => $wahl)
         {
             $buchwahl = new Buchwahl;
@@ -174,15 +219,39 @@ class AnmeldungController extends Controller
             $buchwahl->buchtitel_id = $btsj_id;
             $buchwahl->wahl         = $wahl;
             $buchwahl->save();
+
+            // Verlängerungs-Buch?
+            if($wahl == 2) 
+            {
+                // Buch ermitteln
+                $btsj  = BuchtitelSchuljahr::find($btsj_id);
+                $bt_id = $btsj->buchtitel_id;
+                $buch  = $leihbuecher->filter(function($value, $key) use ($bt_id) {
+                    if( $value->buchtitel_id == $bt_id ) {
+                        return $value;
+                    }
+                })->first();
+
+                // BuchHistorien-Eintrag machen
+                $eintrag = new BuchHistorie;
+                $eintrag->buch_id   = $buch->id;
+                $eintrag->titel     = $buch->buchtitel->titel;
+                $eintrag->nachname  = $alterSchueler->nachname;
+                $eintrag->vorname   = $alterSchueler->vorname;
+                $eintrag->email     = $alterSchueler->user->email;
+                $eintrag->klasse    = $alterSchueler->klasse->bezeichnung;
+                $eintrag->schuljahr = $alterSchueler->klasse->jahrgang->schuljahr->schuljahr;
+                $eintrag->ausgabe   = $buch->ausleiher_ausgabe;
+                $eintrag->rueckgabe = Carbon::now();
+                $eintrag->save();
+
+                // Buch neu ausleihen
+                $schueler->buecher()->save($buch);
+                $buch->ausleiher_ausgabe = Carbon::now();
+                $buch->save();
+            }
         }
-
-        $schueler = $user->schuelerInSchuljahr($jahrgang->schuljahr->vorjahr->id)->first();
-        if(!empty($schueler)) {
-            $leihbuecher = $schueler->buecher;
-        }
-
-        // Verlängerte Bücher bearbeiten !!! Fehlt noch !!!
-
+  
         return redirect('user/anmeldung/schritt5');
     }
 

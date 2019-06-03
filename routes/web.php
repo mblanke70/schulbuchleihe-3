@@ -123,9 +123,17 @@ Route::group([
         'middleware' => ['user', 'menu.user']
     ], function () 
 {
-    Route::get('/', 'HomeController@index');
+    Route::get('/', function () {
+        return view('user/index');
+    });
+
+    Route::get('buecherlisten', 'HomeController@zeigeBuecherlisten');
+    Route::post('buecherlisten', 'HomeController@zeigeBuecherlisten');
+
+    Route::get('buecher/{id}', 'HomeController@zeigeBuecher');
 
     Route::get('/{id}', 'HomeController@zeigeSchuljahr');
+
 
     Route::get('anmeldung/schritt1', 'AnmeldungController@zeigeVorabfragen');
     Route::post('anmeldung/schritt1', 'AnmeldungController@verarbeiteVorabfragen');

@@ -67,8 +67,9 @@
             <tr>
                 <th>Titel</th> 
                 <th>ISBN</th>
+                <th>Fach</th>
                 <th>Verlag</th>
-                <th>Leihgebühr</th>
+                <th>Leihpreis</th>
             </tr>
         </thead>
 
@@ -78,6 +79,7 @@
                 <tr>
                     <td scope="row">{{ $bt->buchtitel->titel }}</td>
                     <td>{{ $bt->buchtitel->isbn }}</td>
+                    <td>{{ $bt->buchtitel->fach->name }}</td>
                     <td>{{ $bt->buchtitel->verlag }}</td>
                     <td>{{ $bt->leihpreis }} &euro;</td>
                 </tr>
