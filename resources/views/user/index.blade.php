@@ -42,8 +42,6 @@
 
 			<a href="{{ url('user/anmeldung/schritt1') }}" class="btn btn-danger" role="button">Anmeldung zum Leihverfahren</a>
 
-			<h4 style="color: red">Die Anmeldung für die Schulbuchleihe öffnet in Kürze.</h4>
-
 	    </div>
 
 	</div>
