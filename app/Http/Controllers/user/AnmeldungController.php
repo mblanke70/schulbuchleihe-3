@@ -73,6 +73,8 @@ class AnmeldungController extends Controller
     {
         $request->session()->put('ermaessigung', $request->ermaessigung);
         $request->session()->put('jahrgang', $request->jahrgang);
+        $request->session()->put('kontoinhaber', $request->kontoinhaber);
+        $request->session()->put('iban', $request->iban);
 
         return redirect('user/anmeldung/schritt2');
     }    
@@ -177,15 +179,19 @@ class AnmeldungController extends Controller
         $user = Auth::user();
         $jg   = session('jahrgang');
         $erm  = session('ermaessigung');
+        $kontoinhaber  = session('kontoinhaber');
+        $iban = session('iban');
 
         // Schüler für aktuelles Schuljahr existiert schon? NEIN?
         $schueler = new Schueler;
-        $schueler->user_id     = $user->id;
-        $schueler->vorname     = $user->vorname;
-        $schueler->nachname    = $user->nachname;
-        $schueler->erm         = $erm;
-        $schueler->jahrgang_id = $jg;
-        $schueler->betrag      = $request->betrag;
+        $schueler->user_id      = $user->id;
+        $schueler->vorname      = $user->vorname;
+        $schueler->nachname     = $user->nachname;
+        $schueler->erm          = $erm;
+        $schueler->kontoinhaber = $kontoinhaber;
+        $schueler->iban         = $iban;
+        $schueler->jahrgang_id  = $jg;
+        $schueler->betrag       = $request->betrag;
 
         $jahrgang = Jahrgang::find($jg);
         $klassen  = $jahrgang->klassen;

@@ -22,7 +22,7 @@
 	<div class="row">
         <div class="col-md-6">
         	<h4>Erm&auml;&szlig;igung auf den Leihpreis</h4>
-        	<p>Familien mit 3 oder mehr schulpflichtigen Kindern zahlen nur 80% des Leihpreises. Zum Nachweis geben Sie bitte bis zum 18.6. Schulbescheinigungen der Kinder, die nicht die Ursulaschule besuchen - sofern sich eine Ver&auml;nderung ergeben hat - im Sekretariat ab.</p>
+        	<p>Familien mit 3 oder mehr schulpflichtigen Kindern zahlen nur 80% des Leihpreises. Der Nachweis über schulpflichtige Geschwisterkinder erfolgt durch Abgabe der Bescheinigungen im Sekretariat bis Montag, den 1.7.2019. Für Geschwisterkinder, die die Ursulaschule besuchen, entfällt die Nachweispflicht.</p>
 
         	<div class="input-group mb-3">
 				<div class="input-group-prepend">
@@ -55,6 +55,23 @@
 			  	</select>
 			</div>
 
+			<h4 class="mt-4">Bankverbindung</h4>
+
+            <p>Geben Sie hier die Kontoverbindung an, von dem auch das Schulgeld für Ihr Kind abgebucht wird. Von diesem Konto werden wir am Anfang des nächsten Schuljahres auch die Leihgebühren einziehen. Mit dieser Angabe helfen Sie uns, dass für das Schulgeld erteilte Lastschrift-Mandat richtig zuzuordnen.</p>
+           
+		  	<div class="input-group mb-3">
+			  	<div class="input-group-prepend">
+			    	<span class="input-group-text">Kontoinhaber</span>
+			  	</div>
+			  	<input type="text" class="form-control" name="kontoinhaber">
+			</div>
+
+			<div class="input-group mb-3">
+			  	<div class="input-group-prepend">
+			    	<span class="input-group-text">IBAN</span>
+			  	</div>
+			  	<input type="text" class="form-control" name="iban">
+			</div>
         </div>
   	</div>
 
