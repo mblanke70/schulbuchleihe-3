@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-6">
 	       	<h4>Jahrgang im Schuljahr 2019/20</h4>
-            <p>Geben Sie hier an, in welchem Jahrgang sich ihr Kind im nächsten Schuljahr befindet. (Es sollte der richtige Jahrgang vorausgewählt sein.)</p>
+            <p>Geben Sie an, in welchem Jahrgang sich ihr Kind im nächsten Schuljahr befindet. (Es sollte der richtige Jahrgang vorausgewählt sein.)</p>
             <div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<label class="input-group-text" for="jahrgang">Jahrgang</label>
@@ -57,7 +57,7 @@
 
 			<h4 class="mt-4">Bankverbindung</h4>
 
-            <p>Geben Sie hier das Konto an, von dem auch das Schulgeld für Ihr Kind eingezogen wird. Von diesem Konto werden wir am Anfang des nächsten Schuljahres auch die Leihgebühren einziehen. Diese Angabe hilft uns, dass für das Schulgeld von Ihnen erteilte Lastschriftmandat richtig zuzuordnen.</p>
+            <p>Geben Sie das Konto an, von dem auch das Schulgeld für Ihr Kind eingezogen wird. Von diesem Konto werden wir am Anfang des nächsten Schuljahres auch die Leihgebühren einziehen. Diese Angabe hilft uns, dass für das Schulgeld von Ihnen erteilte Lastschriftmandat richtig zuzuordnen.</p>
            
 		  	<div class="input-group mb-3">
 			  	<div class="input-group-prepend">
