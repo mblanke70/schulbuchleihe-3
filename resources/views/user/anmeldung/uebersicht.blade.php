@@ -14,8 +14,11 @@
 	        {{ $errors->first() }}
 	    </div>
 	@endif
+
     
-    <h5 class="mt-4">Neu ausgeliehene Bücher (Ausgabe zu Beginn des neuen Schuljahres)</h5>
+    @if(!$leihliste->isEmpty())
+    
+    <h5 class="mt-4">Bestellte Leihbücher (Ausgabe zu Beginn des neuen Schuljahres)</h5>
     
     <table class="table table-striped"">
         <thead>
@@ -43,8 +46,11 @@
         </tbody>
 
     </table> 
+    @endif
 
-    <h5 class="mt-4">Verlängerte Bücher</h5>
+    @if(!$verlaengernliste->isEmpty())
+
+    <h5 class="mt-4">Verlängerte Leihbücher</h5>
     
     <table class="table table-striped"">
         <thead>
@@ -72,10 +78,12 @@
         </tbody>
 
     </table> 
+    @endif
 
     <h5>Die Summe der reduzierten Leihpreise beträgt {{ number_format($summeLeihenReduziert, 2, ',', '') }} &euro;.</h5>
 
-    <h5 class="mt-4">Bücher, die selbst gekauft werden</h5>
+    @if(!$kaufliste->isEmpty())
+    <h5 class="mt-4">Kaufbücher</h5>
     
     <table class="table table-striped"">
         <thead>
@@ -105,5 +113,6 @@
     </table> 
 
     <h5>Die Summe der Kaufpreise beträgt {{ number_format($summeKaufen, 2, ',', '') }} &euro;.</h5>
+    @endif
             
 @endsection
