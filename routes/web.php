@@ -16,15 +16,9 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/keinAccount', function () {
-    return view('noaccount');
-});
-
-
 /* AUTH */
 Route::get('login/iserv', 'Auth\LoginController@redirectToProvider');
 Route::get('login/iserv/callback', 'Auth\LoginController@handleProviderCallback');
-
 
 Route::post('/logout', function () {
     Auth::logout();

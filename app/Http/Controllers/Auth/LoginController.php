@@ -86,7 +86,7 @@ class LoginController extends Controller
          
         foreach($iservUser["groups"] as $key => $val) 
         {
-            if( strlen($val["name"])<=10 && substr($val["name"], 0, 6) == "Klasse" ) 
+            if( strlen($val["name"]) <= 10 && substr($val["name"], 0, 6) == "Klasse" ) 
             {
                 $user->klasse   = substr($val["name"], 7);
                 $user->jahrgang = substr($val["name"], 7, 2);

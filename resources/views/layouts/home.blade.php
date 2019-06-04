@@ -40,6 +40,9 @@
 
 <div class="container-fluid">
   <div class="row">
+
+    @if (Auth::user()!=null)
+    
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -80,6 +83,8 @@
         </ul>
       </div>
     </nav>
+    
+    @endif
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
