@@ -96,6 +96,8 @@ class LoginController extends Controller
 
         $user->save();
 
+        dd($user);
+
         Auth::login( $user );
 
         //dd(Session::all());
