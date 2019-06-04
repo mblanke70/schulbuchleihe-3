@@ -20,7 +20,7 @@
     {{ csrf_field() }}
 
 	<div class="row">
-        <div class="col-sm-3 col-md-6">
+        <div class="col-md-6">
         	<h4>Erm&auml;&szlig;igung auf den Leihpreis</h4>
         	<p>Familien mit 3 oder mehr schulpflichtigen Kindern zahlen nur 80% des Leihpreises. Zum Nachweis geben Sie bitte bis zum 18.6. Schulbescheinigungen der Kinder, die nicht die Ursulaschule besuchen - sofern sich eine Ver&auml;nderung ergeben hat - im Sekretariat ab.</p>
 
@@ -37,7 +37,7 @@
             </div>
 
         </div>
-        <div class="col-sm-9 col-md-6">
+        <div class="col-md-6">
 	       	<h4>Jahrgang im Schuljahr 2019/20</h4>
             <p>Geben Sie hier an, in welchem Jahrgang sich ihr Kind im nächsten Schuljahr befindet. (Es sollte der richtige Jahrgang vorausgewählt sein.)</p>
             <div class="input-group mb-3">

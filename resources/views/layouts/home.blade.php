@@ -47,7 +47,7 @@
         </h6>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="{{ url('user/buecherlisten') }}">
+            <a class="nav-link" href="{{ url('user/buecherlisten') }}">
               <span data-feather="home"></span>
               Bücherlisten
             </a>
