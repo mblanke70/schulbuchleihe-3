@@ -40,7 +40,7 @@
 	 
 			<p>Für Familien, die vom Schulgeld befreit sind, ist die Ausleihe kostenlos. Darüber hinaus wird die Leihgebühr für Familien mit drei oder mehr schulpflichtigen Kindern auf 80% reduziert. Der Nachweis über schulpflichtige Geschwisterkinder erfolgt per Upload der Schulbescheinigungen im Bestellverfahren oder - alternativ - durch Abgabe der Bescheinigungen im Sekretariat. Für Geschwisterkinder, die die Ursulaschule besuchen, entfällt die Nachweispflicht.</p>
 
-			<a href="{{ url('user/anmeldung/schritt1') }}" class="btn btn-danger" role="button">Anmeldung zum Leihverfahren</a>
+			<!--<a href="{{ url('user/anmeldung/schritt1') }}" class="btn btn-danger" role="button">Anmeldung zum Leihverfahren</a>-->
 
 	    </div>
 
