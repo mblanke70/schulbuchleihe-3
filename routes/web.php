@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {
-    return view('home');
+    return view('index');
 });
 
 Route::get('/keinAccount', function () {
@@ -132,9 +132,6 @@ Route::group([
 
     Route::get('buecher/{id}', 'HomeController@zeigeBuecher');
 
-    Route::get('/{id}', 'HomeController@zeigeSchuljahr');
-
-
     Route::get('anmeldung/schritt1', 'AnmeldungController@zeigeVorabfragen');
     Route::post('anmeldung/schritt1', 'AnmeldungController@verarbeiteVorabfragen');
 
@@ -150,6 +147,7 @@ Route::group([
     Route::get('anmeldung/schritt5', 'AnmeldungController@zeigeAbschluss');
 
     /* ANMELDEVERFAHREN */
+    /*
     Route::get('buchleihe', 'BuchleiheController@index');
 
     Route::get ('buchleihe/vorabfragen', 'BuchleiheController@zeigeVorabfragen');
@@ -167,13 +165,16 @@ Route::group([
     Route::get('buchleihe/abschluss', 'BuchleiheController@zeigeAbschluss');
 
     Route::post('buchleihe/neuwahl', 'BuchleiheController@neuwahl');
+    */
 
     /* HOME */
+    /*
     Route::get('buecher', 'HomeController@zeigeBuecher');
     Route::get('buecherliste', 'HomeController@zeigeBuecherliste');
 
     Route::get ('sportwahlen', 'SportwahlenController@index');
     Route::get ('sportwahlen/wahlbogen', 'SportwahlenController@zeigeWahlbogen');
     Route::post('sportwahlen/wahlbogen', 'SportwahlenController@speichereWahlbogen');
+    */
 });
 
