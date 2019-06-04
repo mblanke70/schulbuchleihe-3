@@ -15,7 +15,7 @@
 	    </div>
 	@endif
     
-    <h4>Ihre Wahlen sind gespeichert worden.</h4>
+    <h5>Ihre Wahlen sind gespeichert worden.</h5>
 
     <p>Sie werden mit dem nächsten Klick auf die Startseite des Verfahrens weitergeleitet, auf der jetzt die Listen der gewählten Leih- bzw. Kaufbücher angezeigt werden. Es besteht dort auch die Möglichkeit, noch einmal neu zu wählen.</p>
         

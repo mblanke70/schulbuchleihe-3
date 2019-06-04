@@ -20,7 +20,7 @@
 
     {{ csrf_field() }}
     
-    <h3>Bankeinzugsverfahren</h3>
+    <h5>Bankeinzugsverfahren</h5>
 
     <p>Die Summe der Leihgebühren beträgt:</p>
            

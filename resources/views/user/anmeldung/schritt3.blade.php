@@ -15,7 +15,7 @@
 	    </div>
 	@endif
 
-    <h4 class="box-title">Bücherliste für den Jahrgang {{ $jahrgang->jahrgangsstufe }}</h4>
+    <h5 class="box-title">Bücherliste für den Jahrgang {{ $jahrgang->jahrgangsstufe }}</h5>
 
 	<form action="{{ url('user/anmeldung/schritt3') }}" method="POST" role="form">
 

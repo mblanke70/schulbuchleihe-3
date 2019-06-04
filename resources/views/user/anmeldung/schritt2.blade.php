@@ -15,7 +15,7 @@
 	    </div>
 	@endif
 
-    <h4 class="box-title">Wahlabfragen für den Jahrgang {{ $jg->jahrgangsstufe }}</h4>
+    <h5 class="box-title">Wahlabfragen für den Jahrgang {{ $jg->jahrgangsstufe }}</h5>
 
 	<form action="{{ url('user/anmeldung/schritt2') }}" method="POST" role="form">
 
