@@ -57,7 +57,7 @@
 
 			<h4 class="mt-4">Bankverbindung</h4>
 
-            <p>Geben Sie hier die Kontoverbindung an, von dem auch das Schulgeld für Ihr Kind abgebucht wird. Von diesem Konto werden wir am Anfang des nächsten Schuljahres auch die Leihgebühren einziehen. Mit dieser Angabe helfen Sie uns, dass für das Schulgeld erteilte Lastschrift-Mandat richtig zuzuordnen.</p>
+            <p>Geben Sie hier die Kontoverbindung an, von der auch das Schulgeld für Ihr Kind eingezogen wird. Von diesem Konto werden wir am Anfang des nächsten Schuljahres auch die Leihgebühren einziehen. Mit dieser Angabe helfen Sie uns, dass für das Schulgeld von Ihnen erteilte Lastschriftmandat richtig zuzuordnen.</p>
            
 		  	<div class="input-group mb-3">
 			  	<div class="input-group-prepend">
