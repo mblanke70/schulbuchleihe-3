@@ -26,7 +26,7 @@
         <div class="row pt-2">
         
             <div class="col-md-3">
-                {{ $abfr->titel }}
+                <strong>{{ $abfr->titel }}</strong>
             </div>
         
             @foreach ($abfr->antworten as $antw)
@@ -36,18 +36,15 @@
 	                @if ($abfr->child_id)
 	                    <!-- Abfrage für die eine Unter-Abfrage existiert -->
 	                    @if ($antw->fach_id)
-	                        <input type="radio" class="custom-control-input" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" value="{{ $antw->id }}" 
-	                        @if(old('abfrage.'.$abfr->id) == $antw->id) checked @endif
+	                        <input type="radio" class="custom-control-input" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" value="{{ $antw->id }}" checked
 	                        onclick="show('abfr-{{ $abfr->child_id }}')"/>
 	                    @else
-	                        <input type="radio" class="custom-control-input" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" value="{{ $antw->id }}" 
-	                        @if(old('abfrage.'.$abfr->id) == $antw->id) checked @endif
+	                        <input type="radio" class="custom-control-input" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" value="{{ $antw->id }}" checked
 	                        onclick="hide('abfr-{{ $abfr->child_id }}')"/>
 	                    @endif
 	                @else
 	                    <!-- Abfrage ohne Unter-Abfrage -->
-	                    <input type="radio" class="custom-control-input" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" 
-	                    @if(old('abfrage.'.$abfr->id) == $antw->id) checked @endif 
+	                    <input type="radio" class="custom-control-input" id="antw-{{ $antw->id }}" name ="abfrage[{{ $abfr->id}}]" checked
 	                    value="{{ $antw->id }}" />
 	                @endif
 	    			<label class="custom-control-label" for="antw-{{ $antw->id }}">{{ $antw->titel }}</label>
