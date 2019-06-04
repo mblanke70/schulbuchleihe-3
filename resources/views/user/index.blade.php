@@ -36,11 +36,11 @@
 
 			<p>Sie erhalten nach Abschluss des Verfahrens noch einmal übersichtlich dargestellt, welche Bücher Sie neu bestellt haben, welche über die Sommerferien in der Hand Ihres Kindes bleiben und welche Sie im Buchhandel kaufen müssen.</p>
 
-			<p>Die Zahlung des Entgelts für die Ausleihe erfolgt per Bankeinzug von dem Konto, von dem auch das Schulgeld eingezogen wird. Sie müssen zum Abschluss der Bestellung bestätigen, dass sie mit diesem Verfahren einverstanden sind. Diese Einverständniserklärung gilt nur einmalig und muss in jedem Jahr erneuert werden.  Wir belasten den Betrag dem Konto, von dem auch das Schulgeld eingezogen wird.</p>
+			<p>Die Zahlung des Entgelts für die Ausleihe erfolgt per Bankeinzug von dem Konto, von dem auch das Schulgeld eingezogen wird. Sie müssen zum Abschluss der Bestellung bestätigen, dass sie mit diesem Verfahren einverstanden sind. Diese Einverständniserklärung gilt nur einmalig und muss in jedem Jahr erneuert werden.</p>
 	 
 			<p>Für Familien, die vom Schulgeld befreit sind, ist die Ausleihe kostenlos. Darüber hinaus wird die Leihgebühr für Familien mit drei oder mehr schulpflichtigen Kindern auf 80% reduziert. Der Nachweis über schulpflichtige Geschwisterkinder erfolgt per Upload der Schulbescheinigungen im Bestellverfahren oder - alternativ - durch Abgabe der Bescheinigungen im Sekretariat. Für Geschwisterkinder, die die Ursulaschule besuchen, entfällt die Nachweispflicht.</p>
 
-			<!--<a href="{{ url('user/anmeldung/schritt1') }}" class="btn btn-danger" role="button">Anmeldung zum Leihverfahren</a>-->
+			<a href="{{ url('user/anmeldung/schritt1') }}" class="btn btn-danger" role="button">Anmeldung zum Leihverfahren</a>
 
 			<h4 style="color: red">Die Anmeldung für die Schulbuchleihe öffnet in Kürze.</h4>
 
