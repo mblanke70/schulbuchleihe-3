@@ -206,7 +206,7 @@ class AnmeldungController extends Controller
             });
         }
 
-        $schueler->klasse_id = $klassen[0]->id;
+        $schueler->klasse_id = $klassen->first()->id;
         $schueler->save();
 
         $alterSchueler = $user
