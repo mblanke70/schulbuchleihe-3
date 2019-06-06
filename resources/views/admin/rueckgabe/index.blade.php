@@ -54,7 +54,7 @@
 		    <div class="box box-solid box-danger">            
 		        <div class="box-header with-border">                
 		            <div class="box-title">
-		                Buch
+		                Buch zurückgenommen
 		            </div>
 		        </div>
 		        <div>

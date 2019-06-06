@@ -5,7 +5,7 @@ namespace App\Rules;
 use Illuminate\Contracts\Validation\Rule;
 use App\BuchUser;
 
-class BuchAusgeliehen implements Rule
+class BuchNichtVerlaengert implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,17 +26,18 @@ class BuchAusgeliehen implements Rule
      */
     public function passes($attribute, $value)
     {        
-        // hole alle Bücher, die (wenigstens) einen Ausleiher haben 
-        // und die noch nicht zurückgegeben worden sind 
+        if( $this->buch && $this->buch->ausleiher_type == 'App\Schueler' ) 
+        {
+            $ausleiher = $this->buch->ausleiher;
+            if( $ausleiher )
+            {
+                return $ausleiher->klasse->jahrgang->schuljahr->id < 3;
+            }
 
-        /*
-        if($this->buch!=null)
-            return $this->buch->ausleiher_id != null;
-        else 
-            return false;
-        */
-        
-        return $this->buch->ausleiher_id != null;        
+            return true;
+        }
+
+        return true;
     }
 
     /**
@@ -46,7 +47,8 @@ class BuchAusgeliehen implements Rule
      */
     public function message()
     {
-         //return 'Dieser Schüler hat dieses Buch bereits ausgeliehen.';
-        return 'Das Buch ist nicht ausgeliehen.';
+        $ausleiher = $this->buch->ausleiher;
+
+        return 'Das Buch ist bereits von ' . $ausleiher->vorname . " " . $ausleiher->nachname . ' für das Schuljahr 2019/20 ausgeliehen (verlängert) worden.';
     }
 }

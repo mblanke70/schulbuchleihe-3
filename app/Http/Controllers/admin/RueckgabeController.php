@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Validator;
 use App\Rules\BuchAusgeliehen;
 use App\Rules\BuchcodeExistiert;
+use App\Rules\BuchNichtVerlaengert;
 
 
 class RueckgabeController extends Controller
@@ -35,6 +36,7 @@ class RueckgabeController extends Controller
                     'required',
                     new BuchcodeExistiert($buch),
                     new BuchAusgeliehen($buch),
+                    new BuchNichtVerlaengert($buch),
                 ],
             ], [
                 'buch_id.required' => 'Bitte einen Buch-Code eingeben.',
