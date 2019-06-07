@@ -35,8 +35,11 @@ class BuchAusgeliehen implements Rule
         else 
             return false;
         */
-        
-        return $this->buch->ausleiher_id != null;        
+        if($this->buch!=null) {
+            return $this->buch->ausleiher_id != null;     
+        }   
+
+        return false;
     }
 
     /**
