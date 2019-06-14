@@ -25,6 +25,14 @@ class Schueler extends Model
         return $this->hasMany('App\Buchwahl')->with('buchtitel');
     }
 
+    /**
+     * Liefert die Anzahl der Bücherbestellungen des Schülers.
+     */   
+    public function bestellungen()
+    {
+        return $this->hasMany('App\Buchwahl')->where('wahl', 1);
+    }
+
 	/**
      * Liefert die Klasse des Schülers.
      */

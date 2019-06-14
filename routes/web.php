@@ -11,6 +11,14 @@
 |
 */
 
+/*
+Route::get('/mail', function(){
+    Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
+    {
+        $message->to('malte.blanke@urs-os.de');
+    });
+});
+*/
 
 Route::get('/', function () {
     return view('index');

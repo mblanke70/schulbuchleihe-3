@@ -84,8 +84,14 @@ class Schueler extends Resource
             Text::make('# geliehen', function () {
                 return $this->buecher()->count();
             })->onlyOnIndex(),
+
+            Text::make('# bestellt', function () {
+                return $this->bestellungen()->count();
+            })->onlyOnIndex(),
             
-            HasMany::make('Buch', 'buecher')
+            HasMany::make('Buch', 'buecher'),
+
+            HasMany::make('Buchwahl', 'buecherwahlen')
         ];
     }
 
