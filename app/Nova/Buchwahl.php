@@ -45,7 +45,8 @@ class Buchwahl extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Buchtitel', 'buchtitel')->rules('required'),
+            BelongsTo::make('BuchtitelSchuljahr', 'buchtitel')->rules('required'),
+            Text::make('Wahl', 'wahl')->onlyOnForms(),
             Text::make('Wahl', function () {
                 $w = "L";
                 if($this->wahl == 2) {
