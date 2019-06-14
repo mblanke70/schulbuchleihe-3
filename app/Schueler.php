@@ -22,7 +22,7 @@ class Schueler extends Model
      */   
     public function buecherwahlen()
     {
-        return $this->hasMany('App\Buchwahl')->with('buchtitel');
+        return $this->hasMany('App\Buchwahl')->with('buchtitel')->orderBy('wahl');
     }
 
     /**
