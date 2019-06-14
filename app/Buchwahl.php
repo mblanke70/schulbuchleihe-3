@@ -10,7 +10,7 @@ class Buchwahl extends Model
 
     public function buchtitel()
     {
-    	return $this->belongsTo('App\Buchtitel');
+    	return $this->belongsTo('App\BuchtitelSchuljahr');
     }
 
 	public function schueler()
