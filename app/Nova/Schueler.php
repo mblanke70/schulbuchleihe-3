@@ -8,6 +8,8 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\DateTime;
+
 
 class Schueler extends Resource
 {
@@ -72,6 +74,8 @@ class Schueler extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            DateTime::make('Created At', 'created_at')->sortable()->onlyOnIndex(),
 
             Text::make('Vorname', 'vorname')->rules('required')->sortable(),
             
