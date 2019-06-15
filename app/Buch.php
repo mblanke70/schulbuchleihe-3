@@ -3,11 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Nova\Actions\Actionable;
 
 class Buch extends Model
 {
     use Actionable;
+    use SoftDeletes;
 
     /**
      * Die Tabelle, die mit diesem Model verknüpft ist.

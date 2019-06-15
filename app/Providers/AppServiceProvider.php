@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Schema;
 
 use App\Abfrage;
 use App\Observers\AbfrageObserver;
+use App\Schueler;
+use App\Observers\SchuelerObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
          Schema::defaultStringLength(191);
 
          Abfrage::observe(AbfrageObserver::class);
+         Schueler::observe(SchuelerObserver::class);
 
          Validator::extend('sum', function ($attribute, $value, $parameters) {
             $sum = 0;
