@@ -63,7 +63,7 @@ class Buch extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'buchtitel_id',
     ];
 
     /**
@@ -85,7 +85,9 @@ class Buch extends Resource
             ID::make()->sortable(),
 
             BelongsTo::make('Titel', 'buchtitel', 'App\Nova\Buchtitel'),
-            
+
+            Text::make('Buchtitel-ID', 'buchtitel_id'),
+
             MorphTo::make('Ausleiher')->types([
                 Schueler::class,
                 Lehrer::class,
