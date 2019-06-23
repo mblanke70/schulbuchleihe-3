@@ -52,7 +52,6 @@ class BuchtitelSchuljahr extends Pivot
     {
         return $this->hasMany(
             'App\Buchwahl', 
-            'id',
             'buchtitel_id'
         );   
     }       
