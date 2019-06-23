@@ -105,7 +105,7 @@ class BuchtitelSchuljahr extends Resource
             BelongsToMany::make('AbfrageAntwort', 'antworten')
                 ->onlyOnDetail(),
 
-            Text::make('# leihbar', function () {
+            Text::make('# verfügbar', function () {
                 
                 return $this->buchtitel()
                     ->first()
@@ -115,18 +115,7 @@ class BuchtitelSchuljahr extends Resource
             
             })->onlyOnIndex(),
 
-            Text::make('# b1', function () {
-
-                $bestellungen = Buchwahl::where([
-                    ['buchtitel_id', '=', $this->id],
-                    ['wahl', '=', 1]
-                ]);
-                  
-                return $bestellungen->count();
-            
-            })->onlyOnIndex(),
-
-            Text::make('# b2', function () {
+            Text::make('# bestellt', function () {
 
                 return $this->buchwahlen()->where('wahl', 1)->count();
             
