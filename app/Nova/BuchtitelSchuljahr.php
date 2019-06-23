@@ -9,6 +9,8 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\BelongsTo;
 
+use App\Buchwahl;
+
 class BuchtitelSchuljahr extends Resource
 {
     /**
@@ -85,6 +87,8 @@ class BuchtitelSchuljahr extends Resource
      */
     public function fields(Request $request)
     {
+
+
         return [
             ID::make()->sortable(),
             //Text::make('Titel', 'buchtitel.titel')->sortable(),
@@ -100,6 +104,33 @@ class BuchtitelSchuljahr extends Resource
             
             BelongsToMany::make('AbfrageAntwort', 'antworten')
                 ->onlyOnDetail(),
+
+            Text::make('# leihbar', function () {
+                
+                return $this->buchtitel()
+                    ->first()
+                    ->buecher()
+                    ->whereNull('ausleiher_id')
+                    ->count();
+            
+            })->onlyOnIndex(),
+
+            Text::make('# b1', function () {
+
+                $bestellungen = Buchwahl::where([
+                    ['buchtitel_id', '=', $this->id],
+                    ['wahl', '=', 1]
+                ]);
+                  
+                return $bestellungen->count();
+            
+            })->onlyOnIndex(),
+
+            Text::make('# b2', function () {
+
+                return $this->buchwahlen()->where('wahl', 1)->count();
+            
+            })->onlyOnIndex(),
 
             //BelongsToMany::make('Buecherliste', 'buecherlisten'),
             BelongsToMany::make('Jahrgang', 'jahrgaenge'),

@@ -10,6 +10,8 @@ use App\Nova\Metrics\SchuelerCount;
 use App\Nova\Metrics\AusleihenCount;
 use App\Nova\Metrics\BuecherCount;
 
+use Mb70\SblRueckgabe\SblRueckgabe;
+
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
     /**
@@ -76,7 +78,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [];
+        return [
+            //new SblRueckgabe,
+        ];
     }
 
     /**

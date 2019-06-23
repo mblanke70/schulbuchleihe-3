@@ -90,6 +90,7 @@ Route::group(
     /* RÜCKGABE */
     Route::get ('rueckgabe', 'RueckgabeController@index');
     Route::post('rueckgabe', 'RueckgabeController@zuruecknehmen');   
+    Route::post('rueckgabe/loeschen', 'RueckgabeController@loeschen');   
 
     /* BUCHINFO */
     Route::get('buchinfo', function () { return view('admin/ausleihe/buchinfo'); });

@@ -22,6 +22,21 @@ class RueckgabeController extends Controller
     }
 
     /*
+     * Soeben zurückgenommenes Buch löschen
+     */
+    public function loeschen(Request $request)
+    {
+        $buch = Buch::find($request->buch_id);
+
+        $buch->delete();
+
+        return redirect('admin/rueckgabe');
+
+        //return view('admin/rueckgabe/index');
+
+    }
+
+    /*
      * Rückgabe eines Buches
      */
     public function zuruecknehmen(Request $request)

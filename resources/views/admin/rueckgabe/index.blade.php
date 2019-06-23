@@ -71,6 +71,17 @@
 		       			<p>
 		       				<strong>Ausleiher</strong>: {{ $ausleiher->vorname . ' ' . $ausleiher->nachname }}
 		       			</p>
+
+		       			<form action="{{ url('admin/rueckgabe/loeschen') }}" method="POST" >                
+	                        {{ csrf_field() }}      
+                            <div class="form-group">   
+                                <input type="hidden" name="buch_id" value="{{ $buch->id }}" />
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-danger">Buch löschen</button>
+	                        </div>
+	                    </form>
+
 		            </div>
 		        </div>
 		    </div>

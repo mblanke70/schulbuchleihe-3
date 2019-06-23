@@ -1,7 +1,10 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -21,12 +24,21 @@
         "yajra/laravel-datatables": "^1.0",
         "yajra/laravel-datatables-buttons": "^3.0",
         "yajra/laravel-datatables-oracle": "~8.0",
-        "laravel/nova": "~1.0"
+        "laravel/nova": "~1.0",
+        "mb70/sbl-rueckgabe": "*"
     },
     "repositories": [
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/SblRueckgabe"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/SblRueckgabe"
         }
     ],
     "require-dev": {
@@ -52,8 +64,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-            ]
+            "dont-discover": []
         }
     },
     "scripts": {

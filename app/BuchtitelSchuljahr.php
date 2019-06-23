@@ -40,6 +40,20 @@ class BuchtitelSchuljahr extends Pivot
 
     public function antworten()
     {
-        return $this->belongsToMany('App\AbfrageAntwort', 'abfrage_antwort_buchtitel_schuljahr', 'buchtitel_schuljahr_id', 'abfrage_antwort_id');
+        return $this->belongsToMany(
+            'App\AbfrageAntwort', 
+            'abfrage_antwort_buchtitel_schuljahr', 
+            'buchtitel_schuljahr_id', 
+            'abfrage_antwort_id'
+        );
+    }
+
+    public function buchwahlen()
+    {
+        return $this->hasMany(
+            'App\Buchwahl', 
+            'id',
+            'buchtitel_id'
+        );   
     }       
 }
