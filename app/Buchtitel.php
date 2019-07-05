@@ -42,7 +42,12 @@ class Buchtitel extends Model
      */
     public function bestellungen()
     {
-        return $this->hasMany('App\Buchwahl')->where('wahl', 1) ;
+        return $this->hasMany('App\Buchwahl')->where('wahl', 1);
+    }
+
+    public function buchtitelSchuljahr()
+    {
+        return $this->hasMany('App\BuchtitelSchuljahr')->where('schuljahr_id', 3);
     }
 
     public function schuljahre()

@@ -38,10 +38,6 @@ class RechnungDrucken extends Action
         \File::delete('pdf/rechnung.pdf');
 
         $pdf = \PDF::loadView('pdf.rechnung', compact('models'))
-            ->setOption('margin-bottom', '20mm')
-            ->setOption('margin-top'   , '20mm')
-            ->setOption('margin-right' , '20mm')
-            ->setOption('margin-left'  , '20mm')
             ->save('pdf/rechnung.pdf');
     
         return Action::download(url('pdf/rechnung.pdf'), 'rechnung.pdf');
