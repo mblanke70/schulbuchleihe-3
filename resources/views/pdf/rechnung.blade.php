@@ -440,7 +440,7 @@
           @php ($restwert = number_format((ceil($btsj->kaufpreis) - (2019 - $jahr) * $btsj->leihpreis), 2)) 
 
           <tr data-iterate="item">
-            <td>{{ $i++ }}</td> <!-- Don't remove this column as it's needed for the row commands -->
+            <td>{{ $i++ }}</td>
             <td>{{ $buch->buchtitel->titel }}</td>
             <td>{{ $buch->id }}</td>
             <td>{{ number_format(ceil($btsj->kaufpreis), 2) }}€</td>
@@ -452,7 +452,7 @@
           @php ($summe += $restwert)
 
           @endisset
-          
+
           @endforeach
 
         </table>

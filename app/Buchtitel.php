@@ -47,7 +47,7 @@ class Buchtitel extends Model
 
     public function buchtitelSchuljahr()
     {
-        return $this->hasMany('App\BuchtitelSchuljahr')->where('schuljahr_id', 3);
+        return $this->hasMany('App\BuchtitelSchuljahr')->orderBy('schuljahr_id', 'DESC');
     }
 
     public function schuljahre()
