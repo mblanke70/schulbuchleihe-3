@@ -439,10 +439,6 @@
           @php ($jahr = date_format($buch->aufnahme, 'Y'))    
           @php ($restwert = number_format((ceil($btsj->kaufpreis) - (2019 - $jahr) * $btsj->leihpreis), 2)) 
 
-          @php
-            if($restwert<0) $restwert = 0;
-          @endphp
-
           <tr data-iterate="item">
             <td>{{ $i++ }}</td>
             <td>{{ $buch->buchtitel->titel }}</td>
