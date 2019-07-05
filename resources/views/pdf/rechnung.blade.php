@@ -433,6 +433,8 @@
   
           @foreach($schueler->buecher as $buch)
 
+          @isset($buch->aufnahme)
+
           @php ($btsj = $buch->buchtitel->buchtitelSchuljahr->first())   
           @php ($jahr = date_format($buch->aufnahme, 'Y'))    
           @php ($restwert = number_format((ceil($btsj->kaufpreis) - (2019 - $jahr) * $btsj->leihpreis), 2)) 
@@ -449,6 +451,8 @@
 
           @php ($summe += $restwert)
 
+          @endisset
+          
           @endforeach
 
         </table>
