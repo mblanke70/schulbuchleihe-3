@@ -331,6 +331,16 @@
         @media print {
           /* Here goes your print styles */
         }
+
+        /* Page Breaks */
+
+        .pb_before {
+           page-break-before: always !important;
+        }
+
+        .pb_after {
+           page-break-after: always !important;
+        }
     </style>
 
   </head>
@@ -339,7 +349,7 @@
 
 @foreach($models as $schueler)
 
-    <div id="container">
+    <div id="container" class="pb_before pb_after">
       <section id="memo">
         <div class="logo">
           <img src="ursula_logo.png" />
@@ -397,7 +407,7 @@
         <div>
           <span>{{ date('d.m.Y') }}</span>
           <span>{net_term}</span>
-          <span>{{ date('d.m.Y', strtotime("+14 days")) }}</span>
+          <span>{{ date('d.m.Y', strtotime("+30 days")) }}</span>
           <span>{po_number}</span>
         </div>
       </section>
@@ -464,7 +474,7 @@
       
         <span>Sehr geehrte Fam. {{ $schueler->nachname }},</span>
         <div>Ihnen wurden die oben genannten Lernmittel leihweise überlassen. Diese wurden nicht bzw. beschädigt zurückgegeben, so dass eine weitere Ausleihe nicht möglich ist. Nach den von Ihnen anerkannten Ausleihbedingungen sind Sie verplichtet, den Zeitwert des Lernmittels erstatten.</div>
-        <div>Ich bitte Sie deshalb um Überweisung des Betrages von <strong>{{ number_format($summe, 2) }}€</strong> bis zum <strong>{{ date('d.m.Y', strtotime("+14 days")) }}</strong> auf das folgende Konto:</div>
+        <div>Ich bitte Sie deshalb um Überweisung des Betrages von <strong>{{ number_format($summe, 2) }}€</strong> bis zum <strong>{{ date('d.m.Y', strtotime("+30 days")) }}</strong> auf das folgende Konto:</div>
         <pre>
   Ursulaschule Osnabrück
   IBAN: DE02 2655 0105 0000 2036 61
