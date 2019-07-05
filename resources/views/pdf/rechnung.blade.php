@@ -443,7 +443,12 @@
             <td>{{ $i++ }}</td>
             <td>{{ $buch->buchtitel->titel }}</td>
             <td>{{ $buch->id }}</td>
-            <td>{{ number_format(ceil($btsj->kaufpreis), 2) }}€</td>
+            <td>
+                {{ number_format(ceil($btsj->kaufpreis), 2) }}€
+                @if($btsj->schuljahr_id == 2)
+                  *
+                @endif
+            </td>
             <td>{{ $btsj->leihpreis }}€</td>
             <td>{{ $jahr }}</td>
             <td>{{ $restwert }}€</td>

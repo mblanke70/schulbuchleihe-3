@@ -87,10 +87,9 @@ class BuchtitelSchuljahr extends Resource
      */
     public function fields(Request $request)
     {
-
-
         return [
             ID::make()->sortable(),
+                        
             //Text::make('Titel', 'buchtitel.titel')->sortable(),
             BelongsTo::make('Buchtitel', 'buchtitel'),
             //Text::make('Schuljahr', 'schuljahr.schuljahr')->sortable(),
