@@ -361,6 +361,9 @@
           <br />
           
           <span>Kleine Domsfreiheit 11-18</span>
+
+          <br />
+          
           <span>49074 Osnabrück</span>
 
           <br />

@@ -52,17 +52,17 @@ class RechnungDrucken extends Action
                 $jahr      = date_format($b->aufnahme, 'Y');
                 $kaufpreis = ceil($btsj->kaufpreis);
                 $leihpreis = $btsj->leihpreis;
-                $restwert  = number_format($kaufpreis - (2019 - $jahr) * $leihpreis, 2);
+                $restwert  = $kaufpreis - (2019 - $jahr) * $leihpreis;
                 
                 if($restwert<0) $restwert = 0;
                 $summe += $restwert;
 
                 $buch->put('id'       , $b->id);
                 $buch->put('titel'    , $b->buchtitel->titel);
-                $buch->put('kaufpreis', $kaufpreis);
-                $buch->put('leihpreis', $leihpreis);
+                $buch->put('kaufpreis', number_format($kaufpreis, 2));
+                $buch->put('leihpreis', number_format($leihpreis, 2));
                 $buch->put('jahr'     , $jahr);
-                $buch->put('restwert' , $restwert);
+                $buch->put('restwert' , number_format($restwert, 2));
                 $buch->put('schuljahr', $btsj->schuljahr_id);
 
                 $buecher->push($buch);
