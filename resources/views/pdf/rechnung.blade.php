@@ -347,7 +347,7 @@
 
   <body>
 
-@foreach($models as $schueler)
+@foreach($rechnungen as $schueler)
 
     <div id="container" class="pb_before pb_after">
       <section id="memo">
@@ -383,7 +383,7 @@
       <section id="client-info">
         <span>An</span>
         <div>
-          <span class="client-name">{{ $schueler->vorname . ' ' . $schueler->nachname }}</span>
+          <span class="client-name">{{ $schueler->get('vorname') . ' ' . $schueler->get('nachname') }}</span>
         </div>
         
         <div>
@@ -429,34 +429,23 @@
           </tr>
 
           @php ($i = 1)
-          @php ($summe = 0)
-  
-          @foreach($schueler->buecher as $buch)
 
-          @isset($buch->aufnahme)
-
-          @php ($btsj = $buch->buchtitel->buchtitelSchuljahr->first())   
-          @php ($jahr = date_format($buch->aufnahme, 'Y'))    
-          @php ($restwert = number_format((ceil($btsj->kaufpreis) - (2019 - $jahr) * $btsj->leihpreis), 2)) 
+          @foreach($schueler->get('buecher') as $buch)
 
           <tr data-iterate="item">
             <td>{{ $i++ }}</td>
-            <td>{{ $buch->buchtitel->titel }}</td>
-            <td>{{ $buch->id }}</td>
+            <td>{{ $buch->get('titel') }}</td>
+            <td>{{ $buch->get('id') }}</td>
             <td>
-                {{ number_format(ceil($btsj->kaufpreis), 2) }}€
-                @if($btsj->schuljahr_id == 2)
-                  *
-                @endif
+              @if($buch->get('schuljahr') < 3)
+                *&nbsp;
+              @endif
+              {{ $buch->get('kaufpreis') }}€
             </td>
-            <td>{{ $btsj->leihpreis }}€</td>
-            <td>{{ $jahr }}</td>
-            <td>{{ $restwert }}€</td>
+            <td>{{ $buch->get('leihpreis') }}€</td>
+            <td>{{ $buch->get('jahr') }}</td>
+            <td>{{ $buch->get('restwert') }}€</td>
           </tr>
-
-          @php ($summe += $restwert)
-
-          @endisset
 
           @endforeach
 
@@ -470,7 +459,7 @@
           
           <tr class="amount-total">
             <th>Summe</th>
-            <td>{{ number_format($summe, 2) }}€</td>
+            <td>{{ $schueler->get('summe') }}€</td>
           </tr>
           
         </table>
@@ -481,9 +470,9 @@
       
       <section id="terms">
       
-        <span>Sehr geehrte Fam. {{ $schueler->nachname }},</span>
+        <span>Sehr geehrte Fam. {{ $schueler->get('nachname') }},</span>
         <div>Ihnen wurden die oben genannten Lernmittel leihweise überlassen. Diese wurden nicht bzw. beschädigt zurückgegeben, so dass eine weitere Ausleihe nicht möglich ist. Nach den von Ihnen anerkannten Ausleihbedingungen sind Sie verplichtet, den Zeitwert des Lernmittels erstatten.</div>
-        <div>Ich bitte Sie deshalb um Überweisung des Betrages von <strong>{{ number_format($summe, 2) }}€</strong> bis zum <strong>{{ date('d.m.Y', strtotime("+30 days")) }}</strong> auf das folgende Konto:</div>
+        <div>Ich bitte Sie deshalb um Überweisung des Betrages von <strong>{{ $schueler->get('summe') }}€</strong> bis zum <strong>{{ date('d.m.Y', strtotime("+30 days")) }}</strong> auf das folgende Konto:</div>
         <pre>
   Ursulaschule Osnabrück
   IBAN: DE02 2655 0105 0000 2036 61
