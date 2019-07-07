@@ -495,8 +495,6 @@
         <div>Bankverbindung:</div>
         <div>Empfänger | Ursulaschule Osnabrück - </div>
         <div>IBAN | DE02 2655 0105 0000 2036 61 - </div>
-        <div>BIC | NOLADE22XXX - </div>
-        <div>Kreditinstitut | Sparkasse Osnabrück</div>
       </div>
     </div>
 
