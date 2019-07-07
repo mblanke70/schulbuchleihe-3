@@ -365,7 +365,7 @@
         </div>
         
         <div class="company-info">
-          <div>Ursulaschule Osnabrück</div>
+          <div>SchulBuchLeihe</div>
     
           <br />
 
