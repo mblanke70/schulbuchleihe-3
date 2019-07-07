@@ -361,7 +361,7 @@
     <div id="container" class="pb_before pb_after">
       <section id="memo">
         <div class="logo">
-          <img src="{{ public_path('img\ursula_logo_250.png') }}" width="250" height="100"/>
+          <img src="{{ public_path('img\logo250.png') }}" width="250" height="100"/>
         </div>
         
         <div class="company-info">
