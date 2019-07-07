@@ -495,6 +495,8 @@
         <div>Bankverbindung:</div>
         <div>Ursulaschule Osnabrück</div>
         <div>IBAN: DE02 2655 0105 0000 2036 61</div>
+        <div></div>
+        <div></div>
       </div>
     </div>
 
