@@ -369,7 +369,7 @@
     
           <br />
 
-          <span>Kleine Domsfreiheit 11-18</span>
+          <span>Kleine Domsfreiheit 11&#045;18</span>
           <span>49074 Osnabrück</span>
 
           <br />
@@ -490,8 +490,8 @@
       <div class="payment-info">
         <div>Bankverbindung:</div>
         <div>Ursulaschule Osnabrück</div>
-        <div>IBAN: DE02 2655 0105 0000 2036 61</div>
-        <div>BIC: NOLADE22XXX</div>
+        <div>DE02 2655 0105 0000 2036 61</div>
+        <div>NOLADE22XXX</div>
         <div>Sparkasse Osnabrück</div>
       </div>
     </div>
