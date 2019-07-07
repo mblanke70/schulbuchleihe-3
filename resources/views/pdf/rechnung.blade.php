@@ -122,8 +122,8 @@
           margin-right: 20px;
         }
         #memo .logo img {
-          width: 400px;
-          height: 160px;
+          width: 250px;
+          height: 100px;
         }
         #memo .company-info {
           float: right;
@@ -361,7 +361,7 @@
     <div id="container" class="pb_before pb_after">
       <section id="memo">
         <div class="logo">
-          <img src="{{ public_path('img\ursula_logo.png') }}" width="400" height="160"/>
+          <img src="{{ public_path('img\ursula_logo_250.png') }}" width="250" height="100"/>
         </div>
         
         <div class="company-info">
