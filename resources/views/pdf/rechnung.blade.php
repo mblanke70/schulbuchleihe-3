@@ -374,12 +374,12 @@
           <br />
 
           <span>Kleine Domsfreiheit 11 18</span>
-          <span>● 49074 Osnabrück</span>
+          <span> ● 49074 Osnabrück</span>
 
           <br />
 
           <span>Tel. 0541 318701</span>
-          <span>● sbl@ursulaschule.de</span>
+          <span> ● sbl@ursulaschule.de</span>
         </div>
 
       </section>
@@ -493,10 +493,10 @@
 
       <div class="payment-info">
         <div>Bankverbindung:</div>
-        <div>● Ursulaschule Osnabrück</div>
-        <div>● DE02 2655 0105 0000 2036 61</div>
-        <div>● NOLADE22XXX</div>
-        <div>● Sparkasse Osnabrück</div>
+        <div> ● Ursulaschule Osnabrück</div>
+        <div> ● DE02 2655 0105 0000 2036 61</div>
+        <div> ● NOLADE22XXX</div>
+        <div> ● Sparkasse Osnabrück</div>
       </div>
     </div>
 
