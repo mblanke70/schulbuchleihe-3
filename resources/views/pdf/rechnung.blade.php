@@ -13,11 +13,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <style type="text/css">
+        
+        /*
         @font-face {
-          font-family: PT+Sans;
+          font-family: 'PT Sans', sans-serif;;
           src: url('PT_Sans-Web-Regular.ttf');
         }
+        */
+        
+        @import 'https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700&subset=latin,latin-ext,cyrillic,cyrillic-ext';
 
+        /*
+        @import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700&subset=latin,latin-ext,cyrillic,cyrillic-ext");
+        */
+        
         html, body, div, span, applet, object, iframe,
         h1, h2, h3, h4, h5, h6, p, blockquote, pre,
         a, abbr, acronym, address, big, cite, code,
@@ -124,7 +133,7 @@
           display: inline-block;
           line-height: 1em;
           font-weight: bold;
-          font-size: 40px;
+          font-size: 35px;
           margin-bottom: 10px;
         }
         #memo .company-info span {
@@ -352,18 +361,15 @@
     <div id="container" class="pb_before pb_after">
       <section id="memo">
         <div class="logo">
-          <img src="ursula_logo.png" />
+          <img src="{{ public_path('img\ursula_logo.png') }}" width="400" height="160"/>
         </div>
         
         <div class="company-info">
           <div>Ursulaschule Osnabrück</div>
-
+    
           <br />
-          
+
           <span>Kleine Domsfreiheit 11-18</span>
-
-          <br />
-          
           <span>49074 Osnabrück</span>
 
           <br />
@@ -377,7 +383,7 @@
       <section id="invoice-title-number">
       
         <span id="title">Rechnung</span>
-        <span id="number">2019-001</span>
+        <span id="number">{{ $schueler->get('id') }}-1</span>
         
       </section>
       
@@ -402,16 +408,14 @@
       <section id="invoice-info">
         <div>
           <span>Datum</span>
-          <span>{net_term_label}</span>
           <span>Fälligkeit</span>
-          <span>{po_number_label}</span>
+          <span>Rechnungs-Nr.</span>
         </div>
         
         <div>
           <span>{{ date('d.m.Y') }}</span>
-          <span>{net_term}</span>
           <span>{{ date('d.m.Y', strtotime("+30 days")) }}</span>
-          <span>{po_number}</span>
+          <span>{{ $schueler->get('id') }}-1</span>
         </div>
       </section>
       
@@ -437,17 +441,17 @@
 
           <tr data-iterate="item">
             <td>{{ $i++ }}</td>
-            <td>{{ $buch->get('titel') }}</td>
+            <td>{{ substr($buch->get('titel'),0,32) }}</td>
             <td>{{ $buch->get('id') }}</td>
             <td>
               @if($buch->get('schuljahr') < 3)
                 *&nbsp;
               @endif
-              {{ $buch->get('kaufpreis') }}€
+              {{ $buch->get('kaufpreis') }} €
             </td>
-            <td>{{ $buch->get('leihpreis') }}€</td>
+            <td>{{ $buch->get('leihpreis') }} €</td>
             <td>{{ $buch->get('jahr') }}</td>
-            <td>{{ $buch->get('restwert') }}€</td>
+            <td>{{ $buch->get('restwert') }} €</td>
           </tr>
 
           @endforeach
@@ -462,7 +466,7 @@
           
           <tr class="amount-total">
             <th>Summe</th>
-            <td>{{ $schueler->get('summe') }}€</td>
+            <td>{{ $schueler->get('summe') }} €</td>
           </tr>
           
         </table>
@@ -474,25 +478,21 @@
       <section id="terms">
       
         <span>Sehr geehrte Fam. {{ $schueler->get('nachname') }},</span>
+        
         <div>Ihnen wurden die oben genannten Lernmittel leihweise überlassen. Diese wurden nicht bzw. beschädigt zurückgegeben, so dass eine weitere Ausleihe nicht möglich ist. Nach den von Ihnen anerkannten Ausleihbedingungen sind Sie verplichtet, den Zeitwert des Lernmittels erstatten.</div>
-        <div>Ich bitte Sie deshalb um Überweisung des Betrages von <strong>{{ $schueler->get('summe') }}€</strong> bis zum <strong>{{ date('d.m.Y', strtotime("+30 days")) }}</strong> auf das folgende Konto:</div>
-        <pre>
-  Ursulaschule Osnabrück
-  IBAN: DE02 2655 0105 0000 2036 61
-  BIC:  NOLADE22XXX
-  Sparkasse Osnabrück
-        </pre>
-        <div>Im Betreff der Überweisung bitte unbedingt den Name der bzw. des Ersatzpflichtigen angeben.</div>
+        
+        <div>Ich bitte Sie deshalb um Überweisung des Betrages von <strong>{{ $schueler->get('summe') }} €</strong> bis zum <strong>{{ date('d.m.Y', strtotime("+30 days")) }}</strong> auf das unten angegebene Konto. Im Betreff der Überweisung bitte unbedingt die Rechnungsnummer angeben.</div>
+
         <div>Mit freundlichen Grüßen</div>
         
       </section>
 
       <div class="payment-info">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div>Bankverbindung:</div>
+        <div>Ursulaschule Osnabrück</div>
+        <div>IBAN: DE02 2655 0105 0000 2036 61</div>
+        <div>BIC: NOLADE22XXX</div>
+        <div>Sparkasse Osnabrück</div>
       </div>
     </div>
 

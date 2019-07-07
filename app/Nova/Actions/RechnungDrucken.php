@@ -41,6 +41,7 @@ class RechnungDrucken extends Action
             $schueler = collect();
             $schueler->put('vorname' , $model->vorname );
             $schueler->put('nachname', $model->nachname);
+            $schueler->put('id', $model->id);
             
             $buecher = collect();
             $summe = 0;
@@ -59,17 +60,17 @@ class RechnungDrucken extends Action
 
                 $buch->put('id'       , $b->id);
                 $buch->put('titel'    , $b->buchtitel->titel);
-                $buch->put('kaufpreis', number_format($kaufpreis, 2));
-                $buch->put('leihpreis', number_format($leihpreis, 2));
+                $buch->put('kaufpreis', number_format($kaufpreis, 2, ',', ' '));
+                $buch->put('leihpreis', number_format($leihpreis, 2, ',', ' '));
                 $buch->put('jahr'     , $jahr);
-                $buch->put('restwert' , number_format($restwert, 2));
+                $buch->put('restwert' , number_format($restwert, 2, ',', ' '));
                 $buch->put('schuljahr', $btsj->schuljahr_id);
 
                 $buecher->push($buch);
             }
 
             $schueler->put('buecher', $buecher);
-            $schueler->put('summe', number_format($summe, 2));
+            $schueler->put('summe', number_format($summe, 2, ',', ' '));
 
             $rechnungen->push($schueler);
         }
