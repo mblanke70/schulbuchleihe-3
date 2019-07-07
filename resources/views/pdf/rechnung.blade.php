@@ -179,7 +179,7 @@
         }
         #client-info .client-name {
           font-weight: bold;
-          font-size: 15px;
+          font-size: 16px;
           margin: 10px 0;
         }
         #client-info span {
@@ -366,10 +366,14 @@
         
         <div class="company-info">
           <div>SchulBuchLeihe</div>
-    
+          
           <br />
 
-          <span>Kleine Domsfreiheit</span>
+          <span>Ursulaschule Osnabrück</span>
+
+          <br />
+
+          <span>Kleine Domsfreiheit 11 18</span>
           <span>49074 Osnabrück</span>
 
           <br />
