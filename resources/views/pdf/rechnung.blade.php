@@ -374,12 +374,12 @@
           <br />
 
           <span>Kleine Domsfreiheit 11 18</span>
-          <span> ● 49074 Osnabrück</span>
+          <span> | 49074 Osnabrück</span>
 
           <br />
 
           <span>Tel. 0541 318701</span>
-          <span> ● sbl@ursulaschule.de</span>
+          <span> | sbl@ursulaschule.de</span>
         </div>
 
       </section>
@@ -387,7 +387,7 @@
       <section id="invoice-title-number">
       
         <span id="title">Rechnung</span>
-        <span id="number">{{ $schueler->get('id') }}-1</span>
+        <span id="number">#{{ $schueler->get('id') }}-1</span>
         
       </section>
       
@@ -419,7 +419,7 @@
         <div>
           <span>{{ date('d.m.Y') }}</span>
           <span>{{ date('d.m.Y', strtotime("+30 days")) }}</span>
-          <span>{{ $schueler->get('id') }}-1</span>
+          <span>#{{ $schueler->get('id') }}-1</span>
         </div>
       </section>
       
@@ -493,10 +493,10 @@
 
       <div class="payment-info">
         <div>Bankverbindung:</div>
-        <div> ● Ursulaschule Osnabrück</div>
-        <div> ● DE02 2655 0105 0000 2036 61</div>
-        <div> ● NOLADE22XXX</div>
-        <div> ● Sparkasse Osnabrück</div>
+        <div>Empfänger | Ursulaschule Osnabrück - </div>
+        <div>IBAN | DE02 2655 0105 0000 2036 61 - </div>
+        <div>BIC | NOLADE22XXX - </div>
+        <div>Kreditinstitut | Sparkasse Osnabrück</div>
       </div>
     </div>
 
