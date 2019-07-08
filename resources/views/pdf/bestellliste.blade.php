@@ -63,8 +63,8 @@
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td>{{ $gesamtanzahl }} </td>
-          <td><strong>{{ number_format($gesamtsumme, 2, ',', ' ') }} €</strong></td>
+          <td style="text-align: right;">{{ $gesamtanzahl }} </td>
+          <td style="text-align: right;"><strong>{{ number_format($gesamtsumme, 2, ',', ' ') }} €</strong></td>
       </tr>
     
     </table>
