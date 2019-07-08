@@ -28,7 +28,7 @@
           <td>{{ $buchtitel->get('isbn') }}</td>
           <td>{{ $buchtitel->get('bestellt') }}</td>
           <td>{{ $buchtitel->get('verfuegbar') }}</td>
-          <td>{{ $buchtitel->get('verfuegbarMitInventurstempel') }}</td>
+          <td>{{ $buchtitel->get('verfuegbarInv') }}</td>
           <td>{{ $buchtitel->get('anzahl') }}</td>
       </tr> 
   @endforeach
