@@ -80,7 +80,9 @@ class Schueler extends Resource
             Text::make('Vorname', 'vorname')->rules('required')->sortable(),
             
             Text::make('Nachname', 'nachname')->rules('required')->sortable(),
+
             
+
             BelongsTo::make('Klasse', 'klasse')->rules('required')->nullable(),
             
             BelongsTo::make('User', 'user')->hideFromIndex()->nullable()->searchable(),
@@ -95,7 +97,13 @@ class Schueler extends Resource
             
             HasMany::make('Buch', 'buecher'),
 
-            HasMany::make('Buchwahl', 'buecherwahlen')
+            HasMany::make('Buchwahl', 'buecherwahlen'),
+
+            Text::make('RE_Vorname', 're_vorname')->hideFromIndex(),
+            Text::make('RE_Nachname', 're_nachname')->hideFromIndex(),
+            Text::make('RE_Straße', 're_strasse_nr')->hideFromIndex(),
+            Text::make('RE_PLZ', 're_plz')->hideFromIndex(),
+            Text::make('RE_Ort', 're_ort')->hideFromIndex(),
         ];
     }
 
