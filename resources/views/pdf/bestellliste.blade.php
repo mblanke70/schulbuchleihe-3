@@ -45,12 +45,12 @@
       <tr>
           <td>{{ $buchtitel->get('titel') }}</td>
           <td>{{ $buchtitel->get('isbn') }}</td>
-          <td>{{ $buchtitel->get('kaufpreis') }} €</td>
+          <td style="text-align: right;">{{ $buchtitel->get('kaufpreis') }} €</td>
           <!--<td>{{ $buchtitel->get('bestellt') }}</td>-->
           <!--<td>{{ $buchtitel->get('verfuegbar') }}</td>-->
           <!--<td>{{ $buchtitel->get('verfuegbarMitInventurstempel') }}</td>-->
           <td>{{ $buchtitel->get('anzahl') }}</td>
-          <td>{{ $buchtitel->get('summe') }} €</td>
+          <td style="text-align: right;">{{ $buchtitel->get('summe') }} €</td>
       </tr> 
   @endforeach
     
