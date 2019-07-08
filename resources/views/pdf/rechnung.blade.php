@@ -150,7 +150,7 @@
         }
 
         #invoice-title-number {
-          margin-top: 25px;
+          margin-top: 20px;
         }
         #invoice-title-number span {
           margin-right: 10px;
@@ -226,7 +226,7 @@
         }
 
         #items {
-          margin-top: 60px;
+          margin-top: 80px;
         }
         #items .first-cell, #items table th:first-child, #items table td:first-child {
           width: 10px;
@@ -327,6 +327,7 @@
           font-size: 16px;
           /*display: inline-block;*/
           min-width: 20px;
+          text-align: middle;
         }
 
         .ib_bottom_row_commands {
@@ -491,7 +492,7 @@
       </section>
 
       <div class="payment-info">
-        <div>Bankverbindung: Ursulaschule Osnabrück | IBAN: DE02 2655 0105 0000 2036 61</div>
+        <div>Bankverbindung: Ursulaschule Osnabrück - IBAN: DE02 2655 0105 0000 2036 61</div>
       </div>
     </div>
 
