@@ -226,7 +226,7 @@
         }
 
         #items {
-          margin-top: 40px;
+          margin-top: 60px;
         }
         #items .first-cell, #items table th:first-child, #items table td:first-child {
           width: 10px;
@@ -374,11 +374,17 @@
           <br />
 
           <span>Kleine Domsfreiheit 11 18</span>
-          <span> | 49074 Osnabrück</span>
+
+          <br />
+
+          <span>49074 Osnabrück</span>
 
           <br />
 
           <span>Tel. 0541 318701</span>
+
+          <br />
+
           <span>sbl@ursulaschule.de</span>
         </div>
 
