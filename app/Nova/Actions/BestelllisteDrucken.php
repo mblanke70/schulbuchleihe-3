@@ -39,8 +39,8 @@ class BestelllisteDrucken extends Action
         foreach($models as $model) 
         {
             $buchtitel = collect();
-            $buchtitel->put('vorname' , $model->buchtitel->titel);
-            $buchtitel->put('nachname', $model->buchtitel->isbn);
+            $buchtitel->put('vorname' , $model->buchtitel->first()->titel);
+            $buchtitel->put('nachname', $model->buchtitel->first()->isbn);
             
             $verfuegbar = $model->buchtitel()
                 ->first()
