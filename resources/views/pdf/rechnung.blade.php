@@ -327,7 +327,7 @@
           font-size: 16px;
           /*display: inline-block;*/
           min-width: 20px;
-          text-align: middle;
+          text-align: center;
         }
 
         .ib_bottom_row_commands {
