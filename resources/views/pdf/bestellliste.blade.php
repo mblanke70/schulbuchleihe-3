@@ -33,7 +33,7 @@
   </head>
 
   <body>
-    <h1>Bestellliste</h1>
+    <h3>Bestellliste</h3>
 
     <table cellpadding="3">
       <tr>
