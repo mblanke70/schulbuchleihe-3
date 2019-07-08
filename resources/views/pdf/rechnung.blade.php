@@ -445,7 +445,7 @@
 
           <tr data-iterate="item">
             <td>{{ $i++ }}</td>
-            <td>{{ substr($buch->get('titel'),0,32) }}</td>
+            <td>{{ substr($buch->get('titel'),0,25) }}</td>
             <td>{{ $buch->get('id') }}</td>
             <td>
               @if($buch->get('schuljahr') < 3)
