@@ -368,11 +368,7 @@
           <div>SchulBuchLeihe</div>
           
           <br />
-
-          <span>Ursulaschule Osnabrück</span>
-
-          <br />
-
+        
           <span>Kleine Domsfreiheit 11 18</span>
 
           <br />
@@ -383,9 +379,6 @@
 
           <span>Tel. 0541 318701</span>
 
-          <br />
-
-          <span>sbl@ursulaschule.de</span>
         </div>
 
       </section>
