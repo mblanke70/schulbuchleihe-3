@@ -33,7 +33,7 @@
   </head>
 
   <body>
-    <h3>Bestellliste</h3>
+    <h1>Bestellliste</h1>
 
     <table cellpadding="3">
       <tr>
@@ -59,10 +59,16 @@
           <td style="text-align: right;">{{ $buchtitel->get('summe') }} €</td>
       </tr> 
   @endforeach
+
+      <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><strong>{{ number_format($gesamtsumme, 2, ',', ' ') }} €</strong></td>
+      </tr>
     
     </table>
-
-    <h4>Gesamtsumme: {{ number_format($gesamtsumme, 2, ',', ' ') }} €</h4>
 
   </body>
 </html>
