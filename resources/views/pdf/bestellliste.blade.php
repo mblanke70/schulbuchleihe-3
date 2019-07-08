@@ -35,7 +35,7 @@
   <body>
     <h1>Bestellliste</h1>
 
-    <table cellpadding="4">
+    <table cellpadding="3">
       <tr>
         <th>Titel</th>
         <th>ISBN</th>
