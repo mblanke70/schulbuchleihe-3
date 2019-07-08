@@ -137,7 +137,7 @@
           margin-bottom: 10px;
         }
         #memo .company-info span {
-          font-size: 12px;
+          font-size: 14px;
           display: inline-block;
           margin-bottom: 1px;
           min-width: 20px;
@@ -163,7 +163,7 @@
           font-weight: bold;
         }
         #invoice-title-number #number {
-          font-size: 14px;
+          font-size: 16px;
           color: #888;
           text-align: left;
         }
@@ -179,7 +179,7 @@
         }
         #client-info .client-name {
           font-weight: bold;
-          font-size: 16px;
+          font-size: 18px;
           margin: 10px 0;
         }
         #client-info span {
@@ -324,7 +324,7 @@
 
         .payment-info div {
           color: #888;
-          font-size: 12px;
+          font-size: 14px;
           display: inline-block;
           min-width: 20px;
         }
