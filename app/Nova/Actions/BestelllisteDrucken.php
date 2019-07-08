@@ -43,7 +43,7 @@ class BestelllisteDrucken extends Action
             $buchtitel = collect();
             $buchtitel->put('titel' , $model->buchtitel->titel);
             $buchtitel->put('isbn', $model->buchtitel->isbn);
-            $buchtitel->put('kaufpreis', $model->kaufpreis);
+            $buchtitel->put('kaufpreis', number_format($model->kaufpreis, 2, ',', ' '));
 
             $verfuegbar = $model->buchtitel()
                 ->first()
@@ -68,7 +68,8 @@ class BestelllisteDrucken extends Action
             $anzahl = $bestellt - $verfuegbarMitInventurstempel;
             if($anzahl > 0) {
                 $buchtitel->put('anzahl', $anzahl);
-                $buchtitel->put('summe', $model->kaufpreis * $anzahl);
+                $buchtitel->put('summe', 
+                    number_format($model->kaufpreis * $anzahl, 2, ',', ' '));
                 $gesamtsumme += $model->kaufpreis * $anzahl;
                 $liste->push($buchtitel);  
             } 
