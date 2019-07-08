@@ -27,29 +27,36 @@
   </head>
 
   <body>
+    <h1>Bestellliste</h1>
 
     <table>
       <tr>
         <th>Titel</th>
         <th>ISBN</th>
-        <th>#bestellt</th>
-        <th>#verfügbar</th>
-        <th>#verfügbarMitInv</th>
+        <th>Kaufpreis</th>
+        <!--<th>#bestellt</th>-->
+        <!--<th>#verfügbar</th>-->
+        <!--<th>#verfügbarMitInv</th>-->
         <th>Anzahl</th>
+        <th>Summe</th>
       </tr>
 
   @foreach($liste as $buchtitel)
       <tr>
           <td>{{ $buchtitel->get('titel') }}</td>
           <td>{{ $buchtitel->get('isbn') }}</td>
-          <td>{{ $buchtitel->get('bestellt') }}</td>
-          <td>{{ $buchtitel->get('verfuegbar') }}</td>
-          <td>{{ $buchtitel->get('verfuegbarMitInventurstempel') }}</td>
+          <td>{{ $buchtitel->get('kaufpreis') }}</td>
+          <!--<td>{{ $buchtitel->get('bestellt') }}</td>-->
+          <!--<td>{{ $buchtitel->get('verfuegbar') }}</td>-->
+          <!--<td>{{ $buchtitel->get('verfuegbarMitInventurstempel') }}</td>-->
           <td>{{ $buchtitel->get('anzahl') }}</td>
+          <td>{{ $buchtitel->get('summe') }}</td>
       </tr> 
   @endforeach
     
     </table>
+
+    <h4>Gesamtsumme: {{ $gesamtsumme }}</h4>
 
   </body>
 </html>

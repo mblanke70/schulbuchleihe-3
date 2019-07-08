@@ -36,12 +36,15 @@ class BestelllisteDrucken extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
         $liste = collect();
+        $gesamtsumme = 0;
+
         foreach($models as $model) 
         {
             $buchtitel = collect();
             $buchtitel->put('titel' , $model->buchtitel->titel);
             $buchtitel->put('isbn', $model->buchtitel->isbn);
-            
+            $buchtitel->put('kaufpreis', $model->kaufpreis);
+
             $verfuegbar = $model->buchtitel()
                 ->first()
                 ->buecher()
@@ -65,13 +68,15 @@ class BestelllisteDrucken extends Action
             $anzahl = $bestellt - $verfuegbarMitInventurstempel;
             if($anzahl > 0) {
                 $buchtitel->put('anzahl', $anzahl);
+                $buchtitel->put('summe', $model->kaufpreis * $anzahl);
+                $gesamtsumme += $model->kaufpreis * $anzahl;
                 $liste->push($buchtitel);  
             } 
         }
            
         \File::delete('pdf/bestellliste.pdf');
 
-        $pdf = \PDF::loadView('pdf.bestellliste', compact('liste'))
+        $pdf = \PDF::loadView('pdf.bestellliste', compact('liste', 'gesamtsumme'))
                 ->save('pdf/bestellliste.pdf');
     
         return Action::download(url('pdf/bestellliste.pdf'), 'bestellliste.pdf');
