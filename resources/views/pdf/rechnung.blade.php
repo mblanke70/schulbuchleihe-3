@@ -308,7 +308,7 @@
         }
 
         #terms {
-          margin: 70px 0 20px 0;
+          margin: 45px 0 20px 0;
           page-break-inside: avoid;
         }
         #terms > span {
