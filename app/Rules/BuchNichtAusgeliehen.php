@@ -26,18 +26,12 @@ class BuchNichtAusgeliehen implements Rule
      */
     public function passes($attribute, $value)
     {        
-        // hole alle Bücher, die (wenigstens) einen Ausleiher haben 
-        // und die noch nicht zurückgegeben worden sind 
-
-        //$ausgelieheneBuecher = App\Buch::whereHas('ausleiher', function($query) { $query->whereNull('rueckgabe'); })->get();
-        if($this->buch!=null)
+        if($this->buch)
+        {
             return $this->buch->ausleiher_id == null;
-        else 
-            return true;
-
-        //$ausgelieheneBuecher = BuchUser::whereNull('rueckgabe')->get();
+        }
         
-        //return !$ausgelieheneBuecher->contains('buch_id', $value);
+        return true;
     }
 
     /**

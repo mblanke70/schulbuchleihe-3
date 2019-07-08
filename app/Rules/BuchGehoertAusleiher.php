@@ -3,18 +3,19 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use App\BuchUser;
+use App\Buch;
 
-class BuchAusgeliehen implements Rule
+class BuchGehoertAusleiher implements Rule
 {
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($buch)
+    public function __construct($buch, $ausleiher)
     {
         $this->buch = $buch;
+        $this->ausleiher = $ausleiher;
     }
 
     /**
@@ -25,11 +26,11 @@ class BuchAusgeliehen implements Rule
      * @return bool
      */
     public function passes($attribute, $value)
-    {        
-        if($this->buch) 
+    {
+        if($this->buch && $this->buch->ausleiher)
         {
-            return $this->buch->ausleiher_id != null;     
-        }   
+            return $this->buch->ausleiher->id == $this->ausleiher;
+        }
 
         return true;
     }
@@ -41,7 +42,6 @@ class BuchAusgeliehen implements Rule
      */
     public function message()
     {
-         //return 'Dieser Schüler hat dieses Buch bereits ausgeliehen.';
-        return 'Das Buch ist nicht ausgeliehen.';
+        return 'Dieses Buch ist von ' . $this->buch->ausleiher->vorname . ' ' . $this->buch->ausleiher->nachname . ' (' . $this->buch->ausleiher->klasse->bezeichnung . ') ausgeliehen worden!';
     }
 }
