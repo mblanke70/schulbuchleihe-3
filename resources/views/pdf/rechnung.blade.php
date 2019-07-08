@@ -400,11 +400,11 @@
         </div>
         
         <div>
-          <span>{client_address}</span>
+          <span>{{ $schueler->get('strasse') }}</span>
         </div>
         
         <div>
-          <span>{client_city_zip_state}</span>
+          <span>{{ $schueler->get('plz') . ' ' . $schueler->get('ort') }}</span>
         </div>
 
       </section>

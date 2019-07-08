@@ -41,7 +41,10 @@ class RechnungDrucken extends Action
             $schueler = collect();
             $schueler->put('vorname' , $model->vorname );
             $schueler->put('nachname', $model->nachname);
-            $schueler->put('id', $model->id);
+            $schueler->put('strasse',  $model->re_strasse_nr);
+            $schueler->put('plz',      $model->re_plz);
+            $schueler->put('ort',      $model->re_ort);
+            $schueler->put('id',       $model->id);
             
             $buecher = collect();
             $summe = 0;
