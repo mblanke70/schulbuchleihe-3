@@ -33,7 +33,7 @@
   </head>
 
   <body>
-    
+
     <table cellpadding="3">
       <tr>
         <th>Titel</th>
@@ -63,7 +63,7 @@
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td>&nbsp;</td>
+          <td>{{ $gesamtanzahl }} </td>
           <td><strong>{{ number_format($gesamtsumme, 2, ',', ' ') }} €</strong></td>
       </tr>
     

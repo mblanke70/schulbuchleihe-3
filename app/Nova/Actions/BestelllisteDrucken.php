@@ -37,6 +37,7 @@ class BestelllisteDrucken extends Action
     {
         $liste = collect();
         $gesamtsumme = 0;
+        $gesamtanzahl = 0;
 
         foreach($models as $model) 
         {
@@ -74,6 +75,7 @@ class BestelllisteDrucken extends Action
                     $buchtitel->put('summe', 
                         number_format($model->kaufpreis * $anzahl, 2, ',', ' '));
                     $gesamtsumme += $model->kaufpreis * $anzahl;
+                    $gesamtanzahl += $anzahl; 
                     $liste->push($buchtitel);  
                 }
             } 
@@ -81,7 +83,7 @@ class BestelllisteDrucken extends Action
            
         \File::delete('pdf/bestellliste.pdf');
 
-        $pdf = \PDF::loadView('pdf.bestellliste', compact('liste', 'gesamtsumme'))
+        $pdf = \PDF::loadView('pdf.bestellliste', compact('liste', 'gesamtsumme', 'gesamtanzahl'))
                 ->save('pdf/bestellliste.pdf');
     
         return Action::download(url('pdf/bestellliste.pdf'), 'bestellliste.pdf');
