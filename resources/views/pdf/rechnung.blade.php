@@ -324,7 +324,7 @@
 
         .payment-info div {
           color: #888;
-          font-size: 14px;
+          font-size: 16px;
           display: inline-block;
           min-width: 20px;
         }
@@ -418,7 +418,7 @@
         <div>
           <span>{{ date('d.m.Y') }}</span>
           <span>{{ date('d.m.Y', strtotime("+30 days")) }}</span>
-          <span>#{{ $schueler->get('id') }}-1</span>
+          <span>{{ $schueler->get('id') }}-1</span>
         </div>
       </section>
       
