@@ -66,12 +66,16 @@ class BestelllisteDrucken extends Action
             $buchtitel->put('bestellt', $bestellt);
 
             $anzahl = $bestellt - $verfuegbarMitInventurstempel;
-            if($anzahl > 0) {
-                $buchtitel->put('anzahl', $anzahl);
-                $buchtitel->put('summe', 
-                    number_format($model->kaufpreis * $anzahl, 2, ',', ' '));
-                $gesamtsumme += $model->kaufpreis * $anzahl;
-                $liste->push($buchtitel);  
+
+            if( !in_array($model->id, [222,178,136,123]))
+            {
+                if($anzahl > 0) {
+                    $buchtitel->put('anzahl', $anzahl);
+                    $buchtitel->put('summe', 
+                        number_format($model->kaufpreis * $anzahl, 2, ',', ' '));
+                    $gesamtsumme += $model->kaufpreis * $anzahl;
+                    $liste->push($buchtitel);  
+                }
             } 
         }
            
