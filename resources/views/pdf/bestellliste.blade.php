@@ -10,6 +10,8 @@
 
     <style type="text/css">
 
+      @import 'https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700&subset=latin,latin-ext,cyrillic,cyrillic-ext';
+      
       table {
         border-collapse: collapse;
       }
