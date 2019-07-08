@@ -325,7 +325,7 @@
         .payment-info div {
           color: #888;
           font-size: 16px;
-          display: inline-block;
+          /*display: inline-block;*/
           min-width: 20px;
         }
 
