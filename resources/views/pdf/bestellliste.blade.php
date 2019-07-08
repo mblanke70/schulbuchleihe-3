@@ -24,6 +24,10 @@
         background-color: #f2f2f2
       }
 
+      body {
+        font: normal 14px/1.5em 'PT Sans', Sans-serif;
+      }
+
     </style>
 
   </head>
