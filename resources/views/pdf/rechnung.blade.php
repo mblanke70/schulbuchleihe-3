@@ -111,7 +111,7 @@
         }
 
         #container {
-          font: normal 14px/1.5em 'PT Sans', Sans-serif;
+          font: normal 16px/1.7em 'PT Sans', Sans-serif;
           margin: 0 auto;
           padding: 60px;
           min-height: 1038px;
