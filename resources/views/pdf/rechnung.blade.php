@@ -159,7 +159,7 @@
         }
         #invoice-title-number #title {
           text-align: right;
-          font-size: 28px;
+          font-size: 25px;
           font-weight: bold;
         }
         #invoice-title-number #number {
@@ -486,11 +486,11 @@
         
         <div>{{ $schueler->get('vorname') }} wurden die oben genannten Lernmittel leihweise überlassen. Diese wurden nicht bzw. beschädigt zurückgegeben, so dass eine weitere Ausleihe nicht möglich ist. Nach den von Ihnen anerkannten Ausleihbedingungen sind Sie verplichtet, den Zeitwert des Lernmittels erstatten.</div>
         
-        <div>Ich bitte Sie deshalb um Überweisung des Betrages von <strong>{{ $schueler->get('summe') }} €</strong> bis zum <strong>{{ date('d.m.Y', strtotime("+30 days")) }}</strong> auf das unten angegebene Konto. Im Betreff der Überweisung bitte unbedingt die Rechnungsnummer angeben.</div>
+        <div>Ich bitte Sie deshalb um Überweisung des Betrages von&nbsp;<strong>{{ $schueler->get('summe') }} €</strong> bis zum <strong>{{ date('d.m.Y', strtotime("+30 days")) }}</strong> auf das unten angegebene Konto. Im Betreff der Überweisung bitte unbedingt die Rechnungsnummer angeben.</div>
 
         <div>Mit freundlichen Grüßen</div>
         
-        <div style="margin-top: 0;" class="logo2">
+        <div class="logo2">
           <img src="{{ public_path('img\HOM_176.png') }}" width="176" height="100"/>
         </div>
       </section>
