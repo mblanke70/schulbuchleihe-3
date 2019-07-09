@@ -400,7 +400,7 @@
       <div class="clearfix"></div>
       
       <section id="client-info">
-        <span>An</span>
+        <!--<span>An</span>-->
         <div>
           <span class="client-name">{{ $schueler->get('vorname') . ' ' . $schueler->get('nachname') }}</span>
         </div>
@@ -453,12 +453,7 @@
             <td>{{ $i++ }}</td>
             <td>{{ substr($buch->get('titel'),0,25) }}</td>
             <td>{{ $buch->get('id') }}</td>
-            <td>
-              @if($buch->get('schuljahr') < 3)
-                *&nbsp;
-              @endif
-              {{ $buch->get('kaufpreis') }} €
-            </td>
+            <td>{{ $buch->get('kaufpreis') }} €</td>
             <td>{{ $buch->get('leihpreis') }} €</td>
             <td>{{ $buch->get('jahr') }}</td>
             <td>{{ $buch->get('restwert') }} €</td>
