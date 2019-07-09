@@ -170,7 +170,7 @@
 
         #client-info {
           float: left;
-          margin-top: 30px;
+          margin-top: 10px;
           min-width: 220px;
         }
         #client-info > div {
