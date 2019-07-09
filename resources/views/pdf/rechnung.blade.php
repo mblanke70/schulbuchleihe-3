@@ -180,7 +180,7 @@
         #client-info .client-name {
           font-weight: bold;
           font-size: 18px;
-          /*margin: 10px 0;*/
+          margin: 10px 0;
         }
         #client-info span {
           display: block;
@@ -400,7 +400,7 @@
       <div class="clearfix"></div>
       
       <section id="client-info">
-        <!--<span>An</span>-->
+        <span>Herrn</span>
         <div>
           <span class="client-name">{{ $schueler->get('vorname') . ' ' . $schueler->get('nachname') }}</span>
         </div>
