@@ -39,12 +39,14 @@ class RechnungDrucken extends Action
         foreach($models as $model) 
         {
             $schueler = collect();
-            $schueler->put('vorname' , $model->vorname );
-            $schueler->put('nachname', $model->nachname);
-            $schueler->put('strasse',  $model->re_strasse_nr);
-            $schueler->put('plz',      $model->re_plz);
-            $schueler->put('ort',      $model->re_ort);
-            $schueler->put('id',       $model->id);
+            $schueler->put('vorname' ,    $model->vorname );
+            $schueler->put('nachname',    $model->nachname);
+            $schueler->put('id',          $model->id);
+            $schueler->put('re_vorname',  $model->re_vorname);
+            $schueler->put('re_nachname', $model->re_nachname);
+            $schueler->put('re_strasse',  $model->re_strasse_nr);
+            $schueler->put('re_plz',      $model->re_plz);
+            $schueler->put('re_ort',      $model->re_ort);
             
             $buecher = collect();
             $summe = 0;

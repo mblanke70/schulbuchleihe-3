@@ -402,15 +402,15 @@
       <section id="client-info">
         <span>Herrn</span>
         <div>
-          <span class="client-name">{{ $schueler->get('vorname') . ' ' . $schueler->get('nachname') }}</span>
+          <span class="client-name">{{ $schueler->get('re_vorname') . ' ' . $schueler->get('re_nachname') }}</span>
         </div>
         
         <div>
-          <span>{{ $schueler->get('strasse') }}</span>
+          <span>{{ $schueler->get('re_strasse') }}</span>
         </div>
         
         <div>
-          <span>{{ $schueler->get('plz') . ' ' . $schueler->get('ort') }}</span>
+          <span>{{ $schueler->get('re_plz') . ' ' . $schueler->get('re_ort') }}</span>
         </div>
 
       </section>
