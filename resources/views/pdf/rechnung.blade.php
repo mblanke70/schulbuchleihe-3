@@ -150,7 +150,7 @@
         }
 
         #invoice-title-number {
-          margin-top: 20px;
+          margin-top: 0px;
         }
         #invoice-title-number span {
           margin-right: 10px;
@@ -170,7 +170,7 @@
 
         #client-info {
           float: left;
-          margin-top: 20px;
+          margin-top: 10px;
           min-width: 220px;
         }
         #client-info > div {
