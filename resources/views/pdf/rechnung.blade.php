@@ -170,7 +170,7 @@
 
         #client-info {
           float: left;
-          margin-top: 10px;
+          margin-top: 30px;
           min-width: 220px;
         }
         #client-info > div {
@@ -201,7 +201,7 @@
 
         #invoice-info {
           float: right;
-          margin-top: 10px;
+          margin-top: 30px;
         }
         #invoice-info > div {
           float: left;
@@ -390,12 +390,12 @@
 
       </section>
 
-      <section id="invoice-title-number">
+      <!--<section id="invoice-title-number">
       
         <span id="title">Rechnung</span>
         <span id="number">#{{ $schueler->get('id') }}</span>
         
-      </section>
+      </section>-->
       
       <div class="clearfix"></div>
       
