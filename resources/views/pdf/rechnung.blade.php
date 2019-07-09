@@ -369,16 +369,16 @@
           <div>SchulBuchLeihe</div>
           
           <br />
+
+          <span>Ursulaschule Osnabrück</span>
+
+          <br />
         
           <span>Kleine Domsfreiheit 11 18</span>
 
           <br />
 
           <span>49074 Osnabrück</span>
-
-          <br />
-
-          <span>Tel. 0541 318701</span>
 
         </div>
 
@@ -481,9 +481,9 @@
       
       <section id="terms">
       
-        <span>Sehr geehrte Fam. {{ $schueler->get('nachname') }},</span>
+        <span>Sehr geehrter Herr, sehr geehrte Frau {{ $schueler->get('nachname') }},</span>
         
-        <div>Ihnen wurden die oben genannten Lernmittel leihweise überlassen. Diese wurden nicht bzw. beschädigt zurückgegeben, so dass eine weitere Ausleihe nicht möglich ist. Nach den von Ihnen anerkannten Ausleihbedingungen sind Sie verplichtet, den Zeitwert des Lernmittels erstatten.</div>
+        <div>{{ $schueler->get('vorname') }} wurden die oben genannten Lernmittel leihweise überlassen. Diese wurden nicht bzw. beschädigt zurückgegeben, so dass eine weitere Ausleihe nicht möglich ist. Nach den von Ihnen anerkannten Ausleihbedingungen sind Sie verplichtet, den Zeitwert des Lernmittels erstatten.</div>
         
         <div>Ich bitte Sie deshalb um Überweisung des Betrages von <strong>{{ $schueler->get('summe') }} €</strong> bis zum <strong>{{ date('d.m.Y', strtotime("+30 days")) }}</strong> auf das unten angegebene Konto. Im Betreff der Überweisung bitte unbedingt die Rechnungsnummer angeben.</div>
 

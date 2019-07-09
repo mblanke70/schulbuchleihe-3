@@ -82,6 +82,11 @@ class RechnungDrucken extends Action
 
         $pdf = \PDF::loadView('pdf.rechnung', compact('models', 'rechnungen'))
             ->save('pdf/rechnung.pdf');
+
+        $pdf->setOption('margin-top',0);
+        $pdf->setOption('margin-bottom',10);
+        $pdf->setOption('margin-left',0);
+        $pdf->setOption('margin-right',0);
     
         return Action::download(url('pdf/rechnung.pdf'), 'rechnung.pdf');
 
