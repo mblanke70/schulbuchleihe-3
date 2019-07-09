@@ -180,7 +180,7 @@
         #client-info .client-name {
           font-weight: bold;
           font-size: 18px;
-          margin: 10px 0;
+          /*margin: 10px 0;*/
         }
         #client-info span {
           display: block;
