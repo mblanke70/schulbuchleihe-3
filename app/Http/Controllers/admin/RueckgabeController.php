@@ -94,6 +94,8 @@ class RueckgabeController extends Controller
                 ->withErrors($validator->errors())
                 ->withInput();
         }
+
+        $ausleiher = $buch->ausleiher;
         
         // Eintrag in Buchhistorie
         $eintrag = new BuchHistorie;
