@@ -138,7 +138,7 @@
         }
         #memo .company-info span {
           font-size: 14px;
-          display: inline-block;
+          /*display: inline-block;*/
           margin-bottom: 1px;
           min-width: 20px;
           color: #888;
@@ -380,7 +380,7 @@
 
           <br />
         
-          <span>Kleine Domsfreiheit 11 18</span>
+          <span>Kleine Domsfreiheit 11-18</span>
 
           <br />
 
@@ -425,7 +425,7 @@
         <div>
           <span>{{ date('d.m.Y') }}</span>
           <span>{{ date('d.m.Y', strtotime("+30 days")) }}</span>
-          <span>{{ $schueler->get('id') }}-1</span>
+          <span>{{ $schueler->get('id') }}</span>
         </div>
       </section>
       
@@ -496,7 +496,7 @@
         <div>Mit freundlichen Grüßen</div>
         
         <div class="logo2">
-          <img src="{{ public_path('img\HOM_200.png') }}" width="176" height="100"/>
+          <img src="{{ public_path('img\HOM_176.png') }}" width="176" height="100"/>
         </div>
       </section>
 
