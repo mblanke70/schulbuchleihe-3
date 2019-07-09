@@ -329,7 +329,7 @@
         }
 
         .payment-info div {
-          color: #888;
+          /*color: #888;*/
           font-size: 16px;
           /*display: inline-block;*/
           min-width: 20px;
@@ -508,7 +508,7 @@
         <div class="logo2">
           <img src="{{ public_path('img\HOM_176.png') }}" width="176" height="100"/> 
           <br />
-          (M. Hoffmann)
+          <span style="color: #888;">(Matthias Hoffmann, StD)</span>
         </div>
       </section>
 
