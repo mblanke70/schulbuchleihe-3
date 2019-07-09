@@ -308,7 +308,7 @@
         }
 
         #terms {
-          margin: 45px 0 20px 0;
+          margin: 30px 0 20px 0;
           page-break-inside: avoid;
         }
 
