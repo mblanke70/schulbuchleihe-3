@@ -133,7 +133,7 @@
           display: inline-block;
           line-height: 1em;
           font-weight: bold;
-          font-size: 35px;
+          font-size: 30px;
           margin-bottom: 10px;
         }
         #memo .company-info span {
