@@ -313,8 +313,8 @@
         }
 
         #terms .logo2 img {
-          width: 200px;
-          height: 114px;
+          width: 176px;
+          height: 100px;
         }
 
         #terms > span {
@@ -496,7 +496,7 @@
         <div>Mit freundlichen Grüßen</div>
         
         <div class="logo2">
-          <img src="{{ public_path('img\HOM_200.png') }}" width="200" height="114"/>
+          <img src="{{ public_path('img\HOM_200.png') }}" width="176" height="100"/>
         </div>
       </section>
 
