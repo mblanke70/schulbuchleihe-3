@@ -400,7 +400,13 @@
       <div class="clearfix"></div>
       
       <section id="client-info">
-        <span>Herrn</span>
+        <span>
+        @if($schueler->get('re_geschlecht') == 'm')
+          Herrn
+        @else
+          Frau
+        @endif
+        </span>
         <div>
           <span class="client-name">{{ $schueler->get('re_vorname') . ' ' . $schueler->get('re_nachname') }}</span>
         </div>
@@ -482,7 +488,14 @@
       
       <section id="terms">
       
-        <span>Sehr geehrter Herr {{ $schueler->get('re_nachname') }},</span>
+        <span>
+        @if($schueler->get('re_geschlecht') == 'm')
+          Sehr geehrter Herr
+        @else
+          Sehr geehrte Frau
+        @endif
+        {{ $schueler->get('re_nachname') }},
+        </span>
         
         <div>Ihrem Sohn/Ihrer Tochter <strong>{{ $schueler->get('vorname') }} {{ $schueler->get('nachname') }}</strong> wurden die oben genannten Lernmittel leihweise überlassen. Diese wurden nicht bzw. beschädigt zurückgegeben, so dass eine weitere Ausleihe nicht möglich ist. Nach den von Ihnen anerkannten Ausleihbedingungen sind Sie verplichtet, den Zeitwert des Lernmittels erstatten.</div>
         
