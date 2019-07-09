@@ -226,7 +226,7 @@
         }
 
         #items {
-          margin-top: 80px;
+          margin-top: 50px;
         }
         #items .first-cell, #items table th:first-child, #items table td:first-child {
           width: 10px;
