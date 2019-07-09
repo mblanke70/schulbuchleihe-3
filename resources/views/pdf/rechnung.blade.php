@@ -312,7 +312,7 @@
           page-break-inside: avoid;
         }
         #terms > span {
-          display: inline-block;
+          /*display: inline-block;*/
           min-width: 20px;
           font-weight: bold;
         }
@@ -387,7 +387,7 @@
       <section id="invoice-title-number">
       
         <span id="title">Rechnung</span>
-        <span id="number">#{{ $schueler->get('id') }}-1</span>
+        <span id="number">#{{ $schueler->get('id') }}</span>
         
       </section>
       
