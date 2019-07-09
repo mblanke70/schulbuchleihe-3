@@ -201,7 +201,7 @@
 
         #invoice-info {
           float: right;
-          margin-top: 50px;
+          margin-top: 30px;
         }
         #invoice-info > div {
           float: left;
