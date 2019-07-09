@@ -311,6 +311,12 @@
           margin: 45px 0 20px 0;
           page-break-inside: avoid;
         }
+
+        #terms .logo2 img {
+          width: 200px;
+          height: 114px;
+        }
+
         #terms > span {
           /*display: inline-block;*/
           min-width: 20px;
@@ -481,7 +487,7 @@
       
       <section id="terms">
       
-        <span>Sehr geehrter Herr, sehr geehrte Frau {{ $schueler->get('nachname') }},</span>
+        <span>Sehr geehrter Herr {{ $schueler->get('nachname') }}, sehr geehrte Frau {{ $schueler->get('nachname') }},</span>
         
         <div>{{ $schueler->get('vorname') }} wurden die oben genannten Lernmittel leihweise überlassen. Diese wurden nicht bzw. beschädigt zurückgegeben, so dass eine weitere Ausleihe nicht möglich ist. Nach den von Ihnen anerkannten Ausleihbedingungen sind Sie verplichtet, den Zeitwert des Lernmittels erstatten.</div>
         
@@ -489,11 +495,15 @@
 
         <div>Mit freundlichen Grüßen</div>
         
+        <div class="logo2">
+          <img src="{{ public_path('img\HOM_200.png') }}" width="200" height="114"/>
+        </div>
       </section>
 
       <div class="payment-info">
         <div>Bankverbindung: Ursulaschule Osnabrück - IBAN: DE02 2655 0105 0000 2036 61</div>
       </div>
+
     </div>
 
 @endforeach
