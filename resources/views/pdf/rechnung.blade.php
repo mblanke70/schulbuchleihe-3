@@ -490,7 +490,7 @@
 
         <div>Mit freundlichen Grüßen</div>
         
-        <div class="logo2">
+        <div style="margin-top: 0;" class="logo2">
           <img src="{{ public_path('img\HOM_176.png') }}" width="176" height="100"/>
         </div>
       </section>
