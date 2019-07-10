@@ -82,20 +82,20 @@ class AusleiheController extends Controller
         // Durchlaufe die Bücherliste und ergänze zu jedem Buchtitel
         //   - die zugehörige Bestellung
         //   - den aktuellen Leihstatus (ist der Buchtitel bereits als Buch ausgeliehen worden?) 
-        foreach($buchtitel as $bt) {
+        foreach($buchtitel as $btsj) {
             
             // bestellt?
             //$bw = $buecherwahlen->get($bt->buchtitel_id);
-            $bw = $buecherwahlen->get($bt->id);
+            $bw = $buecherwahlen->get($btsj->id);
             if($bw!=null) {
-                $bt['wahl']    = $bw->wahl;
-                $bt['wahl_id'] = $bw->id;
+                $btsj['wahl']    = $bw->wahl;
+                $btsj['wahl_id'] = $bw->id;
             } else {
-                $bt['wahl'] = 4;    // == nicht bestellt (abgewählt)
+                $btsj['wahl'] = 4;    // == nicht bestellt (abgewählt)
             }
 
             // ausgeliehen?
-            $bt['ausgeliehen'] = $buecher->contains('buchtitel_id', $bt->buchtitel_id) ? 1 : 0;
+            $btsj['ausgeliehen'] = $buecher->contains('buchtitel_id', $btsj->buchtitel->id) ? 1 : 0;
         }
 
         //dd($buchtitel);
