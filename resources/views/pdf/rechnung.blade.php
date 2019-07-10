@@ -515,7 +515,7 @@
         @else
           Ihre Tochter
         @endif
-        die neu entliehenen Schulbücher für das kommende Schuljahr abholt, besteht letztmalig die Möglichkeit, die oben aufgeführten Bücher zurückzugeben. Dabei setzen wir für Bücher, deren Restwert mehr als 3,00 € beträgt, pauschal eine Mahngebühr von 3,00 € an. Für Bücher, deren Restwert weniger als 3,00 € beträgt, entspricht die Mahngebühr dem Restwert. Mahngebühren müssen in bar bezahlt werden. Die Rechnung wird anschließend gegebenenfalls neu ausgestellt.</div>
+        die neu entliehenen Schulbücher für das kommende Schuljahr abholt, besteht letztmalig die Möglichkeit, die oben aufgeführten Bücher zurückzugeben. Dabei setzen wir für Bücher, deren Restwert mehr als 3,00 € beträgt, pauschal eine Mahngebühr von 3,00 € an. Für Bücher, deren Restwert weniger als 3,00 € beträgt, entspricht die Mahngebühr dem Restwert. Mahngebühren müssen in bar bezahlt werden. Diese Rechnung wird anschließend gegebenenfalls neu ausgestellt.</div>
 
         <div>Mit freundlichen Grüßen</div>
         
