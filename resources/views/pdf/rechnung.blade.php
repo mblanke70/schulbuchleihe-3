@@ -504,10 +504,10 @@
           @else
            Ihrer Tochter
           @endif
-          <strong>{{ $schueler->get('vorname') }}</strong> sind die oben aufgeführten Lernmittel leihweise überlassen worden. Diese wurden nicht bzw. beschädigt zurückgegeben, so dass eine weitere Ausleihe nicht möglich ist. Nach den von Ihnen anerkannten Ausleihbedingungen sind Sie verplichtet, den Zeitwert der Lernmittel erstatten. (Lernmittel, deren Zeitwert 3,00 € oder weniger beträgt, sind nicht brücksichtigt worden.)
+          <strong>{{ $schueler->get('vorname') }}</strong> sind die oben aufgeführten Lernmittel leihweise überlassen worden. Diese wurden nicht bzw. beschädigt zurückgegeben, so dass eine weitere Ausleihe nicht möglich ist. Nach den von Ihnen anerkannten Ausleihbedingungen sind Sie verplichtet, den Zeitwert der Lernmittel erstatten. (Lernmittel, deren Zeitwert 3,00&nbsp;€ oder weniger beträgt, sind nicht brücksichtigt worden.)
         </div>
         
-        <div>Ich bitte Sie deshalb um die Überweisung des Betrages von <strong>{{ $schueler->get('summe') }} €</strong> bis zum <strong>{{ date('d.m.Y', strtotime("+30 days")) }}</strong> auf das unten angegebene Konto. Im Betreff der Überweisung bitte unbedingt die Rechnungsnummer angeben.</div>
+        <div>Ich bitte Sie deshalb um die Überweisung des Betrages von&nbsp;&nbsp;<strong>{{ $schueler->get('summe') }} €</strong>&nbsp;&nbsp;bis zum <strong>{{ date('d.m.Y', strtotime("+30 days")) }}</strong> auf das unten angegebene Konto. Im Betreff der Überweisung bitte unbedingt die Rechnungsnummer angeben.</div>
 
         <div>
         Wenn 
