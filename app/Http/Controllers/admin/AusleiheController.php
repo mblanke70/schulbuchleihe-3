@@ -76,7 +76,7 @@ class AusleiheController extends Controller
         $buecher       = $schueler->buecher;
         // Hole alle Buchbestellungen, die der Schüler abgegeben hat
         $buecherwahlen = $schueler->buecherwahlen->keyBy('buchtitel_id');
-
+        
         //dd($buchtitel);
 
         // Durchlaufe die Bücherliste und ergänze zu jedem Buchtitel
@@ -85,7 +85,8 @@ class AusleiheController extends Controller
         foreach($buchtitel as $bt) {
             
             // bestellt?
-            $bw = $buecherwahlen->get($bt->buchtitel_id);
+            //$bw = $buecherwahlen->get($bt->buchtitel_id);
+            $bw = $buecherwahlen->get($bt->id);
             if($bw!=null) {
                 $bt['wahl']    = $bw->wahl;
                 $bt['wahl_id'] = $bw->id;
