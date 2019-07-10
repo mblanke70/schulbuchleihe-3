@@ -71,7 +71,7 @@ class AusleiheController extends Controller
         $prev   = $schueler->prev();
 
         // Hole alle Buchtitel, die auf der Bücherliste des Jahrgangs des Schülers stehen       
-        $buchtitel     = $schueler->klasse->jahrgang->buecherliste->buchtitel;
+        $buchtitel     = $schueler->klasse->jahrgang->buchtitel;
         // Hole alle Bücher, die der Schüler derzeit ausgeliehen hat
         $buecher       = $schueler->buecher;
         // Hole alle Buchbestellungen, die der Schüler abgegeben hat
