@@ -103,9 +103,9 @@ class AusleiheController extends Controller
         // Berechne Summe der Leihgebühren
         $summe = 0;
         foreach($buecher as $buch) {
-            $bt = $buchtitel->where('buchtitel_id', $buch->buchtitel_id)->first();
+            $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
 
-            $leihpreis = $bt->leihpreis;
+            $leihpreis = $btsj->leihpreis;
             if($leihpreis != null)
             {
                 $buch['leihpreis'] = $leihpreis;
