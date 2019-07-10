@@ -79,7 +79,8 @@ class RechnungDrucken extends Action
             $schueler->put('buecher', $buecher);
             $schueler->put('summe', number_format($summe, 2, ',', ' '));
 
-            $rechnungen->push($schueler);
+            if($model->id != 666)      // H. Wethkamp raus...
+                $rechnungen->push($schueler);
         }
 
         \File::delete('pdf/rechnung.pdf');
