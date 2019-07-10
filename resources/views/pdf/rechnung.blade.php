@@ -329,6 +329,8 @@
         }
 
         .payment-info div {
+          margin-top: 20px;
+          border-top: 1px solid #888;
           /*color: #888;*/
           font-size: 16px;
           /*display: inline-block;*/
