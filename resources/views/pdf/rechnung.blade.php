@@ -497,11 +497,25 @@
         {{ $schueler->get('re_nachname') }},
         </span>
         
-        <div>Ihrem Sohn/Ihrer Tochter <strong>{{ $schueler->get('vorname') }} {{ $schueler->get('nachname') }}</strong> wurden die oben genannten Lernmittel leihweise überlassen. Diese wurden nicht bzw. beschädigt zurückgegeben, so dass eine weitere Ausleihe nicht möglich ist. Nach den von Ihnen anerkannten Ausleihbedingungen sind Sie verplichtet, den Zeitwert des Lernmittels erstatten.</div>
+        <div>
+          @if($schueler->get('geschlecht') == 'm')
+            Ihrem Sohn
+          @else
+           Ihrer Tochter
+          @endif
+          <strong>{{ $schueler->get('vorname') }} {{ $schueler->get('nachname') }}</strong> wurden die oben genannten Lernmittel leihweise überlassen. Diese wurden nicht bzw. beschädigt zurückgegeben, so dass eine weitere Ausleihe nicht möglich ist. Nach den von Ihnen anerkannten Ausleihbedingungen sind Sie verplichtet, den Zeitwert des Lernmittels erstatten.
+        </div>
         
         <div>Ich bitte Sie deshalb um Überweisung des Betrages von <strong>{{ $schueler->get('summe') }} €</strong> bis zum <strong>{{ date('d.m.Y', strtotime("+30 days")) }}</strong> auf das unten angegebene Konto. Im Betreff der Überweisung bitte unbedingt die Rechnungsnummer angeben.</div>
 
-        <div>Wenn Ihr Sohn/Ihre Tochter die neu entliehenen Schulbücher für das kommende Schuljahr abholt, besteht letztmalig die Möglichkeit, die oben aufgeführten Bücher zurückzugeben. Dabei setzen wir für Bücher, deren Restwert mehr als 3,00 € beträgt, pauschal eine Mahngebühr von 3,00 € an. Für Bücher, deren Restwert weniger als 3,00 € beträgt, entspricht die Mahngebühr dem Restwert. Mahngebühren müssen in bar bezahlt werden. Die Rechnung wird anschließend gegebenenfalls neu ausgestellt.</div>
+        <div>
+        Wenn 
+        @if($schueler->get('geschlecht') == 'm')
+          Ihr Sohn
+        @else
+          Ihre Tochter
+        @endif
+        die neu entliehenen Schulbücher für das kommende Schuljahr abholt, besteht letztmalig die Möglichkeit, die oben aufgeführten Bücher zurückzugeben. Dabei setzen wir für Bücher, deren Restwert mehr als 3,00 € beträgt, pauschal eine Mahngebühr von 3,00 € an. Für Bücher, deren Restwert weniger als 3,00 € beträgt, entspricht die Mahngebühr dem Restwert. Mahngebühren müssen in bar bezahlt werden. Die Rechnung wird anschließend gegebenenfalls neu ausgestellt.</div>
 
         <div>Mit freundlichen Grüßen</div>
         

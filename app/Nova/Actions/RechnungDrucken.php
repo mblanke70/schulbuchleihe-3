@@ -41,6 +41,7 @@ class RechnungDrucken extends Action
             $schueler = collect();
             $schueler->put('vorname' ,      $model->vorname );
             $schueler->put('nachname',      $model->nachname);
+            $schueler->put('geschlecht',    $model->geschlecht);
             $schueler->put('id',            $model->id);
             $schueler->put('re_vorname',    $model->re_vorname);
             $schueler->put('re_nachname',   $model->re_nachname);
