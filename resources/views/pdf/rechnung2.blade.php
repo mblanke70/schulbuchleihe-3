@@ -459,7 +459,7 @@
             <td>{{ $posten->buch_id }}</td>
             <td>{{ number_format($posten->kaufpreis, 2, ',', ' ') }} €</td>
             <td>{{ number_format($posten->leihpreis, 2, ',', ' ') }} €</td>
-            <td>{{ date_format($posten->aufnahme, 'Y') }}</td>
+            <td>{{ date('Y', strtotime($posten->aufnahme)) }}</td>
             <td>{{ number_format($posten->restwert, 2, ',', ' ') }} €</td>
           </tr>
 
