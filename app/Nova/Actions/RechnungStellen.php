@@ -46,6 +46,7 @@ class RechnungStellen extends Action
             $rechnung->s_vorname       = $model->vorname;
             $rechnung->s_nachname      = $model->nachname;
             $rechnung->s_geschlecht    = $model->geschlecht;
+            $rechnung->s_schuljahr     = $model->klasse->jahrgang->schuljahr->schuljahr;
             $rechnung->re_vorname      = $model->re_vorname;
             $rechnung->re_nachname     = $model->re_nachname;
             $rechnung->re_geschlecht   = $model->re_geschlecht;
