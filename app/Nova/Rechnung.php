@@ -54,9 +54,15 @@ class Rechnung extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Vorname', 's_vorname')->rules('required')->sortable(),
+            Text::make('Vorname', 's_vorname')->sortable(),
 
-            Text::make('Nachname', 's_nachname')->rules('required')->sortable(),
+            Text::make('Nachname', 's_nachname')->sortable(),
+
+            Text::make('# Posten', function () {
+                return $this->posten()->count();
+            })->onlyOnIndex(),
+
+            Text::make('Summe', 're_summe')->sortable(),
 
             HasMany::make('Rechnungsposten', 'posten'),
         ];
