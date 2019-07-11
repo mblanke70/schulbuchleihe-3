@@ -40,7 +40,7 @@ class Rechnung extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 's_vorname', 's_nachname'
     ];
 
     /**
