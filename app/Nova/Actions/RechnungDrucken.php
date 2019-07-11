@@ -11,6 +11,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 use App\File;
+use App\Rechnung;
+use App\Rechnungsposten;
 
 class RechnungDrucken extends Action
 {
