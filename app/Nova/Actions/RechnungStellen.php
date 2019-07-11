@@ -73,16 +73,15 @@ class RechnungStellen extends Action
 
                 $posten = new Rechnungsposten;
 
-                $posten->buch_id   = $b->id;
-                $posten->titel     = $b->buchtitel->titel;
-                $posten->kaufpreis = $kaufpreis;
-                $posten->leihpreis = $leihpreis;
-                $posten->aufnahme  = $b->aufnahme;
-                $posten->restwert  = $restwert;
+                $posten->buch_id     = $b->id;
+                $posten->titel       = $b->buchtitel->titel;
+                $posten->kaufpreis   = $kaufpreis;
+                $posten->leihpreis   = $leihpreis;
+                $posten->aufnahme    = $b->aufnahme;
+                $posten->restwert    = $restwert;
+                $posten->rechnung_id = $rechnung->id; 
 
                 $posten->save();
-
-                $rechnung->posten()->save($posten);
             }
 
             $rechnung->re_summe = $summe;
