@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\DateTime;
 
 class Rechnung extends Resource
 {
@@ -58,6 +59,8 @@ class Rechnung extends Resource
 
             Text::make('Nachname', 's_nachname')->sortable(),
 
+            DateTime::make('Datum', 're_datum')->sortable(),
+            
             Text::make('# Posten', function () {
                 return $this->posten()->count();
             })->onlyOnIndex(),
