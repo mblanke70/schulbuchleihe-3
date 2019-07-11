@@ -10,7 +10,6 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
 
-
 class Schueler extends Resource
 {
     /**
@@ -157,7 +156,6 @@ class Schueler extends Resource
         return [
             new Actions\BuchAusleihen,
             new Actions\BuchZurueck,
-            new Actions\RechnungDrucken,
             new Actions\RechnungStellen
         ];
     }

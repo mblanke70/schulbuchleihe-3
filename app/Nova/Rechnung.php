@@ -8,6 +8,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Currency;
 
 class Rechnung extends Resource
 {
@@ -20,6 +21,13 @@ class Rechnung extends Resource
     {
         return 'Rechnungen';
     }
+
+    /**
+    * The logical group associated with the resource.
+    *
+    * @var string
+    */
+    public static $group = 'Leihverfahren';
 
     /**
      * The model the resource corresponds to.
@@ -64,6 +72,8 @@ class Rechnung extends Resource
             Text::make('# Posten', function () {
                 return $this->posten()->count();
             })->onlyOnIndex(),
+
+            //Currency::make('re_summe')->format('%.2n'),
 
             Text::make('Summe', 're_summe')->sortable(),
 
@@ -115,5 +125,15 @@ class Rechnung extends Resource
          return [
             new Actions\RechnungDrucken2,
         ];
+    }
+
+    /**
+     * Get the URI key for the resource.
+     *
+     * @return string
+     */
+    public static function uriKey()
+    {
+        return 'rechnungen';
     }
 }
