@@ -59,7 +59,7 @@ class Rechnung extends Resource
 
             Text::make('Nachname', 's_nachname')->sortable(),
 
-            Text::make('Datum', 're_datum')->sortable(),
+            //Text::make('Datum', 're_datum')->sortable(),
             
             Text::make('# Posten', function () {
                 return $this->posten()->count();
