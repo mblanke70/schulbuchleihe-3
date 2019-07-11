@@ -457,10 +457,10 @@
             <td>{{ $i++ }}</td>
             <td>{{ substr($posten->titel,0,25) }}</td>
             <td>{{ $posten->buch_id }}</td>
-            <td>{{ number_format($posten->kaufpreis, 2, ',', ' ')) }} €</td>
-            <td>{{ number_format($posten->leihpreis, 2, ',', ' ')) }} €</td>
+            <td>{{ number_format($posten->kaufpreis, 2, ',', ' ') }} €</td>
+            <td>{{ number_format($posten->leihpreis, 2, ',', ' ') }} €</td>
             <td>{{ date_format($posten->aufnahme, 'Y') }}</td>
-            <td>{{ number_format($posten->restwert, 2, ',', ' ')) }} €</td>
+            <td>{{ number_format($posten->restwert, 2, ',', ' ') }} €</td>
           </tr>
 
           @endforeach
@@ -475,7 +475,7 @@
           
           <tr class="amount-total">
             <th>Summe</th>
-            <td>{{ number_format($posten->re_summe, 2, ',', ' ')) }} €</td>
+            <td>{{ number_format($posten->re_summe, 2, ',', ' ') }} €</td>
           </tr>
           
         </table>
@@ -504,7 +504,7 @@
           <strong>{{ $rechnung->s_vorname }}</strong> sind die oben aufgeführten Lernmittel leihweise überlassen worden. Diese wurden nicht bzw. beschädigt zurückgegeben, so dass eine weitere Ausleihe nicht möglich ist. Nach den von Ihnen anerkannten Ausleihbedingungen sind Sie verplichtet, den Zeitwert der Lernmittel erstatten. (Lernmittel, deren Zeitwert 3,00&nbsp;€ oder weniger beträgt, sind nicht brücksichtigt worden.)
         </div>
         
-        <div>Ich bitte Sie deshalb um die Überweisung des Betrages von&nbsp;&nbsp;<strong>{{ number_format($posten->re_summe, 2, ',', ' ')) }} €</strong>&nbsp;&nbsp;bis zum <strong>{{ $rechnung->re_faelligkeit }}</strong> auf das unten angegebene Konto. Im Betreff der Überweisung bitte unbedingt die Rechnungsnummer angeben.</div>
+        <div>Ich bitte Sie deshalb um die Überweisung des Betrages von&nbsp;&nbsp;<strong>{{ number_format($posten->re_summe, 2, ',', ' ') }} €</strong>&nbsp;&nbsp;bis zum <strong>{{ date_format($rechnung->re_faelligkeit, 'd.m.Y') }}</strong> auf das unten angegebene Konto. Im Betreff der Überweisung bitte unbedingt die Rechnungsnummer angeben.</div>
 
         <div>
         Wenn 
