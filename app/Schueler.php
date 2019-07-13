@@ -40,7 +40,7 @@ class Schueler extends Model
      */
     public function klasse()
     {
-    	return $this->belongsTo('App\Klasse');
+    	 return $this->belongsTo('App\Klasse');
     }
 
     /**
@@ -48,8 +48,15 @@ class Schueler extends Model
      */
     public function user()
     {
-    	return $this->belongsTo('App\User');
+    	  return $this->belongsTo('App\User');
     }
+
+    
+    public function familie()
+    {
+        return $this->belongsTo('App\Familie');
+    }
+
 
     /**
      * Liefert den alphabetisch nächsten Ausleiher aus der gleichen Klasse

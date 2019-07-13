@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\BelongsToMany;
 
 class Schueler extends Resource
 {
@@ -78,9 +79,7 @@ class Schueler extends Resource
 
             Text::make('Vorname', 'vorname')->rules('required')->sortable(),
             
-            Text::make('Nachname', 'nachname')->rules('required')->sortable(),
-
-            
+            Text::make('Nachname', 'nachname')->rules('required')->sortable(),            
 
             BelongsTo::make('Klasse', 'klasse')->rules('required')->nullable(),
             
@@ -97,6 +96,8 @@ class Schueler extends Resource
             HasMany::make('Buch', 'buecher'),
 
             HasMany::make('Buchwahl', 'buecherwahlen'),
+
+            BelongsToMany::make('Schueler', 'geschwister'),
 
             Text::make('RE_Vorname', 're_vorname')->hideFromIndex(),
             Text::make('RE_Nachname', 're_nachname')->hideFromIndex(),
