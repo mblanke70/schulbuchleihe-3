@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Boolean;
 
 class Familie extends Resource
 {
@@ -69,14 +70,25 @@ class Familie extends Resource
     public function fields(Request $request)
     {
         return [
+
             ID::make()->sortable(),
-            Text::make('Name', 'name')->sortable(),
-            Text::make('Straße', 'strasse')->sortable(),
+
+            Text::make('Name', 'name')->rules('required')->sortable(),
+            
+            Text::make('Straße', 'strasse')->rules('required')->sortable(),
+            
             Text::make('# Kinder', function () {
                 return $this->kinder()->count();
             })->onlyOnIndex(),
 
+            Boolean::make('ermäßigt', function () {
+                return $this->kinder()->count() > 2;
+            })->sortable(),
+
+            Boolean::make('befreit', 'befreit')->rules('required')->sortable(),
+            
             HasMany::make('Schueler', 'kinder'),
+
         ];
     }
 

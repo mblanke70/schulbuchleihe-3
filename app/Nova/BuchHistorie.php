@@ -3,10 +3,12 @@
 namespace App\Nova;
 
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\BelongsTo;
+
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Text;
-
 
 class BuchHistorie extends Resource
 {
@@ -17,7 +19,17 @@ class BuchHistorie extends Resource
      */
     public static function label()
     {
-        return 'Buchhistorie';
+        return 'Buchhistorien';
+    }
+
+    /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return 'Historieneintrag';
     }
 
     /**
@@ -28,11 +40,11 @@ class BuchHistorie extends Resource
     public static $model = 'App\BuchHistorie';
 
     /**
-     * Indicates if the resource should be displayed in the sidebar.
-     *
-     * @var bool
-     */
-    public static $displayInNavigation = false;
+    * The logical group associated with the resource.
+    *
+    * @var string
+    */
+    public static $group = 'Bestand';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -47,7 +59,7 @@ class BuchHistorie extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'buch_id', 'titel', 
     ];
 
     /**
@@ -59,12 +71,29 @@ class BuchHistorie extends Resource
     public function fields(Request $request)
     {
         return [
+
             ID::make()->sortable(),
-            Text::make('Titel', 'titel'),
-            Text::make('Nachname', 'nachname'),
-            Text::make('Vorname', 'vorname'),
-            Text::make('Klasse', 'klasse'),
-            Text::make('Schuljahr', 'schuljahr'),
+
+            BelongsTo::make('Buch', 'buch')->nullable(),
+
+            Text::make('Titel', 'titel')->sortable(),
+            
+            Text::make('Nachname', 'nachname')->sortable(),
+            
+            Text::make('Vorname', 'vorname')->sortable(),
+            
+            Text::make('Email', 'email')->sortable()->hideFromIndex(),
+            
+            Text::make('Klasse', 'klasse')->sortable(),
+            
+            Text::make('Schuljahr', 'schuljahr')->sortable(),
+            
+            DateTime::make('Ausgabe', 'ausgabe')
+                ->format('DD.MM.YYYY HH:MM')->sortable()->hideFromIndex(),
+            
+            DateTime::make('Rückgabe', 'rueckgabe')
+                ->format('DD.MM.YYYY HH:MM')->sortable()->hideFromIndex(),
+
         ];
     }
 

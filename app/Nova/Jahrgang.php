@@ -32,7 +32,6 @@ class Jahrgang extends Resource
         return 'Jahrgang';
     }
 
-
     /**
     * The logical group associated with the resource.
     *
@@ -88,13 +87,21 @@ class Jahrgang extends Resource
     public function fields(Request $request)
     {
         return [
+        
             ID::make()->sortable(),
+
             Text::make('jahrgangsstufe')->sortable(),
+            
             //Text::make('schuljahr')->sortable(),
+            
             BelongsTo::make('Schuljahr', 'schuljahr')->nullable(),
+            
             HasMany::make('Klasse', 'klassen'),
+            
             HasMany::make('Abfrage', 'abfragen'),
+            
             BelongsToMany::make('BuchtitelSchuljahr', 'buchtitel'),
+        
         ];
     }
 

@@ -74,28 +74,19 @@ class Schuljahr extends Resource
     public function fields(Request $request)
     {
         return [
+
             ID::make()->sortable(),
+ 
             Text::make('Schuljahr', 'schuljahr')->rules('required'),
+ 
             Boolean::make('aktiv', 'aktiv')->rules('required'),
+ 
             Date::make('Beginn', 'von')->rules('required'),
+ 
             Date::make('Ende', 'bis')->rules('required'),
+ 
             HasMany::make('Jahrgang', 'jahrgaenge'),
-            /*
-            BelongsToMany::make('Buchtitel', 'buchtitel')
-                ->rules('required')
-                ->fields(function () {
-                    return [
-                        Number::make('Leihpreis', 'leihpreis')
-                            ->min(1)
-                            ->max(10)
-                            ->step(0.01),
-                        Number::make('Kaufpreis', 'kaufpreis')
-                            ->min(1)
-                            ->max(10)
-                            ->step(0.01)
-                    ];
-                })
-            */
+           
         ];
     }
 

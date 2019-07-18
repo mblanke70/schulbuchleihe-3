@@ -8,6 +8,15 @@ class Buchhistorie extends Model
 {
     protected $table = 'buch_historien';
 
+	/**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'ausgabe', 'rueckgabe'
+    ];
+    
     /**
      * Liefert das Buch zu diesem Eintrag.
      */

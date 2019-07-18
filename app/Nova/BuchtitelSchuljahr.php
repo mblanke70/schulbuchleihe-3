@@ -8,6 +8,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Number;
 
 use App\Buchwahl;
 
@@ -77,7 +78,10 @@ class BuchtitelSchuljahr extends Resource
      *
      * @var array
      */
-    public static $with = ['buchtitel', 'schuljahr'];
+    public static $with = [
+        'buchtitel', 
+        'schuljahr'
+    ];
 
     /**
      * Get the fields displayed by the resource.
@@ -88,18 +92,20 @@ class BuchtitelSchuljahr extends Resource
     public function fields(Request $request)
     {
         return [
+
             ID::make()->sortable(),
                         
-            //Text::make('Titel', 'buchtitel.titel')->sortable(),
             BelongsTo::make('Buchtitel', 'buchtitel'),
-            //Text::make('Schuljahr', 'schuljahr.schuljahr')->sortable(),
+
             BelongsTo::make('Schuljahr', 'schuljahr'),
+
             Text::make('Fach', 'buchtitel.fach.name')
                 ->hideWhenCreating()
-                ->hideWhenUpdating(),
+                ->hideWhenUpdating(),            
+
+            Number::make('Leihpreis', 'leihpreis')->min(1)->max(100)->step(0.01),
             
-            Text::make('Leihpreis', 'leihpreis')->sortable(),
-            Text::make('Kaufpreis', 'kaufpreis')->sortable(),
+            Number::make('Kaufpreis', 'kaufpreis')->min(1)->max(200)->step(0.01),
             
             BelongsToMany::make('AbfrageAntwort', 'antworten')
                 ->onlyOnDetail(),
@@ -116,12 +122,14 @@ class BuchtitelSchuljahr extends Resource
 
             Text::make('# bestellt', function () {
 
-                return $this->buchwahlen()->where('wahl', 1)->count();
+                return $this->buchwahlen()
+                    ->where('wahl', 1)
+                    ->count();
             
             })->onlyOnIndex(),
 
-            //BelongsToMany::make('Buecherliste', 'buecherlisten'),
             BelongsToMany::make('Jahrgang', 'jahrgaenge'),
+
         ];
     }
 

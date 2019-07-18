@@ -73,6 +73,7 @@ class Schueler extends Resource
     public function fields(Request $request)
     {
         return [
+
             ID::make()->sortable(),
 
             DateTime::make('Created At', 'created_at')->sortable()->onlyOnIndex(),
@@ -85,25 +86,28 @@ class Schueler extends Resource
             
             BelongsTo::make('User', 'user')->hideFromIndex()->nullable()->searchable(),
             
-            Text::make('# geliehen', function () {
-                return $this->buecher()->count();
-            })->onlyOnIndex(),
+            Text::make('# geliehen', function () { return $this->buecher()->count(); })
+                ->onlyOnIndex(),
 
-            Text::make('# bestellt', function () {
-                return $this->bestellungen()->count();
-            })->onlyOnIndex(),
+            Text::make('# bestellt', function () { return $this->bestellungen()->count(); })
+                ->onlyOnIndex(),
             
             HasMany::make('Buch', 'buecher'),
 
             HasMany::make('Buchwahl', 'buecherwahlen'),
 
-            BelongsToMany::make('Schueler', 'geschwister'),
+            BelongsTo::make('Familie', 'familie')->hideFromIndex(),
 
             Text::make('RE_Vorname', 're_vorname')->hideFromIndex(),
+            
             Text::make('RE_Nachname', 're_nachname')->hideFromIndex(),
+            
             Text::make('RE_Straße', 're_strasse_nr')->hideFromIndex(),
+            
             Text::make('RE_PLZ', 're_plz')->hideFromIndex(),
+            
             Text::make('RE_Ort', 're_ort')->hideFromIndex(),
+
         ];
     }
 

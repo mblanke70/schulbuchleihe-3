@@ -35,7 +35,6 @@ class Buch extends Resource
         return 'Buch';
     }
 
-
     /**
     * The logical group associated with the resource.
     *
@@ -82,6 +81,7 @@ class Buch extends Resource
     public function fields(Request $request)
     {
         return [
+
             ID::make()->sortable(),
 
             BelongsTo::make('Titel', 'buchtitel', 'App\Nova\Buchtitel'),
@@ -100,6 +100,7 @@ class Buch extends Resource
                 ->hideWhenCreating(),
             
             HasMany::make('BuchHistorie', 'historie')
+
         ];
     }
 

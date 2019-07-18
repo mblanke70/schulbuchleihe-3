@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Currency;
+use Laravel\Nova\Fields\Heading;
 
 class Rechnung extends Resource
 {
@@ -20,6 +21,16 @@ class Rechnung extends Resource
     public static function label()
     {
         return 'Rechnungen';
+    }
+
+    /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return 'Rechnung';
     }
 
     /**
@@ -61,23 +72,47 @@ class Rechnung extends Resource
     public function fields(Request $request)
     {
         return [
+
+            Heading::make('Ausleiher'), 
+
             ID::make()->sortable(),
+
+            Text::make('Geschlecht', 's_geschlecht')->sortable(),
 
             Text::make('Vorname', 's_vorname')->sortable(),
 
             Text::make('Nachname', 's_nachname')->sortable(),
-
-            //Text::make('Datum', 're_datum')->sortable(),
             
             Text::make('# Posten', function () {
-                return $this->posten()->count();
+                return $this->positionen()->count();
             })->onlyOnIndex(),
-
-            //Currency::make('re_summe')->format('%.2n'),
 
             Text::make('Summe', 're_summe')->sortable(),
 
-            HasMany::make('Rechnungsposten', 'posten'),
+            HasMany::make('RechnungPosition', 'positionen'),
+
+            Heading::make('Rechnungsempfänger'), 
+
+            Text::make('RE_Geschlecht', 're_geschlecht')->sortable()->hideFromIndex(),
+
+            Text::make('RE_Vorname', 're_vorname')->sortable()->hideFromIndex(),
+
+            Text::make('RE_Nachname', 're_nachname')->sortable()->hideFromIndex(),
+
+            Text::make('RE_Straße', 're_strasse')->sortable()->hideFromIndex(),
+
+            Text::make('RE_PLZ', 're_plz')->sortable()->hideFromIndex(),
+
+            Text::make('RE_Ort', 're_ort')->sortable()->hideFromIndex(),
+
+            Text::make('RE_Summe', 're_summe')->sortable()->hideFromIndex(),
+
+            Date::make('RE_Datum', 're_datum')
+                ->format('DD.MM.YYYY')->sortable()->hideFromIndex(),
+
+            Date::make('RE_Fälligkeit', 're_faelligkeit')
+                ->format('DD.MM.YYYY')->sortable()->hideFromIndex(),
+
         ];
     }
 
