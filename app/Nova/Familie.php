@@ -139,4 +139,14 @@ class Familie extends Resource
     {
         return [];
     }
+
+    /**
+     * Get the URI key for the resource.
+     *
+     * @return string
+     */
+    public static function uriKey()
+    {
+        return 'familien';
+    }
 }
