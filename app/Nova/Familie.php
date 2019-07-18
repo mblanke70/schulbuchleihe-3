@@ -73,6 +73,8 @@ class Familie extends Resource
 
             ID::make()->sortable(),
 
+            BelongsTo::make('Schuljahr', 'schuljahr')->nullable(),
+
             Text::make('Name', 'name')->rules('required')->sortable(),
             
             Text::make('Straße', 'strasse')->rules('required')->sortable(),

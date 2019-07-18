@@ -15,4 +15,9 @@ class Familie extends Model
     {
         return $this->hasMany('App\Schueler');
     }
+
+	public function schuljahr()
+    {
+    	return $this->belongsTo('App\Schuljahr');
+    }  
 }
