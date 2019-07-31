@@ -81,7 +81,17 @@ class Familie extends Resource
             
             Text::make('Straße', 'strasse')->rules('required')->sortable(),
             
-            Text::make('erm', 'erm')->rules('required')->sortable(),
+            Text::make('angegebene Erm.', function () {
+                
+                if($this->erm == 2) {
+                    return "befreit";
+                } else if ($this->erm == 1) {
+                    return "20%";
+                } else {
+                    return "keine";
+                }
+
+            })->onlyOnIndex();
 
             Text::make('# Kinder', function () {
                 return $this->kinder()->count();
