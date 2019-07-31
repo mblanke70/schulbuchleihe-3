@@ -91,7 +91,7 @@ class Familie extends Resource
                     return "keine";
                 }
 
-            })->onlyOnIndex();
+            })->onlyOnIndex(),
 
             Text::make('# Kinder', function () {
                 return $this->kinder()->count();
