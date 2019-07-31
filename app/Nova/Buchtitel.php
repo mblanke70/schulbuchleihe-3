@@ -146,7 +146,7 @@ class Buchtitel extends Resource
     public function actions(Request $request)
     {
         return [ 
-            new Actions\BuecherErstellen
+            new Actions\BuecherErstellen,
         ];
     }
 

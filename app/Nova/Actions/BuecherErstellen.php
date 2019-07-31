@@ -46,7 +46,7 @@ class BuecherErstellen extends Action
     {
         $buchtitel = $models->first();
 
-        $models = new Collection();
+        $buecher = new Collection();
         for ($i=0; $i<$fields->anzahl; $i++) 
         {
            $buch = new Buch;
@@ -54,12 +54,13 @@ class BuecherErstellen extends Action
            $buch->neupreis = $fields->preis;
            $buch->aufnahme = Carbon::now();
            $buch->save();
-           $models->push($buch);
+
+           $buecher->push($buch);
         }
 
         \File::delete('pdf/labels.pdf');
 
-        $pdf = \PDF::loadView('pdf.label', compact('models'))
+        $pdf = \PDF::loadView('pdf.label', compact('buecher'))
             ->setOption('page-width'   , '105.0')
             ->setOption('page-height'  , '48.0')
             ->setOption('margin-bottom', '4mm')
@@ -70,7 +71,6 @@ class BuecherErstellen extends Action
             ->save('pdf/labels.pdf');
     
         return Action::download(url('pdf/labels.pdf'), 'labels.pdf');
-        
     }
 
     /**

@@ -86,7 +86,7 @@ class Buch extends Resource
 
             BelongsTo::make('Titel', 'buchtitel', 'App\Nova\Buchtitel'),
 
-            Text::make('Buchtitel-ID', 'buchtitel_id'),
+            Text::make('Buchtitel-ID', 'buchtitel_id')->onlyOnIndex(),
 
             MorphTo::make('Ausleiher')->types([
                 Schueler::class,
@@ -145,7 +145,9 @@ class Buch extends Resource
      */
     public function actions(Request $request)
     {
-        return [new Actions\LabelDrucken];
+        return [
+            new Actions\LabelDrucken,
+        ];
     }
 
     /**
