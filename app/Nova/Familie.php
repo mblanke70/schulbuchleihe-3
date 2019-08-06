@@ -97,6 +97,10 @@ class Familie extends Resource
                 return $this->kinder()->count();
             })->onlyOnIndex(),
 
+            Text::make('# Externe', function () {
+                return $this->externe()->count();
+            })->onlyOnIndex(),
+
             Boolean::make('ermäßigt', function () {
                 return $this->kinder()->count() > 2;
             }),
