@@ -239,25 +239,30 @@ class AusleiheController extends Controller
     {
         $schueler = Schueler::findOrFail($schueler_id);
 
-        // Hole alle Buchtitel, die auf der Bücherliste des Jahrgangs des Ausleihers stehen       
-        $buchtitel     = $schueler->klasse->jahrgang->buecherliste->buchtitel;
-        // Hole alle Bücher, die der Ausleiher derzeit ausgeliehen hat
+        // Hole alle Buchtitel, die auf der Bücherliste des Jahrgangs des Schülers stehen       
+        $buchtitel     = $schueler->klasse->jahrgang->buchtitel;
+        // Hole alle Bücher, die der Schüler derzeit ausgeliehen hat
         $buecher       = $schueler->buecher;
-
+        // Hole alle Buchbestellungen, die der Schüler abgegeben hat
         $buecherwahlen = $schueler->buecherwahlen->keyBy('buchtitel_id');
-
-        foreach($buchtitel as $bt) {
-           // bestellt?
-            $bw = $buecherwahlen->get($bt->buchtitel_id);
+        
+        // Durchlaufe die Bücherliste und ergänze zu jedem Buchtitel
+        //   - die zugehörige Bestellung
+        //   - den aktuellen Leihstatus (ist der Buchtitel bereits als Buch ausgeliehen worden?) 
+        foreach($buchtitel as $btsj) {
+            
+            // bestellt?
+            //$bw = $buecherwahlen->get($bt->buchtitel_id);
+            $bw = $buecherwahlen->get($btsj->id);
             if($bw!=null) {
-                $bt['wahl']    = $bw->wahl;
-                $bt['wahl_id'] = $bw->id;
+                $btsj['wahl']    = $bw->wahl;
+                $btsj['wahl_id'] = $bw->id;
             } else {
-                $bt['wahl'] = 4;    // == nicht bestellt (abgewählt)
+                $btsj['wahl'] = 4;    // == nicht bestellt (abgewählt)
             }
 
             // ausgeliehen?
-            $bt['ausgeliehen'] = $buecher->contains('buchtitel_id', $bt->buchtitel_id) ? 1 : 0;
+            $btsj['ausgeliehen'] = $buecher->contains('buchtitel_id', $btsj->buchtitel->id) ? 1 : 0;
         }
 
         return view('admin/ausleihe/buecherliste', compact('schueler', 'buchtitel'));

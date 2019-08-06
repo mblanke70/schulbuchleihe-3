@@ -99,7 +99,7 @@ class Familie extends Resource
 
             Boolean::make('ermäßigt', function () {
                 return $this->kinder()->count() > 2;
-            })->sortable(),
+            }),
 
             Boolean::make('befreit', 'befreit')->rules('required')->sortable(),
             
