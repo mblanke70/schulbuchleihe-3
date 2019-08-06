@@ -16,6 +16,11 @@ class Familie extends Model
         return $this->hasMany('App\Schueler');
     }
 
+    public function externe()
+    {
+        return $this->hasMany('App\SchuelerExt');
+    }
+
 	public function schuljahr()
     {
     	return $this->belongsTo('App\Schuljahr');
