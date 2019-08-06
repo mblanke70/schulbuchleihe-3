@@ -105,6 +105,8 @@ class Familie extends Resource
             
             HasMany::make('Schueler', 'kinder'),
 
+            HasMany::make('SchuelerExt', 'externe'),
+
         ];
     }
 
