@@ -37,7 +37,9 @@ class BuecherlisteDrucken extends Action
     {        
         $liste = collect();
 
-        foreach($models as $schueler) 
+        $sorted = $models->sortBy('nachname');
+
+        foreach($sorted as $schueler) 
         {
             // Hole alle Buchtitel, die auf der Bücherliste des Jahrgangs des Schülers stehen       
             $buchtitel     = $schueler->klasse->jahrgang->buchtitel;
@@ -48,7 +50,7 @@ class BuecherlisteDrucken extends Action
             
             // Durchlaufe die Bücherliste und ergänze zu jedem Buchtitel
             //   - die zugehörige Bestellung
-            //   - den aktuellen Leihstatus (ist der Buchtitel bereits als Buch ausgeliehen worden?) 
+            //   - den aktuellen Leihstatus 
             foreach($buchtitel as $btsj) 
             {    
                 // bestellt?
