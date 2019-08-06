@@ -212,7 +212,7 @@ class AusleiheController extends Controller
         
         foreach($buchwahlen as $buchtitel_id => $wahl) 
         {    
-            $bw = Buchwahl::where('ausleiher_id', $schueler_id)
+            $bw = Buchwahl::where('schueler_id', $schueler_id)
                           ->where('buchtitel_id', $buchtitel_id)
                           ->first();
             if($wahl!=4)
@@ -222,7 +222,7 @@ class AusleiheController extends Controller
                     $bw->save();
                 } else {
                     $buchwahl = new Buchwahl;
-                    $buchwahl->ausleiher_id = $ausleiher_id;
+                    $buchwahl->schueler_id  = $schueler_id;
                     $buchwahl->buchtitel_id = $buchtitel_id;
                     $buchwahl->wahl         = $wahl;
                     $buchwahl->save();
@@ -302,7 +302,7 @@ class AusleiheController extends Controller
         return redirect('admin/ausleihe/'.$klasse_id.'/'.$schueler_id);
     }
     */
-    
+
     /*
      * Holt Buchinformationen und zeigt sie an.
      */
