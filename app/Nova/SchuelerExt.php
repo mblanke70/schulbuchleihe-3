@@ -6,6 +6,9 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Date;
+
 class SchuelerExt extends Resource
 {
     /**
@@ -41,6 +44,12 @@ class SchuelerExt extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            Text::make('Nachname', 'nachname')->rules('required'),
+
+            Text::make('Vorname', 'vorname')->rules('required'),
+
+            Date::make('Geburtsdatum', 'geburtsdatum')->rules('required'),
         ];
     }
 
