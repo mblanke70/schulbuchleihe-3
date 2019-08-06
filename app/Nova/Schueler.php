@@ -161,7 +161,7 @@ class Schueler extends Resource
         return [
             new Actions\BuchAusleihen,
             new Actions\BuchZurueck,
-            new Actions\RechnungStellen
+            new Actions\RechnungStellen,
             new Actions\BuecherlisteDrucken,
         ];
     }
