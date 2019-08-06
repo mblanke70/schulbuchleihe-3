@@ -20,9 +20,8 @@
 		<div class="table-responsive">		
 			<table class="display table table-hover">
 				<thead>	
-					<th width="40%">Nachname</th>
-					<th width="40%">Vorname</th>
-					<th width="10%"></th>
+					<th width="50%">Nachname</th>
+					<th width="50%">Vorname</th>
 				</thead>
 				<tbody>
 					@foreach ($gruppen[$i] as $a)
@@ -31,11 +30,6 @@
 								{{ $a->nachname }} </a></td>
 							<td width="50%"><a href="{{ url('admin/ausleihe/'.$a->klasse_id.'/'.$a->id)  }}">
 								{{ $a->vorname }} </a></td>
-							<td>
-								<a href="{{ url('admin/ausleihe/buecherliste/'.$a->klasse_id.'/'.$a->id)  }}">
-									<i class="fa fa-print fa-lg"></i>
-								</a>
-							</td>
 						</tr>
 					@endforeach
 				</tbody>

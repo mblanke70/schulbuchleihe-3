@@ -25,7 +25,7 @@
       }
 
       body {
-        font: normal 1.7em 'PT Sans', Sans-serif;
+        font: normal 1.5em 'PT Sans', Sans-serif;
       }
 
       .pb_before {
