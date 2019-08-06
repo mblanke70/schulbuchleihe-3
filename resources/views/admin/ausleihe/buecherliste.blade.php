@@ -4,6 +4,7 @@
 {{ $schueler->nachname }} , {{ $schueler->vorname }} ({{ $schueler->klasse }})
 @stop
 
+
 @section('content_header')
     <h1>Bücherliste: {{ $schueler->nachname }} , {{ $schueler->vorname }} ({{ $schueler->klasse->bezeichnung }})</h1>
 @stop
