@@ -35,7 +35,7 @@ class BuecherlisteDrucken extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {        
-        $schueler = $model->first();
+        $schueler = $models->first();
 
         // Hole alle Buchtitel, die auf der Bücherliste des Jahrgangs des Schülers stehen       
         $buchtitel     = $schueler->klasse->jahrgang->buchtitel;
