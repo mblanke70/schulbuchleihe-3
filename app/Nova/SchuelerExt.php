@@ -52,8 +52,8 @@ class SchuelerExt extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Nachname', 'nachname')->rules('required')
-                ->withMeta(['value' => 'Blanke']),
+            Text::make('Nachname', 'nachname')->rules('required'),
+                //->withMeta(['value' => 'Blanke']),
 
             Text::make('Vorname', 'vorname')->rules('required'),
 
