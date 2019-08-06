@@ -291,6 +291,7 @@ class AusleiheController extends Controller
         return redirect('admin/ausleihe/ermaessigungen');
     }
 
+    /*
     public function bestaetigeErmaessigungen2(Request $request, $klasse_id, $schueler_id)
     {
         $schueler = Schueler::find($schueler);
@@ -300,7 +301,8 @@ class AusleiheController extends Controller
 
         return redirect('admin/ausleihe/'.$klasse_id.'/'.$schueler_id);
     }
-
+    */
+    
     /*
      * Holt Buchinformationen und zeigt sie an.
      */

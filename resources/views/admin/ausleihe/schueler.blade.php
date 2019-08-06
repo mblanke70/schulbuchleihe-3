@@ -80,17 +80,6 @@
                 </div>
 
                 <div class="box-body">
-                    Ermäßigungsstatus (bestätigt):
-                    <form class="form-inline" action="{{ url('admin/ausleihe/ermaessigungen/'.$schueler->klasse_id.'/'.$schueler->id) }}" method="POST">
-                        {{ csrf_field() }}   
-
-                        <select class="buchleihe-ermaessigung" name="ermaessigung">
-                            <option value="">unbestätigt</option>
-                            <option value="0" @if($schueler->erm_bestaetigt==0) selected @endif>keine</option>
-                            <option value="1" @if($schueler->erm_bestaetigt==1) selected @endif>20%</option>
-                            <option value="2" @if($schueler->erm_bestaetigt==2) selected @endif>100%</option>
-                        </select>
-                    </form>
 
                     <div class="table-responsive">
                         <table id="buecher" class="display compact" cellspacing="0" width="100%">
