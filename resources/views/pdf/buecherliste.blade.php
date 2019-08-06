@@ -35,7 +35,7 @@
       .pb_after {
            page-break-after: always !important;
       }
-      
+
     </style>
 
   </head>
@@ -46,7 +46,7 @@
 
       <div class="pb_before pb_after">
 
-        <h1>Bücherliste: {{ $eintrag->schueler->nachname }} , {{ $eintrag->schueler->vorname }} ({{ $eintrag->schueler->klasse->bezeichnung }})</h1>
+        <h1>Bücherliste: {{ $eintrag->get(0)->nachname }} , {{ $eintrag->get(0)->vorname }} ({{ $eintrag->get(0)->klasse->bezeichnung }})</h1>
 
         <table cellpadding="3">
           <tr>
@@ -56,7 +56,7 @@
               <th>Bestellstatus</th>
           </tr>
 
-          @foreach ($eintrag->buchtitel->sortBy('wahl') as $bt)
+          @foreach ($eintrag->get(1)->sortBy('wahl') as $bt)
           <tr>                                    
               <td>
                   @if ($bt->ausgeliehen) ja @endif 
