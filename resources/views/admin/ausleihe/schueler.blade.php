@@ -156,38 +156,38 @@
                             </thead>
 
                             <tbody>
-                                @foreach ($buchtitel->sortBy('wahl') as $bt)
+                                @foreach ($buchtitel->sortBy('wahl') as $btsj)
                                 <tr>                                    
                                     <td>
-                                    @if ($bt->ausgeliehen == 1)
+                                    @if ($btsj->ausgeliehen == 1)
                                         <i class="fa fa-check-square fa-lg"></i>
                                     @endif 
                                     </td>
-                                    <td>{{ $bt->buchtitel->fach->code }}</td>
-                                    <td>{{ $bt->buchtitel->titel }}</td>
+                                    <td>{{ $btsj->buchtitel->fach->code }}</td>
+                                    <td>{{ $btsj->buchtitel->titel }}</td>
                                     <td>  
-                                        <select name="wahlen[{{$bt->buchtitel_id}}]">
+                                        <select name="wahlen[{{$btsj->id}}]">
 
-                                            {{-- @if( $bt->ausleihbar == 1 ) --}}
+                                            {{-- @if( $btsj->ausleihbar == 1 ) --}}
                                                 <option value="1" 
-                                                    @if($bt->wahl==1) selected @endif 
+                                                    @if($btsj->wahl==1) selected @endif 
                                                 />leihen</option>
                                             {{-- @endif --}}
 
-                                            {{-- @if( $bt->verlaengerbar == 1) --}}
+                                            {{-- @if( $btsj->verlaengerbar == 1) --}}
                                                 <option value="2" 
-                                                    @if($bt->wahl==2) selected @endif 
+                                                    @if($btsj->wahl==2) selected @endif 
                                                 />verlängern</option>
                                             {{-- @endif --}}
 
-                                            {{-- @if( $bt->preis > 0) --}}
+                                            {{-- @if( $btsj->preis > 0) --}}
                                                 <option value="3" 
-                                                    @if($bt->wahl==3) selected @endif 
+                                                    @if($btsj->wahl==3) selected @endif 
                                                 />kaufen</option>
                                             {{-- @endif --}}
 
                                             <option value="4" 
-                                                @if($bt->wahl==4) selected @endif 
+                                                @if($btsj->wahl==4) selected @endif 
                                             />abgewählt</option>
 
                                         </select>
