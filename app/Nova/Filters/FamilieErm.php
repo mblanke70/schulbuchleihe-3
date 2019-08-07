@@ -42,8 +42,10 @@ class FamilieErm extends Filter
      */
     public function options(Request $request)
     {
-        $options = array(0,1,2);
-
-        return $options;
+        return [
+            'keine' => 0,
+            '20%' => 1,
+            'befreit' => 2,
+        ];
     }
 }
