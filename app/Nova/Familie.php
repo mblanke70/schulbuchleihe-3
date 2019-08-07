@@ -80,6 +80,8 @@ class Familie extends Resource
             Text::make('Name', 'name')->rules('required')->sortable(),
             
             Text::make('Straße', 'strasse')->rules('required')->sortable(),
+
+            Text::make('IBAN', 'iban')->hideFromIndex(),
             
             Text::make('angegebene Erm.', function () {
                 
