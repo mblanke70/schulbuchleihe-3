@@ -102,8 +102,8 @@ class Familie extends Resource
             })->onlyOnIndex(),
 
             Boolean::make('ermäßigt', function () {
-                return $this->kinder()->count() > 2;
-            }),
+                return ($this->kinder()->count() + $this->externe()->count()) > 2;
+            })->onlyOnIndex(),
 
             Boolean::make('befreit', 'befreit')->rules('required')->sortable(),
             
