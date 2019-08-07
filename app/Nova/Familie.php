@@ -94,12 +94,13 @@ class Familie extends Resource
             })->onlyOnIndex(),
 
             Boolean::make('befreit', 'befreit')->rules('required')->sortable(),
-            Text::make('# Kinder', function () {
-                return $this->kinder()->count();
-            })->onlyOnIndex(),
-
+            
             Boolean::make('ermäßigt', function () {
                 return ($this->kinder()->count() + $this->externe()->count()) > 2;
+            })->onlyOnIndex(),
+
+            Text::make('# Kinder', function () {
+                return $this->kinder()->count();
             })->onlyOnIndex(),
 
             Text::make('# Externe', function () {
