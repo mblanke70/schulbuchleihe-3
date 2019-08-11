@@ -17,6 +17,13 @@ class KlasseBuecherlistenDrucken extends Action
     use InteractsWithQueue, Queueable, SerializesModels;
 
     /**
+     * Indicates if this action is only available on the resource detail view.
+     *
+     * @var bool
+     */
+    public $onlyOnDetail = true;
+
+    /**
      * Get the displayable name of the action.
      *
      * @return string
