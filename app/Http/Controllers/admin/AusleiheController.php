@@ -53,7 +53,11 @@ class AusleiheController extends Controller
     {  
         $klasse = Klasse::findOrFail($klasse_id);
 
-        $ausleiher = $klasse->schueler()->get();
+        $ausleiher = $klasse->schueler()
+            ->orderBy('nachname', 'asc')
+            ->orderBy('vorname',  'asc')
+            ->get();
+
         $gruppen   = $ausleiher->split(3);    
         
         return view('admin/ausleihe/klasse', compact('klasse', 'ausleiher', 'gruppen'));
