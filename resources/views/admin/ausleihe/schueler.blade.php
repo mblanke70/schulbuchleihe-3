@@ -6,11 +6,6 @@
 
 @section('content_header')
     <h1>Ausleihe für {{ $schueler->nachname }}, {{ $schueler->vorname }}</a> ({{ $schueler->klasse->bezeichnung }}) 
-        @if($schueler->erm_bestaetigt == 1)
-          20%
-        @elseif($schueler->erm_bestaetigt == 2)
-          100%
-        @endif
     </h1>
 @stop
 

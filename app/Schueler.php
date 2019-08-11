@@ -67,7 +67,7 @@ class Schueler extends Model
     public function buecherliste()
     {
         // Hole alle Buchtitel, die auf der Bücherliste des Jahrgangs des Schülers stehen       
-        $buchtitel = $this->klasse->jahrgang->buchtitel;
+        $buchtitel = $this->klasse->jahrgang->buchtitel->sortBy('buchtitel.fach.code');
         
         // Hole alle Bücher, die der Schüler derzeit ausgeliehen hat
         $buecher   = $this->buecher;
@@ -94,7 +94,7 @@ class Schueler extends Model
 
             return $item;
         });
-        
+
         return $buchtitel;
     }
     
@@ -150,9 +150,9 @@ class Schueler extends Model
                 $query->where  ('nachname', '<', $this->nachname)    
                       ->orWhere('vorname' , '<', $this->vorname);    
             })
-            ->orderBy('nachname', 'desc')
+            ->orderBy('nachname', 'desc')   // funktioniert nicht ???
             ->orderBy('vorname' , 'desc')
-            ->select('schueler.id')
+            ->select('schueler.id', 'schueler.nachname', 'schueler.vorname')
             ->first();
     }    
 }
