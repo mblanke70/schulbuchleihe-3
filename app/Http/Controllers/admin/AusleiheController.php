@@ -67,39 +67,12 @@ class AusleiheController extends Controller
     {   
         $schueler = Schueler::findOrFail($schueler_id);
 
-        $next   = $schueler->next();
-        $prev   = $schueler->prev();
+        $next = $schueler->next();
+        $prev = $schueler->prev();
 
-        // Hole alle Buchtitel, die auf der Bücherliste des Jahrgangs des Schülers stehen       
-        $buchtitel     = $schueler->klasse->jahrgang->buchtitel;
-        // Hole alle Bücher, die der Schüler derzeit ausgeliehen hat
-        $buecher       = $schueler->buecher;
-        // Hole alle Buchbestellungen, die der Schüler abgegeben hat
-        $buecherwahlen = $schueler->buecherwahlen->keyBy('buchtitel_id');
-        
-        //dd($buchtitel);
-
-        // Durchlaufe die Bücherliste und ergänze zu jedem Buchtitel
-        //   - die zugehörige Bestellung
-        //   - den aktuellen Leihstatus (ist der Buchtitel bereits als Buch ausgeliehen worden?) 
-        foreach($buchtitel as $btsj) {
-            
-            // bestellt?
-            //$bw = $buecherwahlen->get($bt->buchtitel_id);
-            $bw = $buecherwahlen->get($btsj->id);
-            if($bw!=null) {
-                $btsj['wahl']    = $bw->wahl;
-                $btsj['wahl_id'] = $bw->id;
-            } else {
-                $btsj['wahl'] = 4;    // == nicht bestellt (abgewählt)
-            }
-
-            // ausgeliehen?
-            $btsj['ausgeliehen'] = $buecher->contains('buchtitel_id', $btsj->buchtitel->id) ? 1 : 0;
-        }
-
-        //dd($buchtitel);
-
+        $buchtitel = $schueler->buecherliste();
+        $buecher   = $schueler->buecher;
+       
         // Berechne Summe der Leihgebühren
         $summe = 0;
         foreach($buecher as $buch) {

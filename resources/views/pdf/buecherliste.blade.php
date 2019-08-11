@@ -42,11 +42,11 @@
 
   <body>
 
-    @foreach($liste as $eintrag)
+    @foreach($sorted as $schueler)
 
       <div class="pb_before pb_after">
 
-        <h1>{{ $eintrag->get(0)->nachname }}, {{ $eintrag->get(0)->vorname }} ({{ $eintrag->get(0)->klasse->bezeichnung }})</h1>
+        <h1>{{ $schueler->nachname }}, {{ $schueler->vorname }} ({{ $schueler->klasse->bezeichnung }})</h1>
 
         <table cellpadding="3">
           <tr>
@@ -56,7 +56,7 @@
               <th>Bestellstatus</th>
           </tr>
 
-          @foreach ($eintrag->get(1)->sortBy('wahl') as $bt)
+          @foreach ($schueler->buecherliste()->sortBy('wahl') as $bt)
           <tr>                                    
               <td>
                   @if ($bt->ausgeliehen) ja @endif 

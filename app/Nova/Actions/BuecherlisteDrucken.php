@@ -39,6 +39,7 @@ class BuecherlisteDrucken extends Action
 
         $sorted = $models->sortBy('nachname');
 
+        /*
         foreach($sorted as $schueler) 
         {
             // Hole alle Buchtitel, die auf der Bücherliste des Jahrgangs des Schülers stehen       
@@ -72,10 +73,11 @@ class BuecherlisteDrucken extends Action
 
             $liste->push($eintrag);
         }
-           
+        */
+         
         \File::delete('pdf/buecherliste.pdf');
 
-        $pdf = \PDF::loadView('pdf.buecherliste', compact('liste'))
+        $pdf = \PDF::loadView('pdf.buecherliste', compact('sorted'))
                 ->save('pdf/buecherliste.pdf');
     
         return Action::download(url('pdf/buecherliste.pdf'), 'buecherliste.pdf');
