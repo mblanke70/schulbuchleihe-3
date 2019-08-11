@@ -50,7 +50,7 @@ class KlasseBuecherlistenDrucken extends Action
         $pdf = \PDF::loadView('pdf.buecherliste', compact('sorted'))
                 ->save('pdf/buecherliste.pdf');
     
-        return Action::download(url('pdf/buecherliste.pdf'), 'buecherliste.pdf');
+        return Action::download(url('pdf/buecherliste.pdf'), $klasse->bezeichnung.'.pdf');
     }
 
     /**
