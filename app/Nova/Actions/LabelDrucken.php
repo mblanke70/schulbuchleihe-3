@@ -33,11 +33,11 @@ class LabelDrucken extends Action
      * @param  \Illuminate\Support\Collection  $models
      * @return mixed
      */
-    public function handle(ActionFields $fields, Collection $models)
+    public function handle(ActionFields $fields, Collection $buecher)
     {
         \File::delete('pdf/labels.pdf');
 
-        $pdf = \PDF::loadView('pdf.label', compact('models'))
+        $pdf = \PDF::loadView('pdf.label', compact('buecher'))
             ->setOption('page-width'   , '105.0')
             ->setOption('page-height'  , '48.0')
             ->setOption('margin-bottom', '4mm')
