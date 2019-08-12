@@ -20,7 +20,7 @@
 
 </style>
 
-@foreach($models as $buch)
+@foreach($buecher as $buch)
 
 	<div class="pb_before pb_after">
 		<div style="font-weight: bold; font-size: 16px;">
