@@ -30,11 +30,11 @@ class BuchtitelIstBestellt implements Rule
     {
         if($this->buch!=null) 
         {
-            $bt_id = $this->buch->buchtitel->id;
+            $btsj = $this->buch->buchtitel->buchtitelSchuljahr->first();
 
-            return $this->ausleiher->buchwahlen()
+            return $this->ausleiher->buecherwahlen
                 ->where('wahl', 1)
-                ->contains('buchtitel_id', $bt_id);
+                ->contains('buchtitel_id', $btsj->id);
         }
     }
 

@@ -81,7 +81,7 @@ class RueckgabeController extends Controller
                     'required',
                     new BuchcodeExistiert($buch),
                     new BuchAusgeliehen($buch),
-                    new BuchNichtVerlaengert($buch),
+                    //new BuchNichtVerlaengert($buch),
                     new BuchGehoertAusleiher($buch, $ausleiher_id),
                 ],
             ], [

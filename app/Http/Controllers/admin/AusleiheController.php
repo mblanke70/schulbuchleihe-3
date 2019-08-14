@@ -26,6 +26,7 @@ use App\Rules\BuchNichtAusgeliehen;
 use App\Rules\BuchcodeExistiert;
 use App\Rules\BuchtitelIstAufBuecherliste;
 use App\Rules\BuchtitelIstBestellt;
+use App\Rules\BuchNichtGeloescht;
 
 class AusleiheController extends Controller
 {
@@ -106,7 +107,7 @@ class AusleiheController extends Controller
     public function ausleihen(Request $request, $klasse_id, $schueler_id)
     {
         $schueler = Schueler::find($schueler_id);
-        $buch     = Buch::find($request->buch_id);
+        $buch     = Buch::withTrashed()->find($request->buch_id);
       
         // Ausleihen nicht möglich, Abbruch mit Fehlermeldung...
         $validator1 = Validator::make(
@@ -137,7 +138,8 @@ class AusleiheController extends Controller
                 'buch_id' => [
                     new BuchtitelNichtAusgeliehen($schueler, $buch),
                     new BuchtitelIstAufBuecherliste($schueler, $buch),
-                    new BuchtitelIstBestellt($schueler, $buch),                    
+                    new BuchtitelIstBestellt($schueler, $buch),
+                    new BuchNichtGeloescht($buch)                                 
                 ],
             ] 
         );
@@ -148,16 +150,16 @@ class AusleiheController extends Controller
                 ->withInput();
         } 
 
-        // Buch wird ausgeliehen
-        $buch->ausleiher()->save($schueler, ['ausgabe' => now()]);
+        if($buch->trashed()) $buch->restore();
 
-        /*
-        $buch->ausleiher_id   = $schueler->id;
-        $buch->ausleiher_type = "App\Schueler"
-        $buch->ausgabe        = now();
+        // Buch wird ausgeliehen
+        //$buch->ausleiher()->save($schueler, ['ausleiher_ausgabe' => now()]);
+
+        $buch->ausleiher_id       = $schueler->id;
+        $buch->ausleiher_type     = "App\Schueler";
+        $buch->ausleiher_ausgabe  = now();
         $buch->save();  
-        */
-        
+                
         //$ausleiher->buecher()->attach($buch, ['ausgabe' => now()]);
 
         return redirect('admin/ausleihe/'.$klasse_id.'/'.$schueler_id);
@@ -174,8 +176,9 @@ class AusleiheController extends Controller
         //$ausleiher = Ausleiher::find($ausleiher_id);
         $buch = Buch::find($request->buch_id);
 
-        $buch->schueler_id = null;
-        $buch->ausgabe     = null;
+        $buch->ausleiher_id      = null;
+        $buch->ausleiher_type    = null;
+        $buch->ausleiher_ausgabe = null;
         $buch->save();
 
         //$user->buecher()->detach($buch);

@@ -3,19 +3,17 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use App\Buecherliste;
+use App\Buch;
 
-class BuchtitelIstAufBuecherliste implements Rule
+class BuchNichtGeloescht implements Rule
 {
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($ausleiher, $buch)
+    public function __construct($buch)
     {
-         $this->ausleiher = $ausleiher;
-         $this->jg   = $ausleiher->jahrgang;
          $this->buch = $buch;
     }
 
@@ -27,11 +25,9 @@ class BuchtitelIstAufBuecherliste implements Rule
      * @return bool
      */
     public function passes($attribute, $value)
-    {
-        if($this->buch!=null)
-        {
-            $bt_id = $this->buch->buchtitel->id;
-            return $this->jg->buchtitel->contains('buchtitel_id', $bt_id);
+    {        
+        if($this->buch!=null) {
+            return !$this->buch->trashed();
         }
     }
 
@@ -42,6 +38,6 @@ class BuchtitelIstAufBuecherliste implements Rule
      */
     public function message()
     {
-        return 'Der diesem Buch zugeordnete Buchtitel steht nicht auf der Bücherliste des Jahrgangs '. $this->jg->jahrgangsstufe.'.' . $this->buch->buchtitel->id;
+         return 'Dieses Buch ist gelöscht worden.';
     }
 }

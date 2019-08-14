@@ -83,7 +83,6 @@
                                     <th width="7%">Fach</th> 
                                     <th width="13%">ID</th> 
                                     <th width="60%">Titel</th>
-                                    <th width="10%">Leihgebühr</th>
                                     <th width="10%"></th>
                                 </tr>
                             </thead>
@@ -93,7 +92,6 @@
                                     <td>{{ $b->buchtitel->fach->code }}</td>
                                     <td>{{ $b->id }}</td>
                                     <td>{{ $b->buchtitel->titel }}</td>
-                                    <td>{{ $b->leihpreis }}</td>
                                     <td>
                                         <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $b->id }}').submit();">
                                             <i class="fa fa-fw fa-trash"></i>
@@ -111,6 +109,7 @@
                         </table>
                     </div>
 
+<!--
                     <div class="box-footer">
                         Die Leihgebühr beträgt {{ number_format($summe, 2, ',', '') }} &euro;.
                         <br />
@@ -118,6 +117,7 @@
                             Die ermäßigte Leihgebühr beträgt {{ number_format($summeErm, 2, ',', '') }} &euro;.
                         @endif
                     </div>
+-->
                     <!-- box-footer -->
                 </div>
             </div>
