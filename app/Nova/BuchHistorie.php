@@ -59,7 +59,7 @@ class BuchHistorie extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'buch_id', 'titel', 
+        'id', 'buch_id', 'titel', 'nachname', 'vorname', 
     ];
 
     /**
