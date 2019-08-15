@@ -96,7 +96,7 @@ class Schueler extends Resource
 
             HasMany::make('Buchwahl', 'buecherwahlen'),
 
-            BelongsTo::make('Familie', 'familie')->hideFromIndex(),
+            BelongsTo::make('Familie', 'familie')->nullable()->hideFromIndex(),
 
             Text::make('RE_Vorname', 're_vorname')->hideFromIndex(),
             
