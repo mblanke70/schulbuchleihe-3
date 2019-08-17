@@ -82,6 +82,21 @@ class Buchtitel extends Resource
                 ->rules('required')
                 ->sortable(),
 
+            Text::make('Anzahl', function () {
+                
+                return $this->buecher()
+                    ->count();
+            
+            })->onlyOnIndex(),
+
+            Text::make('verfügbar', function () {
+                
+                return $this->buecher()
+                    ->whereNull('ausleiher_id')
+                    ->count();
+            
+            })->onlyOnIndex(),
+
             //Number::make('Preis', 'preis')
             //    ->hideFromIndex()->min(1)->max(1000)->step(0.01),
             

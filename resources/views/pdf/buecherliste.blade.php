@@ -56,7 +56,7 @@
               <th>Bestellstatus</th>
           </tr>
 
-          @foreach ($schueler->buecherliste()->sortBy('wahl') as $bt)
+          @foreach ($schueler->buecherliste()->sortBy('wahl')->sortBy('fach.code') as $bt)
           <tr>                                    
               <td>
                   @if ($bt->ausgeliehen) ja @endif 
