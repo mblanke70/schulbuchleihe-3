@@ -67,7 +67,7 @@
               <td>{{ $bt->buchtitel->fach->code }}</td>
               <td>{{ $bt->buchtitel->titel }}</td>
               <td>  
-
+                
                   @switch($bt->wahl)
                       @case(1)
                           leihen
@@ -84,7 +84,7 @@
                       @default
                           nicht gewählt
                   @endswitch
-                  
+
               </td>
           </tr>
           

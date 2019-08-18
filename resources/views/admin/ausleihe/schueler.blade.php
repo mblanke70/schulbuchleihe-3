@@ -167,13 +167,11 @@
                                     <td>  
                                         <select name="wahlen[{{$btsj->id}}]">
 
-                                            {{-- @if( $btsj->ausleihbar == 1 ) --}}
+                                            {{-- @if( $btsj->leihpreis > 0) --}}
                                                 <option value="1" 
                                                     @if($btsj->wahl==1) selected @endif 
                                                 />leihen</option>
-                                            {{-- @endif --}}
 
-                                            {{-- @if( $btsj->verlaengerbar == 1) --}}
                                                 <option value="2" 
                                                     @if($btsj->wahl==2) selected @endif 
                                                 />verlängern</option>
