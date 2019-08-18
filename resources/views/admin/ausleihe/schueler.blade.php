@@ -151,7 +151,11 @@
                             </thead>
 
                             <tbody>
-                                @foreach ($buchtitel->sortBy('wahl') as $btsj)
+
+                            @for ($i = 1; $i <= 4; $i++)
+
+                                @foreach ($buchtitel->where('wahl', $i) as $btsj)
+
                                 <tr>                                    
                                     <td>
                                     @if ($btsj->ausgeliehen == 1)
@@ -188,7 +192,11 @@
                                         </select>
                                     </td>
                                 </tr>
+
                                 @endforeach
+
+                            @endfor
+
                             </tbody>
 
                         </table>

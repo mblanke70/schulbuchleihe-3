@@ -60,6 +60,11 @@ class Jahrgang extends Model
             'buchtitel_schuljahr_jahrgang', 
             'jahrgang_id', 
             'buchtitel_schuljahr_id'
-        )->with('buchtitel')->with('buchtitel.fach');
+        )->with([
+            'buchtitel', 
+            'buchtitel.fach' => function ($q) {
+              $q->orderBy('code', 'asc');
+            }
+        ]);
     }
 }

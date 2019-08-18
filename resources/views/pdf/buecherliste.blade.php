@@ -56,7 +56,10 @@
               <th>Bestellstatus</th>
           </tr>
 
-          @foreach ($schueler->buecherliste()->sortBy('wahl')->sortBy('fach.code') as $bt)
+      @for ($i = 1; $i <= 4; $i++)
+
+          @foreach ($schueler->buecherliste()->where('wahl', $i) as $bt)
+
           <tr>                                    
               <td>
                   @if ($bt->ausgeliehen) ja @endif 
@@ -64,18 +67,30 @@
               <td>{{ $bt->buchtitel->fach->code }}</td>
               <td>{{ $bt->buchtitel->titel }}</td>
               <td>  
-                  @if($bt->wahl==1)  
-                      leihen
-                  @elseif($bt->wahl==2)
-                      verlängern
-                  @elseif($bt->wahl==3)
-                      kaufen
-                  @else($bt->wahl==4)
-                      nicht gewählt
-                  @endif
+
+                  @switch($bt->wahl)
+                      @case(1)
+                          leihen
+                          @break
+
+                      @case(2)
+                          verlängern
+                          @break
+
+                      @case(3)
+                          kaufen
+                          @break
+
+                      @default
+                          nicht gewählt
+                  @endswitch
+                  
               </td>
           </tr>
+          
           @endforeach
+
+      @endfor
         
         </table>
 

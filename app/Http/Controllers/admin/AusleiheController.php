@@ -98,7 +98,7 @@ class AusleiheController extends Controller
         }
 
         return view('admin/ausleihe/schueler', 
-            compact('schueler', 'buecher', 'buchtitel', 'next', 'prev', 'summe', 'summeErm'));
+            compact('schueler', 'buchtitel', 'buecher', 'next', 'prev', 'summe', 'summeErm'));
     }
 
     /**
