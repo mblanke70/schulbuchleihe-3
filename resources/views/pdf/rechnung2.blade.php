@@ -366,6 +366,7 @@
 
 @foreach($models as $rechnung)
 
+
     <div id="container" class="pb_before pb_after">
       <section id="memo">
         <div class="logo">
@@ -451,16 +452,16 @@
 
           @php ($i = 1)
 
-          @foreach($rechnung->posten as $posten)
+          @foreach($rechnung->positionen as $position)
 
           <tr data-iterate="item">
             <td>{{ $i++ }}</td>
-            <td>{{ substr($posten->titel,0,25) }}</td>
-            <td>{{ $posten->buch_id }}</td>
-            <td>{{ number_format($posten->kaufpreis, 2, ',', ' ') }} €</td>
-            <td>{{ number_format($posten->leihpreis, 2, ',', ' ') }} €</td>
-            <td>{{ date('Y', strtotime($posten->aufnahme)) }}</td>
-            <td>{{ number_format($posten->restwert, 2, ',', ' ') }} €</td>
+            <td>{{ substr($position->titel,0,25) }}</td>
+            <td>{{ $position->buch_id }}</td>
+            <td>{{ number_format($position->kaufpreis, 2, ',', ' ') }} €</td>
+            <td>{{ number_format($position->leihpreis, 2, ',', ' ') }} €</td>
+            <td>{{ date('Y', strtotime($position->aufnahme)) }}</td>
+            <td>{{ number_format($position->restwert, 2, ',', ' ') }} €</td>
           </tr>
 
           @endforeach
