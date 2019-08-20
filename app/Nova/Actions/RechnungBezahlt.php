@@ -11,6 +11,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 use App\File;
+use Carbon\Carbon;
+use App\Buch;
 
 class RechnungBezahlt extends Action
 {
@@ -35,7 +37,18 @@ class RechnungBezahlt extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
+        $rechnung = $models->first();
+        //$now = Carbon::now()->toDateTimeString();
         
+        $rechnung->bezahlt = true;
+        $rechnung->save();
+
+        /*
+        foreach($rechnung->positionen as $position) 
+        {
+            Buch::destroy($position->buch_id);
+        }
+        */
     }
 
     /**
