@@ -72,7 +72,7 @@ class RechnungStellen extends Action
                 if($restwert<0) $restwert = 0;
                 $summe += $restwert;
 
-                $posten = new Rechnungsposten;
+                $posten = new RechnungsPosition;
 
                 $posten->buch_id     = $b->id;
                 $posten->titel       = $b->buchtitel->titel;
