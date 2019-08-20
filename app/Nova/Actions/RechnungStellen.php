@@ -12,7 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 use App\File;
 use App\Rechnung;
-use App\Rechnungsposten;
+use App\Rechnungsposition;
 use Carbon\Carbon;
 
 class RechnungStellen extends Action
