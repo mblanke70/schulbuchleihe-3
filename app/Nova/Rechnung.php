@@ -162,6 +162,7 @@ class Rechnung extends Resource
     {
          return [
             new Actions\RechnungDrucken2,
+            new Actions\RechnungBezahlt,
         ];
     }
 
