@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Heading;
+use Laravel\Nova\Fields\Boolean;
 
 class Rechnung extends Resource
 {
@@ -88,6 +89,8 @@ class Rechnung extends Resource
             })->onlyOnIndex(),
 
             Text::make('Summe', 're_summe')->sortable(),
+
+            Boolean::make('bezahlt', 'bezahlt')->rules('required')->sortable(),
 
             HasMany::make('RechnungPosition', 'positionen'),
 
