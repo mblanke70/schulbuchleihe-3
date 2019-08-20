@@ -43,12 +43,10 @@ class RechnungBezahlt extends Action
         $rechnung->bezahlt = true;
         $rechnung->save();
 
-        /*
         foreach($rechnung->positionen as $position) 
         {
             Buch::destroy($position->buch_id);
         }
-        */
     }
 
     /**
