@@ -12,7 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 use App\File;
 use App\Rechnung;
-use App\RechnungsPosition;
+use App\RechnungPosition;
 use Carbon\Carbon;
 
 class RechnungStellen extends Action
@@ -72,7 +72,7 @@ class RechnungStellen extends Action
                 if($restwert<0) $restwert = 0;
                 $summe += $restwert;
 
-                $posten = new RechnungsPosition;
+                $posten = new RechnungPosition;
 
                 $posten->buch_id     = $b->id;
                 $posten->titel       = $b->buchtitel->titel;
