@@ -182,10 +182,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         App\Providers\NovaServiceProvider::class,
-
-        Yajra\DataTables\DataTablesServiceProvider::class,
-        Yajra\DataTables\ButtonsServiceProvider::class,
-
         Barryvdh\Snappy\ServiceProvider::class,
     ],
 
@@ -236,7 +232,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
         'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
