@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLehrersTable extends Migration
+class AddFieldsToActionEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateLehrersTable extends Migration
      */
     public function up()
     {
-        Schema::create('lehrer', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->string('kuerzel');
-            $table->timestamps();
+        Schema::table('action_events', function (Blueprint $table) {
+            $table->text('original')->nullable();
+            $table->text('changes')->nullable();
         });
     }
 
@@ -28,6 +26,8 @@ class CreateLehrersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lehrers');
+        Schema::table('action_events', function (Blueprint $table) {
+            $table->dropColumn('original', 'changes');
+        });
     }
 }
