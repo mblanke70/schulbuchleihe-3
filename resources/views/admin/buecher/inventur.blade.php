@@ -66,11 +66,11 @@
 					<table class="display compact" cellspacing="0" width="100%">
 	                	<tr><th>Buch-ID</th><td>{{ $buch->id }}</td></tr>
 	                	<tr><th>Aufnahmedatum</th><td>{{ $buch->aufnahmedatum }}</td></tr>
+	                	<tr><th>gelöscht</th><td>{{ $buch->deleted_at }}</td></tr>
 	                	<tr><th>ISBN</th><td>{{ $buch->buchtitel->isbn }}</td></tr>
 	                	<tr><th>Kennung</th><td>{{ $buch->buchtitel->kennung }}</td></tr>
 	                	<tr><th>Titel</th><td>{{ $buch->buchtitel->titel }}</td></tr>
 	                	<tr><th>Fach</th><td>{{ $buch->buchtitel->fach->name }}</td></tr>
-
 	                </table>
                 </div>            
             
