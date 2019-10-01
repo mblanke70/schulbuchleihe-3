@@ -163,9 +163,7 @@ class AusleiheController extends Controller
         //$ausleiher->buecher()->attach($buch, ['ausgabe' => now()]);
 
         return redirect('admin/ausleihe/'.$klasse_id.'/'.$schueler_id);
-    }
-   
-    
+    }  
 
     /**
      * Nimm die Ausleihe eines Buches zurück  
@@ -214,74 +212,6 @@ class AusleiheController extends Controller
 
         return redirect('admin/ausleihe/'.$klasse_id.'/'.$schueler_id);
     }
-
-    public function zeigeBuecherliste($klasse_id, $schueler_id)
-    {
-        $schueler = Schueler::findOrFail($schueler_id);
-
-        // Hole alle Buchtitel, die auf der Bücherliste des Jahrgangs des Schülers stehen       
-        $buchtitel     = $schueler->klasse->jahrgang->buchtitel;
-        // Hole alle Bücher, die der Schüler derzeit ausgeliehen hat
-        $buecher       = $schueler->buecher;
-        // Hole alle Buchbestellungen, die der Schüler abgegeben hat
-        $buecherwahlen = $schueler->buecherwahlen->keyBy('buchtitel_id');
-        
-        // Durchlaufe die Bücherliste und ergänze zu jedem Buchtitel
-        //   - die zugehörige Bestellung
-        //   - den aktuellen Leihstatus (ist der Buchtitel bereits als Buch ausgeliehen worden?) 
-        foreach($buchtitel as $btsj) {
-            
-            // bestellt?
-            //$bw = $buecherwahlen->get($bt->buchtitel_id);
-            $bw = $buecherwahlen->get($btsj->id);
-            if($bw!=null) {
-                $btsj['wahl']    = $bw->wahl;
-                $btsj['wahl_id'] = $bw->id;
-            } else {
-                $btsj['wahl'] = 4;    // == nicht bestellt (abgewählt)
-            }
-
-            // ausgeliehen?
-            $btsj['ausgeliehen'] = $buecher->contains('buchtitel_id', $btsj->buchtitel->id) ? 1 : 0;
-        }
-
-        return view('admin/ausleihe/buecherliste', compact('schueler', 'buchtitel'));
-    }
-
-    public function zeigeErmaessigungen()
-    {
-        $schueler = DB::table('schueler')
-            ->join('users',   'schueler.user_id',   '=', 'users.id')
-            ->join('klassen', 'schueler.klasse_id', '=', 'klassen.id')
-            //->where('erm', '>', 0)
-            ->orderBy('nachname')
-            ->orderBy('vorname')
-            ->get();
-
-        return view('admin/ausleihe/ermaessigungen', compact('ausleiher'));
-    }
-
-    public function bestaetigeErmaessigungen(Request $request, $schueler_id)
-    {
-        $schueler = Schueler::find($schueler_id);
-
-        $schueler->erm_bestaetigt = $request->ermaessigung;
-        $schueler->save();
-
-        return redirect('admin/ausleihe/ermaessigungen');
-    }
-
-    /*
-    public function bestaetigeErmaessigungen2(Request $request, $klasse_id, $schueler_id)
-    {
-        $schueler = Schueler::find($schueler);
-
-        $schueler->bestaetigt = $request->ermaessigung;
-        $schueler->save();
-
-        return redirect('admin/ausleihe/'.$klasse_id.'/'.$schueler_id);
-    }
-    */
 
     /*
      * Holt Buchinformationen und zeigt sie an.

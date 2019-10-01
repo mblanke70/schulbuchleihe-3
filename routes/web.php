@@ -40,52 +40,8 @@ Route::group(
         'middleware' => ['admin', 'menu.admin']
     ], function()
 {
+    /* HOME */
     Route::get('/', 'HomeController@index' );
-
-/* USER-CONTROLLER
-    Route::resource('schueler', 'UserController');
-    Route::get('getUserData', 'UserController@getUserData');    
-    Route::get('versetzen', 'UserController@versetzen');
-    Route::post('versetzenSpeichern', 'UserController@versetzenSpeichern');
-*/
-
-/* BUCHTITEL-CONTROLLER
-    Route::resource('buchtitel', 'BuchtitelController');
-    Route::get('buchtitel/createISBN/{isbn}', 'BuchtitelController@createFromISBN');
-*/
-
-/* BUCH-CONTROLLER
-    Route::resource('buecher', 'BuchController');
-    Route::get('buecher/label/{id}', 'BuchController@printLabel');
-*/
-
-/* KLASSEN-CONTROLLER
-    Route::resource('klassen', 'KlasseController');
-*/
-
-/* SCHULJAHRE-CONTROLLER
-    Route::resource('schuljahre', 'SchuljahrController');
-*/
-
-/* SCHUELER-CONTROLLER
-    Route::resource('schueler', 'SchuelerController');
-    Route::get('getSchuelerData', 'SchuelerController@getSchuelerData');
-*/
-
-/* ABFRAGEN-CONTROLLER
-    Route::resource('abfragen', 'AbfrageController');
-    Route::post('abfragen/attach/{id}', 'AbfrageController@attach');
-*/
-
-/* BUECHERLISTEN-CONTROLLER
-    Route::resource('buecherlisten', 'BuecherlisteController');
-    Route::delete('buecherlisten/detach/{buecherliste}/{buchtitel}', 'BuecherlisteController@detach');
-    Route::post('buecherlisten/attach/{id}', 'BuecherlisteController@attach');
-*/
-
-    /* AUSWERTUNG */
-    Route::get('auswertung', 'AuswertungController@index');
-    Route::get('auswertung/bankeinzug', 'AuswertungController@zeigeBankeinzug');
 
     /* RÜCKGABE */
     Route::get ('rueckgabe', 'RueckgabeController@index');
@@ -104,18 +60,10 @@ Route::group(
 
     /* AUSLEIHE */
     Route::get('ausleihe', 'AusleiheController@index');
-    Route::get('ausleihe/ermaessigungen', 'AusleiheController@zeigeErmaessigungen');
-    
-    Route::post('ausleihe/ermaessigungen/{schueler}', 'AusleiheController@bestaetigeErmaessigungen');
-    
-    Route::get('ausleihe/buecherliste/{klasse}/{schueler}', 'AusleiheController@zeigeBuecherliste');
-    
+
     Route::get('ausleihe/{klasse}', 'AusleiheController@zeigeKlasse');
     Route::get('ausleihe/{klasse}/{schueler}', 'AusleiheController@zeigeSchueler');
     Route::delete('ausleihe/{klasse}/{schueler}', 'AusleiheController@remove');    
-
-    //Route::post('ausleihe/{klasse}/{schueler}/auswahl', 'AusleiheController@add');
-    //Route::delete('ausleihe/{klasse}/{schueler}/auswahl', 'AusleiheController@remove');    
     
     Route::post('ausleihe/{klasse}/{schueler}', 'AusleiheController@ausleihen');
     Route::delete('ausleihe/{klasse}/{schueler}', 'AusleiheController@loeschen');    
@@ -151,32 +99,8 @@ Route::group([
 
     Route::get('anmeldung/schritt5', 'AnmeldungController@zeigeAbschluss');
 
-    /* ANMELDEVERFAHREN */
-    /*
-    Route::get('buchleihe', 'BuchleiheController@index');
-
-    Route::get ('buchleihe/vorabfragen', 'BuchleiheController@zeigeVorabfragen');
-    Route::post('buchleihe/vorabfragen', 'BuchleiheController@verarbeiteVorabfragen');
-    
-    Route::get  ('buchleihe/abfragen', 'BuchleiheController@zeigeAbfragen');
-    Route::post ('buchleihe/abfragen', 'BuchleiheController@verarbeiteAbfragen');
-    
-    Route::get ('buchleihe/buecherliste', 'BuchleiheController@zeigeBuecherliste');
-    Route::post('buchleihe/buecherliste', 'BuchleiheController@verarbeiteBuecherliste');
-    
-    Route::get ('buchleihe/zustimmung', 'BuchleiheController@zeigeZustimmung');
-    Route::post('buchleihe/zustimmung', 'BuchleiheController@verarbeiteZustimmung');
-
-    Route::get('buchleihe/abschluss', 'BuchleiheController@zeigeAbschluss');
-
-    Route::post('buchleihe/neuwahl', 'BuchleiheController@neuwahl');
-    */
-
     /* HOME */
     /*
-    Route::get('buecher', 'HomeController@zeigeBuecher');
-    Route::get('buecherliste', 'HomeController@zeigeBuecherliste');
-
     Route::get ('sportwahlen', 'SportwahlenController@index');
     Route::get ('sportwahlen/wahlbogen', 'SportwahlenController@zeigeWahlbogen');
     Route::post('sportwahlen/wahlbogen', 'SportwahlenController@speichereWahlbogen');
