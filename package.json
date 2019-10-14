@@ -9,7 +9,13 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "build-sbl-rueckgabe": "cd nova-components/SblRueckgabe && npm run dev",
-        "build-sbl-rueckgabe-prod": "cd nova-components/SblRueckgabe && npm run prod"
+        "build-sbl-rueckgabe-prod": "cd nova-components/SblRueckgabe && npm run prod",
+        "build-ausleihe": "cd nova-components/Ausleihe && npm run dev",
+        "build-ausleihe-prod": "cd nova-components/Ausleihe && npm run prod",
+        "build-rueckgabe": "cd nova-components/Rueckgabe && npm run dev",
+        "build-rueckgabe-prod": "cd nova-components/Rueckgabe && npm run prod",
+        "build-buchinfo": "cd nova-components/Buchinfo && npm run dev",
+        "build-buchinfo-prod": "cd nova-components/Buchinfo && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.17",

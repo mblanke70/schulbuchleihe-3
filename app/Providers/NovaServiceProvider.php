@@ -10,7 +10,9 @@ use App\Nova\Metrics\SchuelerCount;
 use App\Nova\Metrics\AusleihenCount;
 use App\Nova\Metrics\BuecherCount;
 
-use Mb70\SblRueckgabe\SblRueckgabe;
+use Mb70\Rueckgabe\Rueckgabe;
+use Mb70\Ausleihe\Ausleihe;
+use Mb70\Buchinfo\Buchinfo;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -32,9 +34,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function routes()
     {
         Nova::routes()
-                ->withAuthenticationRoutes()
-                ->withPasswordResetRoutes()
-                ->register();
+            ->withAuthenticationRoutes()
+            ->withPasswordResetRoutes()
+            ->register();
     }
 
     /**
@@ -79,7 +81,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            //new SblRueckgabe,
+            new Rueckgabe,
+            new Ausleihe,
+            new Buchinfo
         ];
     }
 

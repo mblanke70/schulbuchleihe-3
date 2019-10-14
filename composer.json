@@ -21,12 +21,27 @@
         "scriptotek/marc": "^1.0",
         "socialiteproviders/generators": "^4.1",
         "socialiteproviders/manager": "3.3.4",
-        "laravel/nova": "~2.0"
+        "laravel/nova": "~2.0",
+        "mb70/ausleihe": "dev-master",
+        "mb70/rueckgabe": "dev-master",
+        "mb70/buchinfo": "dev-master"
     },
     "repositories": [
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/Ausleihe"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/Rueckgabe"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/Buchinfo"
         }
     ],
     "require-dev": {
