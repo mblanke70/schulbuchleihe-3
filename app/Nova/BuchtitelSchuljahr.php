@@ -111,7 +111,6 @@ class BuchtitelSchuljahr extends Resource
                 ->onlyOnDetail(),
 
             Text::make('# verfügbar', function () {
-                
                 return $this->buchtitel()
                     ->first()
                     ->buecher()
@@ -121,11 +120,9 @@ class BuchtitelSchuljahr extends Resource
             })->onlyOnIndex(),
 
             Text::make('# bestellt', function () {
-
                 return $this->buchwahlen()
                     ->where('wahl', 1)
                     ->count();
-            
             })->onlyOnIndex(),
 
             BelongsToMany::make('Jahrgang', 'jahrgaenge'),

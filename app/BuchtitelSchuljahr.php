@@ -8,6 +8,8 @@ class BuchtitelSchuljahr extends Pivot
 {
     protected $table = 'buchtitel_schuljahr';
 
+    public $incrementing = true;
+
     /*
     public function buecherlisten()
     {

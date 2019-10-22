@@ -1,7 +1,7 @@
 vendor/
 node_modules/
 npm-debug.log
-config/snapppy.php
+config/snappy.php
 
 # Laravel 4 specific
 bootstrap/compiled.php

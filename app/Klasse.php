@@ -34,8 +34,8 @@ class Klasse extends Model
             ->orderBy('vorname', 'asc')
             ->select('schueler.id as ausleiher_id', 'schueler.*', 'users.*', 'klassen.*');
         */
-        return $this->hasMany('App\Schueler');
-        //    ->orderBy('nachname', 'asc')
-        //    ->orderBy('vorname',  'asc');  
+        return $this->hasMany('App\Schueler')
+            ->orderBy('nachname', 'asc')
+            ->orderBy('vorname',  'asc');
     }
 }

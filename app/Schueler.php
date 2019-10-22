@@ -77,7 +77,7 @@ class Schueler extends Model
 
         // Durchlaufe die Bücherliste und ergänze zu jedem Buchtitel
         //   - die zugehörige Bestellung
-        //   - den aktuellen Leihstatus (ist der Buchtitel bereits als Buch ausgeliehen worden?) 
+        //   - den aktuellen Leihstatus
 
         $buchtitel = $buchtitel->map(function ($item, $key) use ($wahlen, $buecher) {
 

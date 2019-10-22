@@ -3,6 +3,13 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Buch;
+use App\Jahrgang;
+use App\Klasse;
+use App\Schueler;
+
+use Mb70\Buchinfo\Http\Controllers\AusleiheController;
+
 /*
 |--------------------------------------------------------------------------
 | Tool API Routes
@@ -14,10 +21,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/', AusleiheController::class.'@getJahrgaenge');
+Route::get('/{jahrgang}', AusleiheController::class.'@getKlassen');
+Route::get('/{jahrgang}/{klasse}', AusleiheController::class.'@getSchueler');
+Route::get('/{jahrgang}/{klasse}/{schueler}', AusleiheController::class.'@getAusleiher');
+
+Route::post('/{jahrgang}/{klasse}/{schueler}', AusleiheController::class.'@ausleihen');
+
+
+/*
 Route::post('/', function (Request $request) {
 
-     return [
-     	'success' => true,
-     ];
+	$validated = $request->validate([
+        'buch_id' => 'required'
+    ], [
+        'buch_id.required' => 'Es wurde keine Buch-ID angegeben.',
+        'buch_id.exists'   => 'Die angegebene Buch-ID existiert nicht.', 
+    ]);
 
+ 	$buch      = Buch::withTrashed()->find($request->buch_id);
+ 	$ausleiher = $buch->ausleiher;
+ 	$historie  = $buch->historie;
+     
+    return [
+     	'buch'      => $buch,
+     	'ausleiher' => $ausleiher,
+     	'historie'  => $historie,
+    ];
+	
 });
+*/

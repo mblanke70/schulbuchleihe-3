@@ -23,7 +23,6 @@
         "socialiteproviders/manager": "3.3.4",
         "laravel/nova": "~2.0",
         "mb70/ausleihe": "dev-master",
-        "mb70/rueckgabe": "dev-master",
         "mb70/buchinfo": "dev-master"
     },
     "repositories": [
@@ -34,10 +33,6 @@
         {
             "type": "path",
             "url": "./nova-components/Ausleihe"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/Rueckgabe"
         },
         {
             "type": "path",
