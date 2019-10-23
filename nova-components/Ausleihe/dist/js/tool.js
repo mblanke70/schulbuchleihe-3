@@ -169,7 +169,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -663,10 +663,229 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        //
+    data: function data() {
+        return {
+            buchId: null,
+            jahrgaenge: {},
+            klassen: {},
+            schueler: {},
+            buecher: {},
+            buecherliste: {},
+            summe: null,
+            summeErm: null,
+            selectedJahrgang: -1,
+            selectedKlasse: -1,
+            selectedSchueler: -1,
+            errors: {}
+        };
+    },
+    created: function created() {
+        this.getJahrgaenge();
+    },
+
+
+    methods: {
+        getJahrgaenge: function getJahrgaenge() {
+            var _this = this;
+
+            Nova.request().post('/nova-vendor/ausleihe').then(function (response) {
+                _this.jahrgaenge = response.data.jahrgaenge;
+            });
+        },
+        getKlassen: function getKlassen() {
+            var _this2 = this;
+
+            Nova.request().get('/nova-vendor/ausleihe/' + this.jahrgaenge[this.selectedJahrgang].id).then(function (response) {
+                _this2.klassen = response.data.klassen;
+            });
+
+            this.selectedKlasse = -1;
+            this.schueler = {};
+            this.selectedSchueler = -1;
+            this.buecher = {};
+            this.buecherliste = {};
+            this.summe = null;
+            this.summeErm = null;
+        },
+        getSchueler: function getSchueler() {
+            var _this3 = this;
+
+            Nova.request().get('/nova-vendor/ausleihe/' + this.jahrgaenge[this.selectedJahrgang].id + '/' + this.klassen[this.selectedKlasse].id).then(function (response) {
+                _this3.schueler = response.data.schueler;
+            });
+
+            this.selectedSchueler = -1;
+            this.buecher = {};
+            this.buecherliste = {};
+            this.summe = null;
+            this.summeErm = null;
+        },
+        getAusleiher: function getAusleiher() {
+            var _this4 = this;
+
+            Nova.request().get('/nova-vendor/ausleihe/' + this.jahrgaenge[this.selectedJahrgang].id + '/' + this.klassen[this.selectedKlasse].id + '/' + this.schueler[this.selectedSchueler].id).then(function (response) {
+                _this4.buecher = response.data.buecher;
+                _this4.buecherliste = response.data.buecherliste;
+                _this4.summe = response.data.summe;
+                _this4.summeErm = response.data.summeErm;
+            });
+
+            this.$nextTick(function () {
+                _this4.$refs.ausleihen.focus();
+            });
+        },
+        nextAusleiher: function nextAusleiher() {
+            this.selectedSchueler++;
+            this.getAusleiher();
+        },
+        prevAusleiher: function prevAusleiher() {
+            this.selectedSchueler--;
+            this.getAusleiher();
+        },
+        buchAusleihen: function buchAusleihen() {
+            var _this5 = this;
+
+            Nova.request().post('/nova-vendor/ausleihe/' + this.jahrgaenge[this.selectedJahrgang].id + '/' + this.klassen[this.selectedKlasse].id + '/' + this.schueler[this.selectedSchueler].id, {
+                buchId: this.buchId
+            }).then(function (response) {
+                _this5.buecher.push(response.data.buch);
+
+                _this5.$toasted.show(_this5.__('Buch wurde ausgeliehen!'), {
+                    type: 'success'
+                });
+            }).catch(function (error) {
+                _this5.errors = error.response.data.errors;
+                //console.log(this.errors);
+                _this5.$toasted.show(_this5.__('Fehler: ' + _this5.errors.buchId[0]), {
+                    type: 'error'
+                });
+            });
+
+            this.buchId = null;
+            this.errors = {};
+        }
     }
 });
 
@@ -678,70 +897,364 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("heading", { staticClass: "mb-6" }, [_vm._v("Ausleihe")]),
-      _vm._v(" "),
-      _c(
-        "card",
-        {
-          staticClass: "bg-90 flex flex-col items-center justify-center",
-          staticStyle: { "min-height": "300px" }
-        },
-        [
+  return _c("div", [
+    _c("h1", { staticClass: "mb-3 text-90 font-normal text-2xl" }, [
+      _vm._v("Ausleihe")
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "flex items-center py-3 border-b border-50" }, [
+        _c("div", { staticClass: "flex items-center mr-auto px-3" }, [
+          _c("div", { staticClass: "flex items-center mr-3" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selectedJahrgang,
+                    expression: "selectedJahrgang"
+                  }
+                ],
+                staticClass: "form-control form-select mr-2",
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.selectedJahrgang = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getKlassen()
+                    }
+                  ]
+                }
+              },
+              [
+                _c(
+                  "option",
+                  { attrs: { disabled: "" }, domProps: { value: -1 } },
+                  [_vm._v("Jahrgang wählen")]
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.jahrgaenge, function(j, index) {
+                  return _c("option", { domProps: { value: index } }, [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(j.jahrgangsstufe) +
+                        "\n                        "
+                    )
+                  ])
+                })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex items-center mr-3" }, [
+            _vm.selectedJahrgang != -1
+              ? _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selectedKlasse,
+                        expression: "selectedKlasse"
+                      }
+                    ],
+                    staticClass: "form-control form-select mr-2",
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.selectedKlasse = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        function($event) {
+                          return _vm.getSchueler()
+                        }
+                      ]
+                    }
+                  },
+                  [
+                    _c(
+                      "option",
+                      { attrs: { disabled: "" }, domProps: { value: -1 } },
+                      [_vm._v("Klasse wählen")]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.klassen, function(k, index) {
+                      return _c("option", { domProps: { value: index } }, [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(k.bezeichnung) +
+                            "\n                        "
+                        )
+                      ])
+                    })
+                  ],
+                  2
+                )
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex items-center mr-3" }, [
+            _vm.selectedKlasse != -1
+              ? _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selectedSchueler,
+                        expression: "selectedSchueler"
+                      }
+                    ],
+                    staticClass: "form-control form-select mr-2",
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.selectedSchueler = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        function($event) {
+                          return _vm.getAusleiher()
+                        }
+                      ]
+                    }
+                  },
+                  [
+                    _c(
+                      "option",
+                      { attrs: { disabled: "" }, domProps: { value: -1 } },
+                      [_vm._v("Schüler wählen")]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.schueler, function(s, index) {
+                      return _c("option", { domProps: { value: index } }, [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(s.nachname) +
+                            ", " +
+                            _vm._s(s.vorname) +
+                            "\n                        "
+                        )
+                      ])
+                    })
+                  ],
+                  2
+                )
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _vm.selectedSchueler > 0
+            ? _c("div", { staticClass: "flex items-center mr-3" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default btn-primary",
+                    on: { click: _vm.prevAusleiher }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Prev\n                    "
+                    )
+                  ]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.selectedSchueler != -1 &&
+          _vm.selectedSchueler < _vm.schueler.length - 1
+            ? _c("div", { staticClass: "flex items-center mr-3" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default btn-primary",
+                    on: { click: _vm.nextAusleiher }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Next\n                    "
+                    )
+                  ]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", [
+            _vm.selectedSchueler > 0
+              ? _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.buchId,
+                      expression: "buchId"
+                    }
+                  ],
+                  ref: "ausleihen",
+                  staticClass:
+                    "w-full form-control form-input form-input-bordered",
+                  attrs: { type: "text", placeholder: "Buch ausleihen" },
+                  domProps: { value: _vm.buchId },
+                  on: {
+                    keyup: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.buchAusleihen($event)
+                    },
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.buchId = $event.target.value
+                    }
+                  }
+                })
+              : _vm._e()
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.selectedSchueler != -1
+      ? _c("div", { staticClass: "card mt-6" }, [
           _c(
-            "svg",
+            "table",
             {
-              staticClass: "spin fill-80 mb-6",
+              staticClass: "table w-full",
               attrs: {
-                width: "69",
-                height: "72",
-                viewBox: "0 0 23 24",
-                xmlns: "http://www.w3.org/2000/svg"
+                cellpadding: "0",
+                cellspacing: "0",
+                "data-testid": "resource-table"
               }
             },
             [
-              _c("path", {
-                attrs: {
-                  d:
-                    "M20.12 20.455A12.184 12.184 0 0 1 11.5 24a12.18 12.18 0 0 1-9.333-4.319c4.772 3.933 11.88 3.687 16.36-.738a7.571 7.571 0 0 0 0-10.8c-3.018-2.982-7.912-2.982-10.931 0a3.245 3.245 0 0 0 0 4.628 3.342 3.342 0 0 0 4.685 0 1.114 1.114 0 0 1 1.561 0 1.082 1.082 0 0 1 0 1.543 5.57 5.57 0 0 1-7.808 0 5.408 5.408 0 0 1 0-7.714c3.881-3.834 10.174-3.834 14.055 0a9.734 9.734 0 0 1 .03 13.855zM4.472 5.057a7.571 7.571 0 0 0 0 10.8c3.018 2.982 7.912 2.982 10.931 0a3.245 3.245 0 0 0 0-4.628 3.342 3.342 0 0 0-4.685 0 1.114 1.114 0 0 1-1.561 0 1.082 1.082 0 0 1 0-1.543 5.57 5.57 0 0 1 7.808 0 5.408 5.408 0 0 1 0 7.714c-3.881 3.834-10.174 3.834-14.055 0a9.734 9.734 0 0 1-.015-13.87C5.096 1.35 8.138 0 11.5 0c3.75 0 7.105 1.68 9.333 4.319C16.06.386 8.953.632 4.473 5.057z",
-                  "fill-rule": "evenodd"
-                }
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._l(_vm.buecher, function(buch) {
+                return _c("tbody", [
+                  _c("tr", [
+                    _c("td", { staticClass: "w-8" }, [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "w-6 h-6 text-green fill-current",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                            }
+                          })
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(buch.buchtitel.fach_id))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(buch.id))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(buch.buchtitel.titel))]),
+                    _vm._v(" "),
+                    _c("td")
+                  ])
+                ])
               })
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "h1",
-            { staticClass: "text-white text-4xl text-90 font-light mb-6" },
-            [_vm._v("We're in a black hole.")]
-          ),
-          _vm._v(" "),
-          _c("p", { staticClass: "text-white-50% text-lg" }, [
+            ],
+            2
+          )
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "text-left" }, [
+          _c("span", { staticClass: "inline-flex items-center" }, [
             _vm._v(
-              "\n            You can edit this tool's component at:\n            "
-            ),
-            _c(
-              "code",
-              {
-                staticClass:
-                  "ml-1 border border-80 text-sm font-mono text-white bg-black rounded px-2 py-1"
-              },
-              [
-                _vm._v(
-                  "/nova-components/Ausleihe/resources/js/components/Tool.vue"
-                )
-              ]
+              "\n                            Leihstatus\n                        "
             )
           ])
-        ]
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-left" }, [
+          _c("span", { staticClass: "inline-flex items-center" }, [
+            _vm._v(
+              "\n                            Fach\n                        "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-left" }, [
+          _c("span", { staticClass: "inline-flex items-center" }, [
+            _vm._v("\n                            ID\n                        ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-left" }, [
+          _c("span", { staticClass: "inline-flex items-center" }, [
+            _vm._v(
+              "\n                            Titel\n                        "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-left" }, [
+          _c("span", { staticClass: "inline-flex items-center" }, [
+            _vm._v(
+              "\n                            Wahl\n                        "
+            )
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -11,7 +11,6 @@ use App\Nova\Metrics\AusleihenCount;
 use App\Nova\Metrics\BuecherCount;
 
 use Mb70\Ausleihe\Ausleihe;
-use Mb70\Buchinfo\Buchinfo;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -81,7 +80,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             new Ausleihe,
-            new Buchinfo
         ];
     }
 

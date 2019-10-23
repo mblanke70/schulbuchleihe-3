@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Rules;
+namespace Mb70\Ausleihe\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
+use App\Buch;
 
-class BuchAusgeliehen implements Rule
+class BuchNichtGeloescht implements Rule
 {
     /**
      * Create a new rule instance.
@@ -13,7 +14,7 @@ class BuchAusgeliehen implements Rule
      */
     public function __construct($buch)
     {
-        $this->buch = $buch;
+         $this->buch = $buch;
     }
 
     /**
@@ -25,12 +26,11 @@ class BuchAusgeliehen implements Rule
      */
     public function passes($attribute, $value)
     {        
-        if($this->buch) 
-        {
-            return $this->buch->ausleiher_id != null;     
-        }   
+        if($this->buch != null) {
+            return !$this->buch->trashed();
+        }
 
-        return true;
+        return false;
     }
 
     /**
@@ -40,7 +40,6 @@ class BuchAusgeliehen implements Rule
      */
     public function message()
     {
-         //return 'Dieser Schüler hat dieses Buch bereits ausgeliehen.';
-        return 'Das Buch ist nicht ausgeliehen.';
+         return 'Dieses Buch ist gelöscht worden.';
     }
 }

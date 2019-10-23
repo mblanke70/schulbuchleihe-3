@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Rules;
+namespace Mb70\Ausleihe\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class BuchAusgeliehen implements Rule
+class BuchNichtAusgeliehen implements Rule
 {
     /**
      * Create a new rule instance.
@@ -25,12 +25,12 @@ class BuchAusgeliehen implements Rule
      */
     public function passes($attribute, $value)
     {        
-        if($this->buch) 
+        if($this->buch != null)
         {
-            return $this->buch->ausleiher_id != null;     
-        }   
-
-        return true;
+            return $this->buch->ausleiher_id == null;
+        }
+        
+        return false;
     }
 
     /**
@@ -41,6 +41,6 @@ class BuchAusgeliehen implements Rule
     public function message()
     {
          //return 'Dieser Schüler hat dieses Buch bereits ausgeliehen.';
-        return 'Das Buch ist nicht ausgeliehen.';
+        return 'Das Buch ist bereits ausgeliehen.';
     }
 }

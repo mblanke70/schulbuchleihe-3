@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "be3c0f9576deedc17f8b2de208da463b",
+    "content-hash": "518be7369d83c79dd70d960a7fbd8f76",
     "packages": [
         {
             "name": "barryvdh/laravel-snappy",
@@ -1813,40 +1813,6 @@
             "autoload": {
                 "psr-4": {
                     "Mb70\\Ausleihe\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova tool.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ]
-        },
-        {
-            "name": "mb70/buchinfo",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "./nova-components/Buchinfo",
-                "reference": "18d2c7fada23a39325ceb78c01d8040488b2cbc5",
-                "shasum": null
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Mb70\\Buchinfo\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Mb70\\Buchinfo\\": "src/"
                 }
             },
             "license": [
@@ -6122,8 +6088,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "mb70/ausleihe": 20,
-        "mb70/buchinfo": 20
+        "mb70/ausleihe": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
