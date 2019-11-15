@@ -16,6 +16,8 @@ class LabelDrucken extends Action
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
+    
+
     /**
      * Get the displayable name of the action.
      *

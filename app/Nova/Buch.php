@@ -97,7 +97,7 @@ class Buch extends Resource
                 ->min(1)->max(1000)->step(0.01)->rules('required'),
           
             Date::make('Aufnahme', 'aufnahme')
-                ->hideWhenCreating(),
+                ->hideWhenCreating()->hideFromIndex(),
             
             HasMany::make('BuchHistorie', 'historie')
 
@@ -146,7 +146,7 @@ class Buch extends Resource
     public function actions(Request $request)
     {
         return [
-            new Actions\LabelDrucken,
+            (new Actions\LabelDrucken)->showOnTableRow(),
         ];
     }
 

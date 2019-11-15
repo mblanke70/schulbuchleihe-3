@@ -80,6 +80,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             new Ausleihe,
+            new \Spatie\BackupTool\BackupTool(),
         ];
     }
 

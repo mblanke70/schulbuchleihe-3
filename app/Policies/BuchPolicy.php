@@ -69,7 +69,7 @@ class BuchPolicy
      */
     public function restore(User $user, Buch $buch)
     {
-        //
+        return true;
     }
 
     /**
@@ -81,6 +81,6 @@ class BuchPolicy
      */
     public function forceDelete(User $user, Buch $buch)
     {
-        //
+        return true;
     }
 }

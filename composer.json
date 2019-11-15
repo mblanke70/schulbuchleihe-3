@@ -15,14 +15,15 @@
         "h4cc/wkhtmltopdf-amd64": "0.12.x",
         "jeroennoten/laravel-adminlte": "^1.22",
         "laravel/framework": "5.8.*",
+        "laravel/nova": "~2.0",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
+        "mb70/ausleihe": "dev-master",
         "milon/barcode": "^5.3",
         "scriptotek/marc": "^1.0",
         "socialiteproviders/generators": "^4.1",
         "socialiteproviders/manager": "3.3.4",
-        "laravel/nova": "~2.0",
-        "mb70/ausleihe": "dev-master"
+        "spatie/nova-backup-tool": "^3.8"
     },
     "repositories": [
         {
