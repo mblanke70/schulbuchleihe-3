@@ -10,7 +10,7 @@ use Laravel\Nova\Fields\Number;
 use Illuminate\Support\Facades\DB;
 use Laravel\Nova\Http\Requests\LensRequest;
 
-class SchuelerMitBuechern extends Lens
+class SchuelerBankeinzug extends Lens
 {
     /**
      * Get the query builder / paginator for the lens.
@@ -24,7 +24,9 @@ class SchuelerMitBuechern extends Lens
         return $request->withOrdering($request->withFilters(
             $query->select(self::columns())
                 ->join('buecher', 'schueler.id', '=', 'buecher.ausleiher_id')
-                ->groupBy('schueler.id', 'schueler.nachname', 'schueler.vorname')
+                ->join('familien', 'schueler.familie_id', '=', 'familien.id')
+                ->orderBy('schueler.nachname', 'asc')
+                ->groupBy('schueler.id', 'schueler.nachname', 'schueler.vorname', 'familien.strasse', 'familien.iban')
         ));
     }
 
@@ -39,7 +41,9 @@ class SchuelerMitBuechern extends Lens
             'schueler.id',
             'schueler.nachname',
             'schueler.vorname',
-            DB::raw('count(buecher.id) as anzahl'),
+            'familien.strasse',
+            'familien.iban',
+            //DB::raw('count(buecher.id) as anzahl'),
         ];
     }
 
@@ -55,7 +59,28 @@ class SchuelerMitBuechern extends Lens
             ID::make('ID', 'id'),
             Text::make('Nachname', 'nachname'),
             Text::make('Vorname', 'vorname'),
-            Number::make('Anzahl', 'anzahl'),
+            Text::make('Straße', 'strasse'),
+            Text::make('IBAN', 'iban'),
+            //Number::make('Anzahl', 'anzahl'),
+            Text::make('Summe', function () { 
+                $buecher = $this->buecher;
+                $summe = 0;
+                foreach($buecher as $buch) {
+                    $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
+                    if($btsj!=null)
+                    {
+                        $leihpreis = $btsj->leihpreis;
+                        if($leihpreis != null)
+                        {
+                            $summe += $leihpreis;
+                        }
+                    } else {
+                        $summe = -1000;
+                        break;
+                    }
+                }
+                return $summe;
+            })
         ];
     }
 
@@ -88,6 +113,6 @@ class SchuelerMitBuechern extends Lens
      */
     public function uriKey()
     {
-        return 'schueler-mit-buechern';
+        return 'bankeinzug';
     }
 }

@@ -78,7 +78,7 @@ class Schueler extends Resource
 
             ID::make()->sortable(),
 
-            //DateTime::make('Created At', 'created_at')->sortable()->onlyOnIndex(),
+            DateTime::make('Created At', 'created_at')->sortable()->onlyOnIndex(),
 
             Text::make('Vorname', 'vorname')->rules('required')->sortable(),
             
@@ -87,28 +87,13 @@ class Schueler extends Resource
             BelongsTo::make('Klasse', 'klasse')->rules('required')->nullable(),
             
             BelongsTo::make('User', 'user')->hideFromIndex()->nullable()->searchable(),
-            
-            Text::make('Summe', function () { 
-                $buecher = $this->buecher;
-                $summe = 0;
-                foreach($buecher as $buch) {
-                    $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
-                    $leihpreis = $btsj->leihpreis;
-                    if($leihpreis != null)
-                    {
-                        $summe += $leihpreis;
-                    }
-                }
-                return $summe;
-            })->onlyOnIndex(),
 
-/*
             Text::make('# geliehen', function () { return $this->buecher()->count(); })
                 ->onlyOnIndex(),
 
             Text::make('# bestellt', function () { return $this->bestellungen()->count(); })
                 ->onlyOnIndex(),
-*/            
+            
             HasMany::make('Buch', 'buecher'),
 
             HasMany::make('Buchwahl', 'buecherwahlen'),
@@ -119,7 +104,7 @@ class Schueler extends Resource
             
             Text::make('RE_Nachname', 're_nachname')->hideFromIndex(),
             
-            Text::make('RE_Straße', 're_strasse_nr'),
+            Text::make('RE_Straße', 're_strasse_nr')->hideFromIndex(),
             
             Text::make('RE_PLZ', 're_plz')->hideFromIndex(),
             
@@ -163,7 +148,7 @@ class Schueler extends Resource
     public function lenses(Request $request)
     {
         return [
-            new Lenses\SchuelerMitBuechern,
+            new Lenses\SchuelerBankeinzug,
         ];
     }
 
