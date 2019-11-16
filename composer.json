@@ -24,7 +24,7 @@
         "milon/barcode": "^6.0",
         "scriptotek/marc": "^2.0",
         "socialiteproviders/generators": "^4.1",
-        "socialiteproviders/manager": "3.3.4",
+        "socialiteproviders/manager": "3.4",
         "spatie/nova-backup-tool": "^3.8"
     },
     "repositories": [

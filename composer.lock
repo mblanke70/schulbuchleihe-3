@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "940df439b2bda461ca2843611040d7cd",
+    "content-hash": "368077497398c191643e06dba649753b",
     "packages": [
         {
             "name": "barryvdh/laravel-snappy",
@@ -3342,19 +3342,20 @@
         },
         {
             "name": "socialiteproviders/manager",
-            "version": "v3.3.4",
+            "version": "v3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SocialiteProviders/Manager.git",
-                "reference": "58b72a667da292a1d0a0b1e6e9aeda4053617030"
+                "reference": "8e50ed80d67f42659fd01effaea5b238c8eba963"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Manager/zipball/58b72a667da292a1d0a0b1e6e9aeda4053617030",
-                "reference": "58b72a667da292a1d0a0b1e6e9aeda4053617030",
+                "url": "https://api.github.com/repos/SocialiteProviders/Manager/zipball/8e50ed80d67f42659fd01effaea5b238c8eba963",
+                "reference": "8e50ed80d67f42659fd01effaea5b238c8eba963",
                 "shasum": ""
             },
             "require": {
+                "illuminate/support": "~5.4|~5.7.0|~5.8.0|^6.0",
                 "laravel/socialite": "~3.0|~4.0",
                 "php": "^5.6 || ^7.0"
             },
@@ -3387,10 +3388,14 @@
                 {
                     "name": "Anton Komarev",
                     "email": "a.komarev@cybercog.su"
+                },
+                {
+                    "name": "Miguel Piedrafita",
+                    "email": "soy@miguelpiedrafita.com"
                 }
             ],
             "description": "Easily add new or override built-in providers in Laravel Socialite.",
-            "time": "2019-01-16T07:58:54+00:00"
+            "time": "2019-09-04T14:35:37+00:00"
         },
         {
             "name": "spatie/db-dumper",
