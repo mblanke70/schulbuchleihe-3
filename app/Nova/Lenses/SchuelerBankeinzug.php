@@ -61,26 +61,8 @@ class SchuelerBankeinzug extends Lens
             Text::make('Vorname', 'vorname'),
             Text::make('Straße', 'strasse'),
             Text::make('IBAN', 'iban'),
+           
             //Number::make('Anzahl', 'anzahl'),
-            Text::make('Summe', function () { 
-                $buecher = $this->buecher;
-                $summe = 0;
-                foreach($buecher as $buch) {
-                    $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
-                    if($btsj!=null)
-                    {
-                        $leihpreis = $btsj->leihpreis;
-                        if($leihpreis != null)
-                        {
-                            $summe += $leihpreis;
-                        }
-                    } else {
-                        $summe = -1000;
-                        break;
-                    }
-                }
-                return $summe;
-            })
         ];
     }
 

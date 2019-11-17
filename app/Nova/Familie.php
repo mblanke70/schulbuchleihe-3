@@ -11,6 +11,8 @@ use Laravel\Nova\Fields\BelongsTo;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
+use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
+
 class Familie extends Resource
 {
     /**
@@ -82,7 +84,12 @@ class Familie extends Resource
             Text::make('Straße', 'strasse')->rules('required')->sortable(),
 
             Text::make('IBAN', 'iban')->hideFromIndex(),
+
+            Text::make('Mandat', 'mandatsref'),
             
+            Text::make('Mandat', 'signaturdat'),
+
+            /*
             Text::make('angegebene Erm.', function () {
                 
                 if($this->erm == 2) {
@@ -94,9 +101,10 @@ class Familie extends Resource
                 }
 
             })->onlyOnIndex(),
+            */
 
-            Boolean::make('befreit', 'befreit')->rules('required')->sortable(),
-            
+            Boolean::make('befreit'),
+
             Boolean::make('ermäßigt', function () {
                 return ($this->kinder()->count() + $this->externe()->count()) > 2;
             })->onlyOnIndex(),
@@ -137,7 +145,7 @@ class Familie extends Resource
     {
         return [
             new Filters\FamilieErm,
-            new Filters\FamilieErmStatus,
+            //new Filters\FamilieErmStatus,
         ];
     }
 
@@ -160,7 +168,9 @@ class Familie extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new DownloadExcel,
+        ];
     }
 
     /**

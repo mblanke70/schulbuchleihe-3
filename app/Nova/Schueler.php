@@ -88,12 +88,62 @@ class Schueler extends Resource
             
             BelongsTo::make('User', 'user')->hideFromIndex()->nullable()->searchable(),
 
+            Text::make('Ermäßigung', function () { 
+                $familie = $this->familie;
+                if($familie != null)
+                {
+                    if($familie->kinder()->count() 
+                        + $familie->externe()->count() > 2)
+                    {
+                        return "20%";
+                    }
+
+                    if($familie->befreit)
+                    {
+                        return "100%";
+                    }
+                    return "---"; 
+                }
+                return "k.F.";
+            }),
+
+            Text::make('Summe', function () { 
+                $buecher = $this->buecher;
+                $summe = 0;
+                foreach($buecher as $buch) {
+                    $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
+
+                    $leihpreis = $btsj->leihpreis;
+                    if($leihpreis != null)
+                    {
+                        $summe += $leihpreis;
+                    }
+                }
+
+                $familie = $this->familie;
+                if($familie != null)
+                {
+                    if($familie->kinder()->count() 
+                        + $familie->externe()->count() > 2)
+                    {
+                        $summe = $summe * 0.8;
+                    }
+
+                    if($familie->befreit)
+                    {
+                        $summe = 0;
+                    } 
+                }
+
+                return number_format($summe, 2, ',', '');
+            }),
+/*
             Text::make('# geliehen', function () { return $this->buecher()->count(); })
                 ->onlyOnIndex(),
 
             Text::make('# bestellt', function () { return $this->bestellungen()->count(); })
                 ->onlyOnIndex(),
-            
+*/            
             HasMany::make('Buch', 'buecher'),
 
             HasMany::make('Buchwahl', 'buecherwahlen'),
