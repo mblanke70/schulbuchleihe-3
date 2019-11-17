@@ -85,9 +85,9 @@ class Familie extends Resource
 
             Text::make('IBAN', 'iban')->hideFromIndex(),
 
-            Text::make('Mandat', 'mandatsref'),
+            Text::make('Mandatsref', 'mandatsref'),
             
-            Text::make('Mandat', 'signaturdat'),
+            Text::make('Signaturdat', 'signaturdat'),
 
             /*
             Text::make('angegebene Erm.', function () {
