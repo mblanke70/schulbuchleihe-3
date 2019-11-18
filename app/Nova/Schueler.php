@@ -145,7 +145,7 @@ class Schueler extends Resource
                 ->onlyOnIndex()->sortable(),
 
             Text::make('Mandatsref', function () { 
-                $familie = $this->familie();
+                $familie = $this->familie;
                 if($familie != null)
                     return $familie->mandatsref; 
                 else
@@ -153,7 +153,7 @@ class Schueler extends Resource
             })->sortable(),
 
             Text::make('Signaturdat', function () { 
-                $familie = $this->familie();
+                $familie = $this->familie;
                 if($familie != null)
                     return $familie->signaturdat; 
                 else
