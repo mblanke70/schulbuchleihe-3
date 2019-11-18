@@ -79,7 +79,7 @@ class Schueler extends Resource
 
             ID::make()->sortable(),
 
-            DateTime::make('Created At', 'created_at')->sortable()->onlyOnIndex(),
+            //DateTime::make('Created At', 'created_at')->sortable()->onlyOnIndex(),
 
             Text::make('Vorname', 'vorname')->rules('required')->sortable(),
             
@@ -142,11 +142,18 @@ class Schueler extends Resource
             }),
 
             Text::make('# geliehen', function () { return $this->buecher()->count(); })
-                ->onlyOnIndex(),
+                ->onlyOnIndex()->sortable(),
 
+            Text::make('Mandatsref', function () { return $this->familie()->mandatsref; })->sortable(),
+
+            Text::make('Signaturdat', function () { return $this->familie()->signaturdat; })->sortable(),
+            
+            Text::make('Mandatsref', function () { return $this->familie()->mandatsref; }),
+
+/*
             Text::make('# bestellt', function () { return $this->bestellungen()->count(); })
                 ->onlyOnIndex(),
-            
+*/            
             HasMany::make('Buch', 'buecher'),
 
             HasMany::make('Buchwahl', 'buecherwahlen'),
