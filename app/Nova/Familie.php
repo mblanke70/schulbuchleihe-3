@@ -77,7 +77,7 @@ class Familie extends Resource
 
             ID::make()->sortable(),
 
-            BelongsTo::make('Schuljahr', 'schuljahr')->nullable(),
+            //BelongsTo::make('Schuljahr', 'schuljahr')->nullable(),
 
             Text::make('Name', 'name')->rules('required')->sortable(),
             
@@ -87,7 +87,7 @@ class Familie extends Resource
 
             Text::make('Mandatsref', 'mandatsref')->sortable(),
             
-            Text::make('Signaturdat', 'signaturdat')->hideFromIndex(),
+            Text::make('Signaturdat', 'signaturdat')->sortable(),
 
             /*
             Text::make('angegebene Erm.', function () {
