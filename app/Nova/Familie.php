@@ -85,7 +85,7 @@ class Familie extends Resource
 
             Text::make('IBAN', 'iban')->hideFromIndex(),
 
-            Text::make('Mandatsref', 'mandatsref'),
+            Text::make('Mandatsref', 'mandatsref')->sortable(),
             
             Text::make('Signaturdat', 'signaturdat'),
 
