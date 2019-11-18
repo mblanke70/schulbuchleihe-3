@@ -144,10 +144,10 @@ class Schueler extends Resource
             Text::make('# geliehen', function () { return $this->buecher()->count(); })
                 ->onlyOnIndex()->sortable(),
 
-            Text::make('Mandatsref', function () { return $this->familie->mandatsref; })
+            Text::make('Mandatsref', function () { return $this->familie()->mandatref; })
                 ->sortable(),
 
-            Text::make('Signaturdat', function () { return $this->familie->signaturdat; })
+            Text::make('Signaturdat', function () { return $this->familie()->signaturdat; })
                 ->sortable(),
             
 /*
