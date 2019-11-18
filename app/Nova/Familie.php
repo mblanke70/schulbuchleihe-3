@@ -87,7 +87,7 @@ class Familie extends Resource
 
             Text::make('Mandatsref', 'mandatsref')->sortable(),
             
-            Text::make('Signaturdat', 'signaturdat'),
+            Text::make('Signaturdat', 'signaturdat')->hideFromIndex(),
 
             /*
             Text::make('angegebene Erm.', function () {
@@ -113,7 +113,7 @@ class Familie extends Resource
                 return $this->kinder()->count();
             })->onlyOnIndex(),
 
-            Text::make('# Externe', function () {
+            Text::make('# Extern', function () {
                 return $this->externe()->count();
             })->onlyOnIndex(),
             
