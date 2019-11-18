@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
 
 use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 
@@ -85,6 +86,8 @@ class Schueler extends Resource
             Text::make('Nachname', 'nachname')->rules('required')->sortable(),            
 
             BelongsTo::make('Klasse', 'klasse')->rules('required')->nullable(),
+
+            Boolean::make('Koop-Schüler', 'koop')->hideFromIndex(),
             
             BelongsTo::make('User', 'user')->hideFromIndex()->nullable()->searchable(),
 
@@ -137,13 +140,13 @@ class Schueler extends Resource
 
                 return number_format($summe, 2, ',', '');
             }),
-/*
+
             Text::make('# geliehen', function () { return $this->buecher()->count(); })
                 ->onlyOnIndex(),
 
             Text::make('# bestellt', function () { return $this->bestellungen()->count(); })
                 ->onlyOnIndex(),
-*/            
+            
             HasMany::make('Buch', 'buecher'),
 
             HasMany::make('Buchwahl', 'buecherwahlen'),

@@ -32,7 +32,7 @@ class Schueler extends Model
      */   
     public function bestellungen()
     {
-        return $this->hasMany('App\Buchwahl')->where('wahl', 1);
+        return $this->hasMany('App\Buchwahl')->whereIn('wahl', array(1, 2));
     }
 
 	/**
