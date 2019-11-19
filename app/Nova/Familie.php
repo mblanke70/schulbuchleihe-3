@@ -89,6 +89,18 @@ class Familie extends Resource
             
             Text::make('Signaturdat', 'signaturdat')->sortable(),
 
+            
+            Text::make('Kinder', function() {
+                $kinder  = $this->kinder;
+                $externe = $this->externe;
+
+                $namen = array();
+                foreach($kinder as $k)  { $namen[] = $k->vorname; }
+                foreach($externe as $k) { $namen[] = $k->vorname; }
+
+                return implode(", ", $namen);
+            })->onlyOnIndex(),
+
             /*
             Text::make('angegebene Erm.', function () {
                 
