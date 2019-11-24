@@ -25,7 +25,8 @@
         "scriptotek/marc": "^2.0",
         "socialiteproviders/generators": "^4.1",
         "socialiteproviders/manager": "^3.4",
-        "spatie/nova-backup-tool": "^3.8"
+        "spatie/nova-backup-tool": "^3.8",
+        "digitick/sepa-xml" : "^1.6"
     },
     "repositories": [
         {

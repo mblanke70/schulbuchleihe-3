@@ -235,6 +235,7 @@ class Schueler extends Resource
             new Actions\BuchZurueck,
             new Actions\RechnungStellen,
             new Actions\BuecherlisteDrucken,
+            new Actions\SepaXML,
             new DownloadExcel,
         ];
     }

@@ -7,6 +7,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasOne;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -89,6 +90,7 @@ class Familie extends Resource
             
             Text::make('Signaturdat', 'signaturdat')->sortable(),
 
+            HasMany::make('SEPA-Mandat', 'sepa_mandat'),
             
             Text::make('Kinder', function() {
                 $kinder  = $this->kinder;
