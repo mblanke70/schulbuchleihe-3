@@ -3,7 +3,7 @@
   <CstmrDrctDbtInitn>
     <GrpHdr>
       <MsgId>SampleUniqueMsgId</MsgId>
-      <CreDtTm>2019-11-24T19:00:06Z</CreDtTm>
+      <CreDtTm>2019-11-24T18:58:52Z</CreDtTm>
       <NbOfTxs>1</NbOfTxs>
       <CtrlSum>64.50</CtrlSum>
       <InitgPty>

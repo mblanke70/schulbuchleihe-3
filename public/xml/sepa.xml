@@ -3,18 +3,18 @@
   <CstmrDrctDbtInitn>
     <GrpHdr>
       <MsgId>SampleUniqueMsgId</MsgId>
-      <CreDtTm>2019-11-24T17:01:51Z</CreDtTm>
-      <NbOfTxs>1</NbOfTxs>
-      <CtrlSum>64.50</CtrlSum>
+      <CreDtTm>2019-11-24T17:30:44Z</CreDtTm>
+      <NbOfTxs>3</NbOfTxs>
+      <CtrlSum>85.50</CtrlSum>
       <InitgPty>
-        <Nm>SampleInitiatingPartyName</Nm>
+        <Nm>Schulbuchleihe</Nm>
       </InitgPty>
     </GrpHdr>
     <PmtInf>
       <PmtInfId>sbl-1920</PmtInfId>
       <PmtMtd>DD</PmtMtd>
-      <NbOfTxs>1</NbOfTxs>
-      <CtrlSum>64.50</CtrlSum>
+      <NbOfTxs>3</NbOfTxs>
+      <CtrlSum>85.50</CtrlSum>
       <PmtTpInf>
         <SvcLvl>
           <Cd>SEPA</Cd>
@@ -58,17 +58,17 @@
         <InstdAmt Ccy="EUR">64.50</InstdAmt>
         <DrctDbtTx>
           <MndtRltdInf>
-            <MndtId>d</MndtId>
-            <DtOfSgntr>2019-11-24</DtOfSgntr>
+            <MndtId>20195645</MndtId>
+            <DtOfSgntr>2019-11-01</DtOfSgntr>
           </MndtRltdInf>
         </DrctDbtTx>
         <DbtrAgt>
           <FinInstnId>
-            <BIC>b</BIC>
+            <BIC>NOLADE22XX</BIC>
           </FinInstnId>
         </DbtrAgt>
         <Dbtr>
-          <Nm>c</Nm>
+          <Nm>Ostmann,Tanja</Nm>
         </Dbtr>
         <DbtrAcct>
           <Id>
@@ -77,6 +77,62 @@
         </DbtrAcct>
         <RmtInf>
           <Ustrd>Schulbuchleihe 2019/20 Lina Ostmann</Ustrd>
+        </RmtInf>
+      </DrctDbtTxInf>
+      <DrctDbtTxInf>
+        <PmtId>
+          <EndToEndId>sbl-19201</EndToEndId>
+        </PmtId>
+        <InstdAmt Ccy="EUR">21.00</InstdAmt>
+        <DrctDbtTx>
+          <MndtRltdInf>
+            <MndtId>20154576</MndtId>
+            <DtOfSgntr>2015-06-30</DtOfSgntr>
+          </MndtRltdInf>
+        </DrctDbtTx>
+        <DbtrAgt>
+          <FinInstnId>
+            <BIC>GENODEF1HG</BIC>
+          </FinInstnId>
+        </DbtrAgt>
+        <Dbtr>
+          <Nm>Scheidt,Sergej</Nm>
+        </Dbtr>
+        <DbtrAcct>
+          <Id>
+            <IBAN>DE94265659289000495700</IBAN>
+          </Id>
+        </DbtrAcct>
+        <RmtInf>
+          <Ustrd>Schulbuchleihe 2019/20 Mike Scheidt</Ustrd>
+        </RmtInf>
+      </DrctDbtTxInf>
+      <DrctDbtTxInf>
+        <PmtId>
+          <EndToEndId>sbl-19202</EndToEndId>
+        </PmtId>
+        <InstdAmt Ccy="EUR">0.00</InstdAmt>
+        <DrctDbtTx>
+          <MndtRltdInf>
+            <MndtId>20154585</MndtId>
+            <DtOfSgntr>2015-06-30</DtOfSgntr>
+          </MndtRltdInf>
+        </DrctDbtTx>
+        <DbtrAgt>
+          <FinInstnId>
+            <BIC>COBADEHD05</BIC>
+          </FinInstnId>
+        </DbtrAgt>
+        <Dbtr>
+          <Nm>Adomeit,Anke</Nm>
+        </Dbtr>
+        <DbtrAcct>
+          <Id>
+            <IBAN>DE55200411550694445800</IBAN>
+          </Id>
+        </DbtrAcct>
+        <RmtInf>
+          <Ustrd>Schulbuchleihe 2019/20 Fenja Adomeit</Ustrd>
         </RmtInf>
       </DrctDbtTxInf>
     </PmtInf>
