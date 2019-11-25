@@ -60,6 +60,9 @@ class SepaXML extends Action
 
         foreach($models as $model) 
         {
+            $familie = $model->familie;
+            if($familie == null || $familie->befreit) continue;
+
             $buecher = $model->buecher;
             $summe = 0;
             foreach($buecher as $buch) {
@@ -69,7 +72,6 @@ class SepaXML extends Action
                 if($leihpreis != null) { $summe += $leihpreis; }
             }
 
-            $familie = $model->familie;
             if($familie != null)
             {
                 if($familie->kinder()->count() 
