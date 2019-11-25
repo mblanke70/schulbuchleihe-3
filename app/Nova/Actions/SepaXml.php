@@ -60,10 +60,11 @@ class SepaXML extends Action
 
         foreach($models as $model) 
         {
+            $buecher = $model->buecher;
             $familie = $model->familie;
+
             if($familie == null || $familie->befreit) continue;
 
-            $buecher = $model->buecher;
             $summe = 0;
             foreach($buecher as $buch) {
                 $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
@@ -86,7 +87,7 @@ class SepaXML extends Action
                 } 
             }
 
-            $sepa = $familie->sepa_mandat->first();
+            $sepa = $familie->sepa_mandat;
 
             // Add a Single Transaction to the named payment
             $directDebit->addTransfer('sbl-1920', array(
