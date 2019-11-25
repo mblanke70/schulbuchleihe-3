@@ -151,15 +151,7 @@ class Schueler extends Resource
                 else
                     return "---";
             })->sortable(),
-
-            Text::make('Signaturdat', function () { 
-                $familie = $this->familie;
-                if($familie != null)
-                    return $familie->signaturdat; 
-                else
-                    return "---";
-            })->sortable(),
-            
+           
 /*
             Text::make('# bestellt', function () { return $this->bestellungen()->count(); })
                 ->onlyOnIndex(),

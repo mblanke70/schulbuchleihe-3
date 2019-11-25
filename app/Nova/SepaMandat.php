@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Date;
 
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasOne;
 
 
 class SepaMandat extends Resource
@@ -26,7 +27,7 @@ class SepaMandat extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'debtorMandate';
 
     /**
      * Get the displayble label of the resource.
@@ -62,7 +63,7 @@ class SepaMandat extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'debtorMandate', 'debtorName'
     ];
 
     /**
@@ -74,11 +75,6 @@ class SepaMandat extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
-
-            Text::make('Gläubiger Name', 'creditorName')->rules('required')->sortable(),
-
-            Text::make('Gläubiger ID', 'creditorId')->rules('required')->sortable(),
 
             Text::make('Mandatsreferenz', 'debtorMandate')->rules('required')->sortable(),
 
@@ -90,7 +86,11 @@ class SepaMandat extends Resource
 
             Text::make('IBAN', 'debtorIban')->rules('required'),
 
-            BelongsTo::make('Familie', 'familie')->hideFromIndex(),
+            Text::make('Gläubiger Name', 'creditorName')->rules('required')->sortable(),
+
+            Text::make('Gläubiger ID', 'creditorId')->rules('required')->sortable(),
+
+            HasOne::make('Familie', 'familie')->hideFromIndex(),
         ];
     }
 

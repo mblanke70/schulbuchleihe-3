@@ -28,6 +28,6 @@ class Familie extends Model
 
     public function sepa_mandat()
     {
-        return $this->hasMany('App\SepaMandat', 'debtorMandate', 'mandatsref');
+        return $this->belongsTo('App\SepaMandat', 'mandatsref', 'debtorMandate');
     }
 }

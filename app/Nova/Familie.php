@@ -88,9 +88,7 @@ class Familie extends Resource
 
             Text::make('Mandatsref', 'mandatsref')->sortable(),
             
-            Text::make('Signaturdat', 'signaturdat')->sortable(),
-
-            HasMany::make('SEPA-Mandat', 'sepa_mandat'),
+            BelongsTo::make('SEPA-Mandat', 'sepa_mandat'),
             
             Text::make('Kinder', function() {
                 $kinder  = $this->kinder;
@@ -127,7 +125,7 @@ class Familie extends Resource
                 return $this->kinder()->count();
             })->onlyOnIndex(),
 
-            Text::make('# Extern', function () {
+            Text::make('# Externe', function () {
                 return $this->externe()->count();
             })->onlyOnIndex(),
             

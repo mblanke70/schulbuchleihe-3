@@ -11,6 +11,7 @@ class SepaMandat extends Model
 	use Actionable;
 
 	protected $table = 'sepa_mandate';
+    protected $primaryKey = 'debtorMandate';
 
 	/**
      * The attributes that should be mutated to dates.
@@ -26,6 +27,6 @@ class SepaMandat extends Model
      */
     public function familie()
     {
-    	return $this->belongsTo('App\Familie', 'debtorMandate', 'mandatsref');
+    	return $this->hasOne('App\Familie', 'mandatsref', 'debtorMandate');
     }
 }

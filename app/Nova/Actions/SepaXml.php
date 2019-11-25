@@ -90,12 +90,13 @@ class SepaXML extends Action
             $directDebit->addTransfer('sbl-1920', array(
                 'amount'                => $summe,   // Betrag
                 'debtorIban'            => $sepa->debtorIban,    // Zahlungspflichtiger-IBAN
-                'debtorBic'             => $sepa->debtorBic,              // Zahlungspflichtiger-BIC
-                'debtorName'            => $sepa->debtorName,         // Zahlungspflichtiger-Name
-                'debtorMandate'         => $sepa->debtorMandate,  // Mandatsreferenz
-                'debtorMandateSignDate' => $sepa->debtorMandateSignDate,            // Signaturdatum
-                'remittanceInformation' => 'Schulbuchleihe 2019/20 ' . $model->vorname . " " . $model->nachname,  // Verwendungdzweck
-                //'endToEndId'            => 'Invoice-No X'           // optional, if you want to provide additional structured info
+                'debtorBic'             => $sepa->debtorBic,     // Zahlungspflichtiger-BIC
+                'debtorName'            => $sepa->debtorName,    // Zahlungspflichtiger-Name
+                'debtorMandate'         => $sepa->debtorMandate, // Mandatsreferenz
+                'debtorMandateSignDate' => $sepa->debtorMandateSignDate, // Signaturdatum
+                'remittanceInformation' => 'Schulbuchleihe 2019/20 ' . 
+                    $model->vorname . " " . $model->nachname,    // Verwendungdzweck
+                //'endToEndId'            => 'Invoice-No X'      // optional, if you want to provide additional structured info
             ));
         }
 
