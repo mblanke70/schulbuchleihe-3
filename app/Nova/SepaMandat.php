@@ -86,9 +86,9 @@ class SepaMandat extends Resource
 
             Text::make('IBAN', 'debtorIban')->rules('required'),
 
-            Text::make('Gläubiger Name', 'creditorName')->rules('required')->sortable(),
+            //Text::make('Gläubiger Name', 'creditorName')->rules('required')->sortable(),
 
-            Text::make('Gläubiger ID', 'creditorId')->rules('required')->sortable(),
+            //Text::make('Gläubiger ID', 'creditorId')->rules('required')->sortable(),
 
             HasOne::make('Familie', 'familie')->hideFromIndex(),
         ];

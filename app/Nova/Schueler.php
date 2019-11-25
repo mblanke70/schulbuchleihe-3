@@ -144,6 +144,7 @@ class Schueler extends Resource
             Text::make('# geliehen', function () { return $this->buecher()->count(); })
                 ->onlyOnIndex()->sortable(),
 
+            /*
             Text::make('Mandatsref', function () { 
                 $familie = $this->familie;
                 if($familie != null)
@@ -151,6 +152,7 @@ class Schueler extends Resource
                 else
                     return "---";
             })->sortable(),
+            */
            
 /*
             Text::make('# bestellt', function () { return $this->bestellungen()->count(); })
