@@ -147,6 +147,7 @@ class Buch extends Resource
     {
         return [
             (new Actions\LabelDrucken)->showOnTableRow(),
+            (new Actions\BuchRueckgabe)->showOnTableRow(),
         ];
     }
 

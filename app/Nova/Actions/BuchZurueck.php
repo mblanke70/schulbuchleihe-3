@@ -52,13 +52,18 @@ class BuchZurueck extends Action
                 $eintrag->titel     = $buch->buchtitel->titel;
                 $eintrag->nachname  = $ausleiher->nachname;
                 $eintrag->vorname   = $ausleiher->vorname;
-                $eintrag->email     = $ausleiher->user->email;
+
+                if($ausleiher->user != null) 
+                {
+                    $eintrag->email = $ausleiher->user->email;
+                }
 
                 if($buch->ausleiher_type == 'App\Schueler')
                 {
                     $eintrag->klasse    = $ausleiher->klasse->bezeichnung;
                     $eintrag->schuljahr = $ausleiher->klasse->jahrgang->schuljahr->schuljahr;
                 }
+                
                 $eintrag->ausgabe   = $buch->ausleiher_ausgabe;
                 $eintrag->rueckgabe = Carbon::now();
                 $eintrag->save();
