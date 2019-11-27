@@ -42,7 +42,7 @@ class SchuelerBankeinzug extends Lens
             'schueler.nachname',
             'schueler.vorname',
             'familien.strasse',
-            'familien.iban',
+            //'familien.iban',
             //DB::raw('count(buecher.id) as anzahl'),
         ];
     }

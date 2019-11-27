@@ -51,7 +51,7 @@ class SepaXML extends Action
             'dueDate'               => Carbon::now()->addDays(7), // Fälligkeitsdatum
             'creditorName'          => 'Ursulaschule Osnabrück', // Gläubiger-Name
             'creditorAccountIBAN'   => 'DE0310400000173836',    // Gläubiger-IBAN
-            'creditorAgentBIC'      => 'NOLADEXXX', // Gläubiger-BIC
+            'creditorAgentBIC'      => 'NOLADE22XXX', // Gläubiger-BIC
             'seqType'               => PaymentInformation::S_ONEOFF,    // Rhythmus
             'creditorId'            => 'DE0310400000173836',    // Gläubiger-ID
             'localInstrumentCode'   => 'CORE' // default. optional.

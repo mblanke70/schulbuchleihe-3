@@ -60,11 +60,9 @@ Route::group(
 
     /* AUSLEIHE */
     Route::get('ausleihe', 'AusleiheController@index');
-
     Route::get('ausleihe/{klasse}', 'AusleiheController@zeigeKlasse');
     Route::get('ausleihe/{klasse}/{schueler}', 'AusleiheController@zeigeSchueler');
     Route::delete('ausleihe/{klasse}/{schueler}', 'AusleiheController@remove');    
-    
     Route::post('ausleihe/{klasse}/{schueler}', 'AusleiheController@ausleihen');
     Route::delete('ausleihe/{klasse}/{schueler}', 'AusleiheController@loeschen');    
     Route::put('ausleihe/{klasse}/{schueler}', 'AusleiheController@aktualisieren');
