@@ -49,8 +49,8 @@ class SepaXML extends Action
         $directDebit->addPaymentInfo('sbl-1920', array(
             'id'                    => 'sbl-1920',
             'dueDate'               => Carbon::now()->addDays(7), // Fälligkeitsdatum
-            'creditorName'          => 'Ursulaschule Osnabrück', // Gläubiger-Name
-            'creditorAccountIBAN'   => 'DE0310400000173836',    // Gläubiger-IBAN
+            'creditorName'          => 'Schulstiftung im Bistum Osnabrück', // Gläubiger-Name
+            'creditorAccountIBAN'   => 'DE02265501050000203661',    // Gläubiger-IBAN
             'creditorAgentBIC'      => 'NOLADE22XXX', // Gläubiger-BIC
             'seqType'               => PaymentInformation::S_ONEOFF,    // Rhythmus
             'creditorId'            => 'DE0310400000173836',    // Gläubiger-ID
