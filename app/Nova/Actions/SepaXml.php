@@ -30,15 +30,14 @@ class SepaXML extends Action
         return ('Sepa-XML erzeugen');
     }
 
-    /**
-     * Perform the action on the given models.
-     *
-     * @param  \Laravel\Nova\Fields\ActionFields  $fields
-     * @param  \Illuminate\Support\Collection  $models
-     * @return mixed
-     */
-    public function handle(ActionFields $fields, Collection $models)
+    public function handleResult(ActionFields $fields, $results)
     {
+        $models = collect();
+        foreach($results as $chunk) 
+        {
+            $models = $models->merge($chunk);
+        }
+
         // Set the initial information
         // third parameter 'pain.008.003.02' is optional would default to 'pain.008.002.02' if not changed
         $directDebit = TransferFileFacadeFactory::createDirectDebit('SampleUniqueMsgId', 'Schulbuchleihe', 'pain.008.003.02');
@@ -56,7 +55,6 @@ class SepaXML extends Action
             'creditorId'            => 'DE0310400000173836',    // Gläubiger-ID
             'localInstrumentCode'   => 'CORE' // default. optional.
         ));
-
 
         foreach($models as $model) 
         {
@@ -106,6 +104,18 @@ class SepaXML extends Action
         file_put_contents( public_path().'/xml/sepa.xml', $directDebit->asXML() );
 
         return Action::download( url('xml/sepa.xml'), 'sepa.xml' );
+    }
+
+    /**
+     * Perform the action on the given models.
+     *
+     * @param  \Laravel\Nova\Fields\ActionFields  $fields
+     * @param  \Illuminate\Support\Collection  $models
+     * @return mixed
+     */
+    public function handle(ActionFields $fields, Collection $models)
+    {
+        return $models;
     }
 
     /**

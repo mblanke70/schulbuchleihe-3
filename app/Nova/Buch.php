@@ -62,7 +62,7 @@ class Buch extends Resource
      * @var array
      */
     public static $search = [
-        'buchtitel_id',
+        'id',
     ];
 
     /**
@@ -86,7 +86,7 @@ class Buch extends Resource
 
             BelongsTo::make('Titel', 'buchtitel', 'App\Nova\Buchtitel'),
 
-            Text::make('Buchtitel-ID', 'buchtitel_id')->onlyOnIndex(),
+            //Text::make('Buchtitel-ID', 'buchtitel_id')->onlyOnIndex(),
 
             MorphTo::make('Ausleiher')->types([
                 Schueler::class,
