@@ -45,6 +45,36 @@ class HomeController extends Controller
         return view('user/buecher', compact('schueler', 'buecher', 'schuljahr'));
     }
 
+    public function zeigeRechnung($id)
+    {
+        $ausleiher = Schueler::find($id);
+        $buecher   = $ausleiher->buecher;
+        $familie   = $ausleiher->familie;
+
+        $summe = 0;
+        foreach($buecher as $buch) {
+            // BuchtitelSchuljahr muss passen zum Schuljahr des Ausleihers
+            $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
+
+            $leihpreis = $btsj->leihpreis;
+            if($leihpreis != null) { $summe += $leihpreis; }
+        }
+
+        if($familie != null)
+        {
+            if($familie->kinder()->count() 
+                + $familie->externe()->count() > 2)
+            {
+                $summe = $summe * 0.8;
+            }
+
+            if($familie->befreit)
+            {
+                $summe = 0;
+            } 
+        }
+    }
+
     public function zeigeSchuljahr($sj)
     {
         $user = Auth::user();
