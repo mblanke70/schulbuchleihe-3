@@ -55,19 +55,29 @@
               Bücherlisten
             </a>
           </li>
+          <!--
           <li class="nav-item">
             <a class="nav-link" href="{{ url('user/anmeldung/schritt1') }}">
               <span data-feather="file"></span>
               Anmeldung zum Leihverfahren
             </a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="{{ url('user/buecher/3') }}">
               <span data-feather="file"></span>
               Leihbücher 2019/20
             </a>
+          </li>
+          --> 
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('user/rechnung/3') }}">
+              <span data-feather="file"></span>
+              Leihbücher 2019/20
+            </a>
           </li> 
         </ul>
+        <!--
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Schuljahr 2018/19</span>
         </h6>
@@ -79,6 +89,7 @@
             </a>
           </li>   
         </ul>
+        -->
       </div>
     </nav>
     

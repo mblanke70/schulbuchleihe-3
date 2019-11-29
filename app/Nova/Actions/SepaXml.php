@@ -51,7 +51,7 @@ class SepaXML extends Action
             'creditorName'          => 'Schulstiftung im Bistum Osnabrück', // Gläubiger-Name
             'creditorAccountIBAN'   => 'DE02265501050000203661',    // Gläubiger-IBAN
             'creditorAgentBIC'      => 'NOLADE22XXX', // Gläubiger-BIC
-            'seqType'               => PaymentInformation::S_ONEOFF,    // Rhythmus
+            'seqType'               => PaymentInformation::S_RECURRING,    // Rhythmus
             'creditorId'            => 'DE0310400000173836',    // Gläubiger-ID
             'localInstrumentCode'   => 'CORE' // default. optional.
         ));
@@ -87,18 +87,20 @@ class SepaXML extends Action
 
             $sepa = $familie->sepa_mandat;
 
-            // Add a Single Transaction to the named payment
-            $directDebit->addTransfer('sbl-1920', array(
-                'amount'                => $summe,   // Betrag
-                'debtorIban'            => $sepa->debtorIban,    // Zahlungspflichtiger-IBAN
-                'debtorBic'             => $sepa->debtorBic,     // Zahlungspflichtiger-BIC
-                'debtorName'            => $sepa->debtorName,    // Zahlungspflichtiger-Name
-                'debtorMandate'         => $sepa->debtorMandate, // Mandatsreferenz
-                'debtorMandateSignDate' => $sepa->debtorMandateSignDate, // Signaturdatum
-                'remittanceInformation' => 'Schulbuchleihe 2019/20 ' . 
-                    $model->vorname . " " . $model->nachname,    // Verwendungdzweck
-                //'endToEndId'            => 'Invoice-No X'      // optional, if you want to provide additional structured info
-            ));
+            if($summe>0)
+            {
+                // Add a Single Transaction to the named payment
+                $directDebit->addTransfer('sbl-1920', array(
+                    'amount'                => $summe,   // Betrag
+                    'debtorIban'            => $sepa->debtorIban,    // Zahlungspflichtiger-IBAN
+                    'debtorBic'             => $sepa->debtorBic,     // Zahlungspflichtiger-BIC
+                    'debtorName'            => $sepa->debtorName,    // Zahlungspflichtiger-Name
+                    'debtorMandate'         => $sepa->debtorMandate, // Mandatsreferenz
+                    'debtorMandateSignDate' => $sepa->debtorMandateSignDate, // Signaturdatum
+                    'remittanceInformation' => $model->vorname . " " . $model->nachname. " Entgelt Buchleihe 19/20",    // Verwendungdzweck
+                    //'endToEndId'            => 'Invoice-No X'      // optional, if you want to provide additional structured info
+                ));
+            }
         }
 
         file_put_contents( public_path().'/xml/sepa.xml', $directDebit->asXML() );

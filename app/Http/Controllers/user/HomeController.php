@@ -12,6 +12,7 @@ use App\Ausleiher;
 use App\Buecherliste;
 use App\Jahrgang;
 use App\Schuljahr;
+use App\Schueler;
 
 class HomeController extends Controller
 {
@@ -45,35 +46,51 @@ class HomeController extends Controller
         return view('user/buecher', compact('schueler', 'buecher', 'schuljahr'));
     }
 
-    public function zeigeRechnung($id)
+    public function zeigeRechnung($sj, $id = null)
     {
-        $ausleiher = Schueler::find($id);
-        $buecher   = $ausleiher->buecher;
-        $familie   = $ausleiher->familie;
-
-        $summe = 0;
-        foreach($buecher as $buch) {
-            // BuchtitelSchuljahr muss passen zum Schuljahr des Ausleihers
-            $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
-
-            $leihpreis = $btsj->leihpreis;
-            if($leihpreis != null) { $summe += $leihpreis; }
+        if($id == null) {
+            $user       = Auth::user();
+            $ausleiher  = $user->schuelerInSchuljahr($sj)->first();
+        } else {
+            $ausleiher  = Schueler::find($id);    
         }
-
-        if($familie != null)
+        
+        if($ausleiher != null)
         {
-            if($familie->kinder()->count() 
-                + $familie->externe()->count() > 2)
-            {
-                $summe = $summe * 0.8;
+            $buecher  = $ausleiher->buecher;
+            $familie  = $ausleiher->familie;
+
+            $summe = 0;
+            foreach($buecher as $buch) {
+                // BuchtitelSchuljahr muss passen zum Schuljahr des Ausleihers
+                $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
+
+                $leihpreis = $btsj->leihpreis;
+                $buch['leihpreis'] = $leihpreis;
+                if($leihpreis != null) { $summe += $leihpreis; }
             }
 
-            if($familie->befreit)
+            $erm = 1;
+            if($familie != null)
             {
-                $summe = 0;
-            } 
+                if($familie->kinder()->count() 
+                    + $familie->externe()->count() > 2)
+                {
+                    $erm = 0.8;
+                }
+
+                if($familie->befreit)
+                {
+                    $erm = 0;
+                } 
+            }
+
+            return view('user/rechnungen', 
+                compact('ausleiher', 'buecher', 'familie', 'summe', 'erm'));
         }
-    }
+
+         return view('user/index2');
+     }
 
     public function zeigeSchuljahr($sj)
     {

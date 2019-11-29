@@ -83,6 +83,8 @@ Route::group([
 
     Route::get('buecher/{id}', 'HomeController@zeigeBuecher');
 
+    Route::get('rechnung/{sj}/{id?}', 'HomeController@zeigeRechnung');
+
     Route::get('anmeldung/schritt1', 'AnmeldungController@zeigeVorabfragen');
     Route::post('anmeldung/schritt1', 'AnmeldungController@verarbeiteVorabfragen');
 
