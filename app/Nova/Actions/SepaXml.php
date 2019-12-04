@@ -46,9 +46,9 @@ class SepaXML extends Action
         // "firstPayment" is the identifier for the transactions
         // This creates a one time debit. If needed change use ::S_FIRST, ::S_RECURRING or ::S_FINAL respectively
         $directDebit->addPaymentInfo('sbl-1920', array(
-            'id'                    => 'sbl-1920',
+            'id'                    => 'sbl-1920-',
             'dueDate'               => Carbon::now()->addDays(7), // Fälligkeitsdatum
-            'creditorName'          => 'Schulstiftung im Bistum Osnabrück', // Gläubiger-Name
+            'creditorName'          => 'Ursulaschule', // Gläubiger-Name
             'creditorAccountIBAN'   => 'DE02265501050000203661',    // Gläubiger-IBAN
             'creditorAgentBIC'      => 'NOLADE22XXX', // Gläubiger-BIC
             'seqType'               => PaymentInformation::S_RECURRING,    // Rhythmus
