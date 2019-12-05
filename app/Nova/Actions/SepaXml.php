@@ -97,7 +97,7 @@ class SepaXML extends Action
                     'debtorName'            => $sepa->debtorName,    // Zahlungspflichtiger-Name
                     'debtorMandate'         => $sepa->debtorMandate, // Mandatsreferenz
                     'debtorMandateSignDate' => $sepa->debtorMandateSignDate, // Signaturdatum
-                    'remittanceInformation' => $model->vorname . " " . $model->nachname. " Entgelt Buchleihe 19/20",    // Verwendungdzweck
+                    'remittanceInformation' => $model->vorname . " " . $model->nachname,    // Verwendungdzweck
                     //'endToEndId'            => 'Invoice-No X'      // optional, if you want to provide additional structured info
                 ));
             }
