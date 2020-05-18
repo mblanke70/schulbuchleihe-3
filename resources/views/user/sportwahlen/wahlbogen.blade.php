@@ -161,48 +161,48 @@
     <script>
         var dependents = new Array();
   
-        dependents["k101"] = new Array("k304");
+        dependents["k101"] = new Array("k202");
         dependents["k102"] = new Array("k201");
-        dependents["k103"] = new Array("k303");
+        dependents["k103"] = new Array();
         dependents["k104"] = new Array();
         dependents["k111"] = new Array();
-        dependents["k112"] = new Array("k214");
+        dependents["k112"] = new Array("k214","k312");
         dependents["k113"] = new Array("k212");
         dependents["k114"] = new Array("k411");
 
         dependents["k201"] = new Array("k102");
-        dependents["k202"] = new Array("k402");
-        dependents["k203"] = new Array();
+        dependents["k202"] = new Array("k101");
+        dependents["k203"] = new Array("k402");
         dependents["k204"] = new Array();
-        dependents["k211"] = new Array();
-        dependents["k212"] = new Array("k113","k314","k414");
-        dependents["k213"] = new Array("k314","k414");
-        dependents["k214"] = new Array("k112");
+        dependents["k211"] = new Array("k413");
+        dependents["k212"] = new Array("k113");
+        dependents["k213"] = new Array("k311","k412");
+        dependents["k214"] = new Array("k112","k312");
           
         dependents["k301"] = new Array();
         dependents["k302"] = new Array();
-        dependents["k303"] = new Array("k103");
-        dependents["k304"] = new Array("k101");
-        dependents["k311"] = new Array();
-        dependents["k312"] = new Array();
+        dependents["k303"] = new Array();
+        dependents["k304"] = new Array();
+        dependents["k311"] = new Array("k213","412");
+        dependents["k312"] = new Array("k112","k214");
         dependents["k313"] = new Array();
-        dependents["k314"] = new Array("k212","k213","k412","k414");
+        dependents["k314"] = new Array();
           
         dependents["k401"] = new Array();
-        dependents["k402"] = new Array("k202");
+        dependents["k402"] = new Array("k203");
         dependents["k403"] = new Array();
         dependents["k404"] = new Array();
         dependents["k411"] = new Array("k114");
-        dependents["k412"] = new Array("k314");
-        dependents["k413"] = new Array();
-        dependents["k414"] = new Array("k212","k213","k314");  
+        dependents["k412"] = new Array("k311","k213");
+        dependents["k413"] = new Array("k211");
+        dependents["k414"] = new Array();  
 
 
         var substitutes = new Array();
   
         substitutes["k101"] = new Array("a7");
         substitutes["k102"] = new Array("a3");
-        substitutes["k103"] = new Array("a6");
+        substitutes["k103"] = new Array("a1");
         substitutes["k104"] = new Array();
         substitutes["k111"] = new Array("b7");
         substitutes["k112"] = new Array("b2");
@@ -210,31 +210,31 @@
         substitutes["k114"] = new Array("b9");
 
         substitutes["k201"] = new Array("a3");
-        substitutes["k202"] = new Array("a2");
-        substitutes["k203"] = new Array("a1");
+        substitutes["k202"] = new Array("a7");
+        substitutes["k203"] = new Array("a2");
         substitutes["k204"] = new Array();
-        substitutes["k211"] = new Array();
-        substitutes["k212"] = new Array("b0","b1","b3","b4");
-        substitutes["k213"] = new Array("b1","b3","b4");
+        substitutes["k211"] = new Array("b8");
+        substitutes["k212"] = new Array("b0");
+        substitutes["k213"] = new Array("b1","b4","b5");
         substitutes["k214"] = new Array("b2");
 
         substitutes["k301"] = new Array("a4");
         substitutes["k302"] = new Array("a5");
         substitutes["k303"] = new Array("a6");
-        substitutes["k304"] = new Array("a7");
-        substitutes["k311"] = new Array();
-        substitutes["k312"] = new Array();
+        substitutes["k304"] = new Array();
+        substitutes["k311"] = new Array("b1","b4","b5");
+        substitutes["k312"] = new Array("b2");
         substitutes["k313"] = new Array("b6");
-        substitutes["k314"] = new Array("b1","b3","b4","b5");
+        substitutes["k314"] = new Array();
 
-        substitutes["k401"] = new Array();
+        substitutes["k401"] = new Array("a0");
         substitutes["k402"] = new Array("a2");
-        substitutes["k403"] = new Array();
-        substitutes["k404"] = new Array("a0");
+        substitutes["k403"] = new Array("a8");
+        substitutes["k404"] = new Array();
         substitutes["k411"] = new Array("b9");
-        substitutes["k412"] = new Array("b4","b5");
+        substitutes["k412"] = new Array("b4","b5","b1");
         substitutes["k413"] = new Array("b8");
-        substitutes["k414"] = new Array("b1","b3","b4");
+        substitutes["k414"] = new Array();
 
         $(document).ready(function () 
         {

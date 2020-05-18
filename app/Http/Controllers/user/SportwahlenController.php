@@ -73,15 +73,16 @@ class SportwahlenController extends Controller
 			"a5" => "Alpiner Skilauf",
 			"a6" => "Orientierungslauf",
 			"a7" => "Tanz: Gestaltung von Bewegung",
+            "a8" => "Fitness / Ausdauer"
 		];
 
 		$ersatz[1] = [
 			"b0" => "Tennis",
 			"b1" => "Badminton",
 			"b2" => "Volleyball",
-			"b3" => "Badminton / Tennis",
+			//"b3" => "Badminton / Tennis",
 			"b4" => "Badminton / Tischtennis",
-			"b5" => "Tischtennis",
+			//"b5" => "Tischtennis",
 			"b6" => "Hockey / Handball",
 			"b7" => "Endzonenspiele: z.B. Ultimate Frisbee",
 			"b8" => "Fußball",
@@ -97,6 +98,7 @@ class SportwahlenController extends Controller
 
 		$rules = [
             'wahl' => 'required|array|size:4|sum',
+            'ersatzwahl' => 'size:2',
   	    	'ersatzwahl.*' => 'required',
 		];
 
@@ -108,8 +110,12 @@ class SportwahlenController extends Controller
 		    'wahl.size'     
 		    	=> 'In jedem Semester muss ein Sportkurs belegt werden',
 		    'ersatzwahl.*.required' 
-		    	=> 'In jedem Bewegungsfeld muss eine Ersatzwahl angegeben werden.',
+                => 'In jedem Bewegungsfeld muss eine Ersatzwahl angegeben werden.',
+            'ersatzwahl.size' 
+		    	=> 'Es müssen 2 Ersatzwahlen, eine aus jedem Bewegungsfeld, angegeben werden.',
 		];
+
+        //dd($request->ersatzwahl[0]);
 
     	$validator = Validator::make($request->all(), $rules, $messages)->validate();
 

@@ -115,7 +115,7 @@ class Klasse extends Resource
     {
         
         return [
-            new Filters\KlassenSchuljahr,
+            //new Filters\KlassenSchuljahr,
         ];
         
         //return [];
