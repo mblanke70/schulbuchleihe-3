@@ -125,7 +125,7 @@ class Jahrgang extends Resource
     public function filters(Request $request) 
     {
         return [
-            new Filters\JahrgangSchuljahr,
+            //new Filters\JahrgangSchuljahr,
         ];
     }
 

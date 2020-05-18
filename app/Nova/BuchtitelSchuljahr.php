@@ -12,6 +12,9 @@ use Laravel\Nova\Fields\Number;
 
 use App\Buchwahl;
 
+use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
+
+
 class BuchtitelSchuljahr extends Resource
 {
     /**
@@ -97,11 +100,23 @@ class BuchtitelSchuljahr extends Resource
                         
             BelongsTo::make('Buchtitel', 'buchtitel'),
 
+            Text::make('Titel', 'buchtitel.titel')
+                ->onlyOnIndex(),
+
+            Text::make('ISBN', 'buchtitel.isbn')
+                ->onlyOnIndex(),
+
+            Text::make('Verlag', 'buchtitel.verlag')
+                ->onlyOnIndex(),
+
+            Text::make('ISBN', 'buchtitel.isbn')
+                ->onlyOnIndex(),
+            
             BelongsTo::make('Schuljahr', 'schuljahr'),
 
             Text::make('Fach', 'buchtitel.fach.name')
                 ->hideWhenCreating()
-                ->hideWhenUpdating(),            
+                ->hideWhenUpdating(), 
 
             Number::make('Leihpreis', 'leihpreis')->min(1)->max(100)->step(0.01),
             
@@ -110,6 +125,7 @@ class BuchtitelSchuljahr extends Resource
             BelongsToMany::make('AbfrageAntwort', 'antworten')
                 ->onlyOnDetail(),
 
+            /*
             Text::make('# verfügbar', function () {
                 return $this->buchtitel()
                     ->first()
@@ -118,12 +134,15 @@ class BuchtitelSchuljahr extends Resource
                     ->count();
             
             })->onlyOnIndex(),
+            */
 
+            /*
             Text::make('# bestellt', function () {
                 return $this->buchwahlen()
                     ->where('wahl', 1)
                     ->count();
             })->onlyOnIndex(),
+            */
 
             BelongsToMany::make('Jahrgang', 'jahrgaenge'),
 
@@ -150,7 +169,7 @@ class BuchtitelSchuljahr extends Resource
     public function filters(Request $request)
     {
         return [
-            new Filters\BuchtitelSchuljahr,
+            //new Filters\BuchtitelSchuljahr,
             new Filters\BuchtitelSchuljahrFach,
         ];
     }
@@ -176,6 +195,8 @@ class BuchtitelSchuljahr extends Resource
     {
          return [
             new Actions\BestelllisteDrucken,
+            new DownloadExcel,
+
         ];
     }
 

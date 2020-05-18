@@ -100,10 +100,10 @@ Route::group([
     Route::get('anmeldung/schritt5', 'AnmeldungController@zeigeAbschluss');
 
     /* HOME */
-    /*
+    
     Route::get ('sportwahlen', 'SportwahlenController@index');
     Route::get ('sportwahlen/wahlbogen', 'SportwahlenController@zeigeWahlbogen');
     Route::post('sportwahlen/wahlbogen', 'SportwahlenController@speichereWahlbogen');
-    */
+    
 });
 
