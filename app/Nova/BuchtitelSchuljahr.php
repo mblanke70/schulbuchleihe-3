@@ -73,7 +73,7 @@ class BuchtitelSchuljahr extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'titel',
     ];
 
      /**
