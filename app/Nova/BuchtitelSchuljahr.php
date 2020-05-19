@@ -73,7 +73,16 @@ class BuchtitelSchuljahr extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'buchtitel.titel',
+        'id', 
+    ];
+
+    /**
+     * The relationship columns that should be searched.
+     *
+     * @var array
+     */
+    public static $searchRelations = [
+        'buchtitel' => ['titel'],
     ];
 
      /**
