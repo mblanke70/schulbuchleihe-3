@@ -178,7 +178,7 @@ class BuchtitelSchuljahr extends Resource
     public function filters(Request $request)
     {
         return [
-            //new Filters\BuchtitelSchuljahr,
+            new Filters\BuchtitelSchuljahr,
             new Filters\BuchtitelSchuljahrFach,
         ];
     }
