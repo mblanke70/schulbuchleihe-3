@@ -124,8 +124,8 @@
     <h4>Anmerkungen:</h4>
     <ul>
         <li><strong>Zeiten</strong>: Der Sportunterricht findet für den Jahrgang 12 Dienstag in der 5./6. Stunde und für den Jahrgang 13  Freitag in der 5./6. Stunde statt. Änderungen aus organisatorischen Gründen sind möglich!</li>
-        <li><strong>*Orientierungslauf</strong> findet in mehreren Blöcken dienstags (12/1) bzw. freitags (13/1) ab ca. 11.30 Uhr Semester begleitend statt.</li>
-        <li><strong>**Alpiner Skilauf</strong>: Die Praxisphase findet im Januar 2021 direkt nach den Weihnachtsferien statt. Die Vor- und Nachbereitung ist Semester begleitend. Kosten ca. 380,- €; nur für Fortgeschrittene; Leitung und weitere Informationen: H. Blanke, H. Laermann, H. Maaß</li>
+        <li><strong>*Orientierungslauf</strong> findet in mehreren Blöcken freitags (13/1) ab ca. 11.30 Uhr Semester begleitend statt.</li>
+        <li><strong>**Alpiner Skilauf</strong>: Die Praxisphase findet im Januar 2022 direkt nach den Weihnachtsferien statt. Die Vor- und Nachbereitung ist Semester begleitend. Kosten ca. 380,- €; nur für Fortgeschrittene; Leitung und weitere Informationen: H. Blanke, H. Laermann, H. Maaß</li>
         <li><strong>Tennis</strong>: Kostenanteil ca. 25,- € pro Semester; eigener Schläger und Tennis-Hallenschuhe (ohne Profil) oder saubere Hallenschuhe mit glatt geschliffenen Sohlen</li>
         <li><strong>Fitness/Soccer</strong>: evtl. Kosten ca. 3,- € pro Stunde</li>
         <li><strong>Rudern</strong>: Kostenanteil ca. 25,- €; Voraussetzung für die Teilnahme ist der Jugendschwimmschein Bronze</li>
