@@ -36,11 +36,6 @@ class BuchtitelSchuljahrFach extends Filter
         return $query->whereHas('buchtitel', function($query) use ($value) {
             $query->where('fach_id', $value);
         });
-        /*
-        return $query
-            ->join('buchtitel', 'buchtitel_id', 'buchtitel.id')
-            ->where('fach_id', $value);
-        */
     }
 
     /**

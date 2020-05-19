@@ -109,6 +109,7 @@ class BuchtitelSchuljahr extends Resource
                         
             BelongsTo::make('Buchtitel', 'buchtitel'),
 
+            /*
             Text::make('Titel', 'buchtitel.titel')
                 ->onlyOnIndex(),
 
@@ -117,9 +118,7 @@ class BuchtitelSchuljahr extends Resource
 
             Text::make('Verlag', 'buchtitel.verlag')
                 ->onlyOnIndex(),
-
-            Text::make('ISBN', 'buchtitel.isbn')
-                ->onlyOnIndex(),
+            */
             
             BelongsTo::make('Schuljahr', 'schuljahr'),
 
