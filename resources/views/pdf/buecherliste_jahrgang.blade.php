@@ -63,7 +63,7 @@
           </tr>
 
     
-          @foreach($jg->buchtitel->sortBy('buchtitel.titel')->sortBy('buchtitel.fach.name') as $btsj)
+          @foreach($jg->buchtitel as $btsj)
 
             <tr>
                 <td>{{ $btsj->buchtitel->titel }}</td>
