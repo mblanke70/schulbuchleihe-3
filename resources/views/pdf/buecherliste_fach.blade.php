@@ -42,9 +42,11 @@
 
   <body>
 
-    @foreach($plucked as $fach)
+    @foreach($plucked as $name => $fach)
    
       <div class="pb_before pb_after">
+
+        <h1> {{ $name }} </h1>
 
         <table cellpadding="3">
 
