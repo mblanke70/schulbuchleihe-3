@@ -42,46 +42,49 @@
 
   <body>
 
-    <table cellpadding="3">
+    <div class="pb_before pb_after">
 
-      <tr>
-          <th>Titel</th>
-          <th>Schuljahr</th>
-          <th>ISBN</th>
-          <th>Fach</th> 
-          <th>Leihpreis</th>
-          <th>Kaufpreis</th>
-          <th>Jahrgänge</th>
-      </tr>
-
-
-      @foreach($models as $btsj)
+      <table cellpadding="3">
 
         <tr>
-            <td>{{ $btsj->buchtitel->titel }}</td>
-            <td>{{ $btsj->schuljahr->schuljahr }}</td>
-            <td>{{ $btsj->buchtitel->isbn }}</td>
-            <td>{{ $btsj->buchtitel->fach->name }}</td>
-            <td>{{ $btsj->leihpreis }}</td>
-            <td>{{ $btsj->kaufpreis }}</td>
+            <th>Titel</th>
+            <th>Schuljahr</th>
+            <th>ISBN</th>
+            <th>Fach</th> 
+            <th>Leihpreis</th>
+            <th>Kaufpreis</th>
+            <th>Jahrgänge</th>
+        </tr>
 
-            <td>
+  
+        @foreach($models as $btsj)
 
-              @foreach ($btsj->jahrgaenge as $jg)
+          <tr>
+              <td>{{ $btsj->buchtitel->titel }}</td>
+              <td>{{ $btsj->schuljahr->schuljahr }}</td>
+              <td>{{ $btsj->buchtitel->isbn }}</td>
+              <td>{{ $btsj->buchtitel->fach->name }}</td>
+              <td>{{ $btsj->leihpreis }}</td>
+              <td>{{ $btsj->kaufpreis }}</td>
 
-                {{ $jg->jahrgangsstufe . " " }}
+              <td>
 
-              @endforeach                                 
-         
-            </td>
-          
-      </tr>
-      
-      @endforeach
+                @foreach ($btsj->jahrgaenge as $jg)
 
-         
-    </table>
+                  {{ $jg->jahrgangsstufe . " " }}
 
+                @endforeach                                 
+           
+              </td>
+            
+        </tr>
+        
+        @endforeach
+
+           
+      </table>
+
+    </div>
 
   </body>
 

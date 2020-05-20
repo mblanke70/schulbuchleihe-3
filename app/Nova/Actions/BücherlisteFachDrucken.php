@@ -22,7 +22,7 @@ class BücherlisteFachDrucken extends Action
      */
     public function name()
     {
-        return ('Bücherliste drucken');
+        return ('Bücherlisten fächerweise drucken');
     }
 
     /**
@@ -34,6 +34,11 @@ class BücherlisteFachDrucken extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {    
+        
+        $plucked = $models->pluck('buchtitel.fach.fach_id');
+
+        dd($plucked);
+
         \File::delete('pdf/buecherliste_fach.pdf');
 
         $pdf = \PDF::loadView(

@@ -86,7 +86,7 @@ class BuchRueckgabe extends Action
      */
     public function fields()
     {
-       return [
+        return [
 
             Boolean::make('ohne_historien_eintrag'),
 
