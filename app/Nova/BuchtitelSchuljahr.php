@@ -11,9 +11,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Number;
 
 use App\Buchwahl;
-
 use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
-
 
 class BuchtitelSchuljahr extends Resource
 {
@@ -201,7 +199,7 @@ class BuchtitelSchuljahr extends Resource
      */
     public function actions(Request $request)
     {
-         return [
+        return [
             new Actions\BestelllisteDrucken,
             new Actions\BücherlisteFachDrucken,
             new DownloadExcel,

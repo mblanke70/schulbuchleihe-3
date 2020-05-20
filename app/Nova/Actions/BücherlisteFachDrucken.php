@@ -34,17 +34,14 @@ class BücherlisteFachDrucken extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {    
-        
-        //$plucked = $models->pluck('buchtitel.fach', 'buchtitel.fach.id');
-
-        $plucked = $models->groupBy('buchtitel.fach.name');
+        $faecher = $models->groupBy('buchtitel.fach.name');
 
         \File::delete('pdf/buecherliste_fach.pdf');
 
         $pdf = \PDF::loadView(
 
             'pdf.buecherliste_fach', 
-            compact('models', 'plucked')
+            compact('faecher')
 
         )->save('pdf/buecherliste_fach.pdf');
     

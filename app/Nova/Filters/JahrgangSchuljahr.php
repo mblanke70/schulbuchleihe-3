@@ -27,11 +27,13 @@ class JahrgangSchuljahr extends Filter
      *
      * @return array
      */
+    /*
     public function default()
     {
         $schuljahr  = Schuljahr::where('aktiv', '1')->first();
         return ['id' => $schuljahr->id];
     }
+    */
 
     /**
      * Apply the filter to the given query.

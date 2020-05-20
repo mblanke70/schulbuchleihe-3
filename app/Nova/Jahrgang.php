@@ -10,6 +10,8 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsToMany;
 
+use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
+
 class Jahrgang extends Resource
 {
     /**
@@ -125,7 +127,7 @@ class Jahrgang extends Resource
     public function filters(Request $request) 
     {
         return [
-            //new Filters\JahrgangSchuljahr,
+            new Filters\JahrgangSchuljahr,
         ];
     }
 
@@ -148,7 +150,10 @@ class Jahrgang extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+         return [
+            new Actions\BücherlisteJahrgangDrucken,
+            new DownloadExcel,
+        ];
     }
 
     /**

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
   <head>
+
     <meta charset="utf-8">
     <title>Bücherliste</title>
     
@@ -42,11 +44,11 @@
 
   <body>
 
-    @foreach($faecher as $fach => $bücherliste)
+    @foreach($models as $jg)
    
       <div class="pb_before pb_after">
 
-        <h1> {{ $fach }} </h1>
+        <h1> Bücherliste Jahrgang {{ $jg->jahrgangsstufe }} </h1>
 
         <table cellpadding="3">
 
@@ -61,19 +63,19 @@
           </tr>
 
     
-          @foreach($bücherliste as $bt)
+          @foreach($jg->buchtitel->sortBy('buchtitel.fach.name') as $btsj)
 
             <tr>
-                <td>{{ $bt->buchtitel->titel }}</td>
-                <td>{{ $bt->schuljahr->schuljahr }}</td>
-                <td>{{ $bt->buchtitel->isbn }}</td>
-                <td>{{ $bt->buchtitel->fach->name }}</td>
-                <td>{{ $bt->leihpreis }}</td>
-                <td>{{ $bt->kaufpreis }}</td>
+                <td>{{ $btsj->buchtitel->titel }}</td>
+                <td>{{ $btsj->schuljahr->schuljahr }}</td>
+                <td>{{ $btsj->buchtitel->isbn }}</td>
+                <td>{{ $btsj->buchtitel->fach->name }}</td>
+                <td>{{ $btsj->leihpreis }}</td>
+                <td>{{ $btsj->kaufpreis }}</td>
 
                 <td>
 
-                  @foreach ($bt->jahrgaenge as $jg)
+                  @foreach ($btsj->jahrgaenge as $jg)
 
                     {{ $jg->jahrgangsstufe . " " }}
 
