@@ -61,16 +61,16 @@
 
           <tr>
               <td>{{ $btsj->buchtitel->titel }}</td>
-              <td>{{ $btsj->schuljahr->bezeichnung }}</td>
+              <td>{{ $btsj->schuljahr->schuljahr }}</td>
               <td>{{ $btsj->buchtitel->isbn }}</td>
-              <td>{{ $btsj->buchtitel->fach->bezeichnung }}</td>
+              <td>{{ $btsj->buchtitel->fach->name }}</td>
               <td>{{ $btsj->leihpreis }}</td>
               <td>{{ $btsj->kaufpreis }}</td>
 
               <td>
                 @foreach ($btsj->jahrgaenge as $jg)
 
-                  {{ $jg->name . " " }}
+                  {{ $jg->jahrgangsstufe . " " }}
 
                 @endforeach                                 
            
