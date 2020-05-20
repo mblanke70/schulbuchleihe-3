@@ -45,8 +45,8 @@ class BücherlisteFachDrucken extends Action
     
         return Action::download(
         
-            url('pdf/buecherliste.pdf'), 
-            'buecherliste.pdf'
+            url('pdf/buecherliste_fach.pdf'), 
+            'buecherliste_fach.pdf'
         
         );
     }
