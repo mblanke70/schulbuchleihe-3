@@ -37,7 +37,7 @@ class BücherlisteFachDrucken extends Action
         
         //$plucked = $models->pluck('buchtitel.fach', 'buchtitel.fach.id');
 
-        $plucked = $models->groupBy('buchtitel.fach');
+        $plucked = $models->groupBy('buchtitel.fach.id');
 
         \File::delete('pdf/buecherliste_fach.pdf');
 
