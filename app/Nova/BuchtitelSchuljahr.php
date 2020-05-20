@@ -203,8 +203,8 @@ class BuchtitelSchuljahr extends Resource
     {
          return [
             new Actions\BestelllisteDrucken,
+            new Actions\BücherlisteFachDrucken,
             new DownloadExcel,
-
         ];
     }
 
