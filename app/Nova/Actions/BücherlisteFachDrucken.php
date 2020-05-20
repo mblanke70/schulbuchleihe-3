@@ -37,14 +37,12 @@ class BücherlisteFachDrucken extends Action
         
         $plucked = $models->pluck('buchtitel.fach.fach_id');
 
-        dd($plucked);
-
         \File::delete('pdf/buecherliste_fach.pdf');
 
         $pdf = \PDF::loadView(
 
             'pdf.buecherliste_fach', 
-            compact('models')
+            compact('models', 'plucked')
 
         )->save('pdf/buecherliste_fach.pdf');
     

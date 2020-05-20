@@ -42,6 +42,8 @@
 
   <body>
 
+    {{ $plucked }}
+
     <div class="pb_before pb_after">
 
       <table cellpadding="3">
