@@ -25,7 +25,7 @@
       }
 
       body {
-        font: normal 16px/1.5em 'PT Sans', Sans-serif;
+        font: normal 14px/1.5em 'PT Sans', Sans-serif;
       }
 
       .pb_before {
@@ -42,48 +42,46 @@
 
   <body>
 
-    <div class="pb_before pb_after">
+    <table cellpadding="3">
 
-      <table cellpadding="3">
+      <tr>
+          <th>Titel</th>
+          <th>Schuljahr</th>
+          <th>ISBN</th>
+          <th>Fach</th> 
+          <th>Leihpreis</th>
+          <th>Kaufpreis</th>
+          <th>Jahrgänge</th>
+      </tr>
+
+
+      @foreach($models as $btsj)
 
         <tr>
-            <th>Titel</th>
-            <th>Schuljahr</th>
-            <th>ISBN</th>
-            <th>Fach</th> 
-            <th>Leihpreis</th>
-            <th>Kaufpreis</th>
-            <th>Jahrgänge</th>
-        </tr>
+            <td>{{ $btsj->buchtitel->titel }}</td>
+            <td>{{ $btsj->schuljahr->schuljahr }}</td>
+            <td>{{ $btsj->buchtitel->isbn }}</td>
+            <td>{{ $btsj->buchtitel->fach->name }}</td>
+            <td>{{ $btsj->leihpreis }}</td>
+            <td>{{ $btsj->kaufpreis }}</td>
 
-  
-        @foreach($models as $btsj)
+            <td>
 
-          <tr>
-              <td>{{ $btsj->buchtitel->titel }}</td>
-              <td>{{ $btsj->schuljahr->schuljahr }}</td>
-              <td>{{ $btsj->buchtitel->isbn }}</td>
-              <td>{{ $btsj->buchtitel->fach->name }}</td>
-              <td>{{ $btsj->leihpreis }}</td>
-              <td>{{ $btsj->kaufpreis }}</td>
+              @foreach ($btsj->jahrgaenge as $jg)
 
-              <td>
-                @foreach ($btsj->jahrgaenge as $jg)
+                {{ $jg->jahrgangsstufe . " " }}
 
-                  {{ $jg->jahrgangsstufe . " " }}
+              @endforeach                                 
+         
+            </td>
+          
+      </tr>
+      
+      @endforeach
 
-                @endforeach                                 
-           
-              </td>
-            
-        </tr>
-        
-        @endforeach
+         
+    </table>
 
-           
-      </table>
-
-    </div>
 
   </body>
 
