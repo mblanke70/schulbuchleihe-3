@@ -105,7 +105,12 @@ class LoginController extends Controller
             return redirect()->intended('nova/');
         }
 
-        return redirect()->intended('user/sportwahlen');
+        if( $user->jahrgang == 11 )
+        {
+            return redirect()->intended('user/sportwahlen/');
+        }
+
+        return redirect()->intended('user/');
     }
 
     public function logout()
