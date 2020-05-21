@@ -105,7 +105,7 @@ class LoginController extends Controller
             return redirect()->intended('nova/');
         }
 
-        return redirect()->intended('user/');
+        return redirect()->intended('user/sportwahlen');
     }
 
     public function logout()
