@@ -59,7 +59,16 @@ class BuchHistorie extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'buch_id', 'titel', 'nachname', 'vorname', 
+        'id', 'buch_id', 'nachname', 'vorname', 
+    ];
+
+    /**
+     * The relationship columns that should be searched.
+     *
+     * @var array
+     */
+    public static $searchRelations = [
+        'buchtitel' => ['titel'],
     ];
 
     /**
@@ -75,8 +84,6 @@ class BuchHistorie extends Resource
             ID::make()->sortable(),
 
             BelongsTo::make('Buch', 'buch')->nullable(),
-
-            Text::make('Titel', 'titel')->sortable(),
             
             Text::make('Nachname', 'nachname')->sortable(),
             

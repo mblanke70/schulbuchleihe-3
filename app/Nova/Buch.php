@@ -54,7 +54,7 @@ class Buch extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'titel';
 
     /**
      * The columns that should be searched.
