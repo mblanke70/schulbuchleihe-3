@@ -68,8 +68,8 @@ class Buchtitel extends Resource
         return [
             ID::make()->sortable(),
             
-            Text::make('Kennung', 'kennung')
-                ->sortable(),
+            //Text::make('Kennung', 'kennung')
+            //    ->sortable(),
             
             Text::make('Titel', 'titel')
                 ->rules('required')
