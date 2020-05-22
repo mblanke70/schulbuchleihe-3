@@ -68,7 +68,7 @@ class BuchHistorie extends Resource
      * @var array
      */
     public static $searchRelations = [
-        'buchtitel' => ['titel'],
+        'buch.buchtitel' => ['titel'],
     ];
 
     /**
