@@ -41,6 +41,7 @@ class BuecherlisteSchuljahr extends Filter
      * @param  mixed  $value
      * @return \Illuminate\Database\Eloquent\Builder
      */
+    
     public function apply(Request $request, $query, $value)
     {
         return $query->whereHas('jahrgang', function($query) use ($value) {
