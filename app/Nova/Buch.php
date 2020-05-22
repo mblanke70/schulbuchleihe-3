@@ -50,11 +50,14 @@ class Buch extends Resource
     public static $model = 'App\Buch';
 
     /**
-     * The single value that should be used to represent the resource when being displayed.
+     * Get the value that should be displayed to represent the resource.
      *
-     * @var string
+     * @return string
      */
-    public static $title = 'id';
+    public function title()
+    {
+        return $this->buchtitel->titel;
+    }
 
     /**
      * The columns that should be searched.
