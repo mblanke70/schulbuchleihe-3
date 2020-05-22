@@ -85,6 +85,8 @@ class BuchHistorie extends Resource
 
             BelongsTo::make('Buch', 'buch')->nullable(),
             
+            Text::make('Buch ID', 'buch_id')->sortable(),
+
             Text::make('Nachname', 'nachname')->sortable(),
             
             Text::make('Vorname', 'vorname')->sortable(),
