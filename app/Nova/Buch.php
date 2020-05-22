@@ -66,6 +66,15 @@ class Buch extends Resource
     ];
 
     /**
+     * The relationship columns that should be searched.
+     *
+     * @var array
+     */
+    public static $searchRelations = [
+        'buchtitel' => ['titel'],
+    ];
+
+    /**
      * The relationships that should be eager loaded on index queries.
      *
      * @var array
