@@ -60,16 +60,12 @@ class AnmeldungController extends Controller
         } 
         else 
         {
-            /*
             $jahrgang = $user->jahrgang;
-            if($jahrgang != 20) $jahrgang++;
-
-            $jahrgaenge = Jahrgang::where('schuljahr_id', 3)->get();
+            $jahrgaenge = Jahrgang::where('schuljahr_id', 4)->get();
 
             return view('user/anmeldung/schritt1', compact('jahrgang', 'jahrgaenge'));
-            */
             
-            return view('user/anmeldung/geschlossen'); 
+            //return view('user/anmeldung/geschlossen'); 
         }
     }
 
