@@ -38,7 +38,7 @@
 
         </div>
         <div class="col-md-6">
-	       	<h4>Jahrgang im Schuljahr 2019/20</h4>
+	       	<h4>Jahrgang im Schuljahr 2020/21</h4>
             <p>Geben Sie an, in welchem Jahrgang sich ihr Kind im nächsten Schuljahr befindet. (Es sollte der richtige Jahrgang vorausgewählt sein.)</p>
             <div class="input-group mb-3">
 				<div class="input-group-prepend">
