@@ -40,8 +40,8 @@
           	@isset($user->familie)
 	
 				<div class="table-responsive">
-					<caption>Geschwisterkinder an der Ursulaschule</caption>
 	            	<table class="table table-striped table-sm">    	
+						<caption>Geschwisterkinder an der Ursulaschule</caption>
 	                	<thead>
 		                    <tr>
 		                        <th>Vorname</th> 
