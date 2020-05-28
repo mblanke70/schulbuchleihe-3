@@ -42,7 +42,7 @@
 	        	<h5>Geschwisterkinder an der Ursulaschule</h5>
 	
 				<div class="table-responsive">
-	            	<table class="table table-striped">    	
+	            	<table class="table table-striped table-sm">    	
 	                	<thead>
 		                    <tr>
 		                        <th>Vorname</th> 
