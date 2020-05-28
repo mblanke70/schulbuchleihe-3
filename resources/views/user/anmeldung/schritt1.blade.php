@@ -4,7 +4,7 @@
 
 @section('heading')
     <h4>Anmeldung (Schritt 1/4)</h4>
-    <h4>{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} ({{ Auth::user()->klasse }})</h4> 
+    <h4>{{ $user->vorname }} {{ $user->nachname }} ({{ $user->klasse }})</h4> 
 @endsection
 
 @section('content')
@@ -23,7 +23,7 @@
         <div class="col-md-6">
         	<h4>Erm&auml;&szlig;igung auf den Leihpreis</h4>
         	<p>Familien mit 3 oder mehr schulpflichtigen Kindern zahlen nur 80% des Leihpreises. Der Nachweis über schulpflichtige Geschwisterkinder erfolgt durch Abgabe der Bescheinigungen im Sekretariat bis Montag, den 1.7.2019. Für Geschwisterkinder, die die Ursulaschule besuchen, entfällt die Nachweispflicht.</p>
-
+<!--
         	<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<label class="input-group-text" for="ermaessigung">Ermäßigung</label>
@@ -35,6 +35,15 @@
                     <option value="2">100% Erm&auml;&szlig;igung (befreit)</option>
                 </select>
             </div>
+-->
+			<div class="input-group mb-3">
+
+				@foreach($user->familie->users as $geschwister)
+					<div>$geschwister->name</div>
+				@endforeach
+
+			</div>
+
 
         </div>
         <div class="col-md-6">
