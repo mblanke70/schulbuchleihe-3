@@ -24,7 +24,7 @@ class VorabfrageRequest extends FormRequest
     public function rules()
     {
         return [
-            'ermaessigung' => 'required',
+            //'ermaessigung' => 'required',
             'jahrgang'     => 'required',
         ];
     }
