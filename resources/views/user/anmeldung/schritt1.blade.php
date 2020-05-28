@@ -36,13 +36,36 @@
                 </select>
             </div>
 -->
+
+        	<h4>Geschwisterkinder</h4>
+
+          	@isset($user->familie)
+
+				<div class="table-responsive">
+	            	<table class="table table-striped">    	
+	                	<thead>
+		                    <tr>
+		                        <th>Vorname</th> 
+		                        <th>Name</th> 
+		                    </tr>
+	                	</thead>
+
+		                <tbody>
+							@foreach($user->familie->users as $geschwister)
+								<tr>
+									<td>{{ $geschwister->vorname }}</td>
+		                        	<td>{{ $geschwister->nachname }}</td>
+								</tr>
+							@endforeach				
+		                </tbody>
+		            </table>
+		        </div>
+
+   			@endisset
+
 			<div class="input-group mb-3">
 
-				@isset($user->familie)
-					@foreach($user->familie->users as $geschwister)
-						<div>{{ $geschwister->name }}</div>
-					@endforeach
-				@endisset
+				
 
 			</div>
 
