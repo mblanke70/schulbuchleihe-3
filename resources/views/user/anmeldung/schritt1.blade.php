@@ -37,7 +37,7 @@
             </div>
 -->
 
-        	<h4>Geschwisterkinder</h4>
+        	<h5>Geschwisterkinder an der Ursulaschule</h5>
 
           	@isset($user->familie)
 
