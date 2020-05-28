@@ -93,10 +93,12 @@ class Familie extends Resource
             Text::make('Kinder', function() {
                 $kinder  = $this->kinder;
                 $externe = $this->externe;
+                $users   = $this->users;
 
                 $namen = array();
-                foreach($kinder as $k)  { $namen[] = $k->vorname; }
+                foreach($kinder  as $k) { $namen[] = $k->vorname; }
                 foreach($externe as $k) { $namen[] = $k->vorname; }
+                foreach($users   as $k) { $namen[] = $k->email;   }
 
                 return implode(", ", $namen);
             })->onlyOnIndex(),
@@ -133,6 +135,7 @@ class Familie extends Resource
 
             HasMany::make('SchuelerExt', 'externe'),
 
+            HasMany::make('Users', 'users'),
         ];
     }
 

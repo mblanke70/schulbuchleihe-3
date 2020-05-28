@@ -30,4 +30,9 @@ class Familie extends Model
     {
         return $this->belongsTo('App\SepaMandat', 'mandatsref', 'debtorMandate');
     }
+
+    public function users()
+    {
+        return $this->hasMany('App\User');
+    }
 }

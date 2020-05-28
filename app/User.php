@@ -22,6 +22,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Schueler')->with(['user', 'klasse']);
     }
 
+    public function familie()
+    {
+        return $this->belongsTo('App\Familie');
+    }
+
     public function schuelerInSchuljahr($sj)
     {
         return $this->hasMany('App\Schueler')
