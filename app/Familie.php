@@ -11,6 +11,7 @@ class Familie extends Model
 
     protected $table = 'familien';
 
+    /* ZUM LÖSCHEN VORGEMERKT */
     public function kinder()
     {
         return $this->hasMany('App\Schueler');

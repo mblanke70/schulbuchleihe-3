@@ -39,7 +39,7 @@
 			<div class="input-group mb-3">
 
 				@foreach($user->familie->users as $geschwister)
-					<div>$geschwister->name</div>
+					<div>{{ $geschwister->name }}</div>
 				@endforeach
 
 			</div>
