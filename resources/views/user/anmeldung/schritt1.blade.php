@@ -38,9 +38,11 @@
 -->
 			<div class="input-group mb-3">
 
-				@foreach($user->familie->users as $geschwister)
-					<div>{{ $geschwister->name }}</div>
-				@endforeach
+				@isset($user->familie)
+					@foreach($user->familie->users as $geschwister)
+						<div>{{ $geschwister->name }}</div>
+					@endforeach
+				@endisset
 
 			</div>
 
