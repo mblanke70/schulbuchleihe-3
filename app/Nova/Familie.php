@@ -91,14 +91,15 @@ class Familie extends Resource
             BelongsTo::make('SEPA-Mandat', 'sepa_mandat'),
             
             Text::make('Kinder', function() {
-                $kinder  = $this->kinder;
-                $externe = $this->externe;
+                //$kinder  = $this->kinder;
                 $users   = $this->users;
+                $externe = $this->externe;
 
                 $namen = array();
-                foreach($kinder  as $k) { $namen[] = $k->vorname; }
+                //foreach($kinder  as $k) { $namen[] = $k->vorname; }
+                foreach($users   as $k) { $namen[] = $k->vorname; }
                 foreach($externe as $k) { $namen[] = $k->vorname; }
-                foreach($users   as $k) { $namen[] = $k->email;   }
+                
 
                 return implode(", ", $namen);
             })->onlyOnIndex(),
@@ -120,22 +121,25 @@ class Familie extends Resource
             Boolean::make('befreit'),
 
             Boolean::make('ermäßigt', function () {
-                return ($this->kinder()->count() + $this->externe()->count()) > 2;
+                //return ($this->kinder()->count() + $this->externe()->count()) > 2;
+                return ($this->users()->count() + $this->externe()->count()) > 2;
             })->onlyOnIndex(),
 
             Text::make('# Kinder', function () {
-                return $this->kinder()->count();
+                //return $this->kinder()->count();
+                return $this->users()->count();
             })->onlyOnIndex(),
 
             Text::make('# Externe', function () {
                 return $this->externe()->count();
             })->onlyOnIndex(),
             
-            HasMany::make('Schueler', 'kinder'),
+            //HasMany::make('Schueler', 'kinder'),
+
+            HasMany::make('Users', 'users'),
 
             HasMany::make('SchuelerExt', 'externe'),
 
-            HasMany::make('Users', 'users'),
         ];
     }
 
