@@ -38,10 +38,9 @@
 -->
 
           	@isset($user->familie)
-
-	        	<h5>Geschwisterkinder an der Ursulaschule</h5>
 	
 				<div class="table-responsive">
+					<caption>Geschwisterkinder an der Ursulaschule</caption>
 	            	<table class="table table-striped table-sm">    	
 	                	<thead>
 		                    <tr>
