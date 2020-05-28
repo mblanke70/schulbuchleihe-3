@@ -37,10 +37,10 @@
             </div>
 -->
 
-        	<h5>Geschwisterkinder an der Ursulaschule</h5>
-
           	@isset($user->familie)
 
+	        	<h5>Geschwisterkinder an der Ursulaschule</h5>
+	
 				<div class="table-responsive">
 	            	<table class="table table-striped">    	
 	                	<thead>
@@ -56,19 +56,12 @@
 									<td>{{ $geschwister->vorname }}</td>
 		                        	<td>{{ $geschwister->nachname }}</td>
 								</tr>
-							@endforeach				
+							@endforeach			
 		                </tbody>
 		            </table>
 		        </div>
 
    			@endisset
-
-			<div class="input-group mb-3">
-
-				
-
-			</div>
-
 
         </div>
         <div class="col-md-6">
@@ -89,6 +82,7 @@
 			  	</select>
 			</div>
 
+<!--
 			<h4 class="mt-4">Bankverbindung</h4>
 
             <p>Geben Sie das Konto an, von dem auch das Schulgeld für Ihr Kind eingezogen wird. Von diesem Konto werden wir am Anfang des nächsten Schuljahres auch die Leihgebühren einziehen. Diese Angabe hilft uns, dass für das Schulgeld von Ihnen erteilte Lastschriftmandat richtig zuzuordnen.</p>
@@ -106,6 +100,7 @@
 			  	</div>
 			  	<input type="text" class="form-control" name="iban">
 			</div>
+-->
         </div>
   	</div>
 
