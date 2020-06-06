@@ -84,6 +84,8 @@ class Familie extends Resource
             
             Text::make('Straße', 'strasse')->rules('required')->sortable(),
 
+            Text::make('Email', 'email')->rules('required')->hideFromIndex(),
+
             //Text::make('IBAN', 'iban')->hideFromIndex(),
 
             //Text::make('Mandatsref', 'mandatsref')->sortable(),
@@ -151,8 +153,6 @@ class Familie extends Resource
             Text::make('RE_PLZ', 're_plz')->hideFromIndex(),
             
             Text::make('RE_Ort', 're_ort')->hideFromIndex(),
-
-            Text::make('RE_Email', 're_ort')->hideFromIndex(),
         ];
     }
 
