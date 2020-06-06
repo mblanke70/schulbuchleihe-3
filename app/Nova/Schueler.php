@@ -92,20 +92,24 @@ class Schueler extends Resource
             BelongsTo::make('User', 'user')->hideFromIndex()->nullable()->searchable(),
 
             Text::make('Ermäßigung', function () { 
-                $familie = $this->user->familie;
-                if($familie != null)
+                $user = $this->user;
+                if($user != null)
                 {
-                    if($familie->kinder()->count() 
-                        + $familie->externe()->count() > 2)
+                    $familie = $user->familie;
+                    if($familie != null)
                     {
-                        return "20%";
-                    }
+                        if($familie->kinder()->count() 
+                            + $familie->externe()->count() > 2)
+                        {
+                            return "20%";
+                        }
 
-                    if($familie->befreit)
-                    {
-                        return "100%";
+                        if($familie->befreit)
+                        {
+                            return "100%";
+                        }
+                        return "---"; 
                     }
-                    return "---"; 
                 }
                 return "k.F.";
             }),
