@@ -127,19 +127,23 @@ class Schueler extends Resource
                     }
                 }
 
-                $familie = $this->user->familie;
-                if($familie != null)
+                $user = $this->user;
+                if($user != null)
                 {
-                    if($familie->kinder()->count() 
-                        + $familie->externe()->count() > 2)
+                    $familie = $user->familie;
+                    if($familie != null)
                     {
-                        $summe = $summe * 0.8;
-                    }
+                        if($familie->kinder()->count() 
+                            + $familie->externe()->count() > 2)
+                        {
+                            $summe = $summe * 0.8;
+                        }
 
-                    if($familie->befreit)
-                    {
-                        $summe = 0;
-                    } 
+                        if($familie->befreit)
+                        {
+                            $summe = 0;
+                        } 
+                    }
                 }
 
                 return number_format($summe, 2, ',', '');
