@@ -34,6 +34,9 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'postmark' => [
+        'token' => env('POSTMARK_TOKEN'),
+    ],
 
     'iserv' => [
       'client_id' => env('ISERV_KEY'),

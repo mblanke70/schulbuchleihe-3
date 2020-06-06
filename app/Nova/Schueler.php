@@ -92,7 +92,7 @@ class Schueler extends Resource
             BelongsTo::make('User', 'user')->hideFromIndex()->nullable()->searchable(),
 
             Text::make('Ermäßigung', function () { 
-                $familie = $this->familie;
+                $familie = $this->user->familie;
                 if($familie != null)
                 {
                     if($familie->kinder()->count() 
@@ -123,7 +123,7 @@ class Schueler extends Resource
                     }
                 }
 
-                $familie = $this->familie;
+                $familie = $this->user->familie;
                 if($familie != null)
                 {
                     if($familie->kinder()->count() 
@@ -162,17 +162,17 @@ class Schueler extends Resource
 
             HasMany::make('Buchwahl', 'buecherwahlen'),
 
-            BelongsTo::make('Familie', 'familie')->nullable()->hideFromIndex(),
+            //BelongsTo::make('Familie', 'familie')->nullable()->hideFromIndex(),
 
-            Text::make('RE_Vorname', 're_vorname')->hideFromIndex(),
+            //Text::make('RE_Vorname', 're_vorname')->hideFromIndex(),
             
-            Text::make('RE_Nachname', 're_nachname')->hideFromIndex(),
+            //Text::make('RE_Nachname', 're_nachname')->hideFromIndex(),
             
-            Text::make('RE_Straße', 're_strasse_nr')->hideFromIndex(),
+            //Text::make('RE_Straße', 're_strasse_nr')->hideFromIndex(),
             
-            Text::make('RE_PLZ', 're_plz')->hideFromIndex(),
+            //Text::make('RE_PLZ', 're_plz')->hideFromIndex(),
             
-            Text::make('RE_Ort', 're_ort')->hideFromIndex(),
+            //Text::make('RE_Ort', 're_ort')->hideFromIndex(),
 
         ];
     }

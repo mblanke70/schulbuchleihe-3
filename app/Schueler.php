@@ -59,10 +59,12 @@ class Schueler extends Model
     	return $this->belongsTo('App\User');
     }
     
+    /*
     public function familie()
     {
         return $this->belongsTo('App\Familie');
     }
+    */
 
     public function buecherliste()
     {

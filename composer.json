@@ -27,7 +27,8 @@
         "socialiteproviders/generators": "^4.1",
         "socialiteproviders/manager": "^3.4",
         "spatie/nova-backup-tool": "^3.8",
-        "titasgailius/search-relations": "^1.0"
+        "titasgailius/search-relations": "^1.0",
+        "wildbit/swiftmailer-postmark": "^3.1"
     },
     "repositories": [
         {

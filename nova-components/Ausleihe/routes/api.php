@@ -27,4 +27,3 @@ Route::get('/{jahrgang}/{klasse}', AusleiheController::class.'@getSchueler');
 Route::get('/{jahrgang}/{klasse}/{schueler}', AusleiheController::class.'@getAusleiher');
 
 Route::post('/{jahrgang}/{klasse}/{schueler}', AusleiheController::class.'@ausleihen');
-

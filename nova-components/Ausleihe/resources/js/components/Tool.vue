@@ -75,7 +75,7 @@
                             class="w-full form-control form-input form-input-bordered"
                             ref="ausleihen"
                             v-on:keyup.enter="buchAusleihen"
-                            v-if="selectedSchueler>0"
+                            v-if="selectedSchueler!=-1"
                             v-model="buchId" 
                             placeholder="Buch ausleihen" 
                         >
