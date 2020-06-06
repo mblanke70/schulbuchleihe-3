@@ -25,15 +25,27 @@ class VorabfrageRequest extends FormRequest
     {
         return [
             //'ermaessigung' => 'required',
-            'jahrgang'     => 'required',
+            'jahrgang'      => 'required',
+            'geschlecht'    => 'required',
+            'vorname'       => 'required',
+            'nachname'      => 'required',
+            'strasse'       => 'required',
+            'ort'           => 'required',
+            'email'         => 'required|email',
         ];
     }
 
     public function messages()
     {
         return [
-            'ermaessigung.required' => 'Ermäßigung nicht ausgewählt.',
-            'jahrgang.required'    => 'Jahrgang nicht ausgewählt.',
+            //'ermaessigung.required' => 'Ermäßigung nicht ausgewählt.',
+            'jahrgang.required'     => 'Jahrgang nicht ausgewählt.',
+            'geschlecht.required'   => 'Anrede nicht angegeben.',
+            'vorname.required'      => 'Vorname nicht angegeben.',
+            'nachname.required'     => 'Nachname nicht angegeben.',
+            'strasse.required'      => 'Straße nicht angegeben.',
+            'ort.required'          => 'Ort nicht angegeben.',
+            'email.required'        => 'Email nicht angegeben.',
         ];
     }
 }

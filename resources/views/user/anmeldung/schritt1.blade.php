@@ -31,20 +31,16 @@
 					<div class="col-sm-10">
 						<div class="custom-control custom-radio custom-control-inline">
 						 	<input class="custom-control-input" type="radio" name="geschlecht" id="maennlich" value="m" 
-						 	@isset($familie) 
-						 		@if($familie->re_geschlecht=='m')
-						 			checked="" 
-						 		@endif  
-						 	@endisset>
+
+						 	{{ old('geschlecht', optional($familie)->re_geschlecht) == "m" ? 'checked' : '' }}
+							>
+						 	
 						  	<label class="custom-control-label" for="maennlich">Herr</label>
 						</div>
 						<div class="custom-control custom-radio custom-control-inline">
 						  	<input class="custom-control-input" type="radio" name="geschlecht" id="weiblich" value="w" 
-						  	@isset($familie) 
-						 		@if($familie->re_geschlecht=='w')
-						 			checked="" 
-						 		@endif  
-						 	@endisset>
+						  	{{ old('geschlecht', optional($familie)->re_geschlecht) == "w" ? 'checked' : '' }}
+						  	>
 						  	<label class="custom-control-label" for="weiblich">Frau</label>
 					</div>
 				</div>
@@ -53,32 +49,34 @@
 			<div class="form-group row">
 			   	<label for="vorname" class="col-sm-2 col-form-label">Vorname</label>
 			   	<div class="col-sm-10">
-			    	<input type="text" class="form-control" name="vorname" id="vorname" value="@isset($familie) {{ $familie->re_vorname }} @endisset">
+			    	<input type="text" class="form-control" name="vorname" id="vorname" value="{{ old('vorname', optional($familie)->re_vorname) }}">
 			  	</div>
 			 </div>
 			<div class="form-group row">			 
 	  	    	<label for="nachname" class="col-sm-2 col-form-label">Nachname</label>
 	  	    	<div class="col-sm-10">
-		    		<input type="text" class="form-control" name="nachname" id="nachname" value="@isset($familie) {{ $familie->re_nachname }} @endisset">
+		    		<input type="text" class="form-control" name="nachname" id="nachname" value="{{ old('nachname', optional($familie)->re_nachname) }}">
 			  	</div>
 			</div>
 			<div class="form-group row">			 
 				<label for="strasse" class="col-sm-2 col-form-label">Straße</label>
 				<div class="col-sm-10">
 				   	<input type="text" class="form-control" name="strasse" id="strasse"
-				   	value="@isset($familie) {{ $familie->re_strasse_nr }} @endisset">
+				   	value="{{ old('strasse', optional($familie)->re_strasse_nr) }}">
 				</div>
 			</div>
 			<div class="form-group row">			 
 			   	<label for="ort" class="col-sm-2 col-form-label">Ort</label>
 			   	<div class="col-sm-10">
-				   	<input type="text" class="form-control" name="ort" id="ort" value="@isset($familie) {{ $familie->re_ort }} @endisset">
+				   	<input type="text" class="form-control" name="ort" id="ort" 
+				   	value="{{ old('ort', optional($familie)->re_ort) }}">
 				</div>
 			</div>
 			<div class="form-group row">			 
 			  	<label for="email" class="col-sm-2 col-form-label">Email</label>
 			   	<div class="col-sm-10">
-			  		<input type="email" class="form-control" name="email" id="email" value="@isset($familie) {{ $familie->email }} @endisset">
+			  		<input type="email" class="form-control" name="email" id="email" 
+			  		value="{{ old('email', optional($familie)->email) }}">
 			  	</div>
 			</div>			
 

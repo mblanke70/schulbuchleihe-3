@@ -72,10 +72,16 @@ class AnmeldungController extends Controller
 
     public function verarbeiteVorabfragen(VorabfrageRequest $request)
     {
-        $request->session()->put('ermaessigung', $request->ermaessigung);
+        //$request->session()->put('ermaessigung', $request->ermaessigung);
         $request->session()->put('jahrgang', $request->jahrgang);
-        $request->session()->put('kontoinhaber', $request->kontoinhaber);
-        $request->session()->put('iban', $request->iban);
+        //$request->session()->put('kontoinhaber', $request->kontoinhaber);
+        //$request->session()->put('iban', $request->iban);
+        $request->session()->put('geschlecht', $request->geschlecht);
+        $request->session()->put('vorname', $request->vorname);
+        $request->session()->put('nachname', $request->nachname);
+        $request->session()->put('strasse', $request->strasse);
+        $request->session()->put('ort', $request->ort);
+        $request->session()->put('email', $request->email);
 
         return redirect('user/anmeldung/schritt2');
     }    
