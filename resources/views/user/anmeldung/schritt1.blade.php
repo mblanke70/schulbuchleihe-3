@@ -21,22 +21,68 @@
 
 	<div class="row">
         <div class="col-md-6">
-        	<h4>Erm&auml;&szlig;igung auf den Leihpreis</h4>
-        	<p>Familien mit 3 oder mehr schulpflichtigen Kindern zahlen nur 80% des Leihpreises. Der Nachweis über schulpflichtige Geschwisterkinder erfolgt durch Abgabe der Bescheinigungen im Sekretariat bis Montag, den 1.7.2019. Für Geschwisterkinder, die die Ursulaschule besuchen, entfällt die Nachweispflicht.</p>
-<!--
-        	<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<label class="input-group-text" for="ermaessigung">Ermäßigung</label>
-	  			</div>
-        	
-                <select id="ermaessigung" class="custom-select" name="ermaessigung">
-                    <option value="0" selected>keine Erm&auml;&szlig;igung</option>
-                    <option value="1">20% Erm&auml;&szlig;igung (3 Kinder)</option>
-                    <option value="2">100% Erm&auml;&szlig;igung (befreit)</option>
-                </select>
-            </div>
--->
+	       	<h4>Rechnungsanschrift</h4>
+	       	<p>Zur Rechnungsstellung benötigen wir die Anschrift eines Erziehungsberechtigten. Die Email-Adresse wird für den Versand einer Bestätigungs-Mail nach abgeschlossener Anmeldung benötigt.</p>
 
+	       	<fieldset class="form-group">
+				<div class="row">
+			      	<legend class="col-form-label col-sm-2 pt-0">Anrede</legend>
+
+					<div class="col-sm-10">
+						<div class="custom-control custom-radio custom-control-inline">
+						 	<input class="custom-control-input" type="radio" name="geschlecht" id="maennlich" value="m" 
+						 	@isset($familie) 
+						 		@if($familie->re_geschlecht=='m')
+						 			{{ checked }} 
+						 		@endif  
+						 	@endisset>
+						  	<label class="custom-control-label" for="maennlich">Herr</label>
+						</div>
+						<div class="custom-control custom-radio custom-control-inline">
+						  	<input class="custom-control-input" type="radio" name="geschlecht" id="weiblich" value="w" 
+						  	@isset($familie) 
+						 		@if($familie->re_geschlecht=='w')
+						 			{{ checked }} 
+						 		@endif  
+						 	@endisset>
+						  	<label class="custom-control-label" for="weiblich">Frau</label>
+					</div>
+				</div>
+			</fieldset>
+
+			<div class="form-group row">
+			   	<label for="vorname" class="col-sm-2 col-form-label">Vorname</label>
+			   	<div class="col-sm-10">
+			    	<input type="text" class="form-control" name="vorname" id="vorname" value="@isset($familie) {{ $familie->re_vorname }} @endisset">
+			  	</div>
+			 </div>
+			<div class="form-group row">			 
+	  	    	<label for="nachname" class="col-sm-2 col-form-label">Nachname</label>
+	  	    	<div class="col-sm-10">
+		    		<input type="text" class="form-control" name="nachname" id="nachname" value="@isset($familie) {{ $familie->re_nachname }} @endisset">
+			  	</div>
+			</div>
+			<div class="form-group row">			 
+				<label for="strasse" class="col-sm-2 col-form-label">Straße</label>
+				<div class="col-sm-10">
+				   	<input type="text" class="form-control" name="strasse" id="strasse"
+				   	value="@isset($familie) {{ $familie->re_strasse_nr }} @endisset">
+				</div>
+			</div>
+			<div class="form-group row">			 
+			   	<label for="ort" class="col-sm-2 col-form-label">Ort</label>
+			   	<div class="col-sm-10">
+				   	<input type="text" class="form-control" name="ort" id="ort" value="@isset($familie) {{ $familie->ort }} @endisset">
+				</div>
+			</div>
+			<div class="form-group row">			 
+			  	<label for="email" class="col-sm-2 col-form-label">Email</label>
+			   	<div class="col-sm-10">
+			  		<input type="email" class="form-control" name="email" id="email" value="@isset($familie) {{ $familie->email }} @endisset">
+			  	</div>
+			</div>			
+
+<!--
           	@isset($user->familie)
 	
 				<div class="table-responsive">
@@ -61,9 +107,31 @@
 		        </div>
 
    			@endisset
+-->
 
         </div>
         <div class="col-md-6">
+
+			<h4>Erm&auml;&szlig;igung auf den Leihpreis</h4>
+        	
+        	<p>Familien mit drei oder mehr schulpflichtigen Kindern bezahlen für jedes Kind nur 80 Prozent des Entgelts für die Ausleihe. Der Nachweis über schulpflichtige Geschwisterkinder, die nicht an der Ursulaschule sind, erfolgt durch Abgabe von Schulbescheinigungen. Diese können entweder nach Abschluss der Anmeldung auf dieser Seite per Upload übermittelt oder im Sekretariat abgegeben werden.</p>
+
+        	<p>Familien, die von der Zahlung eines Entgelt für die Ausleihe befreit sind, müssen dies ebefalls durch Upload bzw. Abgabe einer entsprechenden Bescheinigung nachweisen.</p>
+
+      		<!--
+        	<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<label class="input-group-text" for="ermaessigung">Ermäßigung</label>
+	  			</div>
+        	
+                <select id="ermaessigung" class="custom-select" name="ermaessigung">
+                    <option value="0" selected>keine Erm&auml;&szlig;igung</option>
+                    <option value="1">20% Erm&auml;&szlig;igung (3 Kinder)</option>
+                    <option value="2">100% Erm&auml;&szlig;igung (befreit)</option>
+                </select>
+            </div>
+			-->
+
 	       	<h4>Jahrgang im Schuljahr 2020/21</h4>
             <p>Geben Sie an, in welchem Jahrgang sich ihr Kind im nächsten Schuljahr befindet. (Es sollte der richtige Jahrgang vorausgewählt sein.)</p>
             <div class="input-group mb-3">

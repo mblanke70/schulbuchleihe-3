@@ -27,10 +27,10 @@ class AnmeldungController extends Controller
 {
     public function zeigeVorabfragen()
     {
-        $user = Auth::user();
-        $schueler = $user->schuelerInSchuljahr(3)->first();
+        $user     = Auth::user();
+        $schueler = $user->schuelerInSchuljahr(4)->first();
         
-        if(!empty($schueler)) 
+        if( !empty($schueler) ) 
         {
             $ermaessigung = $schueler->erm;
 
@@ -60,10 +60,11 @@ class AnmeldungController extends Controller
         } 
         else 
         {
-            $jahrgang = $user->jahrgang;
+            $jahrgang   = $user->jahrgang;
+            $familie    = $user->familie;
             $jahrgaenge = Jahrgang::where('schuljahr_id', 4)->get();
 
-            return view('user/anmeldung/schritt1', compact('user', 'jahrgang', 'jahrgaenge'));
+            return view('user/anmeldung/schritt1', compact('user', 'jahrgang', 'jahrgaenge', 'familie'));
             
             //return view('user/anmeldung/geschlossen'); 
         }
