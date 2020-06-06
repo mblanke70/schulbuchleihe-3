@@ -33,7 +33,7 @@
 						 	<input class="custom-control-input" type="radio" name="geschlecht" id="maennlich" value="m" 
 						 	@isset($familie) 
 						 		@if($familie->re_geschlecht=='m')
-						 			
+						 			checked="" 
 						 		@endif  
 						 	@endisset>
 						  	<label class="custom-control-label" for="maennlich">Herr</label>
@@ -42,7 +42,7 @@
 						  	<input class="custom-control-input" type="radio" name="geschlecht" id="weiblich" value="w" 
 						  	@isset($familie) 
 						 		@if($familie->re_geschlecht=='w')
-						 		
+						 			checked="" 
 						 		@endif  
 						 	@endisset>
 						  	<label class="custom-control-label" for="weiblich">Frau</label>
@@ -72,7 +72,7 @@
 			<div class="form-group row">			 
 			   	<label for="ort" class="col-sm-2 col-form-label">Ort</label>
 			   	<div class="col-sm-10">
-				   	<input type="text" class="form-control" name="ort" id="ort" value="@isset($familie) {{ $familie->ort }} @endisset">
+				   	<input type="text" class="form-control" name="ort" id="ort" value="@isset($familie) {{ $familie->re_ort }} @endisset">
 				</div>
 			</div>
 			<div class="form-group row">			 
