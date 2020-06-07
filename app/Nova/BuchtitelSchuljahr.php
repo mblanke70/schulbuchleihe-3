@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Boolean;
 
 use App\Buchwahl;
 use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
@@ -128,6 +129,8 @@ class BuchtitelSchuljahr extends Resource
             
             Number::make('Kaufpreis', 'kaufpreis')->min(1)->max(200)->step(0.01),
             
+            Boolean::make('EBook', 'ebook'),
+
             BelongsToMany::make('AbfrageAntwort', 'antworten')
                 ->onlyOnDetail(),
 

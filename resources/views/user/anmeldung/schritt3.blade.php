@@ -34,6 +34,7 @@
                         <th>Leihen</th>
                         <th>Verlängern</th>
                         <th>Kaufen</th>
+                        <th>Ebook</th>
                     </tr>
                 </thead>
 
@@ -51,30 +52,40 @@
                             	@isset( $bt->leihpreis )
                             		@if( empty($leihbuecher) ||           
                                             !$leihbuecher->contains($bt->buchtitel->id) )
-                            		<div class="custom-control custom-radio">
-	                                    <input type="radio" id="leihen-{{ $bt->id }}" class="custom-control-input" value="1" checked name="wahlen[{{ $bt->id }}]" @if (old('wahlen.'.$bt->id) == 1) checked @endif />
-	                                    <label class="custom-control-label" for="leihen-{{ $bt->id }}"></label>
-									</div>
+                                		<div class="custom-control custom-radio">
+    	                                    <input type="radio" id="leihen-{{ $bt->id }}" class="custom-control-input" value="1" checked name="wahlen[{{ $bt->id }}]" @if (old('wahlen.'.$bt->id) == 1) checked @endif />
+    	                                    <label class="custom-control-label" for="leihen-{{ $bt->id }}"></label>
+    									</div>
                                     @endif
                                 @endisset
                             </td>
-                            <td>                            	                            	@if( !empty($leihbuecher) && 
+                            <td>                            	                          
+                                @if( !empty($leihbuecher) && 
                                         $leihbuecher->contains($bt->buchtitel->id) )
                            			<div class="custom-control custom-radio">
                              	   	<input type="radio" id="verlaengern-{{ $bt->id }}" class="custom-control-input" value="2" checked name="wahlen[{{ $bt->id }}]" @if (old('wahlen.'.$bt->id) == 2) checked @endif/>
                              	   	<label class="custom-control-label" for="verlaengern-{{ $bt->id }}"></label>
 									</div>
-
                                 @endif
                             </td>
                             <td>
                             	@isset( $bt->kaufpreis )
-                            	<div class="custom-control custom-radio">
-                                    <input type="radio" id="kaufen-{{ $bt->id }}" class="custom-control-input" value="3" name="wahlen[{{ $bt->id }}]" @if (old('wahlen.'.$bt->id) == 3 || empty($bt->leihpreis)) checked @endif/>
-                                    <label class="custom-control-label" for="kaufen-{{ $bt->id }}"></label>
-                                </div>
+                                	<div class="custom-control custom-radio">
+                                        <input type="radio" id="kaufen-{{ $bt->id }}" class="custom-control-input" value="3" name="wahlen[{{ $bt->id }}]" @if (old('wahlen.'.$bt->id) == 3 || empty($bt->leihpreis)) checked @endif/>
+                                        <label class="custom-control-label" for="kaufen-{{ $bt->id }}"></label>
+                                    </div>
                                 @endisset
                             </td>
+                        <!--
+                            <td>
+                                @isset( $bt->ebook )
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" id="ebook-{{ $bt->id }}" class="custom-control-input" name="ebook[{{ $bt->id }}]" @if (old('ebook.'.$bt->id)) checked @endif/>
+                                        <label class="custom-control-label" for="ebook-{{ $bt->id }}"></label>
+                                    </div>
+                                @endisset
+                            </td>
+                        -->
                         </tr>
                     @endforeach
 

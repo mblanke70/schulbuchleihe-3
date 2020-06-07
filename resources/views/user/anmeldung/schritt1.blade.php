@@ -20,8 +20,11 @@
     {{ csrf_field() }}
 
 	<div class="row">
+
         <div class="col-md-6">
+	    
 	       	<h4>Rechnungsanschrift</h4>
+	    
 	       	<p>Zur Rechnungsstellung benötigen wir die Anschrift eines Erziehungsberechtigten. Die Email-Adresse wird für den Versand einer Bestätigungs-Mail nach abgeschlossener Anmeldung benötigt.</p>
 
 	       	<fieldset class="form-group">
@@ -30,19 +33,18 @@
 
 					<div class="col-sm-10">
 						<div class="custom-control custom-radio custom-control-inline">
-						 	<input class="custom-control-input" type="radio" name="geschlecht" id="maennlich" value="m" 
-
-						 	{{ old('geschlecht', optional($familie)->re_geschlecht) == "m" ? 'checked' : '' }}
-							>
-						 	
-						  	<label class="custom-control-label" for="maennlich">Herr</label>
-						</div>
-						<div class="custom-control custom-radio custom-control-inline">
-						  	<input class="custom-control-input" type="radio" name="geschlecht" id="weiblich" value="w" 
-						  	{{ old('geschlecht', optional($familie)->re_geschlecht) == "w" ? 'checked' : '' }}
-						  	>
-						  	<label class="custom-control-label" for="weiblich">Frau</label>
+					 	<input class="custom-control-input" type="radio" name="geschlecht" id="maennlich" value="m" 
+					 	{{ old('geschlecht', optional($familie)->re_geschlecht) == "m" ? 'checked' : '' }}>
+					 	
+					  	<label class="custom-control-label" for="maennlich">Herr</label>
 					</div>
+					
+					<div class="custom-control custom-radio custom-control-inline">
+					  	<input class="custom-control-input" type="radio" name="geschlecht" id="weiblich" value="w" 
+					  	{{ old('geschlecht', optional($familie)->re_geschlecht) == "w" ? 'checked' : '' }}>
+					  	<label class="custom-control-label" for="weiblich">Frau</label>
+					</div>
+
 				</div>
 			</fieldset>
 
@@ -108,11 +110,12 @@
 -->
 
         </div>
+
         <div class="col-md-6">
 
 			<h4>Erm&auml;&szlig;igung auf den Leihpreis</h4>
         	
-        	<p>Familien mit drei oder mehr schulpflichtigen Kindern bezahlen für jedes Kind nur 80 Prozent des Entgelts für die Ausleihe. Der Nachweis über schulpflichtige Geschwisterkinder, die nicht an der Ursulaschule sind, erfolgt durch Abgabe von Schulbescheinigungen. Diese können entweder nach Abschluss der Anmeldung auf dieser Seite per Upload übermittelt oder im Sekretariat abgegeben werden.</p>
+        	<p>Familien mit drei oder mehr schulpflichtigen Kindern bezahlen für jedes Kind nur 80 Prozent des Entgelts für die Ausleihe. Der Nachweis über jedes schulpflichtige Geschwisterkind, das nicht an der Ursulaschule ist, erfolgt durch Abgabe einer Schulbescheinigung. Schulbescheinigungen können entweder nach Abschluss der Anmeldung auf dieser Seite per Upload übermittelt oder im Sekretariat abgegeben werden.</p>
 
         	<p>Familien, die von der Zahlung eines Entgelt für die Ausleihe befreit sind, müssen dies ebefalls durch Upload bzw. Abgabe einer entsprechenden Bescheinigung nachweisen.</p>
 
@@ -131,7 +134,9 @@
 			-->
 
 	       	<h4>Jahrgang im Schuljahr 2020/21</h4>
+
             <p>Geben Sie an, in welchem Jahrgang sich ihr Kind im nächsten Schuljahr befindet. (Es sollte der richtige Jahrgang vorausgewählt sein.)</p>
+            
             <div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<label class="input-group-text" for="jahrgang">Jahrgang</label>
@@ -147,25 +152,6 @@
 			  	</select>
 			</div>
 
-<!--
-			<h4 class="mt-4">Bankverbindung</h4>
-
-            <p>Geben Sie das Konto an, von dem auch das Schulgeld für Ihr Kind eingezogen wird. Von diesem Konto werden wir am Anfang des nächsten Schuljahres auch die Leihgebühren einziehen. Diese Angabe hilft uns, dass für das Schulgeld von Ihnen erteilte Lastschriftmandat richtig zuzuordnen.</p>
-           
-		  	<div class="input-group mb-3">
-			  	<div class="input-group-prepend">
-			    	<span class="input-group-text">Kontoinhaber</span>
-			  	</div>
-			  	<input type="text" class="form-control" name="kontoinhaber">
-			</div>
-
-			<div class="input-group mb-3">
-			  	<div class="input-group-prepend">
-			    	<span class="input-group-text">IBAN</span>
-			  	</div>
-			  	<input type="text" class="form-control" name="iban">
-			</div>
--->
         </div>
   	</div>
 
