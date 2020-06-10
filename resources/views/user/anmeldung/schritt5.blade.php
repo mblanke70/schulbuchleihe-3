@@ -82,11 +82,14 @@
 
     </table> 
 
-    <h6>Die Summe der (nicht reduzierten) Leihgebühren beträgt {{ number_format($summeLeihen, 2, ',', '') }} €.</h6>
+    <h6>Die Summe der (nicht reduzierten) Leihgebühren beträgt {{ number_format($s
+    ummeLeihen, 2, ',', '') }} €.</h6>
 
     <hr/>
-
+    
     <h3>Kaufbücher</h3> 
+
+    <p>Die hier aufgeführten Bücher kaufen Sie sich selbst. Es findet keine Sammelbestellung von Seiten der Schule statt.</p>
     
     <table class="table table-striped"">
         <thead>
@@ -114,7 +117,5 @@
     </table> 
         
     <h6>Die Summe der Kaufpreise beträgt {{ number_format($summeKaufen, 2, ',', '') }} €.</h6>
-    
-    <p>Die hier aufgeführten Bücher kaufen Sie sich selbst. Es findet keine Sammelbestellung von Seiten der Schule statt.</p>
-                
+         
 @endsection
