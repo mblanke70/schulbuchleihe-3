@@ -67,10 +67,12 @@
                     <td>{{ $bt->buchtitel->isbn }}</td>
                     <td>{{ $bt->buchtitel->fach->name }}</td>
                     <td>{{ $bt->buchtitel->verlag }}</td>
-                    <td>{{ $bt->leihpreis }} &euro;</td>
-                    <td>
+                    <td class="text-right">{{ number_format($bt->leihpreis, 2, ',', '') }} €</td>
+                    <td class="text-right">
                         @isset($ebooks)
-                            @if(in_array($bt->id, $ebooks)) {{ $bt->ebook }} € @endif
+                            @if(in_array($bt->id, $ebooks)) 
+                                {{ number_format($bt->ebook, 2, ',', '') €}} 
+                            @endif
                         @endisset
                     </td>
                 </tr>
@@ -80,7 +82,7 @@
 
     </table> 
 
-    <h5>Die Summe der (nicht reduzierten) Leihgebühren beträgt {{ number_format($summeLeihen, 2, ',', '') }} &euro;.</h5>
+    <h5>Die Summe der (nicht reduzierten) Leihgebühren beträgt {{ number_format($summeLeihen, 2, ',', '') }} €.</h5>
 
     <hr/>
 
@@ -103,7 +105,7 @@
                     <td scope="row">{{ $bt->buchtitel->titel }}</td>
                     <td>{{ $bt->buchtitel->isbn }}</td>
                     <td>{{ $bt->buchtitel->verlag }}</td>
-                    <td>{{ $bt->kaufpreis }} &euro;</td>
+                    <td>{{ number_format($bt->kaufpreis, 2, ',', '') € }}</td>
                 </tr>
             @endforeach
 
@@ -111,7 +113,7 @@
 
     </table> 
         
-    <h5>Die Summe der Kaufpreise beträgt {{ number_format($summeKaufen, 2, ',', '') }} &euro;.</h5>
+    <h5>Die Summe der Kaufpreise beträgt {{ number_format($summeKaufen, 2, ',', '') }} €.</h5>
     
     <p>Die hier aufgeführten Bücher kaufen Sie sich selbst. Es findet keine Sammelbestellung von Seiten der Schule statt.</p>
                 
