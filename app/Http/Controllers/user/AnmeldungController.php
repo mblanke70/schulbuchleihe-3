@@ -155,12 +155,12 @@ class AnmeldungController extends Controller
             if(Auth::user()->klasse == '10F') 
             {
                 // Weltatlas 2008 raus
-                $buecherliste = $buecherliste->diff(collect([325]));
+                $buecherliste = $buecherliste->diff([325]);
             }
             else 
             {
                 // Weltatlas 2015 und Elektronisches Wörterbuch raus
-                $buecherliste = $buecherliste->diff(collect([324, 283]));
+                $buecherliste = $buecherliste->diff([324, 283]);
             }
         }
 
