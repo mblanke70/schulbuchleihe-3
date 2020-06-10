@@ -152,17 +152,15 @@ class AnmeldungController extends Controller
         /* Achtung quick & dirty */
         if($jahrgang->jahrgangsstufe == 11) 
         {
-            if(Auth::user()->klasse == '10F') 
-            {
-                dd("hui");
+            if(Auth::user()->klasse == '10F') {
                 // Weltatlas 2008 raus
-                $buecherliste = $buecherliste->diff([325]);
+                $buchtitel = BuchtitelSchuljahr::find(325);
             }
-            else 
-            {
+            else {
                 // Weltatlas 2015 und Elektronisches Wörterbuch raus
-                $buecherliste = $buecherliste->diff([324, 283]);
+                $buchtitel = BuchtitelSchuljahr::findMany([324, 283]);
             }
+            $buecherliste = $buecherliste->diff($buchtitel);
         }
 
         $schueler = $user->schuelerInSchuljahr($jahrgang->schuljahr->vorjahr->id)->first();
