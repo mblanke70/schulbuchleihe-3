@@ -129,7 +129,7 @@ class BuchtitelSchuljahr extends Resource
             
             Number::make('Kaufpreis', 'kaufpreis')->min(1)->max(200)->step(0.01),
             
-            Number::make('E-Book', 'ebook')->min(1)->max(100)->step(0.01)->nullable(),
+            Number::make('EBook', 'ebook')->min(1)->max(100)->step(0.01)->nullable(),
 
             BelongsToMany::make('AbfrageAntwort', 'antworten')
                 ->onlyOnDetail(),

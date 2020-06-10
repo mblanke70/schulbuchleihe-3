@@ -49,6 +49,7 @@ class OrderConfirm extends Mailable
         $summeLeihen = $leihliste->sum('leihpreis') + $leihlisteEbooks->sum('ebook');
             
         return $this->from('blanke@ursulaschule.de')
+            ->subject('Bestellbestätigung')
             ->markdown('emails.orders.confirm')
             ->with([
                 'leihliste'        => $leihliste,

@@ -141,11 +141,26 @@ class AnmeldungController extends Controller
                             return $bt->buchtitel->fach_id != $fach;
                         });
                     }
-                    else                            // Unter-Abfrage nach BUCHGRUPPE
+                    else
                     {
                         $buecherliste = $buecherliste->diff($antw->buchtitel);
                     }
                 }
+            }
+        }
+
+        /* Achtung quick & dirty */
+        if($jahrgang->jahrgangsstufe == 11) 
+        {
+            if(Auth->user()->klasse == '10F') 
+            {
+                // Weltatlas 2008 raus
+                $buecherliste = $buecherliste->diff(collect([325]));
+            }
+            else 
+            {
+                // Weltatlas 2015 und Elektronisches Wörterbuch raus
+                $buecherliste = $buecherliste->diff(collect([324, 283]));
             }
         }
 
