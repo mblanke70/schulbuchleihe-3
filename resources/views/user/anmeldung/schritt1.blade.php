@@ -3,7 +3,7 @@
 @section('title', 'Anmeldung zur Buchausleihe im Schuljahr 2020/21')
 
 @section('heading')
-    <h4>Anmeldung (Schritt 1/4)</h4>
+    <h4>Anmeldung (Schritt 1/5)</h4>
     <h4>{{ $user->vorname }} {{ $user->nachname }} ({{ $user->klasse }})</h4> 
 @endsection
 
@@ -25,7 +25,7 @@
 	    
 	       	<h4>Rechnungsanschrift</h4>
 	    
-	       	<p>Zur Rechnungsstellung benötigen wir die Anschrift eines Erziehungsberechtigten. Die Email-Adresse wird für den Versand einer Bestätigungs-Mail nach abgeschlossener Anmeldung benötigt.</p>
+	       	<p>Zur Rechnungsstellung benötigen wir die Anschrift eines Erziehungsberechtigten. Die Email-Adresse wird für den Versand einer Bestätigungs-Mail nach abgeschlossener Anmeldung verwendet.</p>
 
 	       	<fieldset class="form-group">
 				<div class="row">
@@ -33,15 +33,15 @@
 
 					<div class="col-sm-10">
 						<div class="custom-control custom-radio custom-control-inline">
-					 	<input class="custom-control-input" type="radio" name="geschlecht" id="maennlich" value="m" 
-					 	{{ old('geschlecht', optional($familie)->re_geschlecht) == "m" ? 'checked' : '' }}>
+					 	<input class="custom-control-input" type="radio" name="anrede" id="maennlich" value="m" 
+					 	{{ old('geschlecht', optional($familie)->re_anrede) == "m" ? 'checked' : '' }}>
 					 	
 					  	<label class="custom-control-label" for="maennlich">Herr</label>
 					</div>
 					
 					<div class="custom-control custom-radio custom-control-inline">
-					  	<input class="custom-control-input" type="radio" name="geschlecht" id="weiblich" value="w" 
-					  	{{ old('geschlecht', optional($familie)->re_geschlecht) == "w" ? 'checked' : '' }}>
+					  	<input class="custom-control-input" type="radio" name="anrede" id="weiblich" value="w" 
+					  	{{ old('geschlecht', optional($familie)->re_anrede) == "w" ? 'checked' : '' }}>
 					  	<label class="custom-control-label" for="weiblich">Frau</label>
 					</div>
 
@@ -65,6 +65,13 @@
 				<div class="col-sm-10">
 				   	<input type="text" class="form-control" name="strasse" id="strasse"
 				   	value="{{ old('strasse', optional($familie)->re_strasse_nr) }}">
+				</div>
+			</div>
+			<div class="form-group row">			 
+			   	<label for="plz" class="col-sm-2 col-form-label">PLZ</label>
+			   	<div class="col-sm-10">
+				   	<input type="text" class="form-control" name="plz" id="plz" 
+				   	value="{{ old('plz', optional($familie)->re_plz) }}">
 				</div>
 			</div>
 			<div class="form-group row">			 
@@ -115,9 +122,7 @@
 
 			<h4>Erm&auml;&szlig;igung auf den Leihpreis</h4>
         	
-        	<p>Familien mit drei oder mehr schulpflichtigen Kindern bezahlen für jedes Kind nur 80 Prozent des Entgelts für die Ausleihe. Der Nachweis über jedes schulpflichtige Geschwisterkind, das nicht an der Ursulaschule ist, erfolgt durch Abgabe einer Schulbescheinigung. Schulbescheinigungen können entweder nach Abschluss der Anmeldung auf dieser Seite per Upload übermittelt oder im Sekretariat abgegeben werden.</p>
-
-        	<p>Familien, die von der Zahlung eines Entgelt für die Ausleihe befreit sind, müssen dies ebefalls durch Upload bzw. Abgabe einer entsprechenden Bescheinigung nachweisen.</p>
+        	<p>Familien mit drei oder mehr schulpflichtigen Kindern bezahlen für jedes Kind nur 80 Prozent des Entgelts für die Ausleihe. Der Nachweis über jedes schulpflichtige Geschwisterkind, das nicht an der Ursulaschule ist, erfolgt durch Abgabe einer Schulbescheinigung. Diese können zu Beginn des nächsten Schuljahres auf dieser Seite per Upload übermittelt oder im Sekretariat abgegeben werden.</p>
 
       		<!--
         	<div class="input-group mb-3">

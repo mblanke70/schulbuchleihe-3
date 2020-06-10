@@ -1,9 +1,9 @@
 @extends('layouts.home')
 
-@section('title', 'Anmeldung zur Buchausleihe im Schuljahr 2019/20')
+@section('title', 'Anmeldung zur Buchausleihe im Schuljahr 2020/21')
 
 @section('heading')
-    <h4>Anmeldung (Schritt 3/4)</h4>
+    <h4>Anmeldung (Schritt 3/5)</h4>
     <h4>{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} ({{ Auth::user()->klasse }})</h4> 
 @endsection
 
@@ -34,7 +34,6 @@
                         <th>Leihen</th>
                         <th>Verlängern</th>
                         <th>Kaufen</th>
-                        <th>Ebook</th>
                     </tr>
                 </thead>
 

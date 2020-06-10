@@ -1,9 +1,9 @@
 @extends('layouts.home')
 
-@section('title', 'Anmeldung zur Buchausleihe im Schuljahr 2019/20')
+@section('title', 'Anmeldung zur Buchausleihe im Schuljahr 2020/21')
 
 @section('heading')
-    <h4>Anmeldung (Schritt 4/4)</h4>
+    <h4>Anmeldung (Schritt 4/5)</h4>
     <h4>{{ Auth::user()->vorname }} {{ Auth::user()->nachname }} ({{ Auth::user()->klasse }})</h4> 
 @endsection
 
@@ -15,113 +15,60 @@
 	    </div>
 	@endif
 
+    <h4 class="box-title">E-Books</h4>
+    
+    <p>Für viele Bücher besteht im neuen Schuljahr die Möglichkeit, zusätzlich zum gedruckten Buch auch das digitale Schulbuch zu leihen. Wird diese Option „Print plus“ gewählt, so erhöht sich der Leihpreis des Buches um 1 €. Damit erhält man den Zugang zum E-Book über die jeweilige App der Lehrmittelverlage. (Ein E-Book ohne gedrucktes Buch ist über unsere Schulbuchleihe nicht erhältlich. Dies geht nur beim Verlag zu deutlich höheren E-Book-Preisen.)</p>
+
+    <p>Bitte geben Sie in diesem Schritt für jedes zur Ausleihe ausgewählte Buch, für das die "Print Plus"-Option besteht, an, ob Sie dieses auch als E-Book beziehen möchten.</p>
    
     <form action="{{ url('user/anmeldung/schritt4') }}" method="POST" role="form">
 
     {{ csrf_field() }}
     
-    <h5>Bankeinzugsverfahren</h5>
-
-    <p>Die Summe der Leihgebühren beträgt:</p>
-           
-    <h4 style="text-align: center;">{{ number_format($summeLeihenReduziert, 2, ',', '') }} &euro;
-
-        @switch($ermaessigung)          
-            @case(2)
-                (Ermäßigung 100%) 
-                @break
-            
-            @case(1)
-                (Ermäßigung 20%) 
-                @break
-
-            @case(0)
-                (keine Ermäßigung)
-        @endswitch
-    </h4>
-
-    <p>Dieser Gesamtbetrag wird in diesem Jahr per Bankeinzug von dem Konto eingezogen, von dem auch vierteljährlich das Schulgeld für Ihr Kind eingezogen wird. Dafür benötigen wir eine Einverständniserklärung, die nur einmalig gilt und in jedem Jahr erneuert werden muss. Wir belasten den Betrag dem Konto, von dem auch das Schulgeld eingezogen wird.</p>
-    
-    <p>Nach Abschluss des Leihverfahrens bleiben die Listen der gewählten Leih- und Kaufbücher weiterhin hier einsehbar.</p>
-
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="buchleihe-zustimmung" name="zustimmung">
-        <label class="custom-control-label" for="buchleihe-zustimmung">
-            Ich bin damit einverstanden, dass der Gesamtbetrag in Höhe von {{ number_format($summeLeihenReduziert, 2, ',', '') }}&nbsp;&euro; für das Schuljahr 2019/20 von dem Konto eingezogen wird, von dem auch das Schulgeld für mein Kind eingezogen wird.
-        </label>
-        <input type="hidden" name="betrag" value="{{ $summeLeihenReduziert }}" />
-    </div>
         
-    <div class="mt-4">
-        <button type="submit" class="btn btn-danger">Zustimmen</button>
-    </div>
+        <table class="table table-striped"">
+            <thead>
+                <tr>
+                    <th>Ebook</th>
+                    <th>Preis</th>
+                    <th>ID</th>
+                    <th>Titel</th> 
+                    <th>ISBN</th>
+                    <th>Fach</th>
+                    <th>Verlag</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach ($leihliste as $bt)
+                    <tr>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="ebook-{{ $bt->id }}" name="ebooks[]" value="{{ $bt->id }}" >
+                                <label class="custom-control-label" for="ebook-{{ $bt->id }}"></label>
+                            </div>
+                        </td>
+                        <td>{{ $bt->ebook }} &euro;</td>
+                        <td>{{ $bt->id }}</td>  
+                        <td>{{ $bt->buchtitel->titel }}</td>
+                        <td>{{ $bt->buchtitel->isbn }}</td>
+                        <td>{{ $bt->buchtitel->fach->name }}</td>
+                        <td>{{ $bt->buchtitel->verlag }}</td>
+                    </tr>
+                @endforeach
+
+            </tbody>
+
+        </table> 
+
+        <div>
+            <button type="submit" class="btn btn-primary">Weiter</button>
+        </div>
 
     </form>
 
-    <hr/>
 
-    <h3>Leihbücher</h3>
-    
-    <table class="table table-striped"">
-        <thead>
-            <tr>
-                <th>Titel</th> 
-                <th>ISBN</th>
-                <th>Fach</th>
-                <th>Verlag</th>
-                <th>Leihpreis</th>
-            </tr>
-        </thead>
 
-        <tbody>
 
-            @foreach ($leihliste as $bt)
-                <tr>
-                    <td scope="row">{{ $bt->buchtitel->titel }}</td>
-                    <td>{{ $bt->buchtitel->isbn }}</td>
-                    <td>{{ $bt->buchtitel->fach->name }}</td>
-                    <td>{{ $bt->buchtitel->verlag }}</td>
-                    <td>{{ $bt->leihpreis }} &euro;</td>
-                </tr>
-            @endforeach
-
-        </tbody>
-
-    </table> 
-
-    <h5>Die Summe der (nicht reduzierten) Leihpreise beträgt {{ number_format($summeLeihen, 2, ',', '') }} &euro;.</h5>
-
-    <hr/>
-
-    <h3>Kaufbücher</h3> 
-    
-    <table class="table table-striped"">
-        <thead>
-            <tr>
-                <th>Titel</th> 
-                <th>ISBN</th>
-                <th>Verlag</th>
-                <th>Preis</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            @foreach ($kaufliste as $bt)
-                <tr>
-                    <td scope="row">{{ $bt->buchtitel->titel }}</td>
-                    <td>{{ $bt->buchtitel->isbn }}</td>
-                    <td>{{ $bt->buchtitel->verlag }}</td>
-                    <td>{{ $bt->kaufpreis }} &euro;</td>
-                </tr>
-            @endforeach
-
-        </tbody>
-
-    </table> 
-        
-    <h5>Die Summe der Kaufpreise beträgt {{ number_format($summeKaufen, 2, ',', '') }} &euro;.</h5>
-    
-    <p>Die hier aufgeführten Bücher kaufen Sie sich selbst. Es findet keine Sammelbestellung von Schulseite aus statt.</p>
-                
 @endsection

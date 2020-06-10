@@ -20,6 +20,12 @@ Route::get('/mail', function(){
 });
 */
 
+Route::get('mailable', function () {
+    $schueler = App\Schueler::find(2551);
+
+    return new App\Mail\OrderConfirm($schueler);
+});
+
 Route::get('/', function () {
     return view('index');
 });
@@ -94,16 +100,19 @@ Route::group([
     Route::get('anmeldung/schritt3', 'AnmeldungController@zeigeBuecherliste');
     Route::post('anmeldung/schritt3', 'AnmeldungController@verarbeiteBuecherliste');
 
-    Route::get('anmeldung/schritt4', 'AnmeldungController@zeigeZustimmung');
-    Route::post('anmeldung/schritt4', 'AnmeldungController@verarbeiteZustimmung');
+    Route::get('anmeldung/schritt4', 'AnmeldungController@zeigeEbooks');
+    Route::post('anmeldung/schritt4', 'AnmeldungController@verarbeiteEbooks');
 
-    Route::get('anmeldung/schritt5', 'AnmeldungController@zeigeAbschluss');
+    Route::get('anmeldung/schritt5', 'AnmeldungController@zeigeZustimmung');
+    Route::post('anmeldung/schritt5', 'AnmeldungController@verarbeiteZustimmung');
+
+    Route::get('anmeldung/schritt6', 'AnmeldungController@zeigeAbschluss');
 
     /* HOME */
     
-    Route::get ('sportwahlen', 'SportwahlenController@index');
-    Route::get ('sportwahlen/wahlbogen', 'SportwahlenController@zeigeWahlbogen');
-    Route::post('sportwahlen/wahlbogen', 'SportwahlenController@speichereWahlbogen');
+    //Route::get ('sportwahlen', 'SportwahlenController@index');
+    //Route::get ('sportwahlen/wahlbogen', 'SportwahlenController@zeigeWahlbogen');
+    //Route::post('sportwahlen/wahlbogen', 'SportwahlenController@speichereWahlbogen');
     
 });
 

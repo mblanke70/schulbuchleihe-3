@@ -25,13 +25,13 @@ class VorabfrageRequest extends FormRequest
     {
         return [
             //'ermaessigung' => 'required',
-            'jahrgang'      => 'required',
-            'geschlecht'    => 'required',
-            'vorname'       => 'required',
-            'nachname'      => 'required',
-            'strasse'       => 'required',
-            'ort'           => 'required',
-            'email'         => 'required|email',
+            'jahrgang'  => 'required',
+            'anrede'    => 'required',
+            'vorname'   => 'required',
+            'nachname'  => 'required',
+            'strasse'   => 'required',
+            'ort'       => 'required',
+            'email'     => 'required|email',
         ];
     }
 
@@ -40,7 +40,7 @@ class VorabfrageRequest extends FormRequest
         return [
             //'ermaessigung.required' => 'Ermäßigung nicht ausgewählt.',
             'jahrgang.required'     => 'Jahrgang nicht ausgewählt.',
-            'geschlecht.required'   => 'Anrede nicht angegeben.',
+            'anrede.required'   => 'Anrede nicht angegeben.',
             'vorname.required'      => 'Vorname nicht angegeben.',
             'nachname.required'     => 'Nachname nicht angegeben.',
             'strasse.required'      => 'Straße nicht angegeben.',
