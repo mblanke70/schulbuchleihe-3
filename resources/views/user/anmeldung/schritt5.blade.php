@@ -82,8 +82,7 @@
 
     </table> 
 
-    <h6>Die Summe der (nicht reduzierten) Leihgebühren beträgt {{ number_format($s
-    ummeLeihen, 2, ',', '') }} €.</h6>
+    <h6>Die Summe der (nicht reduzierten) Leihgebühren beträgt {{ number_format($summeLeihen, 2, ',', '') }} €.</h6>
 
     <hr/>
     
