@@ -3,7 +3,7 @@
 
 hiermit bestätigen wir Ihnen die erfolgreiche Teilnahme am Bestellverfahren der Schulbuchausleihe der Ursulaschule Osnabrück für Ihr Kind **{{$schueler->vorname }} {{ $schueler->nachname }}** für das Schuljahr 2020/21.
 
-Die Summe der (nicht reduzierten) Leihgebühren für Bücher und E-Books beträgt zusammen **{{ number_format($summeLeihen, 2, ',', '') }}** €.
+Die Summe der (nicht reduzierten) Leihgebühren für Bücher und E-Books beträgt zusammen **{{ number_format($summeLeihen, 2, ',', '') }} €**.
 
 @if($leihliste->count()>0)
 ## Leihbücher

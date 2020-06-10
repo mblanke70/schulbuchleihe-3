@@ -268,17 +268,20 @@ class AnmeldungController extends Controller
         // Jahrgänge 5-11: Klasse des Schülers zuweisen
         if($klassen->count() > 1) {
             $kuerzel = substr($user->klasse, 2, 2); // aktuelles Klassenkürzel (A-F) ermitteln
-            $klassen = $klassen->filter(function($value, $key) use ($kuerzel) {
-                if(strpos($value->bezeichnung, $kuerzel)) {
-                    return $value;
-                }
-            }); // richtige Klasse unter den Klassen im Jahrgang ermitteln
+            if($kuerzel!=null) { // wenn nicht Jg. 05
+                $klassen = $klassen->filter(function($value, $key) use ($kuerzel) {
+                    if(strpos($value->bezeichnung, $kuerzel)) {
+                        return $value;
+                    }
+                }); // richtige Klasse unter den Klassen im Jahrgang ermitteln
+            }
         }
 
         if($klassen->count() > 0) {
             $klasse = $klassen->first();
             $schueler->klasse_id = $klasse->id; 
 
+            // alle Schüler im Jahrgang 05 landen in der Klasse 05A
             //$klasse->schueler()->save($schueler); // Klasse beim Schüler setzen
         }
         
