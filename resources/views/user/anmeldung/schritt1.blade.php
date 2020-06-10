@@ -124,20 +124,6 @@
         	
         	<p>Familien mit drei oder mehr schulpflichtigen Kindern bezahlen für jedes Kind nur 80 Prozent des Entgelts für die Ausleihe. Der Nachweis über jedes schulpflichtige Geschwisterkind, das nicht an der Ursulaschule ist, erfolgt durch Abgabe einer Schulbescheinigung. Diese können zu Beginn des nächsten Schuljahres auf dieser Seite per Upload übermittelt oder im Sekretariat abgegeben werden.</p>
 
-      		<!--
-        	<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<label class="input-group-text" for="ermaessigung">Ermäßigung</label>
-	  			</div>
-        	
-                <select id="ermaessigung" class="custom-select" name="ermaessigung">
-                    <option value="0" selected>keine Erm&auml;&szlig;igung</option>
-                    <option value="1">20% Erm&auml;&szlig;igung (3 Kinder)</option>
-                    <option value="2">100% Erm&auml;&szlig;igung (befreit)</option>
-                </select>
-            </div>
-			-->
-
 	       	<h4>Jahrgang im Schuljahr 2020/21</h4>
 
             <p>Geben Sie an, in welchem Jahrgang sich ihr Kind im nächsten Schuljahr befindet. (Es sollte der richtige Jahrgang vorausgewählt sein.)</p>
