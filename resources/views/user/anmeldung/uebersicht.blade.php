@@ -40,8 +40,8 @@
                         <td>{{ $bt->buchtitel->isbn }}</td>
                         <td>{{ $bt->buchtitel->fach->name }}</td>
                         <td>{{ $bt->buchtitel->verlag }}</td>
-                        <td>{{ number_format($bt->leihpreis, 2, ',', '') }} &euro;</td>
-                        <td>
+                        <td class="text-right">{{ number_format($bt->leihpreis, 2, ',', '') }} &euro;</td>
+                        <td class="text-right">
                             @if($leihen->where('buchtitel_id', '=', $bt->id)
                                        ->where('ebook', '>', 0)
                                        ->first() 
@@ -54,8 +54,8 @@
 
                 <tr>
                     <td colspan="4">&nbsp;</td>
-                    <td>{{ number_format($leihliste->sum('leihpreis'), 2, ',', '') }} &euro;</td>
-                    <td>{{ number_format($leihlisteEbooks->sum('ebook'), 2, ',', '') }} &euro;</td>
+                    <td class="text-right">{{ number_format($leihliste->sum('leihpreis'), 2, ',', '') }} &euro;</td>
+                    <td class="text-right">{{ number_format($leihlisteEbooks->sum('ebook'), 2, ',', '') }} &euro;</td>
                 </tr>          
 
             </tbody>
@@ -88,8 +88,8 @@
                         <td>{{ $bt->buchtitel->isbn }}</td>
                         <td>{{ $bt->buchtitel->fach->name }}</td>
                         <td>{{ $bt->buchtitel->verlag }}</td>
-                        <td>{{ number_format($bt->leihpreis, 2, ',', '') }} &euro;</td>
-                         <td>
+                        <td class="text-right">{{ number_format($bt->leihpreis, 2, ',', '') }} &euro;</td>
+                         <td class="text-right">
                             @if($verlaengern->where('buchtitel_id', '=', $bt->id)
                                        ->where('ebook', '>', 0)
                                        ->first() 
@@ -102,8 +102,8 @@
 
                 <tr>
                     <td colspan="4">&nbsp;</td>
-                    <td>{{ number_format($verlaengernliste->sum('leihpreis'), 2, ',', '') }} &euro;</td>
-                    <td>{{ number_format($verlaengernlisteEbooks->sum('ebook'), 2, ',', '') }} &euro;</td>
+                    <td class="text-right">{{ number_format($verlaengernliste->sum('leihpreis'), 2, ',', '') }} &euro;</td>
+                    <td class="text-right">{{ number_format($verlaengernlisteEbooks->sum('ebook'), 2, ',', '') }} &euro;</td>
                 </tr>  
 
             </tbody>
@@ -112,7 +112,7 @@
 
     @endif
 
-    <h5>Die Summe der (nicht reduzierten) Leihpreise beträgt {{ number_format($summeLeihen, 2, ',', '') }} &euro;.</h5>
+    <h5>Die Summe der (nicht reduzierten) Leihpreise beträgt {{ number_format($summeLeihen, 2, ',', '') }} €.</h5>
 
     @if(!$kaufliste->isEmpty())
         
@@ -137,13 +137,13 @@
                         <td>{{ $bt->buchtitel->isbn }}</td>
                         <td>{{ $bt->buchtitel->fach->name }}</td>
                         <td>{{ $bt->buchtitel->verlag }}</td>
-                        <td>{{ $bt->kaufpreis }} &euro;</td>
+                        <td class="text-right">{{ number_format($bt->kaufpreis, 2, ',', '') }} €</td>
                     </tr>
                 @endforeach
 
                 <tr>
                     <td colspan="4">&nbsp;</td>
-                    <td>{{ number_format($kaufliste->sum('kaufpreis'), 2, ',', '') }} &euro;</td>
+                    <td class="text-right">{{ number_format($kaufliste->sum('kaufpreis'), 2, ',', '') }} €</td>
                 </tr>  
 
             </tbody>
