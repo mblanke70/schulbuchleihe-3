@@ -105,7 +105,7 @@
                     <td scope="row">{{ $bt->buchtitel->titel }}</td>
                     <td>{{ $bt->buchtitel->isbn }}</td>
                     <td>{{ $bt->buchtitel->verlag }}</td>
-                    <td>{{ number_format($bt->kaufpreis, 2, ',', '') € }}</td>
+                    <td>{{ number_format($bt->kaufpreis, 2, ',', '') }} €</td>
                 </tr>
             @endforeach
 
