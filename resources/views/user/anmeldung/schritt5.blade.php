@@ -82,7 +82,7 @@
 
     </table> 
 
-    <h5>Die Summe der (nicht reduzierten) Leihgebühren beträgt {{ number_format($summeLeihen, 2, ',', '') }} €.</h5>
+    <h6>Die Summe der (nicht reduzierten) Leihgebühren beträgt {{ number_format($summeLeihen, 2, ',', '') }} €.</h6>
 
     <hr/>
 
@@ -113,7 +113,7 @@
 
     </table> 
         
-    <h5>Die Summe der Kaufpreise beträgt {{ number_format($summeKaufen, 2, ',', '') }} €.</h5>
+    <h6>Die Summe der Kaufpreise beträgt {{ number_format($summeKaufen, 2, ',', '') }} €.</h6>
     
     <p>Die hier aufgeführten Bücher kaufen Sie sich selbst. Es findet keine Sammelbestellung von Seiten der Schule statt.</p>
                 
