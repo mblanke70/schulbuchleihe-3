@@ -1,100 +1,100 @@
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="generator" content="Jekyll v3.8.5">
-    <title>Buchausleihe · Ursulaschule Osnabrück</title>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="generator" content="Jekyll v3.8.5">
+        <title>Buchausleihe · Ursulaschule Osnabrück</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/dashboard/">
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/dashboard/">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+        </style>
+      
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
-  </head>
-  <body>
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ url('user/') }}">Ursulaschule Osnabrück</a>
- 
-</nav>
+    </head>
+    <body>
+        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ url('user/') }}">Ursulaschule Osnabrück</a>
+        </nav>
 
-<div class="container-fluid">
-  <div class="row">
+        <div class="container-fluid">
+            <div class="row">
 
     @if (Auth::user()!=null)
     
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>Schuljahr 2020/21</span>
-        </h6>
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('user/buecherlisten/4') }}">
-              <span data-feather="home"></span>
-              Bücherlisten
-            </a>
-          </li>
-        </ul>
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Schuljahr 2020/21</span>
+          </h6>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ url('user/buecherlisten/4') }}">
+                  <span data-feather="home"></span>
+                      Bücherlisten
+                  </a>
+              </li>
+          </ul>
 
-        <!--
+          <!--
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('user/anmeldung/schritt1') }}">
-              <span data-feather="file"></span>
-              Anmeldung zum Leihverfahren
-            </a>
+              <a class="nav-link" href="{{ url('user/anmeldung/schritt1') }}">
+                  <span data-feather="file"></span>
+                  Anmeldung zum Leihverfahren
+              </a>
           </li>
         -->
 
-    @if(Auth::user()->jahrgang > 4)
+        @if(Auth::user()->jahrgang > 4)
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>Schuljahr 2019/20</span>
+            <span>Schuljahr 2019/20</span>
         </h6>
+        
         <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('user/buecherlisten/3') }}">
-              <span data-feather="home"></span>
-              Bücherlisten
-            </a>
-          </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('user/buecherlisten/3') }}">
+                    <span data-feather="home"></span>
+                        Bücherlisten
+                    </a>
+            </li>
           
-          <!--
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('user/buecher/3') }}">
-              <span data-feather="file"></span>
-              Leihbücher 2019/20
-            </a>
-          </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('user/buecher/3') }}">
+                    <span data-feather="file"></span>
+                    Leihbücher 2019/20
+                </a>
+            </li>
            
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('user/rechnung/3') }}">
-              <span data-feather="file"></span>
-              Leihbücher 2019/20
-            </a>
-          </li>
-          -->
-
+            <!--
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('user/rechnung/3') }}">
+                    <span data-feather="file"></span>
+                    Leihbücher 2019/20
+                </a>
+            </li>
+            -->
         </ul>
 
         @endif
