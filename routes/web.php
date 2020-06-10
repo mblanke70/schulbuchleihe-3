@@ -87,7 +87,7 @@ Route::group([
     Route::get('buecherlisten/{sj}', 'HomeController@zeigeBuecherlisten');
     Route::post('buecherlisten/{sj}', 'HomeController@zeigeBuecherlisten');
 
-    Route::get('buecher/{id}', 'HomeController@zeigeBuecher');
+    Route::get('buecher/{sj}', 'HomeController@zeigeBuecher');
 
     Route::get('rechnung/{sj}/{id?}', 'HomeController@zeigeRechnung');
 
