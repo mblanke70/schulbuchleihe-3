@@ -154,6 +154,7 @@ class AnmeldungController extends Controller
         {
             if(Auth::user()->klasse == '10F') 
             {
+                dd("hui");
                 // Weltatlas 2008 raus
                 $buecherliste = $buecherliste->diff([325]);
             }
