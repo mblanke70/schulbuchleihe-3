@@ -152,7 +152,7 @@ class AnmeldungController extends Controller
         /* Achtung quick & dirty */
         if($jahrgang->jahrgangsstufe == 11) 
         {
-            if(Auth->user()->klasse == '10F') 
+            if(Auth::user()->klasse == '10F') 
             {
                 // Weltatlas 2008 raus
                 $buecherliste = $buecherliste->diff(collect([325]));
