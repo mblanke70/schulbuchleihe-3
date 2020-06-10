@@ -154,7 +154,7 @@ class AnmeldungController extends Controller
         {
             if(Auth::user()->klasse == '10F') {
                 // Weltatlas 2008 raus
-                $buchtitel = BuchtitelSchuljahr::find(325);
+                $buchtitel = BuchtitelSchuljahr::findMany([325]);
             }
             else {
                 // Weltatlas 2015 und Elektronisches Wörterbuch raus
