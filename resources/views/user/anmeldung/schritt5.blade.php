@@ -71,7 +71,7 @@
                     <td class="text-right">
                         @isset($ebooks)
                             @if(in_array($bt->id, $ebooks)) 
-                                {{ number_format($bt->ebook, 2, ',', '') €}} 
+                                {{ number_format($bt->ebook, 2, ',', '') }} € 
                             @endif
                         @endisset
                     </td>
