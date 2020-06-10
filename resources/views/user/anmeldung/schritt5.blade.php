@@ -51,8 +51,8 @@
         <thead>
             <tr>
                 <th>Titel</th> 
-                <th>ISBN</th>
                 <th>Fach</th>
+                <th>ISBN</th>
                 <th>Verlag</th>
                 <th>Leihpreis</th>
                 <th>E-Book</th>
@@ -64,8 +64,8 @@
             @foreach ($leihliste as $bt)
                 <tr>
                     <td scope="row">{{ $bt->buchtitel->titel }}</td>
-                    <td>{{ $bt->buchtitel->isbn }}</td>
                     <td>{{ $bt->buchtitel->fach->name }}</td>
+                    <td>{{ $bt->buchtitel->isbn }}</td>
                     <td>{{ $bt->buchtitel->verlag }}</td>
                     <td class="text-right">{{ number_format($bt->leihpreis, 2, ',', '') }} €</td>
                     <td class="text-right">
