@@ -15,7 +15,7 @@
 	    </div>
 	@endif
 
-    <form action="{{ url('user/buecherlisten') }}" method="POST" role="form">
+    <form action="{{ url('user/buecherlisten/'.$schuljahr_id) }}" method="POST" role="form">
 
         {{ csrf_field() }}
 
@@ -40,10 +40,12 @@
         <thead>
             <tr>
                 <th>Titel</th> 
+                <th>Fach</th>
                 <th>ISBN</th>
                 <th>Verlag</th>
-                <th>Leihpreis</th>
-                <th>Kaufpreis</th>
+                <th class="text-right">Leihpreis</th>
+                <th class="text-right">Kaufpreis</th>
+                <th class="text-right">E-Book</th>
             </tr>
         </thead>
 
@@ -52,10 +54,24 @@
             @foreach ($buecherliste as $bt)
                 <tr>
                     <td scope="row">{{ $bt->buchtitel->titel }}</td>
+                    <td>{{ $bt->buchtitel->fach->name }}</td>
                     <td>{{ $bt->buchtitel->isbn }}</td>
                     <td>{{ $bt->buchtitel->verlag }}</td>
-                    <td>@isset($bt->leihpreis) {{ $bt->leihpreis }} &euro; @endisset</td>
-                    <td>@isset($bt->kaufpreis) {{ $bt->kaufpreis }} &euro; @endisset</td>
+                    <td class="text-right">
+                        @isset($bt->leihpreis) 
+                            {{ number_format($bt->leihpreis, 2, ',', '') }} € 
+                        @endisset
+                    </td>
+                    <td class="text-right">
+                        @isset($bt->kaufpreis)
+                            {{ number_format($bt->kaufpreis, 2, ',', '') }} €
+                        @endisset
+                    </td>
+                    <td class="text-right">
+                        @isset($bt->ebook)     
+                            {{ number_format($bt->ebook, 2, ',', '') }} €
+                        @endisset
+                    </td>
                 </tr>
             @endforeach
 

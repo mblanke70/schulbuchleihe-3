@@ -84,8 +84,8 @@ Route::group([
         return view('user/index2');
     });
 
-    Route::get('buecherlisten', 'HomeController@zeigeBuecherlisten');
-    Route::post('buecherlisten', 'HomeController@zeigeBuecherlisten');
+    Route::get('buecherlisten/{sj}', 'HomeController@zeigeBuecherlisten');
+    Route::post('buecherlisten/{sj}', 'HomeController@zeigeBuecherlisten');
 
     Route::get('buecher/{id}', 'HomeController@zeigeBuecher');
 

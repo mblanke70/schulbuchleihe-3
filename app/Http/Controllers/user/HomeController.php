@@ -16,23 +16,24 @@ use App\Schueler;
 
 class HomeController extends Controller
 {
-    public function zeigeBuecherlisten(Request $request) 
+    public function zeigeBuecherlisten(Request $request, $schuljahr_id) 
     {
         if(!empty($request->jahrgang)) {
             $jg = $request->jahrgang;
             $jahrgang = Jahrgang::find($jg);
         } else {
             $user = Auth::user();
-            $jg = $user->jahrgang; if($jg!=20) $jg++;
+            $jg = $user->jahrgang;
+            if($schuljahr_id>3) $jg++;
             $jahrgang = Jahrgang::where(
-                ['jahrgangsstufe' => $jg, 'schuljahr_id' => 3]
+                ['jahrgangsstufe' => $jg, 'schuljahr_id' => $schuljahr_id]
             )->first();
         }
         
         $buecherliste = $jahrgang->buchtitel;
-        $jahrgaenge   = Jahrgang::where('schuljahr_id', 3)->get();
+        $jahrgaenge   = Jahrgang::where('schuljahr_id', $schuljahr_id)->get();
 
-        return view('user/buecherlisten', compact('jahrgang', 'buecherliste', 'jahrgaenge'));
+        return view('user/buecherlisten', compact('jahrgang', 'buecherliste', 'jahrgaenge', 'schuljahr_id'));
     }
 
     public function zeigeBuecher($sj)

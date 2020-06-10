@@ -22,8 +22,6 @@
 
 			<p>Die Anmeldung für die Schulbuchausleihe hat geschlossen.</p>
 
-			<p>Die Bücherlisten für das Schuljahr 2019/20 können <a href="{{ url('user/buecherlisten') }}">hier</a> eingesehen werden.</p>
-
 		</div>
 	    
 	    <div class="col-md-6">
