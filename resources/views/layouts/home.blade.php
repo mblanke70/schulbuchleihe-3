@@ -66,7 +66,7 @@
           </li>
         -->
 
-    @if(Auth::user()->jahrgang->jahrgangsstufe > 4)
+    @if(Auth::user()->jahrgang > 4)
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Schuljahr 2019/20</span>
@@ -94,7 +94,7 @@
             </a>
           </li>
           -->
-           
+
         </ul>
 
         @endif
