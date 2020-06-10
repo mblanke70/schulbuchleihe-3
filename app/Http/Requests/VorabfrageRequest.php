@@ -31,6 +31,7 @@ class VorabfrageRequest extends FormRequest
             'nachname'  => 'required',
             'strasse'   => 'required',
             'ort'       => 'required',
+            'plz'       => 'required|digits:5',
             'email'     => 'required|email',
         ];
     }
@@ -38,13 +39,14 @@ class VorabfrageRequest extends FormRequest
     public function messages()
     {
         return [
-            //'ermaessigung.required' => 'Ermäßigung nicht ausgewählt.',
             'jahrgang.required'     => 'Jahrgang nicht ausgewählt.',
-            'anrede.required'   => 'Anrede nicht angegeben.',
+            'anrede.required'       => 'Anrede nicht angegeben.',
             'vorname.required'      => 'Vorname nicht angegeben.',
             'nachname.required'     => 'Nachname nicht angegeben.',
             'strasse.required'      => 'Straße nicht angegeben.',
             'ort.required'          => 'Ort nicht angegeben.',
+            'plz.required'          => 'Die Postleitzahl muss angegeben werden.',
+            'plz.digits'            => 'Die Postleitzahl muss 5-stellig sein.',
             'email.required'        => 'Email nicht angegeben.',
         ];
     }

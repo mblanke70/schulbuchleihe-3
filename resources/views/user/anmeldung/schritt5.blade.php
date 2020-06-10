@@ -21,7 +21,7 @@
         
         <h5>Bankeinzugsverfahren</h5>
 
-        <p>Die Summe der (nicht reduzierte) Leihgebühren beträgt:</p>
+        <p>Die Summe der (nicht reduzierten) Leihgebühren beträgt:</p>
                
         <h4 style="text-align: center;">{{ number_format($summeLeihen, 2, ',', '') }} &euro;</h4>
 
@@ -70,7 +70,7 @@
                     <td>{{ $bt->leihpreis }} &euro;</td>
                     <td>
                         @isset($ebooks)
-                            @if(in_array($bt->id, $ebooks)) 1,00 € @endif
+                            @if(in_array($bt->id, $ebooks)) {{ $bt->ebook }} € @endif
                         @endisset
                     </td>
                 </tr>

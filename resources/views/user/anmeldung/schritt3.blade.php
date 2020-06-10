@@ -25,12 +25,12 @@
             <table id="buchtitel" class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th> 
                         <th>Titel</th> 
+                        <th>Fach</th>
                         <th>ISBN</th>
                         <th>Verlag</th>
                         <th>Preis</th>
-                        <th>Leihgeb.</th>
+                        <th>Leihgebühr</th>
                         <th>Leihen</th>
                         <th>Verlängern</th>
                         <th>Kaufen</th>
@@ -41,13 +41,21 @@
 
                     @foreach ($buecherliste as $bt)
                         <tr>
-                        	<td>{{ $bt->buchtitel->id }}</td>
                             <td scope="row">{{ $bt->buchtitel->titel }}</td>
+                            <td>{{ $bt->buchtitel->fach->code }}</td>
                             <td>{{ $bt->buchtitel->isbn }}</td>
                             <td>{{ $bt->buchtitel->verlag }}</td>
-                            <td>{{ $bt->kaufpreis }}</td>
-                            <td>{{ $bt->leihpreis }}</td>
-                            <td>
+                            <td class="text-right">
+                            @isset($bt->kaufpreis)
+                                {{ number_format($bt->kaufpreis, 2, ',', '') }} €
+                            @endisset
+                            </td>
+                            <td class="text-right">
+                            @isset($bt->leihpreis)
+                                {{ number_format($bt->leihpreis, 2, ',', '') }} €
+                            @endisset
+                            </td>
+                            <td class="text-center">
                             	@isset( $bt->leihpreis )
                             		@if( empty($leihbuecher) ||           
                                             !$leihbuecher->contains($bt->buchtitel->id) )
@@ -58,7 +66,7 @@
                                     @endif
                                 @endisset
                             </td>
-                            <td>                            	                          
+                            <td class="text-center">                            	    
                                 @if( !empty($leihbuecher) && 
                                         $leihbuecher->contains($bt->buchtitel->id) )
                            			<div class="custom-control custom-radio">
@@ -67,7 +75,7 @@
 									</div>
                                 @endif
                             </td>
-                            <td>
+                            <td class="text-center">
                             	@isset( $bt->kaufpreis )
                                 	<div class="custom-control custom-radio">
                                         <input type="radio" id="kaufen-{{ $bt->id }}" class="custom-control-input" value="3" name="wahlen[{{ $bt->id }}]" @if (old('wahlen.'.$bt->id) == 3 || empty($bt->leihpreis)) checked @endif/>
@@ -75,16 +83,7 @@
                                     </div>
                                 @endisset
                             </td>
-                        <!--
-                            <td>
-                                @isset( $bt->ebook )
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="ebook-{{ $bt->id }}" class="custom-control-input" name="ebook[{{ $bt->id }}]" @if (old('ebook.'.$bt->id)) checked @endif/>
-                                        <label class="custom-control-label" for="ebook-{{ $bt->id }}"></label>
-                                    </div>
-                                @endisset
-                            </td>
-                        -->
+                
                         </tr>
                     @endforeach
 
