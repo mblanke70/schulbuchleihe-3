@@ -44,9 +44,15 @@ class Buchwahl extends Resource
     public function fields(Request $request)
     {
         return [
+            
             ID::make()->sortable(),
+            
             BelongsTo::make('BuchtitelSchuljahr', 'buchtitel')->rules('required'),
+            
             Text::make('Wahl', 'wahl')->onlyOnForms(),
+            
+            Boolean::make('E-Book', 'ebook'),
+            
             Text::make('Wahl', function () {
                 $w = "L";
                 if($this->wahl == 2) {
@@ -57,6 +63,7 @@ class Buchwahl extends Resource
                 }
                 return $w;
             })->sortable(),
+            
         ];
     }
 
