@@ -8,6 +8,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Select;
 
 class Buchwahl extends Resource
 {
@@ -50,6 +51,12 @@ class Buchwahl extends Resource
             
             BelongsTo::make('BuchtitelSchuljahr', 'buchtitel')->rules('required'),
             
+            Select::make('wahl')->options([
+                '1' => 'Leihen',
+                '2' => 'Verlängern',
+                '3' => 'Kaufen',
+            ])->displayUsingLabels(),
+
             Text::make('Wahl', 'wahl')->onlyOnForms(),
             
             Boolean::make('E-Book', 'ebook'),
