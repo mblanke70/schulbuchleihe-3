@@ -51,13 +51,13 @@ class Buchwahl extends Resource
             
             BelongsTo::make('BuchtitelSchuljahr', 'buchtitel')->rules('required'),
             
-            Select::make('wahl')->options([
+            Select::make('Wahl', 'wahl')->options([
                 '1' => 'Leihen',
                 '2' => 'Verlängern',
                 '3' => 'Kaufen',
             ])->displayUsingLabels(),
 
-            Text::make('Wahl', 'wahl')->onlyOnForms(),
+            //Text::make('Wahl', 'wahl')->onlyOnForms(),
             
             Boolean::make('E-Book', 'ebook'),
             
