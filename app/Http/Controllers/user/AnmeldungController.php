@@ -316,7 +316,7 @@ class AnmeldungController extends Controller
         }
 
         $familie->name    = $user->nachname;
-        $familie->strasse = $user->strasse;
+        $familie->strasse = session('strasse');
 
         $familie->re_anrede     = session('anrede');;
         $familie->re_nachname   = session('nachname');
