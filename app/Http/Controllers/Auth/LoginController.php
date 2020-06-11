@@ -105,10 +105,12 @@ class LoginController extends Controller
             return redirect()->intended('nova/');
         }
 
+        /*
         if( $user->jahrgang == 11 )
         {
             return redirect()->intended('user/sportwahlen/');
         }
+        */
 
         return redirect()->intended('user/');
     }

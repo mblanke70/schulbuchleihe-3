@@ -81,7 +81,7 @@ Route::group([
     ], function () 
 {
     Route::get('/', function () {
-        return view('user/index2');
+        return view('user/index');
     });
 
     Route::get('buecherlisten/{sj}', 'HomeController@zeigeBuecherlisten');
