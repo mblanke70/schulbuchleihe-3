@@ -61,12 +61,12 @@ class Buchwahl extends Resource
             
             Boolean::make('E-Book', 'ebook'),
             
-            Text::make('Wahl', function () {
+            /*Text::make('Wahl', function () {
                 $w = "Leihen";
                 if($this->wahl == 2) { $w = "Verlängern"; }
                 if($this->wahl == 3) { $w = "Kaufen";     }
                 return $w;
-            })->sortable(),
+            })->sortable(),*/
 
         ];
     }
