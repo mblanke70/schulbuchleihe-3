@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 
 class Buchwahl extends Resource
 {
@@ -63,7 +64,7 @@ class Buchwahl extends Resource
                 }
                 return $w;
             })->sortable(),
-            
+
         ];
     }
 
