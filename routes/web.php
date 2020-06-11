@@ -34,7 +34,7 @@ Route::get('/', function () {
 Route::get('login/iserv', 'Auth\LoginController@redirectToProvider');
 Route::get('login/iserv/callback', 'Auth\LoginController@handleProviderCallback');
 
-Route::post('/logout', function () {
+Route::post('logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
