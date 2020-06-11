@@ -58,7 +58,7 @@
 
         @if ($abfr->child_id)
         
-        <div id="abfr-{{ $abfr->child_id }}" class="row pt-2" style="display:none;">
+        <div id="abfr-{{ $abfr->child_id }}" class="row p-3 bg-light" style="display:none;">
 
             <div class="col-md-3">&#8594; {{ $abfr->child->titel }}</div>
                 
@@ -67,7 +67,7 @@
 	        <div class="col-md-3">
             	<div class="custom-control custom-radio custom-control-inline">
 
-	                <input type="radio" class="custom-control-input" name ="abfrage[{{ $abfr->child_id }}]" id="antw-{{ $antw->id }}" value="{{ $antw->id }}" @if(old('abfrage.'.$abfr->id) == $antw->id) checked @endif />
+	                <input type="radio" class="custom-control-input" name ="abfrage[{{ $abfr->child_id }}]" id="antw-{{ $antw->id }}" value="{{ $antw->id }}"  checked  />
 	                <label class="custom-control-label" for="antw-{{ $antw->id }}">{{ $antw->titel }}</label>
 	            
 	            </div>

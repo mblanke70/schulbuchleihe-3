@@ -28,7 +28,7 @@ class AbfrageRequest extends FormRequest
         $abfragenRequest = $this->request->get('abfrage'); 
 
         $jg = session('jahrgang');
-        $abfragen = Abfrage::where('jahrgang', $jg)->get();
+        $abfragen = Abfrage::where('jahrgang_id', $jg)->get();
 
         foreach($abfragen as $abfr)
         {

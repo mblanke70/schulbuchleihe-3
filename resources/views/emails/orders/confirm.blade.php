@@ -56,5 +56,5 @@ Link zur Schulbuchausleihe
 @endcomponent
 
 Vielen Dank für Ihre Bestellung,<br>
-M. Hoffmann, M.Blanke, K. Schwegmann
+M. Hoffmann, M. Blanke, K. Schwegmann
 @endcomponent
