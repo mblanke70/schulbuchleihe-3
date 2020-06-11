@@ -277,7 +277,7 @@ class AnmeldungController extends Controller
         
         #################### Klasse ermitteln und dem Schüler zuordnen #####################
 
-        $klassen  = $jahrgang->klassen;
+        $klassen = $jahrgang->klassen;
 
         // Jahrgänge 5-11: Klasse des Schülers zuweisen
         if($klassen->count() > 1) {
