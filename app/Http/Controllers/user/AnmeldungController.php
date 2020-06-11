@@ -356,8 +356,10 @@ class AnmeldungController extends Controller
             $buchwahl->buchtitel_id = $btsj_id;
             $buchwahl->wahl         = $wahl;
 
-            if(in_array($btsj_id, $ebooks)) {
-                $buchwahl->ebook = 1;
+            if(!empty($ebooks)) {
+                if(in_array($btsj_id, $ebooks)) {
+                    $buchwahl->ebook = 1;
+                }
             }
 
             $buchwahl->save();
