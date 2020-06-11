@@ -101,7 +101,7 @@
                       @yield('heading')
                   </div>
                   <div>
-                      @yield('content');
+                      @yield('content')
                   </div>
               </main>
             
