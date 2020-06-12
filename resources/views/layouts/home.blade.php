@@ -56,7 +56,7 @@
                           <li class="nav-item">
                               <a class="nav-link" href="{{ url('user/buecherlisten/4') }}">
                                   <span data-feather="home"></span>
-                                    Bücherlisten
+                                  Bücherlisten
                               </a>
                           </li>
                 
@@ -66,9 +66,16 @@
                                   Anmeldung zum Leihverfahren
                               </a>
                           </li>
+
+                          <li class="nav-item">
+                              <a class="nav-link" href="{{ url('user/buecher/4') }}">
+                                  <span data-feather="file"></span>
+                                  Leihbücher
+                              </a>
+                          </li>    
                       </ul>
 
-                      <!--
+
                       @if(Auth::user()->jahrgang > 4)
 
                           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -92,7 +99,6 @@
                           </ul>
 
                       @endif
-                      -->
 
                   </div>
               

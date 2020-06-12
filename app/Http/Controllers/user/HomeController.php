@@ -41,10 +41,8 @@ class HomeController extends Controller
         $user      = Auth::user();
         $schueler  = $user->schuelerInSchuljahr($sj)->first();
         $schuljahr = Schuljahr::find($sj);
-
-        if(!empty($schueler)) $buecher = $schueler->buecher;
-        
-        return view('user/buecher', compact('schueler', 'buecher', 'schuljahr'));
+                
+        return view('user/buecher', compact('schueler', 'schuljahr'));
     }
 
     public function zeigeRechnung($sj, $id = null)

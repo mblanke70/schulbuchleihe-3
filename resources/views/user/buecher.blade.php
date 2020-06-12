@@ -14,10 +14,8 @@
 	        {{ $errors->first() }}
 	    </div>
 	@endif
-
-    <!--@isset($schueler)<h4>{{ $schueler->id }}</h4>@endisset-->
-
-    @if(!empty($buecher))
+    
+    @if(!empty($schueler) && !empty($schueler->buecher))
     <table class="table table-striped">
         <thead>
             <tr>
@@ -31,7 +29,7 @@
         </thead>
 
         <tbody>
-            @foreach ($buecher as $buch)
+            @foreach ($schueler->buecher as $buch)
                 <tr>
                     <td>{{ $buch->id }}</td>
                     <td>{{ $buch->buchtitel->titel }}</td>
@@ -45,7 +43,8 @@
 
     </table> 
     @else
-    <p>Keine Bücher ausgeliehen.</p>
+        <p>Keine Bücher ausgeliehen.</p>
     @endif
+
 
 @endsection
