@@ -49,7 +49,7 @@ Die folgenden Bücher kaufen Sie sich selbst.
 @endcomponent
 @endif
 
-Diese Übersicht finden Sie in ausführlicherer Form auf den Seinten der Schulbuchausleihe.
+Diese Übersicht finden Sie in ausführlicherer Form auf den Seiten der Schulbuchausleihe.
 
 @component('mail::button', ['url' => 'https://sbl.ursulaschule.de'])
 Link zur Schulbuchausleihe
