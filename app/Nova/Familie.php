@@ -27,6 +27,16 @@ class Familie extends Resource
     }
 
     /**
+     * Get the value that should be displayed to represent the resource.
+     *
+     * @return string
+     */
+    public function title()
+    {
+        return $this->name . ' (' . $this->strasse . ')';
+    }
+
+    /**
      * Get the displayable singular label of the resource.
      *
      * @return string
