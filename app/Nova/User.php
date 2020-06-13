@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasMany;
 
 class User extends Resource
 {
@@ -66,6 +67,12 @@ class User extends Resource
                 ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
+
+            Text::make('Klasse'),
+
+            Text::make('Jahrgang'), 
+            
+            HasMany::make('Schüler', 'schueler'),           
 
             BelongsTo::make('Familie', 'familie'),
 
