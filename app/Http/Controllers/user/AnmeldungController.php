@@ -304,7 +304,8 @@ class AnmeldungController extends Controller
         #################### Familie zuordnen oder neu erzeugen #####################
         if(empty($user->familie_id)) {
             $familie = Familie::where('name', '=', $user->nachname)
-                ->where('strasse', 'like', substr($user->strasse,0,5))
+               // ->where('strasse', 'like', substr($user->strasse,0,5))
+                ->where('strasse', '=', $user->strasse)
                 ->first();
 
             if(empty($familie)) {
