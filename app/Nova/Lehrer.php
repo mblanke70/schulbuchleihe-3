@@ -65,8 +65,8 @@ class Lehrer extends Resource
         return [
             ID::make()->sortable(),
             BelongsTo::make('User', 'user')->nullable()->searchable(),
-            Text::make('Vorname', 'vorname'),
-            Text::make('Nachname', 'nachname'),
+            Text::make('Vorname', 'vorname')->sortable(),
+            Text::make('Nachname', 'nachname')->sortable(),
             HasMany::make('Buch', 'buecher'),
         ];
     }
