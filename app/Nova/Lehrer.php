@@ -44,7 +44,7 @@ class Lehrer extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'nachname', 'vorname'
     ];
 
     /**

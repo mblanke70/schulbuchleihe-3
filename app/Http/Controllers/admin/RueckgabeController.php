@@ -46,11 +46,9 @@ class RueckgabeController extends Controller
                 ->withInput();
         }
 
- 
         $ausleiher = $buch->ausleiher;
         
-        if ( $ausleiher ) 
-        {
+        if($ausleiher) {
             return redirect('admin/rueckgabe/' . $ausleiher->id);
         }        
 
@@ -124,7 +122,8 @@ class RueckgabeController extends Controller
         // Aktualisierte Bücherliste holen
         $buecher = $ausleiher->buecher()->get();
     
-        return view('admin/rueckgabe/zeigeSchueler', compact('buecher', 'ausleiher', 'buch'));
+        return view('admin/rueckgabe/zeigeSchueler', 
+            compact('buecher', 'ausleiher', 'buch'));
     }
 
     /*
@@ -133,7 +132,11 @@ class RueckgabeController extends Controller
     public function loeschen(Request $request, $ausleiher_id, $buch_id)
     {
         $buch = Buch::find($buch_id);
-        $buch->delete();
+        
+        // Buch-Historie löschen
+        $buch->historie()->delete();
+        // Buch permanent löschen (kein soft delete)    
+        $buch->forceDelete();
 
         return redirect('admin/rueckgabe/' . $ausleiher_id);
     }

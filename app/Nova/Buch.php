@@ -98,8 +98,6 @@ class Buch extends Resource
 
             BelongsTo::make('Titel', 'buchtitel', 'App\Nova\Buchtitel'),
 
-            //Text::make('Buchtitel-ID', 'buchtitel_id')->onlyOnIndex(),
-
             MorphTo::make('Ausleiher')->types([
                 Schueler::class,
                 Lehrer::class,
@@ -111,8 +109,10 @@ class Buch extends Resource
             Date::make('Aufnahme', 'aufnahme')
                 ->hideWhenCreating()->hideFromIndex(),
             
-            HasMany::make('BuchHistorie', 'historie')
+            HasMany::make('BuchHistorie', 'historie'),
 
+            Date::make('Inventur', 'inventur')
+                ->onlyOnIndex(),
         ];
     }
 

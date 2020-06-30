@@ -51,6 +51,7 @@
 		    </div>
 
 		    @isset($buch)
+
 		    	@isset($ausleiher)
 		    <div class="box box-solid box-danger">            
 		        <div class="box-header with-border">                
@@ -71,6 +72,12 @@
 		       			</p>
 		       			<p>
 		       				<strong>Ausleiher</strong>: {{ $ausleiher->vorname . ' ' . $ausleiher->nachname }}
+		       			</p>
+		       			<p>
+		       				<strong>BuchHistorie</strong>:
+		       				@foreach($buch->historie as $eintrag)
+
+		       				@endforeach
 		       			</p>
 
 		       			<form action="{{ url('admin/rueckgabe/' .$ausleiher->id . '/' . $buch->id) }}" method="POST" >                
