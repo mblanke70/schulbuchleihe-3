@@ -37,6 +37,14 @@ class Buchwahl extends Resource
         'id',
     ];
 
+/*
+    public static function relatableBuchtitelSchuljahrs(NovaRequest $request, $query)
+    {
+        $btsj = $request->findResourceOrFail();
+        //return $query->where($btsj->schuljahr_id, '3');
+    }   
+*/
+    
     /**
      * Get the fields displayed by the resource.
      *
@@ -49,7 +57,7 @@ class Buchwahl extends Resource
             
             ID::make()->sortable(),
             
-            BelongsTo::make('BuchtitelSchuljahr', 'buchtitel')->rules('required'),
+            BelongsTo::make('BuchtitelSchuljahr', 'buchtitel'),
             
             Select::make('Wahl', 'wahl')->options([
                 '1' => 'Leihen',

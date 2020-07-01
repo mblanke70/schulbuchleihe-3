@@ -38,6 +38,7 @@ class BuchtitelSchuljahr extends Resource
      *
      * @return string
      */
+    
     public function title()
     {
         return $this->buchtitel->titel . ' (' . $this->schuljahr->schuljahr . ')';
