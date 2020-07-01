@@ -4,13 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Nova\Actions\Actionable;
 
 class Schueler extends Model
 {
     use Actionable;
-    use SoftDeletes;
 
     protected $table = 'schueler';
 
