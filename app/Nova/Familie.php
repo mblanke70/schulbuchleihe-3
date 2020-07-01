@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\Select;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -152,7 +153,10 @@ class Familie extends Resource
 
             HasMany::make('SchuelerExt', 'externe'),
 
-            Text::make('RE_Geschlecht', 're_anrede')->hideFromIndex(),
+            Select::make('RE_Geschlecht', 're_anrede')->options([
+                'm' => 'männlich',
+                'w' => 'weiblich',
+            ])->hideFromIndex(),
 
             Text::make('RE_Vorname', 're_vorname')->hideFromIndex(),
             
