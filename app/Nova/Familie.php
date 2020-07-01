@@ -152,7 +152,7 @@ class Familie extends Resource
 
             HasMany::make('SchuelerExt', 'externe'),
 
-            Text::make('RE_Geschlecht', 're_geschlecht')->hideFromIndex(),
+            Text::make('RE_Geschlecht', 're_anrede')->hideFromIndex(),
 
             Text::make('RE_Vorname', 're_vorname')->hideFromIndex(),
             
