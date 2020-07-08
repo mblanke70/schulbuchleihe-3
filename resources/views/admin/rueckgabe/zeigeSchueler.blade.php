@@ -116,7 +116,7 @@
 			<div class="box box-solid box-warning">            
 		        <div class="box-header with-border">                
 		            <div class="box-title">
-		                Ausgeliehene Bücher {{$ausleiher->jahrgang->schuljahr->schuljahr}} [{{ $ausleiher->id }}]
+		                Ausgeliehene Bücher {{$ausleiher->klasse->jahrgang->schuljahr->schuljahr}} [{{ $ausleiher->id }}]
 		            </div>
 		        </div>
 		        <div>
@@ -165,7 +165,7 @@
 				<div class="box box-solid box-warning">            
 			        <div class="box-header with-border">                
 			            <div class="box-title">
-			                Ausgeliehene Bücher {{$ausleiher_neu->jahrgang->schuljahr->schuljahr}} [{{ $ausleiher_neu->id }}]
+			                Ausgeliehene Bücher {{$ausleiher_neu->klasse->jahrgang->schuljahr->schuljahr}} [{{ $ausleiher_neu->id }}]
 			            </div>
 			        </div>
 			        <div>
