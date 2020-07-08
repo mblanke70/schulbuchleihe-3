@@ -3,7 +3,7 @@
 @section('title', 'Rückgabe')
 
 @section('content_header')
-    <h1>Rückgabe: {{ $ausleiher->vorname .' '. $ausleiher->nachname }} ({{ $ausleiher->klasse->bezeichnung }})</h1>
+    <h1>Rückgabe: {{ $ausleiher->vorname .' '. $ausleiher->nachname }} ({{ $ausleiher->klasse->bezeichnung }} - {{ $ausleiher->klasse->jahrgang->schuljahr->schuljahr }})</h1>
 @stop
 
 @section('content')
