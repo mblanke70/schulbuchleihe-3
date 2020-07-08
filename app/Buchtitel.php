@@ -50,6 +50,11 @@ class Buchtitel extends Model
         return $this->hasMany('App\BuchtitelSchuljahr')->orderBy('schuljahr_id', 'DESC');
     }
 
+    public function buchtitelSchuljahr2($schuljahr_id)
+    {
+        return $this->hasMany('App\BuchtitelSchuljahr')->where('schuljahr_id', $schuljahr_id)->get();
+    }    
+
     public function schuljahre()
     {
          return $this->belongsToMany('App\Schuljahr')

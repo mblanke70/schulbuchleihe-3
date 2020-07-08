@@ -65,12 +65,10 @@
                 <div class="box-body">                    
 					<table class="display compact" cellspacing="0" width="100%">
 	                	<tr><th>Buch-ID</th><td>{{ $buch->id }}</td></tr>
-	                	<tr><th>Aufnahmedatum</th><td>{{ $buch->aufnahmedatum }}</td></tr>
+	                	<tr><th>Aufnahmedatum</th><td>{{ date_format($buch->aufnahme, 'd.m.Y') }}</td></tr>
 	                	<tr><th>ISBN</th><td>{{ $buch->buchtitel->isbn }}</td></tr>
-	                	<tr><th>Kennung</th><td>{{ $buch->buchtitel->kennung }}</td></tr>
 	                	<tr><th>Titel</th><td>{{ $buch->buchtitel->titel }}</td></tr>
 	                	<tr><th>Fach</th><td>{{ $buch->buchtitel->fach->name }}</td></tr>
-
 	                </table>
                 </div>            
             
@@ -85,18 +83,36 @@
                 </div>
 
                 <div class="box-body">                    
-					<table class="display compact" cellspacing="0" width="100%">
-	              
-					@if($ausleiher)
-	                    <tr><th>Nachname</th><td>{{ $ausleiher->nachname }}</td></tr>
-	                    <tr><th>Vorname</th><td>{{ $ausleiher->vorname }}</td></tr>
-	                    <tr><th>Klasse</th><td>{{ $ausleiher->klasse->bezeichnung }}</td></tr>
-	                    <tr><th>Ausgabe</th><td>{{ $buch->ausgabe }}</td></tr>
+					
+					@if(!empty($buch->historie))
+					
+					<div class="table-responsive">
+						<table id="historie" class="display compact" cellspacing="0" width="100%">
+	       					<thead>
+	                            <tr>
+	                                <th>Nachname</th> 
+	                                <th>Vorname</th> 
+	                                <th>Klasse</th>
+	                                <th>Schuljahr</th> 
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+			       				@foreach($buch->historie as $eintrag)
+			       					<tr>
+			       						<td>{{ $eintrag->nachname }}</td>
+			       						<td>{{ $eintrag->vorname }}</td>
+			       						<td>{{ $eintrag->klasse }}</td>
+			       						<td>{{ $eintrag->schuljahr }}</td>
+			       					</tr>
+			       				@endforeach
+			       			</tbody>
+	       				</table>
+		   			</div>
+
             		@else
-    					<tr><td colspan="2">Das Buch ist nicht ausgeliehen</td></tr>
+    					<p>Das Buch wurde noch nicht ausgeliehen.</p>
             		@endif
 
-	                </table>
                 </div>            
             
             </div>
@@ -105,5 +121,23 @@
     	@endisset
     	
 	</div>		
+
+@stop
+
+@section('js')
+
+    <script>
+        $(document).ready(function() {
+
+            $('#historie').DataTable({
+                "searching": false, 
+                "info": false, 
+                "paging": false,           
+            });
+
+            $("#buch").focus();
+
+        } );
+    </script>
 
 @stop

@@ -58,6 +58,6 @@ class BuchObserver
      */
     public function forceDeleted(Buch $buch)
     {
-        //
+        $buch->historie()->delete();
     }
 }

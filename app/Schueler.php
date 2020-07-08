@@ -42,7 +42,7 @@ class Schueler extends Model
     }
 
     /**
-     * Liefert die Klasse des Schülers.
+     * Liefert den Jahrgang des Schülers.
      */
     public function jahrgang()
     {

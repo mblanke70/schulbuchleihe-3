@@ -53,43 +53,57 @@
 		    @isset($buch)
 
 		    	@isset($ausleiher)
-		    <div class="box box-solid box-danger">            
-		        <div class="box-header with-border">                
-		            <div class="box-title">
-		                Buch zurückgenommen
-		            </div>
-		        </div>
-		        <div>
-		            <div class="box-body">
-		            	<p>
-		       				<strong>Titel</strong>: {{ $buch->buchtitel->titel }}
-		       			</p>
-		       			<p>
-		       				<strong>Buch-ID</strong>: {{ $buch->id }}
-		       			</p>
-		       			<p>
-		       				<strong>Fach</strong>: {{ $buch->buchtitel->fach->code }}
-		       			</p>
-		       			<p>
-		       				<strong>Ausleiher</strong>: {{ $ausleiher->vorname . ' ' . $ausleiher->nachname }}
-		       			</p>
-		       			<p>
-		       				<strong>BuchHistorie</strong>:
-		       				@foreach($buch->historie as $eintrag)
+				    <div class="box box-solid box-danger">            
+				        <div class="box-header with-border">                
+				            <div class="box-title">
+				                Buch zurückgenommen
+				            </div>
+				        </div>
+				        <div>
+				            <div class="box-body">
+				            	<p>Titel: {{ $buch->buchtitel->titel }}</p>
+				       			<p>ID: {{ $buch->id }}</p>
+				       			<p>Fach: {{ $buch->buchtitel->fach->name }}</p>
+				       			<p>Aufnahme: <strong>{{ date_format($buch->aufnahme, 'd.m.Y') }}</strong></p>
+				       			<p>
+				       				Leih-Historie:
 
-		       				@endforeach
-		       			</p>
+				       				<div class="table-responsive">
+					       				<table id="historie" class="display compact" cellspacing="0" width="100%">
+					       					<thead>
+				                                <tr>
+				                                    <th>Nachname</th> 
+				                                    <th>Vorname</th> 
+				                                    <th>Klasse</th>
+				                                    <th>Schuljahr</th> 
+				                                </tr>
+				                            </thead>
+				                            <tbody>
+							       				@foreach($buch->historie as $eintrag)
+							       					<tr>
+							       						<td>{{ $eintrag->nachname }}</td>
+							       						<td>{{ $eintrag->vorname }}</td>
+							       						<td>{{ $eintrag->klasse }}</td>
+							       						<td>{{ $eintrag->schuljahr }}</td>
+							       					</tr>
+							       				@endforeach
+							       			</tbody>
+					       				</table>
+					       			</div>
+				       			</p>
 
-		       			<form action="{{ url('admin/rueckgabe/' .$ausleiher->id . '/' . $buch->id) }}" method="POST" >                
-	                        {{ csrf_field() }}      
-                            <div>
-                                <button type="submit" class="btn btn-danger">Buch löschen</button>
-	                        </div>
-	                    </form>
+				       			<form action="{{ url('admin/rueckgabe/' .$ausleiher->id . '/' . $buch->id) }}" method="POST" >                
+			                        {{ csrf_field() }}      
+		                            <div>
+		                                <button type="submit" name="loeschen" value="0" class="btn btn-danger">Buch löschen</button>
 
-		            </div>
-		        </div>
-		    </div>
+		                                <button type="submit" name="rechnung" value="1" class="btn btn-danger">Buch löschen + Rechnung</button>
+			                        </div>
+			                    </form>
+
+				            </div>
+				        </div>
+				    </div>
 		    	@endisset
 		    @endisset
 
@@ -102,7 +116,7 @@
 			<div class="box box-solid box-warning">            
 		        <div class="box-header with-border">                
 		            <div class="box-title">
-		                Ausgeliehene Bücher
+		                Ausgeliehene Bücher {{$ausleiher->jahrgang->schuljahr->schuljahr}} [{{ $ausleiher->id }}]
 		            </div>
 		        </div>
 		        <div>
@@ -112,9 +126,10 @@
 	                        <table id="buecher" class="display compact" cellspacing="0" width="100%">
 	                            <thead>
 	                                <tr>
-	                                    <th width="7%">Fach</th> 
-	                                    <th width="13%">ID</th> 
-	                                    <th width="60%">Titel</th>
+	                                    <th width="10%">Fach</th> 
+	                                    <th width="5%">ID</th> 
+	                                    <th width="75%">Titel</th>
+	                                    <th width="10%">Aktion</th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
@@ -123,6 +138,16 @@
 	                                    <td>{{ $b->buchtitel->fach->code }}</td>
 	                                    <td>{{ $b->id }}</td>
 	                                    <td>{{ $b->buchtitel->titel }}</td>
+	                                    <td>
+	                                    	@isset($ausleiher_neu)
+		                                    	<form action="{{ url('admin/rueckgabe/verlaengern/' .$ausleiher->id . '/' . $b->id) }}" method="POST" >                
+				                      				  {{ csrf_field() }}      
+			                            			<div>
+			                                			<button type="submit" class="btn btn-light btn-sm">Verlängern</button>
+							                        </div>
+							                    </form>
+						                    @endisset
+	                                    </td>
 	                                </tr>
 	                                @endforeach
 	                            </tbody>
@@ -133,10 +158,50 @@
 		        </div>
 		    </div>
 
+    	
+			@isset($ausleiher_neu)
+
+
+				<div class="box box-solid box-warning">            
+			        <div class="box-header with-border">                
+			            <div class="box-title">
+			                Ausgeliehene Bücher {{$ausleiher_neu->jahrgang->schuljahr->schuljahr}} [{{ $ausleiher_neu->id }}]
+			            </div>
+			        </div>
+			        <div>
+			            <div class="box-body">
+			                
+			                <div class="table-responsive">
+		                        <table id="buecher2" class="display compact" cellspacing="0" width="100%">
+		                            <thead>
+		                                <tr>
+		                                    <th width="10%">Fach</th> 
+		                                    <th width="5%">ID</th> 
+		                                    <th width="85%">Titel</th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                @foreach ($ausleiher_neu->buecher as $b)
+		                                <tr>
+		                                    <td>{{ $b->buchtitel->fach->code }}</td>
+		                                    <td>{{ $b->id }}</td>
+		                                    <td>{{ $b->buchtitel->titel }}</td>
+		                                </tr>
+		                                @endforeach
+		                            </tbody>
+		                        </table>
+		                    </div>
+
+			            </div>
+			        </div>
+			    </div>
+
+				@endisset
+
+			@endisset
+
 		</div>
 
-		@endisset
-    	
 	</div>		
 
 @stop
@@ -153,6 +218,21 @@
                 "language": {
                     "emptyTable": "Keine Bücher ausgeliehen."
                 },           
+            });
+
+            $('#buecher2').DataTable({
+                "searching": false, 
+                "info": false, 
+                "paging": false,
+                "language": {
+                    "emptyTable": "Keine Bücher ausgeliehen."
+                },           
+            });
+
+            $('#historie').DataTable({
+                "searching": false, 
+                "info": false, 
+                "paging": false,           
             });
 
             $("#buch").focus();
