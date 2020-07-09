@@ -198,7 +198,7 @@ class RueckgabeController extends Controller
             $rechnung->s_id            = $schueler->id;
             $rechnung->s_vorname       = $schueler->vorname;
             $rechnung->s_nachname      = $schueler->nachname;
-            $rechnung->s_geschlecht    = $schueler->geschlecht;
+            //$rechnung->s_anrede        = $schueler->geschlecht;
             $rechnung->s_schuljahr     = $schueler->klasse->jahrgang->schuljahr->schuljahr;
 
             $rechnung->re_anrede       = $familie->re_anrede;
@@ -214,7 +214,6 @@ class RueckgabeController extends Controller
             $rechnung->save();
 
             $summe = 0;
-
             $btsj = $buch->buchtitel->buchtitelSchuljahr2($schueler->klasse->jahrgang->schuljahr_id)->first();
 
             $jahr      = date_format($buch->aufnahme, 'Y');
