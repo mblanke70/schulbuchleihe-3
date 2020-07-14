@@ -41,7 +41,6 @@
         <th>Kaufpreis</th>
         <th>#bestellt</th>
         <th>#verfügbar</th>
-        <th>#verfügbarMitInv</th>
         <th>Anzahl</th>
         <th>Summe</th>
       </tr>
@@ -53,7 +52,6 @@
           <td style="text-align: right;">{{ $buchtitel->get('kaufpreis') }} €</td>
           <td>{{ $buchtitel->get('bestellt') }}</td>
           <td>{{ $buchtitel->get('verfuegbar') }}</td>
-          <td>{{ $buchtitel->get('verfuegbarMitInventurstempel') }}</td>
           <td style="text-align: right;">{{ $buchtitel->get('anzahl') }}</td>
           <td style="text-align: right;">{{ $buchtitel->get('summe') }} €</td>
       </tr> 
