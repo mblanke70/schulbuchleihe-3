@@ -42,9 +42,11 @@ class BestelllisteDrucken extends Action
         foreach($models as $model) 
         {
             $buchtitel = collect();
+
             $buchtitel->put('titel' , $model->buchtitel->titel);
-            $buchtitel->put('isbn', $model->buchtitel->isbn);
-            $buchtitel->put('kaufpreis', number_format($model->kaufpreis, 2, ',', ' '));
+            $buchtitel->put('isbn',   $model->buchtitel->isbn);
+            $buchtitel->put('kaufpreis', 
+                number_format($model->kaufpreis, 2, ',', ' '));
 
             $verfuegbar = $model->buchtitel()
                 ->first()
@@ -52,33 +54,30 @@ class BestelllisteDrucken extends Action
                 ->whereNull('ausleiher_id')
                 ->count();
             $buchtitel->put('verfuegbar', $verfuegbar);
-
-            $verfuegbarMitInventurstempel = $model->buchtitel()
-                ->first()
-                ->buecher()
-                ->whereNull('ausleiher_id')
-                ->whereNotNull('inventur')
-                ->count();
-            $buchtitel->put('verfuegbarMitInventurstempel', $verfuegbarMitInventurstempel);
         
             $bestellt = $model->buchwahlen()
                 ->where('wahl', 1)
                 ->count();
             $buchtitel->put('bestellt', $bestellt);
 
-            $anzahl = $bestellt - $verfuegbarMitInventurstempel;
+            $anzahl = $bestellt - $verfuegbar;
 
+            /*
+            // AUSNAHMEN!!!
             if( !in_array($model->id, [222,178,136,123]))
             {
-                if($anzahl > 0) {
-                    $buchtitel->put('anzahl', $anzahl);
-                    $buchtitel->put('summe', 
-                        number_format($model->kaufpreis * $anzahl, 2, ',', ' '));
-                    $gesamtsumme += $model->kaufpreis * $anzahl;
-                    $gesamtanzahl += $anzahl; 
-                    $liste->push($buchtitel);  
-                }
-            } 
+            */
+            
+            if($anzahl > 0) {
+                $buchtitel->put('anzahl', $anzahl);
+                $buchtitel->put('summe', 
+                    number_format($model->kaufpreis * $anzahl, 2, ',', ' '));
+                $gesamtsumme += $model->kaufpreis * $anzahl;
+                $gesamtanzahl += $anzahl; 
+                $liste->push($buchtitel);  
+            }
+            
+            //} 
         }
            
         \File::delete('pdf/bestellliste.pdf');
