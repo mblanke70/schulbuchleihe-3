@@ -396,7 +396,7 @@
       
       <section id="client-info">
         <span>
-        @if($rechnung->re_geschlecht == 'm')
+        @if($rechnung->re_anrede == 'm')
           Herrn
         @else
           Frau
@@ -488,7 +488,7 @@
       <section id="terms">
       
         <span>
-        @if($rechnung->re_geschlecht == 'm')
+        @if($rechnung->re_anrede == 'm')
           Sehr geehrter Herr
         @else
           Sehr geehrte Frau
