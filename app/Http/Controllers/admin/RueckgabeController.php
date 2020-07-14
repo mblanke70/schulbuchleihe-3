@@ -198,16 +198,15 @@ class RueckgabeController extends Controller
             $rechnung->s_id            = $schueler->id;
             $rechnung->s_vorname       = $schueler->vorname;
             $rechnung->s_nachname      = $schueler->nachname;
-            //$rechnung->s_anrede        = $schueler->geschlecht;
+            $rechnung->s_geschlecht    = $schueler->geschlecht;
             $rechnung->s_schuljahr     = $schueler->klasse->jahrgang->schuljahr->schuljahr;
 
-            $rechnung->re_anrede       = $familie->re_anrede;
-            $rechnung->re_vorname      = $familie->re_vorname;
-            $rechnung->re_nachname     = $familie->re_nachname;
-            $rechnung->re_strasse      = $familie->re_strasse_nr;
-            $rechnung->re_plz          = $familie->re_plz;
-            $rechnung->re_strasse      = $familie->re_strasse_nr;
-            $rechnung->re_ort          = $familie->re_ort;
+            $rechnung->re_anrede       = $familie->user->familie->re_anrede;
+            $rechnung->re_vorname      = $familie->user->familie->re_vorname;
+            $rechnung->re_nachname     = $familie->user->familie->re_nachname;
+            $rechnung->re_strasse      = $familie->user->familie->re_strasse_nr;
+            $rechnung->re_plz          = $familie->user->familie->re_plz;
+            $rechnung->re_ort          = $familie->user->familie->re_ort;
             $rechnung->re_datum        = Carbon::now();
             $rechnung->re_faelligkeit  = Carbon::now()->addDays(30);
 

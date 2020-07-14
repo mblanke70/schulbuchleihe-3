@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Nova;
 
 use Laravel\Nova\Fields\ID;
@@ -11,6 +10,7 @@ use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Select;
 
 class Rechnung extends Resource
 {
@@ -78,11 +78,16 @@ class Rechnung extends Resource
 
             ID::make()->sortable(),
 
-            Text::make('Geschlecht', 's_geschlecht')->sortable(),
+            Select::make('Geschlecht', 's_geschlecht')->options([
+                'm' => 'männlich',
+                'w' => 'weiblich',
+            ])->sortable()->hideFromIndex(),
 
             Text::make('Vorname', 's_vorname')->sortable(),
 
             Text::make('Nachname', 's_nachname')->sortable(),
+
+            Text::make('Schuljahr', 's_schuljahr')->sortable()->hideFromIndex(),
             
             Text::make('# Posten', function () {
                 return $this->positionen()->count();
@@ -96,7 +101,10 @@ class Rechnung extends Resource
 
             Heading::make('Rechnungsempfänger'), 
 
-            Text::make('RE_Geschlecht', 're_geschlecht')->sortable()->hideFromIndex(),
+            Select::make('RE_Anrede', 're_anrede')->options([
+                'm' => 'männlich',
+                'w' => 'weiblich',
+            ])->sortable()->hideFromIndex(),
 
             Text::make('RE_Vorname', 're_vorname')->sortable()->hideFromIndex(),
 

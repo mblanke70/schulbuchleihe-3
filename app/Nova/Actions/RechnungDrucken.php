@@ -41,16 +41,18 @@ class RechnungDrucken extends Action
         foreach($models as $model) 
         {
             $schueler = collect();
+
+            $schueler->put('id',            $model->id);
             $schueler->put('vorname' ,      $model->vorname );
             $schueler->put('nachname',      $model->nachname);
             $schueler->put('geschlecht',    $model->geschlecht);
-            $schueler->put('id',            $model->id);
-            $schueler->put('re_vorname',    $model->re_vorname);
-            $schueler->put('re_nachname',   $model->re_nachname);
-            $schueler->put('re_geschlecht', $model->re_geschlecht);
-            $schueler->put('re_strasse',    $model->re_strasse_nr);
-            $schueler->put('re_plz',        $model->re_plz);
-            $schueler->put('re_ort',        $model->re_ort);
+           
+            $schueler->put('re_anrede',     $model->user->familie->re_anrede);
+            $schueler->put('re_vorname',    $model->user->familie->re_vorname);
+            $schueler->put('re_nachname',   $model->user->familie->re_nachname);
+            $schueler->put('re_strasse',    $model->user->familie->re_strasse_nr);
+            $schueler->put('re_plz',        $model->user->familie->re_plz);
+            $schueler->put('re_ort',        $model->user->familie->re_ort);
             
             $buecher = collect();
             $summe = 0;
@@ -62,7 +64,7 @@ class RechnungDrucken extends Action
                 $jahr      = date_format($b->aufnahme, 'Y');
                 $kaufpreis = ceil($btsj->kaufpreis);
                 $leihpreis = $btsj->leihpreis;
-                $restwert  = $kaufpreis - (2019 - $jahr) * $leihpreis;
+                $restwert  = $kaufpreis - (2020 - $jahr) * $leihpreis;
                 
                 if($restwert<0) $restwert = 0;
                 $summe += $restwert;
@@ -81,8 +83,7 @@ class RechnungDrucken extends Action
             $schueler->put('buecher', $buecher);
             $schueler->put('summe', number_format($summe, 2, ',', ' '));
 
-            if($model->id != 666)      // H. Wethkamp raus...
-                $rechnungen->push($schueler);
+            $rechnungen->push($schueler);
         }
 
         \File::delete('pdf/rechnung.pdf');

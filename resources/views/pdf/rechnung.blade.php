@@ -402,7 +402,7 @@
       
       <section id="client-info">
         <span>
-        @if($schueler->get('re_geschlecht') == 'm')
+        @if($schueler->get('re_anrede') == 'm')
           Herrn
         @else
           Frau
@@ -490,7 +490,7 @@
       <section id="terms">
       
         <span>
-        @if($schueler->get('re_geschlecht') == 'm')
+        @if($schueler->get('re_anrede') == 'm')
           Sehr geehrter Herr
         @else
           Sehr geehrte Frau

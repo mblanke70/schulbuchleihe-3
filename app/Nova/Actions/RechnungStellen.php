@@ -46,14 +46,15 @@ class RechnungStellen extends Action
             $rechnung->s_vorname       = $model->vorname;
             $rechnung->s_nachname      = $model->nachname;
             $rechnung->s_geschlecht    = $model->geschlecht;
-            $rechnung->s_schuljahr     = $model->klasse->jahrgang->schuljahr->schuljahr;
-            $rechnung->re_vorname      = $model->re_vorname;
-            $rechnung->re_nachname     = $model->re_nachname;
-            $rechnung->re_geschlecht   = $model->re_geschlecht;
-            $rechnung->re_strasse      = $model->re_strasse_nr;
-            $rechnung->re_plz          = $model->re_plz;
-            $rechnung->re_strasse      = $model->re_strasse_nr;
-            $rechnung->re_ort          = $model->re_ort;
+            $rechnung->s_schuljahr     = 
+                $model->klasse->jahrgang->schuljahr->schuljahr;
+            
+            $rechnung->re_vorname      = $model->user->familie->re_vorname;
+            $rechnung->re_nachname     = $model->user->familie->re_nachname;
+            $rechnung->re_geschlecht   = $model->user->familie->re_geschlecht;
+            $rechnung->re_plz          = $model->user->familie->re_plz;
+            $rechnung->re_strasse      = $model->user->familie->re_strasse_nr;
+            $rechnung->re_ort          = $model->user->familie->re_ort;
             $rechnung->re_datum        = Carbon::now();
             $rechnung->re_faelligkeit  = Carbon::now()->addDays(30);
 
