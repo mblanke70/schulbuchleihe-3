@@ -68,7 +68,7 @@ class RechnungStellen extends Action
                 $jahr      = date_format($b->aufnahme, 'Y');
                 $kaufpreis = ceil($btsj->kaufpreis);
                 $leihpreis = $btsj->leihpreis;
-                $restwert  = $kaufpreis - (2019 - $jahr) * $leihpreis;
+                $restwert  = $kaufpreis - (2020 - $jahr) * $leihpreis;
                 
                 if($restwert<0) $restwert = 0;
                 $summe += $restwert;
