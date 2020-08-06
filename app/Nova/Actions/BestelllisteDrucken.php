@@ -60,6 +60,11 @@ class BestelllisteDrucken extends Action
                 ->count();
             $buchtitel->put('bestellt', $bestellt);
 
+            $ebooks = $model->buchwahlen()
+                ->where('ebook', 1)
+                ->count();
+            $buchtitel->put('ebooks', $ebooks);
+
             $anzahl = $bestellt - $verfuegbar;
 
             /*

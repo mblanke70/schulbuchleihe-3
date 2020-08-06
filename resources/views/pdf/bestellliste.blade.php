@@ -43,6 +43,7 @@
         <th>#verfügbar</th>
         <th>Anzahl</th>
         <th>Summe</th>
+        <th>Ebooks</th>
       </tr>
 
   @foreach($liste as $buchtitel)
@@ -54,6 +55,7 @@
           <td>{{ $buchtitel->get('verfuegbar') }}</td>
           <td style="text-align: right;">{{ $buchtitel->get('anzahl') }}</td>
           <td style="text-align: right;">{{ $buchtitel->get('summe') }} €</td>
+          <td>{{ $buchtitel->get('ebooks') }}</td>
       </tr> 
   @endforeach
 
