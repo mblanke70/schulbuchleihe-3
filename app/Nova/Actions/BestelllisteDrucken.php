@@ -85,7 +85,9 @@ class BestelllisteDrucken extends Action
                 $buchtitel->put('summe' , 0);
             }
             
-            $liste->push($buchtitel);  
+            if($ebooks>0) {
+                $liste->push($buchtitel);  
+            }
             //} 
         }
            
