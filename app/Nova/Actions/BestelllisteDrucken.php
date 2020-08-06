@@ -77,11 +77,15 @@ class BestelllisteDrucken extends Action
                 $buchtitel->put('anzahl', $anzahl);
                 $buchtitel->put('summe', 
                     number_format($model->kaufpreis * $anzahl, 2, ',', ' '));
-                $gesamtsumme += $model->kaufpreis * $anzahl;
+                
+                $gesamtsumme  += $model->kaufpreis * $anzahl;
                 $gesamtanzahl += $anzahl; 
-                $liste->push($buchtitel);  
+            } else {
+                $buchtitel->put('anzahl', 0);
+                $buchtitel->put('summe' , 0);
             }
             
+            $liste->push($buchtitel);  
             //} 
         }
            
