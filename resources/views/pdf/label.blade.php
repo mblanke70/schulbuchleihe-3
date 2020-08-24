@@ -39,8 +39,6 @@
 			<p style="font-weight: bold; font-size:16px;">
 				{{ html_entity_decode($buch->buchtitel->titel) }}
 			</p>
-		</div>
-		<div>
 			<p style="font-size:14px;">Ursulaschule&nbsp;Osnabr&uuml;ck</p>
 			<p style="font-size:10px;">Dieses Buch ist Eigentum des Bistums Osnabr&uuml;ck. Dieses Buch ist pfleglich zu behandeln. Eintragungen, Randbemerkungen u.a. d&uuml;rfen nicht vorgenommen werden. Bei nicht fristgem&auml;&szlig;er R&uuml;ckgabe oder Besch&auml;digung wird die Schule Schadenersatz verlangen.</p>
 		</div>
