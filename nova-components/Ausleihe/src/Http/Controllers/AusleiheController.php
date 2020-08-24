@@ -50,35 +50,9 @@ class AusleiheController extends Controller
 	{
 		$schueler = Schueler::find($schueler);
  	
-        $buecherliste = $schueler->buecherliste();
-        $buecher      = $schueler->buecher;
-
-        // Berechne Summe der Leihgebühren
-        $summe = 0;
-        foreach($buecher as $buch) {
-
-        	// FEHLER wenn Buchtitel ausgeliehen, der nicht auf der Bücherliste des Schuljahres steht!!!
-            $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
-
-            $leihpreis = $btsj->leihpreis;
-            if($leihpreis != null)
-            {
-                $buch['leihpreis'] = $leihpreis;
-                $summe += $leihpreis;
-            }
-        }
-
-        $summeErm = $summe;
-        switch($schueler->erm_bestaetigt) {
-            case 1: $summeErm *= 0.8; break;
-            case 2: $summeErm  = 0  ; break;
-        }
-
 	 	return [
-	 		'buecher'      => $buecher,
-	 		'buecherliste' => $buecherliste,
-	 		'summe'        => $summe,
-	 		'summeErm'     => $summeErm,
+	 		'buecher'      => $schueler->buecher,
+	 		'buecherliste' => $schueler->buecherliste(),
 	 	];
 	}
 

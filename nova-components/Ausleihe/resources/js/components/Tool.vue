@@ -85,14 +85,11 @@
 
             </div>
 
-
-            
         </div>
 
+
         <div class="card mt-6" v-if="selectedSchueler!=-1">
-
             
-
             <table
                 class="table w-full"
                 cellpadding="0"
@@ -101,11 +98,6 @@
             >
                 <thead>
                     <tr>
-                        <th class="text-left">
-                            <span class="inline-flex items-center">
-                                Leihstatus
-                            </span>
-                        </th>
                         <th class="text-left">
                             <span class="inline-flex items-center">
                                 Fach
@@ -121,6 +113,46 @@
                                 Titel
                             </span>
                         </th>
+                    </tr>
+                </thead>
+
+                <tbody v-for="buch in buecher">
+                    <tr>
+                        <td>{{ buch.buchtitel.fach_id }}</td>
+                        <td>{{ buch.id }}</td>
+                        <td>{{ buch.buchtitel.titel }}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="card mt-6" v-if="selectedSchueler!=-1">
+
+            <table
+                class="table w-full"
+                cellpadding="0"
+                cellspacing="0"
+                data-testid="resource-table"
+            >
+                <thead>
+                    <tr>
+                        <th class="text-left">
+                            <span class="inline-flex items-center">
+                                Leihstatus  
+                            </span>
+                        </th>
+                        <th class="text-left">
+                            <span class="inline-flex items-center">
+                                Fach
+                            </span>
+                        </th>
+                        <th class="text-left">
+                            <span class="inline-flex items-center">
+                                Titel
+                            </span>
+                        </th>
                         <th class="text-left">
                             <span class="inline-flex items-center">
                                 Wahl
@@ -129,19 +161,19 @@
                     </tr>
                 </thead>
 
-                 <tbody v-for="buch in buecher">
+                <tbody v-for="btsj in buecherliste">
                     <tr>
                         <td class="w-8">
-                            <svg class="w-6 h-6 text-green fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"/></svg>
+                            <svg v-if="btsj.ausgeliehen == 1" class="w-6 h-6 text-green fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"/></svg>
                         </td>
-                        <td>{{ buch.buchtitel.fach_id }}</td>
-                        <td>{{ buch.id }}</td>
-                        <td>{{ buch.buchtitel.titel }}</td>
-                        <td></td>
+                        <td>{{ btsj.buchtitel.fach.code }}</td>
+                        <td>{{ btsj.buchtitel.titel }}</td>
+                        <td>{{ btsj.wahl }}</td>
                     </tr>
                 </tbody>
 
             </table>
+
         </div>
                     
     </div>

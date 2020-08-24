@@ -79,23 +79,24 @@ class Schueler extends Model
         //   - die zugehörige Bestellung
         //   - den aktuellen Leihstatus
 
-        $buchtitel = $buchtitel->map(function ($item, $key) use ($wahlen, $buecher) {
+        $buchtitel = $buchtitel->map(
+            function ($item, $key) use ($wahlen, $buecher) {
+                $bw = $wahlen->get($item->id);
+                if($bw==null) {
+                    $item['wahl'] = 4;
+                } else {
+                    $item['wahl']    = $bw->wahl;
+                    $item['wahl_id'] = $bw->id;
+                }
 
-            $bw = $wahlen->get($item->id);
-            if($bw==null) {
-                $item['wahl'] = 4;
-            } else {
-                $item['wahl']    = $bw->wahl;
-                $item['wahl_id'] = $bw->id;
+                $item['ausgeliehen'] = 
+                    $buecher->contains('buchtitel_id', $item->buchtitel->id) ? 1 : 0;
+
+                return $item;
             }
+        );
 
-            $item['ausgeliehen'] = 
-                $buecher->contains('buchtitel_id', $item->buchtitel->id) ? 1 : 0;
-
-            return $item;
-        });
-
-        return $buchtitel;
+        return $buchtitel->sortBy('wahl');
     }
     
     public function buecherliste2()

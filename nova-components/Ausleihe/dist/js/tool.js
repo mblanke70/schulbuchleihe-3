@@ -169,7 +169,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -782,6 +782,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1112,7 +1144,7 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _c("div", [
-            _vm.selectedSchueler > 0
+            _vm.selectedSchueler != -1
               ? _c("input", {
                   directives: [
                     {
@@ -1169,34 +1201,66 @@ var render = function() {
               _vm._l(_vm.buecher, function(buch) {
                 return _c("tbody", [
                   _c("tr", [
-                    _c("td", { staticClass: "w-8" }, [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "w-6 h-6 text-green fill-current",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            viewBox: "0 0 20 20"
-                          }
-                        },
-                        [
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
-                            }
-                          })
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(buch.buchtitel.fach_id))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(buch.id))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(buch.buchtitel.titel))]),
+                    _c("td", [_vm._v(_vm._s(buch.buchtitel.titel))])
+                  ])
+                ])
+              })
+            ],
+            2
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.selectedSchueler != -1
+      ? _c("div", { staticClass: "card mt-6" }, [
+          _c(
+            "table",
+            {
+              staticClass: "table w-full",
+              attrs: {
+                cellpadding: "0",
+                cellspacing: "0",
+                "data-testid": "resource-table"
+              }
+            },
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._l(_vm.buecherliste, function(btsj) {
+                return _c("tbody", [
+                  _c("tr", [
+                    _c("td", { staticClass: "w-8" }, [
+                      btsj.ausgeliehen == 1
+                        ? _c(
+                            "svg",
+                            {
+                              staticClass: "w-6 h-6 text-green fill-current",
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                viewBox: "0 0 20 20"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"
+                                }
+                              })
+                            ]
+                          )
+                        : _vm._e()
+                    ]),
                     _vm._v(" "),
-                    _c("td")
+                    _c("td", [_vm._v(_vm._s(btsj.buchtitel.fach.code))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(btsj.buchtitel.titel))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(btsj.wahl))])
                   ])
                 ])
               })
@@ -1217,7 +1281,37 @@ var staticRenderFns = [
         _c("th", { staticClass: "text-left" }, [
           _c("span", { staticClass: "inline-flex items-center" }, [
             _vm._v(
-              "\n                            Leihstatus\n                        "
+              "\n                            Fach\n                        "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-left" }, [
+          _c("span", { staticClass: "inline-flex items-center" }, [
+            _vm._v("\n                            ID\n                        ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-left" }, [
+          _c("span", { staticClass: "inline-flex items-center" }, [
+            _vm._v(
+              "\n                            Titel\n                        "
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "text-left" }, [
+          _c("span", { staticClass: "inline-flex items-center" }, [
+            _vm._v(
+              "\n                            Leihstatus  \n                        "
             )
           ])
         ]),
@@ -1227,12 +1321,6 @@ var staticRenderFns = [
             _vm._v(
               "\n                            Fach\n                        "
             )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-left" }, [
-          _c("span", { staticClass: "inline-flex items-center" }, [
-            _vm._v("\n                            ID\n                        ")
           ])
         ]),
         _vm._v(" "),

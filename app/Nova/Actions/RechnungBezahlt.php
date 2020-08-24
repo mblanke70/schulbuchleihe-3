@@ -45,7 +45,8 @@ class RechnungBezahlt extends Action
 
         foreach($rechnung->positionen as $position) 
         {
-            Buch::destroy($position->buch_id);
+            $buch = Buch::find($position->buch_id);
+            $buch->forceDelete();
         }
     }
 

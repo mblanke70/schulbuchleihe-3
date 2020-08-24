@@ -45,6 +45,19 @@ class HomeController extends Controller
         return view('user/buecher', compact('schueler', 'schuljahr'));
     }
 
+    public function zeigeFamilie($id = null)
+    {
+        if($id == null) {
+            $user = Auth::user();
+        } else {
+            $user = User::findOrFail($id);
+        }
+
+        $familie = $user->familie;
+
+        return view('user/familie', compact('user', 'familie'));
+    }
+
     public function zeigeRechnung($sj, $id = null)
     {
         if($id == null) {

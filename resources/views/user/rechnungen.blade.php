@@ -3,7 +3,7 @@
 @section('title', 'Schulbuchleihe - Ursulaschule Osnabrück')
 
 @section('heading')
-   	<h4>Leihbücher im Schuljahr 2019/20</h4>
+   	<h4>Leihbücher im Schuljahr {{ $ausleiher->klasse->jahrgang->schuljahr->schuljahr }}</h4>
     <h4>{{ $ausleiher->vorname }} {{ $ausleiher->nachname }} ({{ $ausleiher->klasse->bezeichnung }})</h4> 
 @endsection
 

@@ -76,7 +76,10 @@ class AusleiheController extends Controller
         $prev = $schueler->prev();
 
         $buchtitel = $schueler->buecherliste();
-        $buecher   = $schueler->buecher;
+
+        //dd($buchtitel);
+
+        $buecher = $schueler->buecher;
        
         // Berechne Summe der Leihgebühren
         $summe = 0;

@@ -20,11 +20,13 @@ Route::get('/mail', function(){
 });
 */
 
+/*
 Route::get('mailable', function () {
     $schueler = App\Schueler::find(2551);
 
     return new App\Mail\OrderConfirm($schueler);
 });
+*/
 
 Route::get('/', function () {
     return view('index');
@@ -84,6 +86,10 @@ Route::group([
     Route::get('/', function () {
         return view('user/index');
     });
+
+    Route::get('familie', 'HomeController@zeigeFamilie');
+    Route::get('familie/{id}', 'HomeController@zeigeFamilie');
+    Route::post('familie', 'HomeController@verarbeiteFamilie');
 
     Route::get('buecherlisten/{sj}', 'HomeController@zeigeBuecherlisten');
     Route::post('buecherlisten/{sj}', 'HomeController@zeigeBuecherlisten');
