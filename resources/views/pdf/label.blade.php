@@ -30,7 +30,10 @@
 			<img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($buch->id, "C39", 2, 55) }}" alt="barcode"/><br />
 			<span style="font-size:18px;">{{ $buch->id }}</span>
 		</div>
-		<div style="">{{ \Carbon\Carbon::parse($buch->aufnahme)->format('d.m.Y') }}</div>
+		<div style="">
+			<p style="font-size:14px;">
+				{{ \Carbon\Carbon::parse($buch->aufnahme)->format('d.m.Y') }}</div>
+			</p>
 		<div style="">
 			<p style="font-weight: bold; font-size:16px;">
 				{{ html_entity_decode($buch->buchtitel->titel) }}
