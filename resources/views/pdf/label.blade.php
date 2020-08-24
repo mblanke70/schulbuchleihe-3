@@ -23,9 +23,11 @@
 @foreach($buecher as $buch)
 
 	<div class="pb_before pb_after">
+		<!--
 		<div style="font-weight: bold; font-size: 16px;">
 			{{ $buch->buchtitel->kennung }}
 		</div>
+		-->
 		<div style="text-align: center;">
 			<img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($buch->id, "C39", 2, 55) }}" alt="barcode"/><br />
 			<span style="font-size:18px;">{{ $buch->id }}</span>
