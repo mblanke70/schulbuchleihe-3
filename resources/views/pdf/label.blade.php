@@ -33,7 +33,7 @@
 			<span style="font-size:18px;">{{ $buch->id }}</span>
 		</div>
 		<div>
-			<p style="font-size:14px;">
+			<p style="font-size:12px;">
 				{{ \Carbon\Carbon::parse($buch->aufnahme)->format('d.m.Y') }}</div>
 			</p>
 			<p style="font-weight: bold; font-size:16px;">
@@ -41,7 +41,7 @@
 			</p>
 		</div>
 		<div>
-			<p style="font-size:14px;">Ursulaschule&nbsp;Osnabr&uuml;ck</p>
+			<p style="font-size:12px;">Ursulaschule&nbsp;Osnabr&uuml;ck</p>
 		</div>
 		<div>
 			<p style="font-size:10px;">Dieses Buch ist Eigentum des Bistums Osnabr&uuml;ck. Dieses Buch ist pfleglich zu behandeln. Eintragungen, Randbemerkungen u.a. d&uuml;rfen nicht vorgenommen werden. Bei nicht fristgem&auml;&szlig;er R&uuml;ckgabe oder Besch&auml;digung wird die Schule Schadenersatz verlangen.</p>
