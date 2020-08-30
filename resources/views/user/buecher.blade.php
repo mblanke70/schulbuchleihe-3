@@ -15,36 +15,75 @@
 	    </div>
 	@endif
     
-    @if(!empty($schueler) && !empty($schueler->buecher))
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Titel</th>
-                <th>Fach</th> 
-                <th>ISBN</th>
-                <th>Verlag</th>
-                <th>Ausgabedatum</th>
-            </tr>
-        </thead>
+    @if(!empty($schueler))
 
-        <tbody>
-            @foreach ($schueler->buecher as $buch)
-                <tr>
-                    <td>{{ $buch->id }}</td>
-                    <td>{{ $buch->buchtitel->titel }}</td>
-                    <td>{{ $buch->buchtitel->fach->name }}</td>
-                    <td>{{ $buch->buchtitel->isbn }}</td>
-                    <td>{{ $buch->buchtitel->verlag }}</td>
-                    <td>{{ $buch->ausleiher_ausgabe }}</td>
-                </tr>
-            @endforeach
-        </tbody>
+        <h5>Bücher</h5>            
 
-    </table> 
+        @if(!empty($schueler->buecher))
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Titel</th>
+                        <th>Fach</th> 
+                        <th>ISBN</th>
+                        <th>Verlag</th>
+                        <th>Ausgabedatum</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach ($schueler->buecher as $buch)
+                        <tr>
+                            <td>{{ $buch->id }}</td>
+                            <td>{{ $buch->buchtitel->titel }}</td>
+                            <td>{{ $buch->buchtitel->fach->name }}</td>
+                            <td>{{ $buch->buchtitel->isbn }}</td>
+                            <td>{{ $buch->buchtitel->verlag }}</td>
+                            <td>{{ $buch->ausleiher_ausgabe }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+
+            </table> 
+        @endif
+
+        @if(!empty($schueler->ebooks))
+
+            <h5>Ebooks</h5>            
+
+             <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Titel</th>
+                        <th>Fach</th>
+                        <th>ISBN</th> 
+                        <th>Verlag</th>
+                        <th>App</th>
+                        <th>Lizenzschlüssel</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach ($schueler->ebooks as $ebook)
+                        <tr>
+                            <td>{{ $ebook->id }}</td>
+                            <td>{{ $ebook->buchtitel->buchtitel->titel }}</td>
+                            <td>{{ $ebook->buchtitel->buchtitel->fach->code }}</td>  
+                            <td>{{ $ebook->buchtitel->buchtitel->isbn }}</td>
+                            <td>{{ $ebook->buchtitel->buchtitel->verlag }}</td>
+                            <td>{{ $ebook->app }}</td>
+                            <td>{{ $ebook->schluessel }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+
+            </table> 
+        @endif
+
     @else
         <p>Keine Bücher ausgeliehen.</p>
     @endif
-
 
 @endsection

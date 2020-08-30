@@ -134,6 +134,7 @@ class AusleiheController extends Controller
                 ->withInput();
         }
 
+
         // Ausleihen zwar möglich, es wird aber eine Bestätigung verlangt...
         $validator2 = Validator::make(
             $request->all(), 

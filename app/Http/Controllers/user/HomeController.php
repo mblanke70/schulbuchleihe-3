@@ -36,10 +36,15 @@ class HomeController extends Controller
         return view('user/buecherlisten', compact('jahrgang', 'buecherliste', 'jahrgaenge', 'schuljahr_id'));
     }
 
-    public function zeigeBuecher($sj)
+    public function zeigeBuecher($sj, $id = null)
     {
-        $user      = Auth::user();
-        $schueler  = $user->schuelerInSchuljahr($sj)->first();
+        if($id == null) {
+            $user      = Auth::user();
+            $schueler  = $user->schuelerInSchuljahr($sj)->first();
+        } else {
+            $schueler  = Schueler::find($id);    
+        }
+       
         $schuljahr = Schuljahr::find($sj);
                 
         return view('user/buecher', compact('schueler', 'schuljahr'));

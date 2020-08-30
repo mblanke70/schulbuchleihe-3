@@ -168,6 +168,8 @@ class Schueler extends Resource
 */            
             HasMany::make('Buch', 'buecher'),
 
+            HasMany::make('Ebook', 'ebooks'),
+
             HasMany::make('Buchwahl', 'buecherwahlen'),
 
             //BelongsTo::make('Familie', 'familie')->nullable()->hideFromIndex(),

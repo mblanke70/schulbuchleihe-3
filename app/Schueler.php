@@ -18,6 +18,14 @@ class Schueler extends Model
     }
 
     /**
+     * Liefert die Ebooks dieses Schülers.
+     */
+    public function ebooks()
+    {
+        return $this->hasMany('App\Ebook');
+    }
+
+    /**
      * Liefert die Bücherwahlen des Schülers.
      */   
     public function buecherwahlen()

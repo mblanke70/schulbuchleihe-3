@@ -20,6 +20,14 @@ class Buchtitel extends Model
     }
 
     /**
+     * Liefert die Ebooks zu diesem Buchtitel.
+     */
+    public function ebooks()
+    {
+        return $this->hasMany('App\Ebook');
+    }
+
+    /**
      * Liefert das Fach zu diesem Buchtitel.
      */
     public function fach()
