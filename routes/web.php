@@ -84,7 +84,7 @@ Route::group([
     ], function () 
 {
     Route::get('/', function () {
-        return view('user/buecher/4');
+        return view('user/buecher/{sj}/{id?}');
     });
 
     Route::get('familie', 'HomeController@zeigeFamilie');
@@ -118,7 +118,7 @@ Route::group([
     Route::get('anmeldung/schritt6', 'AnmeldungController@zeigeAbschluss');
 
     */
-    
+
     /* HOME */
     
     //Route::get ('sportwahlen', 'SportwahlenController@index');
