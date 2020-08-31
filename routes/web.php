@@ -84,7 +84,7 @@ Route::group([
     ], function () 
 {
     Route::get('/', function () {
-        return view('user/index');
+        return view('user/buecher/4');
     });
 
     Route::get('familie', 'HomeController@zeigeFamilie');
@@ -97,6 +97,8 @@ Route::group([
     Route::get('buecher/{sj}/{id?}', 'HomeController@zeigeBuecher');
 
     Route::get('rechnung/{sj}/{id?}', 'HomeController@zeigeRechnung');
+
+    /*
 
     Route::get('anmeldung/schritt1', 'AnmeldungController@zeigeVorabfragen');
     Route::post('anmeldung/schritt1', 'AnmeldungController@verarbeiteVorabfragen');
@@ -115,6 +117,8 @@ Route::group([
 
     Route::get('anmeldung/schritt6', 'AnmeldungController@zeigeAbschluss');
 
+    */
+    
     /* HOME */
     
     //Route::get ('sportwahlen', 'SportwahlenController@index');

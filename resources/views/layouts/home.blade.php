@@ -60,12 +60,14 @@
                               </a>
                           </li>
                 
+                          <!--
                           <li class="nav-item">
                               <a class="nav-link" href="{{ url('user/anmeldung/schritt1') }}">
                                   <span data-feather="file"></span>
                                   Anmeldung zum Leihverfahren
                               </a>
                           </li>
+                          -->
 
                           <li class="nav-item">
                               <a class="nav-link" href="{{ url('user/buecher/4') }}">
