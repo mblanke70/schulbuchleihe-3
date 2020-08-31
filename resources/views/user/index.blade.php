@@ -22,11 +22,12 @@
 
 			<p>Die Anmeldung für die Schulbuchausleihe hat geschlossen.</p>
 
+			<p>Bei Rückfragen wenden Sie sich bitte direkt an Herrn Hoffmann (Di., Do., Fr. zwischen 8.00 und 9.00 Uhr, Tel. 0541/318741 oder <a href="mailto:matthias.hoffmann@urs-os.de">matthias.hoffmann@urs-os.de</a>). Bitte berücksichtigen Sie, dass unser Sekretariat keine Rückfragen beantworten kann!</p>
+
 		</div>
 	    
 	    <div class="col-md-6">
 
-			<p>Bei Rückfragen wenden Sie sich bitte direkt an Herrn Hoffmann (Di., Do., Fr. zwischen 8.00 und 9.00 Uhr, Tel. 0541/318741 oder <a href="mailto:matthias.hoffmann@urs-os.de">matthias.hoffmann@urs-os.de</a>). Bitte berücksichtigen Sie, dass unser Sekretariat keine Rückfragen beantworten kann!</p>
 
 	    </div>
 
