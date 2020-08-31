@@ -84,7 +84,7 @@ Route::group([
     ], function () 
 {
     Route::get('/', function () {
-        return view('user/buecher/{sj}/{id?}');
+        return view('user/index');
     });
 
     Route::get('familie', 'HomeController@zeigeFamilie');
