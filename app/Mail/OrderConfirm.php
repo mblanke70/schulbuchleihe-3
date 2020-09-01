@@ -15,7 +15,7 @@ class OrderConfirm extends Mailable
 {
     use Queueable, SerializesModels;
 
-   public $schueler;
+    public $schueler;
     
     /**
      * Create a new message instance.

@@ -216,6 +216,7 @@ class Familie extends Resource
     {
         return [
             new DownloadExcel,
+            new Actions\EmailsVerschicken,
         ];
     }
 
