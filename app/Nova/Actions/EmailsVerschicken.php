@@ -28,8 +28,11 @@ class EmailsVerschicken extends Action
     {
         foreach($models as $familie) 
         {
-            $mail = new Schulbescheinigung($familie);
-            Mail::to($familie->email)->send($mail);
+            if($familie->users()->count() > 0 && $familie->email != null)
+            {
+                $mail = new Schulbescheinigung($familie);
+                Mail::to($familie->email)->send($mail);
+            }
         }
     }
 
