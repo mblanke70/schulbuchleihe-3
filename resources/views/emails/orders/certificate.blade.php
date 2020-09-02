@@ -7,7 +7,7 @@ Sollten Sie einen Anspruch auf diesen Nachlass haben, so bitten wir Sie, zu übe
 
 (Sind die Geschwisterkinder an der Ursulaschule, so benötigen wir KEINE Bescheinigungen. Unsere eigenen Schüler und Schülerinnen kennen wir!)
 
-Noch fehlende Schulbescheinigungen können Sie bis zum Ende dieser Woche im Sekretariat nachreichen.
+Noch fehlende Schulbescheinigungen können Sie bis Freitag, den 11.9.2020, im Sekretariat nachreichen.
 
 Mit freundlichen Grüßen<br>
 M. Hoffmann, M. Blanke, K. Schwegmann
