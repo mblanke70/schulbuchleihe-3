@@ -24,7 +24,7 @@ class HomeController extends Controller
         } else {
             $user = Auth::user();
             $jg = $user->jahrgang;
-            if($schuljahr_id>3) $jg++;
+            //if($schuljahr_id>3) $jg++;
             $jahrgang = Jahrgang::where(
                 ['jahrgangsstufe' => $jg, 'schuljahr_id' => $schuljahr_id]
             )->first();
