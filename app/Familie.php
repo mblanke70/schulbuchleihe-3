@@ -20,7 +20,6 @@ class Familie extends Model
     public function externe()
     {
         return $this->hasMany('App\SchuelerExt');
-            //->where('bestaetigt', 1);
     }
 
 	public function schuljahr()

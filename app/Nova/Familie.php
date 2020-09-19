@@ -147,6 +147,7 @@ class Familie extends Resource
                 return $this->externe()->count();
             })->onlyOnIndex(),
             
+            
             //HasMany::make('Schueler', 'kinder'),
 
             HasMany::make('Users', 'users'),
