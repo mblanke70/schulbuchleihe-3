@@ -34,6 +34,13 @@ class SchuelerExt extends Resource
     //public static $displayInNavigation = false;
 
     /**
+    * The logical group associated with the resource.
+    *
+    * @var string
+    */
+    public static $group = 'Leihverfahren';
+
+    /**
      * The columns that should be searched.
      *
      * @var array
