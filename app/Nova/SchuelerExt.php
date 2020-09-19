@@ -34,6 +34,16 @@ class SchuelerExt extends Resource
     //public static $displayInNavigation = false;
 
     /**
+     * Get the displayble label of the resource.
+     *
+     * @return string
+     */
+    public static function label()
+    {
+        return 'Schüler Ext';
+    }
+
+    /**
     * The logical group associated with the resource.
     *
     * @var string
