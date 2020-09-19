@@ -60,7 +60,7 @@ class SchuelerExt extends Resource
 
             Date::make('Geburtsdatum', 'geburtsdatum')->rules('required'),
 
-            Boolean::make('bestaetigt'),
+            Boolean::make('bestaetigt')->showOnTableRow(),
         ];
     }
 
