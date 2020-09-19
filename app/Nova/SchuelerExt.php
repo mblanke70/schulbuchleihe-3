@@ -31,7 +31,7 @@ class SchuelerExt extends Resource
      *
      * @var bool
      */
-    public static $displayInNavigation = false;
+    //public static $displayInNavigation = false;
 
     /**
      * The columns that should be searched.
@@ -60,7 +60,7 @@ class SchuelerExt extends Resource
 
             Date::make('Geburtsdatum', 'geburtsdatum')->rules('required'),
 
-            Boolean::make('bestaetigt')->showOnTableRow(),
+            Boolean::make('bestaetigt'),
         ];
     }
 
