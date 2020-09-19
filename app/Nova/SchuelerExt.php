@@ -8,6 +8,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Boolean;
 
 class SchuelerExt extends Resource
 {
@@ -38,7 +39,7 @@ class SchuelerExt extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'name', 'vorname'
     ];
 
     /**
@@ -58,6 +59,8 @@ class SchuelerExt extends Resource
             Text::make('Vorname', 'vorname')->rules('required'),
 
             Date::make('Geburtsdatum', 'geburtsdatum')->rules('required'),
+
+            Boolean::make('bestaetigt'),
         ];
     }
 
