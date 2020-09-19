@@ -135,7 +135,7 @@ class Familie extends Resource
 
             Boolean::make('ermäßigt', function () {
                 //return ($this->kinder()->count() + $this->externe()->count()) > 2;
-                return ($this->users()->count() + $this->externe()->count()) > 2;
+                return ($this->users()->count() + $this->externe()->where('bestaetigt',1)->count()) > 2;
             })->onlyOnIndex(),
 
             Text::make('# Kinder', function () {
@@ -144,10 +144,10 @@ class Familie extends Resource
             })->onlyOnIndex(),
 
             Text::make('# Externe', function () {
-                return $this->externe()->count();
+                return $this->externe()->where('bestaetigt',1)->count();
             })->onlyOnIndex(),
             
-            
+
             //HasMany::make('Schueler', 'kinder'),
 
             HasMany::make('Users', 'users'),
