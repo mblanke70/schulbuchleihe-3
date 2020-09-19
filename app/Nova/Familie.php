@@ -143,7 +143,7 @@ class Familie extends Resource
                 return $this->users()->count();
             })->onlyOnIndex(),
 
-            Text::make('# Externe', function () {
+            Text::make('# Best. Externe', function () {
                 return $this->externe()->where('bestaetigt',1)->count();
             })->onlyOnIndex(),
             
