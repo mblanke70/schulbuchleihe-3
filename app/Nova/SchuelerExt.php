@@ -39,7 +39,7 @@ class SchuelerExt extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'vorname'
+        'id', 'nachname', 'vorname'
     ];
 
     /**
