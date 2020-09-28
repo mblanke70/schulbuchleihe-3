@@ -76,15 +76,15 @@ class SepaMandat extends Resource
     {
         return [
 
-            Text::make('Mandatsreferenz', 'debtorMandate')->sortable(),
+            Text::make('Mandatsreferenz', 'debtorMandate')->rules('required')->sortable(),
 
-            Date::make('Signaturdatum', 'debtorMandateSignDate')->sortable(),
+            Date::make('Signaturdatum', 'debtorMandateSignDate')->rules('required')->sortable(),
 
-            Text::make(' Name', 'debtorName'),
+            Text::make(' Name', 'debtorName')->rules('required'),
 
-            Text::make('BIC', 'debtorBic'),
+            Text::make('BIC', 'debtorBic')->rules('required'),
 
-            Text::make('IBAN', 'debtorIban'),
+            Text::make('IBAN', 'debtorIban')->rules('required'),
 
             //Text::make('Gläubiger Name', 'creditorName')->rules('required')->sortable(),
 
