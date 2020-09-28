@@ -101,7 +101,7 @@ class Familie extends Resource
 
             //Text::make('Mandatsref', 'mandatsref')->sortable(),
             
-            BelongsTo::make('SEPA-Mandat', 'sepa_mandat'),
+            BelongsTo::make('SEPA-Mandat', 'sepa_mandat')->nullable(),
             
             Text::make('Kinder', function() {
                 //$kinder  = $this->kinder;
