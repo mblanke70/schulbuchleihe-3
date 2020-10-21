@@ -60,7 +60,11 @@ class SepaXML extends Action
         {
             $buecher = $model->buecher;
             $ebooks  = $model->ebooks;
-            $familie = $model->user->familie;
+            $user    = $model->user;
+
+            if($user == null) continue;
+            
+            $familie = user->familie;
 
             if($familie == null || $familie->befreit) continue;
 
