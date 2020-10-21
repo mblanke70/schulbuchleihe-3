@@ -79,14 +79,12 @@ class SepaXML extends Action
             }
 
             /* Ebooks */
-            /*
             foreach($ebooks as $ebook) {
-                $btsj = $ebook->buchtitel->buchtitelSchuljahr->first();
+                $btsj = $ebook->buchtitel->buchtitel->first();
 
                 $leihpreis = $btsj->ebook;
                 if($leihpreis != null) { $summe += $leihpreis; }
             }
-            */
 
             if($familie != null)
             {
