@@ -45,8 +45,8 @@ class SepaXML extends Action
         // create a payment, it's possible to create multiple payments,
         // "firstPayment" is the identifier for the transactions
         // This creates a one time debit. If needed change use ::S_FIRST, ::S_RECURRING or ::S_FINAL respectively
-        $directDebit->addPaymentInfo('sbl-1920', array(
-            'id'                    => 'sbl-1920-',
+        $directDebit->addPaymentInfo('sbl-2021', array(
+            'id'                    => 'sbl-2021-',
             'dueDate'               => Carbon::now()->addDays(7), // Fälligkeitsdatum
             'creditorName'          => 'Ursulaschule', // Gläubiger-Name
             'creditorAccountIBAN'   => 'DE02265501050000203661',    // Gläubiger-IBAN
@@ -59,11 +59,14 @@ class SepaXML extends Action
         foreach($models as $model) 
         {
             $buecher = $model->buecher;
-            $familie = $model->familie;
+            $ebooks  = $model->ebooks;
+            $familie = $model->user->familie;
 
             if($familie == null || $familie->befreit) continue;
 
             $summe = 0;
+
+            /* Bücher */
             foreach($buecher as $buch) {
                 $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
 
@@ -71,10 +74,18 @@ class SepaXML extends Action
                 if($leihpreis != null) { $summe += $leihpreis; }
             }
 
+            /* Ebooks */
+            foreach($ebooks as $ebook) {
+                $btsj = $ebook->buchtitel->buchtitelSchuljahr->first();
+
+                $leihpreis = $btsj->ebook;
+                if($leihpreis != null) { $summe += $leihpreis; }
+            }
+
             if($familie != null)
             {
-                if($familie->kinder()->count() 
-                    + $familie->externe()->count() > 2)
+                if($familie->users()->count() 
+                    + $familie->externe()->where('bestaetigt', 1)->count() > 2)
                 {
                     $summe = $summe * 0.8;
                 }
@@ -90,7 +101,7 @@ class SepaXML extends Action
             if($summe>0)
             {
                 // Add a Single Transaction to the named payment
-                $directDebit->addTransfer('sbl-1920', array(
+                $directDebit->addTransfer('sbl-2021', array(
                     'amount'                => $summe,   // Betrag
                     'debtorIban'            => $sepa->debtorIban,    // Zahlungspflichtiger-IBAN
                     'debtorBic'             => $sepa->debtorBic,     // Zahlungspflichtiger-BIC
