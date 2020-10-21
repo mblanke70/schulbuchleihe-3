@@ -64,7 +64,7 @@ class SepaXML extends Action
 
             if($user == null) continue;
             
-            $familie = user->familie;
+            $familie = $user->familie;
 
             if($familie == null || $familie->befreit) continue;
 
