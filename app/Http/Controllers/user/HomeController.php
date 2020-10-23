@@ -118,7 +118,7 @@ class HomeController extends Controller
             }
 
             return view('user/rechnungen', 
-                compact('ausleiher', 'buecher', 'ebooks', 'familie', 'summe'));
+                compact('ausleiher', 'erm', 'buecher', 'ebooks', 'familie', 'summe'));
         }
 
          return view('user/index2');
