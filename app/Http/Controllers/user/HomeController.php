@@ -102,17 +102,18 @@ class HomeController extends Controller
                 }
             }
 
+            $erm = 0;
             if($familie != null)
             {
                 if($familie->kinder()->count() 
                     + $familie->externe()->where('bestaetigt', 1)->count() > 2)
                 {
-                    $summe = $summe * 0.8;
+                    $erm = 0.8;
                 }
 
                 if($familie->befreit)
                 {
-                    $summe = 0;
+                    $erm = 1;
                 } 
             }
 
