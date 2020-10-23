@@ -75,10 +75,10 @@
         <tbody>
             @foreach ($ebooks as $ebook)
                 <tr>
-                    <td>{{ $ebook->titel }}</td>
-                    <td></td>
-                    <td>{{ $ebook->buchtitel->isbn }}</td>
-                    <td>{{ $ebook->buchtitel->verlag }}</td>
+                    <td>{{ $ebook->buchtitel->buchtitel->titel }}</td>
+                    <td>{{ $ebook->buchtitel->buchtitel->fach->code }}</td>
+                    <td>{{ $ebook->buchtitel->buchtitel->isbn }}</td>
+                    <td>{{ $ebook->buchtitel->buchtitel->verlag }}</td>
                     <td>{{ $ebook->leihpreis }} €</td>
                 </tr>
             @endforeach
