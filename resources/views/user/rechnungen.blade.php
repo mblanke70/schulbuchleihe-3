@@ -66,8 +66,9 @@
             <tr>
                 <th>Titel</th>
                 <th>Fach</th> 
-                <th>ISBN</th>
                 <th>Verlag</th>
+                <th>App</th>
+                <th>Schlüssel</th>
                 <th>Leihgebühr</th>
             </tr>
         </thead>
@@ -77,8 +78,9 @@
                 <tr>
                     <td>{{ $ebook->buchtitel->buchtitel->titel }}</td>
                     <td>{{ $ebook->buchtitel->buchtitel->fach->code }}</td>
-                    <td>{{ $ebook->buchtitel->buchtitel->isbn }}</td>
                     <td>{{ $ebook->buchtitel->buchtitel->verlag }}</td>
+                    <td>{{ $ebook->app }}</td>
+                    <td>{{ $ebook->schluessel}}
                     <td>{{ $ebook->leihpreis }} €</td>
                 </tr>
             @endforeach
