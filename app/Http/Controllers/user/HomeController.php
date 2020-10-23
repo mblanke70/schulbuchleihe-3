@@ -75,6 +75,7 @@ class HomeController extends Controller
         if($ausleiher != null)
         {
             $buecher  = $ausleiher->buecher;
+            $ebooks   = $ausleiher->ebooks;
             $familie  = $ausleiher->user->familie;
 
             $summe = 0;
@@ -111,6 +112,8 @@ class HomeController extends Controller
                     $summe = 0;
                 } 
             }
+
+            dd('buecher');
 
             return view('user/rechnungen', 
                 compact('ausleiher', 'buecher', 'ebooks', 'familie', 'summe'));
