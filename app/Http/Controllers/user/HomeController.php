@@ -95,7 +95,7 @@ class HomeController extends Controller
             /* Ebooks */
             if($ebooks != null) {
                 foreach($ebooks as $ebook) {
-                    $btsj = $ebook->buchtitel->first();
+                    $btsj = $ebook->buchtitel->where('schuljahr_id', 4)->first();
                     dd($btsj);
 
                     $leihpreis = $btsj->ebook;
