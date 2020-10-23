@@ -78,9 +78,9 @@ class HomeController extends Controller
             $ebooks   = $ausleiher->ebooks;
             $familie  = $ausleiher->user->familie;
 
+            /* Bücher */
             $summe = 0;
 
-            /* Bücher */
             if($buecher != null) {
                 foreach($buecher as $buch) {
                     $btsj = $buch->buchtitel->buchtitelSchuljahr
@@ -93,12 +93,14 @@ class HomeController extends Controller
             }
 
             /* Ebooks */
+            $summe_ebooks = 0;
+
             if($ebooks != null) {
                 foreach($ebooks as $ebook) {
                     $btsj      = $ebook->buchtitel;
                     $leihpreis = $btsj->ebook;
                     $ebook['leihpreis'] = $leihpreis;
-                    if($leihpreis != null) { $summe += $leihpreis; }
+                    if($leihpreis != null) { $summe_ebooks += $leihpreis; }
                 }
             }
 
@@ -118,7 +120,7 @@ class HomeController extends Controller
             }
 
             return view('user/rechnungen', 
-                compact('ausleiher', 'erm', 'buecher', 'ebooks', 'familie', 'summe'));
+                compact('ausleiher', 'erm', 'buecher', 'ebooks', 'familie', 'summe', 'summe_ebooks'));
         }
 
          return view('user/index2');

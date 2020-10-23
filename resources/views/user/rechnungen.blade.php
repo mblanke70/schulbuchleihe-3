@@ -60,4 +60,45 @@
     <p>Keine Bücher ausgeliehen.</p>
     @endif
 
+    @if(!empty($ebooks))
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Titel</th>
+                <th>Fach</th> 
+                <th>ISBN</th>
+                <th>Verlag</th>
+                <th>Leihgebühr</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach ($ebooks as $ebook)
+                <tr>
+                    <td>{{ $ebook->buchtitel->titel }}</td>
+                    <td>{{ $ebook->buchtitel->fach->name }}</td>
+                    <td>{{ $ebook->buchtitel->isbn }}</td>
+                    <td>{{ $ebook->buchtitel->verlag }}</td>
+                    <td>{{ $ebook->leihpreis }} €</td>
+                </tr>
+            @endforeach
+
+            <tr>
+                <td colspan="6" style="text-align: right; font-weight: 700;">Summe: </td>
+                <td style="font-weight: 700;">{{ number_format($summe_ebooks, 2, ',', '') }} €</td>
+            </tr>
+
+            @if($erm < 1)
+                <tr>
+                    <td colspan="6" style="text-align: right; font-weight: 700;">Summe ermäßigt ({{ $erm * 100 }}%): </td>
+                    <td style="font-weight: 700;">{{ number_format($erm * $summe_ebooks, 2, ',', '') }} €</td>
+                </tr>
+            @endif
+        </tbody>
+
+    </table> 
+    @else
+    <p>Keine Ebboks ausgeliehen.</p>
+    @endif
+
 @endsection
