@@ -3,7 +3,7 @@
 @section('title', 'Schulbuchleihe - Ursulaschule Osnabrück')
 
 @section('heading')
-   	<h4>Leihbücher im Schuljahr {{ $ausleiher->klasse->jahrgang->schuljahr->schuljahr }}</h4>
+   	<h4>Leihbücher und Ebooks im Schuljahr {{ $ausleiher->klasse->jahrgang->schuljahr->schuljahr }}</h4>
     <h4>{{ $ausleiher->vorname }} {{ $ausleiher->nachname }} ({{ $ausleiher->klasse->bezeichnung }})</h4> 
 @endsection
 
@@ -16,6 +16,8 @@
 	@endif
 
     @if(!empty($buecher))
+    <h5>Leihbücher</h5>
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -61,6 +63,8 @@
     @endif
 
     @if(!empty($ebooks))
+    <h5>Ebooks</h5>
+
     <table class="table table-striped">
         <thead>
             <tr>
