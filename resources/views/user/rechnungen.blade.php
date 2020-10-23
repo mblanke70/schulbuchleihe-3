@@ -75,7 +75,7 @@
         <tbody>
             @foreach ($ebooks as $ebook)
                 <tr>
-                    <td>{{ $ebook->buchtitel->titel }}</td>
+                    <td>{{ $ebook->titel }}</td>
                     <td></td>
                     <td>{{ $ebook->buchtitel->isbn }}</td>
                     <td>{{ $ebook->buchtitel->verlag }}</td>
