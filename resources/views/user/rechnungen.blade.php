@@ -81,7 +81,7 @@
             @foreach ($ebooks as $ebook)
                 <tr>
                     <td>{{ $ebook->buchtitel->buchtitel->titel }}</td>
-                    <td>{{ $ebook->buchtitel->buchtitel->fach->code }}</td>
+                    <td>{{ $ebook->buchtitel->buchtitel->fach->name }}</td>
                     <td>{{ $ebook->buchtitel->buchtitel->verlag }}</td>
                     <td>{{ $ebook->app }}</td>
                     <td>{{ $ebook->schluessel}}
