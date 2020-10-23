@@ -93,6 +93,7 @@ class HomeController extends Controller
             }
 
             /* Ebooks */
+            /*
             if($ebooks != null) {
                 foreach($ebooks as $ebook) {
                     $btsj = $ebook->buchtitel->buchtitel->first();
@@ -102,6 +103,7 @@ class HomeController extends Controller
                     if($leihpreis != null) { $summe += $leihpreis; }
                 }
             }
+            */
 
             if($familie != null)
             {
