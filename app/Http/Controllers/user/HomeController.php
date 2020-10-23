@@ -107,7 +107,7 @@ class HomeController extends Controller
             $erm = 1;
             if($familie != null)
             {
-                if($familie->kinder()->count() 
+                if($familie->users()->count() 
                     + $familie->externe()->where('bestaetigt', 1)->count() > 2)
                 {
                     $erm = 0.8;
