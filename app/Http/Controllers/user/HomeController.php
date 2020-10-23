@@ -81,22 +81,26 @@ class HomeController extends Controller
             $summe = 0;
 
             /* Bücher */
-            foreach($buecher as $buch) {
-                // BuchtitelSchuljahr muss passen zum Schuljahr des Ausleihers
-                $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
+            if($buecher != null) {
+                foreach($buecher as $buch) {
+                    // BuchtitelSchuljahr muss passen zum Schuljahr des Ausleihers
+                    $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
 
-                $leihpreis = $btsj->leihpreis;
-                $buch['leihpreis'] = $leihpreis;
-                if($leihpreis != null) { $summe += $leihpreis; }
+                    $leihpreis = $btsj->leihpreis;
+                    $buch['leihpreis'] = $leihpreis;
+                    if($leihpreis != null) { $summe += $leihpreis; }
+                }
             }
 
             /* Ebooks */
-            foreach($ebooks as $ebook) {
-                $btsj = $ebook->buchtitel->buchtitel->first();
+            if($ebooks != null) {
+                foreach($ebooks as $ebook) {
+                    $btsj = $ebook->buchtitel->buchtitel->first();
 
-                $leihpreis = $btsj->ebook;
-                $ebook['leihpreis'] = $leihpreis;
-                if($leihpreis != null) { $summe += $leihpreis; }
+                    $leihpreis = $btsj->ebook;
+                    $ebook['leihpreis'] = $leihpreis;
+                    if($leihpreis != null) { $summe += $leihpreis; }
+                }
             }
 
             if($familie != null)
@@ -113,7 +117,7 @@ class HomeController extends Controller
                 } 
             }
 
-            dd('buecher');
+            dd($buecher);
 
             return view('user/rechnungen', 
                 compact('ausleiher', 'buecher', 'ebooks', 'familie', 'summe'));
