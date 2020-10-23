@@ -81,26 +81,21 @@ class SepaXML extends Action
 
             /* Ebooks */
             foreach($ebooks as $ebook) {
-                $btsj = $ebook->buchtitel
-                    ->where('schuljahr_id', 4)->first();
-                    
+                $btsj      = $ebook->buchtitel;
                 $leihpreis = $btsj->ebook;
                 if($leihpreis != null) { $summe += $leihpreis; }
             }
 
-            if($familie != null)
+            if($familie->users()->count() 
+                + $familie->externe()->where('bestaetigt', 1)->count() > 2)
             {
-                if($familie->users()->count() 
-                    + $familie->externe()->where('bestaetigt', 1)->count() > 2)
-                {
-                    $summe = $summe * 0.8;
-                }
-
-                if($familie->befreit)
-                {
-                    $summe = 0;
-                } 
+                $summe = $summe * 0.8;
             }
+
+            if($familie->befreit)
+            {
+                $summe = 0;
+            } 
 
             $sepa = $familie->sepa_mandat;
 
