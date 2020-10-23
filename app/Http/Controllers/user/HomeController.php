@@ -117,7 +117,7 @@ class HomeController extends Controller
                 } 
             }
 
-            dd($buecher);
+            dd($ebooks);
 
             return view('user/rechnungen', 
                 compact('ausleiher', 'buecher', 'ebooks', 'familie', 'summe'));
