@@ -96,7 +96,7 @@
 
             @if($erm < 1)
                 <tr>
-                    <td colspan="6" style="text-align: right; font-weight: 700;">Summe ermäßigt ({{ $erm * 100 }}%): </td>
+                    <td colspan="5" style="text-align: right; font-weight: 700;">Summe ermäßigt ({{ $erm * 100 }}%): </td>
                     <td style="font-weight: 700;">{{ number_format($erm * $summe_ebooks, 2, ',', '') }} €</td>
                 </tr>
             @endif
