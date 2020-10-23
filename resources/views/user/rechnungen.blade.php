@@ -86,7 +86,7 @@
             @endforeach
 
             <tr>
-                <td colspan="6" style="text-align: right; font-weight: 700;">Summe: </td>
+                <td colspan="5" style="text-align: right; font-weight: 700;">Summe: </td>
                 <td style="font-weight: 700;">{{ number_format($summe_ebooks, 2, ',', '') }} €</td>
             </tr>
 
