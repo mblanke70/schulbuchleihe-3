@@ -83,8 +83,8 @@ class HomeController extends Controller
             /* Bücher */
             if($buecher != null) {
                 foreach($buecher as $buch) {
-                    // BuchtitelSchuljahr muss passen zum Schuljahr des Ausleihers
-                    $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
+                    $btsj = $buch->buchtitel->buchtitelSchuljahr
+                        ->where('schuljahr_id', 4)->first();
 
                     $leihpreis = $btsj->leihpreis;
                     $buch['leihpreis'] = $leihpreis;
@@ -95,8 +95,8 @@ class HomeController extends Controller
             /* Ebooks */
             if($ebooks != null) {
                 foreach($ebooks as $ebook) {
-                    $btsj = $ebook->buchtitel->where('schuljahr_id', 4)->first();
-                    dd($btsj);
+                    $btsj = $ebook->buchtitel
+                        ->where('schuljahr_id', 4)->first();
 
                     $leihpreis = $btsj->ebook;
                     $ebook['leihpreis'] = $leihpreis;

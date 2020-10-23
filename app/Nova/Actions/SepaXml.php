@@ -72,7 +72,8 @@ class SepaXML extends Action
 
             /* Bücher */
             foreach($buecher as $buch) {
-                $btsj = $buch->buchtitel->buchtitelSchuljahr->first();
+                $btsj = $buch->buchtitel->buchtitelSchuljahr
+                    ->where('schuljahr_id', 4)->first();
 
                 $leihpreis = $btsj->leihpreis;
                 if($leihpreis != null) { $summe += $leihpreis; }
@@ -80,8 +81,9 @@ class SepaXML extends Action
 
             /* Ebooks */
             foreach($ebooks as $ebook) {
-                $btsj = $ebook->buchtitel->buchtitel->first();
-
+                $btsj = $ebook->buchtitel
+                    ->where('schuljahr_id', 4)->first();
+                    
                 $leihpreis = $btsj->ebook;
                 if($leihpreis != null) { $summe += $leihpreis; }
             }
