@@ -102,7 +102,7 @@ class HomeController extends Controller
                 }
             }
 
-            $erm = 0;
+            $erm = 1;
             if($familie != null)
             {
                 if($familie->kinder()->count() 
@@ -113,7 +113,7 @@ class HomeController extends Controller
 
                 if($familie->befreit)
                 {
-                    $erm = 1;
+                    $erm = 0;
                 } 
             }
 
