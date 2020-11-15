@@ -84,6 +84,7 @@
                       </ul>
 
 
+<!--
                       @if(Auth::user()->jahrgang > 4)
 
                           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -107,7 +108,7 @@
                           </ul>
 
                       @endif
-
+-->
                   </div>
               
               </nav>
