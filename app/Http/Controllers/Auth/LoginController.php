@@ -112,7 +112,7 @@ class LoginController extends Controller
         }
         */
 
-        return redirect()->intended('user/');
+        return redirect()->intended('user/buecher/4');
     }
 
     public function logout()

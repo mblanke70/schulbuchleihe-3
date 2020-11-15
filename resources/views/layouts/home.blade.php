@@ -74,7 +74,13 @@
                                   <span data-feather="file"></span>
                                   Leihbücher
                               </a>
-                          </li>    
+                          </li>  
+                          <li class="nav-item">
+                              <a class="nav-link" href="{{ url('user/rechnung/4') }}">
+                                  <span data-feather="file"></span>
+                                  Rechnung
+                              </a>
+                          </li>   
                       </ul>
 
 
