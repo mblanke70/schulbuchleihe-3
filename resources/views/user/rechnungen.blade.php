@@ -15,7 +15,7 @@
 	    </div>
 	@endif
 
-    <h2>Rechnungsbetrag: {{ number_format( $erm * ($summe + $summe_ebooks), 2, ',', '') }} €</h2>
+    <h2 class="pt-3 pb-3">Rechnungsbetrag: {{ number_format( $erm * ($summe + $summe_ebooks), 2, ',', '') }} €</h2>
 
     @if(!empty($buecher))
     <h5>Leihbücher</h5>
