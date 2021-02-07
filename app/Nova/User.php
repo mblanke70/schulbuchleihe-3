@@ -74,7 +74,8 @@ class User extends Resource
             
             HasMany::make('Schueler', 'schueler'),           
 
-            BelongsTo::make('Familie', 'familie'),
+            BelongsTo::make('Familie', 'familie')
+                ->nullable(),
 
             Boolean::make('Admin', 'is_admin'),
 
